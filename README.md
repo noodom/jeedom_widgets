@@ -8,4 +8,4 @@ Développements de widgets pour Jeedom et Nextdom
 
 	- voir l'installation dans /ledScroller/V4/README.md
 
-![](doc/images/ledScroller.png) 
+![](ledScroller/V4/doc/images/ledScroller.png) 
