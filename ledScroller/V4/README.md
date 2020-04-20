@@ -6,7 +6,7 @@
 
 ## Création du widget
 
-![](ledScroller/doc/images/creationWidget.png)
+![](doc/images/creationWidget.png)
 
 - Depuis la page d'édition de widgets (Menu Outils -> Widget),
 	- Sélectionner dashboard, puis sélectionner Nouveau
@@ -17,7 +17,7 @@
 
 ## (facultatif) Création d'un virtuel avec commande info
 
-![](ledScroller/doc/images/commandeInfo.png)
+![](doc/images/commandeInfo.png)
 
 - Si vous souhaitez associer le widget à une commande existante, cette étape n'est pas nécessaire
 - Sinon, si vous souhaitez créer un nouveau led scroller :
@@ -26,7 +26,7 @@
 
 ## association du widget à la commande info
 
-![](ledScroller/doc/images/associationCommandeWidget.png)
+![](doc/images/associationCommandeWidget.png)
 
 	- Depuis la commande info, sélectionner la roue dentée
 	- Sélectionner l'onglet Affichage
@@ -35,7 +35,7 @@
 	
 ## (facultatif) Paramètres de la commande associée au widget
 
-![](ledScroller/doc/images/parametresWidget.png)
+![](doc/images/parametresWidget.png)
 
 	- Pour changer la couleur des leds allumées, ajouter le paramètre couleurLed avec le code couleur souhaitée (par défaut #0ff)
 	- Pour changer la couleur des leds de fond éteintes, ajouter le paramètre couleurFondLed avec le code couleur souhaitée (par défaut #121212)
