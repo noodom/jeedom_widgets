@@ -39,7 +39,9 @@
 
 	- Pour changer la couleur des leds allumées, ajouter le paramètre couleurLed avec le code couleur souhaitée (par défaut #0ff)
 	- Pour changer la couleur des leds de fond éteintes, ajouter le paramètre couleurFondLed avec le code couleur souhaitée (par défaut #121212)
-	
+
+	- Pour changer la vitesse de défilement (nombre de rafraichissements par seconde), ajouter le paramètre vitesseDefilement (par défaut 300)
+
 ## Ajout dans un design
 
 	- Depuis un design, ajouter l'équipement ou le virtuelsuivez les étapes suivantes :
