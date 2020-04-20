@@ -481,7 +481,7 @@
 	
 	var SCROLLER_LENGTH = 60;
 	var HEIGHT = 7;
-	var fps = 30;
+	var fps#id# = 30;
 
 	var myMessage#id# = textToLED#id#('');
 	var leftPointer#id# = SCROLLER_LENGTH + 1;
@@ -752,27 +752,30 @@
 		drawMessage#id#(myMessage#id#, leftPointer#id#);
 		leftPointer#id#--;
 
-	  }, 1000 / fps);
+	  }, 1000 / fps#id#);
 	}
 	
 	jeedom.cmd.update['#id#'] = function (_options) {
 		
-		// Récupération des paramètres
-		// couleur des leds du texte
+	// Récupération des paramètres
+	// couleur des leds du texte
       	let ledColor = ('#couleurLed#' != '#' + 'couleurLed#') ? "#couleurLed#" : '#0ff';
-		document.documentElement.style.setProperty('--led-color#id#', ledColor);
-		// couleurs des leds de font
+	document.documentElement.style.setProperty('--led-color#id#', ledColor);
+	// couleurs des leds de font
       	let ledBackgroundColor = ('#couleurFondLed#' != '#' + 'couleurFondLed#') ? "#couleurFondLed#" : '#121212';
-		document.documentElement.style.setProperty('--led-background-color#id#', ledBackgroundColor);
+	document.documentElement.style.setProperty('--led-background-color#id#', ledBackgroundColor);
+	// nombre de rafraichissement par seconde
+	let fps = is_numeric('#vitesseDefilement#') ? parseFloat('#vitesseDefilement#') : 30;
+	fps#id# = fps;
 		
-		// Ne pas modifier : non paramétré
+	// Ne pas modifier : non paramétré
       	//let marqueeWidth = ('#largeurMarquee#' != '#' + 'largeurMarquee#') ? "#largeurMarquee#" : '420px';
-		//document.documentElement.style.setProperty('--marquee-width#id#', marqueeWidth);
-		// Ne pas modifier : non paramétré
+	//document.documentElement.style.setProperty('--marquee-width#id#', marqueeWidth);
+	// Ne pas modifier : non paramétré
       	//let marqueeHeight = ('#hauteurMarquee#' != '#' + 'hauteurMarquee#') ? "#hauteurMarquee#" : '55px';
-		//document.documentElement.style.setProperty('--marquee-height#id#', marqueeHeight);
+	//document.documentElement.style.setProperty('--marquee-height#id#', marqueeHeight);
 
-		// Récupération de la valeur de la commande info
+	// Récupération de la valeur de la commande info
         let cmdValue = _options.display_value;
         changeText#id#(cmdValue);
 		draw#id#();
