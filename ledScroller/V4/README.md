@@ -35,7 +35,7 @@
 	
 ## (facultatif) Paramètres de la commande associée au widget
 
-![](ledScroller/doc/images/commandeInfo.png)
+![](ledScroller/doc/images/parametresWidget.png)
 
 	- Pour changer la couleur des leds allumées, ajouter le paramètre couleurLed avec le code couleur souhaitée (par défaut #0ff)
 	- Pour changer la couleur des leds de fond éteintes, ajouter le paramètre couleurFondLed avec le code couleur souhaitée (par défaut #121212)
