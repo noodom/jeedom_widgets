@@ -1,0 +1,792 @@
+<!-- 
+    Widget V4 Led Scroller pour Jeedom et Nextdom
+        développé par @noodom
+        inspiré par https://codepen.io/timkim/pen/EajvGw 
+-->
+<style>
+    :root {
+        --marquee-width#id#:420px;
+		--marquee-height#id#:55px;
+		--led-color#id#:#0ff;
+		--led-background-color#id#:#121212;
+    }
+
+	body{
+	  background-color: #222;
+	}
+
+	#wrapper#id#{
+	  width: 420px;
+	  margin: 50px auto;
+	}
+
+	#theMarquee#id#{
+	  height: var(--marquee-height#id#);
+	  background: linear-gradient(0deg, #111, #222);
+	  box-shadow: 
+		0px 0px 2px 0px #aaa inset,
+		0px -1px 2px 0px #aaa inset,
+		2px -5px 5px 0px #111 inset,
+		0px -5px 5px 0px #111 inset,
+		2px 5px 5px 0px #111;
+	  border-radius: 5px;
+	}
+
+	.light {
+	  width: 5px;
+	  height: 5px;
+	  margin: 1px 1px;
+	  text-align: center;
+	  font-size: 15px;
+	  float: left;
+	  border-radius: 50%;
+	}
+
+	.off#id#{
+	  background-color: var(--led-background-color#id#);;
+	}
+
+	.on#id#{
+	  background-color: var(--led-color#id#);
+	  box-shadow: 0px 0px 5px var(--led-color#id#);
+	}
+</style>
+
+<div style="padding:0px;width:420px;height:100px;background-color: #121212;" class="cmd #history# tooltips cmd-widget container-fluid"
+    data-type="info" data-subtype="string" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#"
+    title="#collectDate#">
+<div id="wrapper#id#">
+	<div id="theMarquee#id#">
+		<div class="0_0#id# light off#id#"></div>
+		<div class="0_1#id# light off#id#"></div>
+		<div class="0_2#id# light off#id#"></div>
+		<div class="0_3#id# light off#id#"></div>
+		<div class="0_4#id# light off#id#"></div>
+		<div class="0_5#id# light off#id#"></div>
+		<div class="0_6#id# light off#id#"></div>
+		<div class="0_7#id# light off#id#"></div>
+		<div class="0_8#id# light off#id#"></div>
+		<div class="0_9#id# light off#id#"></div>
+		<div class="0_10#id# light off#id#"></div>
+		<div class="0_11#id# light off#id#"></div>
+		<div class="0_12#id# light off#id#"></div>
+		<div class="0_13#id# light off#id#"></div>
+		<div class="0_14#id# light off#id#"></div>
+		<div class="0_15#id# light off#id#"></div>
+		<div class="0_16#id# light off#id#"></div>
+		<div class="0_17#id# light off#id#"></div>
+		<div class="0_18#id# light off#id#"></div>
+		<div class="0_19#id# light off#id#"></div>
+		<div class="0_20#id# light off#id#"></div>
+		<div class="0_21#id# light off#id#"></div>
+		<div class="0_22#id# light off#id#"></div>
+		<div class="0_23#id# light off#id#"></div>
+		<div class="0_24#id# light off#id#"></div>
+		<div class="0_25#id# light off#id#"></div>
+		<div class="0_26#id# light off#id#"></div>
+		<div class="0_27#id# light off#id#"></div>
+		<div class="0_28#id# light off#id#"></div>
+		<div class="0_29#id# light off#id#"></div>
+		<div class="0_30#id# light off#id#"></div>
+		<div class="0_31#id# light off#id#"></div>
+		<div class="0_32#id# light off#id#"></div>
+		<div class="0_33#id# light off#id#"></div>
+		<div class="0_34#id# light off#id#"></div>
+		<div class="0_35#id# light off#id#"></div>
+		<div class="0_36#id# light off#id#"></div>
+		<div class="0_37#id# light off#id#"></div>
+		<div class="0_38#id# light off#id#"></div>
+		<div class="0_39#id# light off#id#"></div>
+		<div class="0_40#id# light off#id#"></div>
+		<div class="0_41#id# light off#id#"></div>
+		<div class="0_42#id# light off#id#"></div>
+		<div class="0_43#id# light off#id#"></div>
+		<div class="0_44#id# light off#id#"></div>
+		<div class="0_45#id# light off#id#"></div>
+		<div class="0_46#id# light off#id#"></div>
+		<div class="0_47#id# light off#id#"></div>
+		<div class="0_48#id# light off#id#"></div>
+		<div class="0_49#id# light off#id#"></div>
+		<div class="0_50#id# light off#id#"></div>
+		<div class="0_51#id# light off#id#"></div>
+		<div class="0_52#id# light off#id#"></div>
+		<div class="0_53#id# light off#id#"></div>
+		<div class="0_54#id# light off#id#"></div>
+		<div class="0_55#id# light off#id#"></div>
+		<div class="0_56#id# light off#id#"></div>
+		<div class="0_57#id# light off#id#"></div>
+		<div class="0_58#id# light off#id#"></div>
+		<div class="0_59#id# light off#id#"></div>
+		<div class="1_0#id# light off#id#"></div>
+		<div class="1_1#id# light off#id#"></div>
+		<div class="1_2#id# light off#id#"></div>
+		<div class="1_3#id# light off#id#"></div>
+		<div class="1_4#id# light off#id#"></div>
+		<div class="1_5#id# light off#id#"></div>
+		<div class="1_6#id# light off#id#"></div>
+		<div class="1_7#id# light off#id#"></div>
+		<div class="1_8#id# light off#id#"></div>
+		<div class="1_9#id# light off#id#"></div>
+		<div class="1_10#id# light off#id#"></div>
+		<div class="1_11#id# light off#id#"></div>
+		<div class="1_12#id# light off#id#"></div>
+		<div class="1_13#id# light off#id#"></div>
+		<div class="1_14#id# light off#id#"></div>
+		<div class="1_15#id# light off#id#"></div>
+		<div class="1_16#id# light off#id#"></div>
+		<div class="1_17#id# light off#id#"></div>
+		<div class="1_18#id# light off#id#"></div>
+		<div class="1_19#id# light off#id#"></div>
+		<div class="1_20#id# light off#id#"></div>
+		<div class="1_21#id# light off#id#"></div>
+		<div class="1_22#id# light off#id#"></div>
+		<div class="1_23#id# light off#id#"></div>
+		<div class="1_24#id# light off#id#"></div>
+		<div class="1_25#id# light off#id#"></div>
+		<div class="1_26#id# light off#id#"></div>
+		<div class="1_27#id# light off#id#"></div>
+		<div class="1_28#id# light off#id#"></div>
+		<div class="1_29#id# light off#id#"></div>
+		<div class="1_30#id# light off#id#"></div>
+		<div class="1_31#id# light off#id#"></div>
+		<div class="1_32#id# light off#id#"></div>
+		<div class="1_33#id# light off#id#"></div>
+		<div class="1_34#id# light off#id#"></div>
+		<div class="1_35#id# light off#id#"></div>
+		<div class="1_36#id# light off#id#"></div>
+		<div class="1_37#id# light off#id#"></div>
+		<div class="1_38#id# light off#id#"></div>
+		<div class="1_39#id# light off#id#"></div>
+		<div class="1_40#id# light off#id#"></div>
+		<div class="1_41#id# light off#id#"></div>
+		<div class="1_42#id# light off#id#"></div>
+		<div class="1_43#id# light off#id#"></div>
+		<div class="1_44#id# light off#id#"></div>
+		<div class="1_45#id# light off#id#"></div>
+		<div class="1_46#id# light off#id#"></div>
+		<div class="1_47#id# light off#id#"></div>
+		<div class="1_48#id# light off#id#"></div>
+		<div class="1_49#id# light off#id#"></div>
+		<div class="1_50#id# light off#id#"></div>
+		<div class="1_51#id# light off#id#"></div>
+		<div class="1_52#id# light off#id#"></div>
+		<div class="1_53#id# light off#id#"></div>
+		<div class="1_54#id# light off#id#"></div>
+		<div class="1_55#id# light off#id#"></div>
+		<div class="1_56#id# light off#id#"></div>
+		<div class="1_57#id# light off#id#"></div>
+		<div class="1_58#id# light off#id#"></div>
+		<div class="1_59#id# light off#id#"></div>
+		<div class="2_0#id# light off#id#"></div>
+		<div class="2_1#id# light off#id#"></div>
+		<div class="2_2#id# light off#id#"></div>
+		<div class="2_3#id# light off#id#"></div>
+		<div class="2_4#id# light off#id#"></div>
+		<div class="2_5#id# light off#id#"></div>
+		<div class="2_6#id# light off#id#"></div>
+		<div class="2_7#id# light off#id#"></div>
+		<div class="2_8#id# light off#id#"></div>
+		<div class="2_9#id# light off#id#"></div>
+		<div class="2_10#id# light off#id#"></div>
+		<div class="2_11#id# light off#id#"></div>
+		<div class="2_12#id# light off#id#"></div>
+		<div class="2_13#id# light off#id#"></div>
+		<div class="2_14#id# light off#id#"></div>
+		<div class="2_15#id# light off#id#"></div>
+		<div class="2_16#id# light off#id#"></div>
+		<div class="2_17#id# light off#id#"></div>
+		<div class="2_18#id# light off#id#"></div>
+		<div class="2_19#id# light off#id#"></div>
+		<div class="2_20#id# light off#id#"></div>
+		<div class="2_21#id# light off#id#"></div>
+		<div class="2_22#id# light off#id#"></div>
+		<div class="2_23#id# light off#id#"></div>
+		<div class="2_24#id# light off#id#"></div>
+		<div class="2_25#id# light off#id#"></div>
+		<div class="2_26#id# light off#id#"></div>
+		<div class="2_27#id# light off#id#"></div>
+		<div class="2_28#id# light off#id#"></div>
+		<div class="2_29#id# light off#id#"></div>
+		<div class="2_30#id# light off#id#"></div>
+		<div class="2_31#id# light off#id#"></div>
+		<div class="2_32#id# light off#id#"></div>
+		<div class="2_33#id# light off#id#"></div>
+		<div class="2_34#id# light off#id#"></div>
+		<div class="2_35#id# light off#id#"></div>
+		<div class="2_36#id# light off#id#"></div>
+		<div class="2_37#id# light off#id#"></div>
+		<div class="2_38#id# light off#id#"></div>
+		<div class="2_39#id# light off#id#"></div>
+		<div class="2_40#id# light off#id#"></div>
+		<div class="2_41#id# light off#id#"></div>
+		<div class="2_42#id# light off#id#"></div>
+		<div class="2_43#id# light off#id#"></div>
+		<div class="2_44#id# light off#id#"></div>
+		<div class="2_45#id# light off#id#"></div>
+		<div class="2_46#id# light off#id#"></div>
+		<div class="2_47#id# light off#id#"></div>
+		<div class="2_48#id# light off#id#"></div>
+		<div class="2_49#id# light off#id#"></div>
+		<div class="2_50#id# light off#id#"></div>
+		<div class="2_51#id# light off#id#"></div>
+		<div class="2_52#id# light off#id#"></div>
+		<div class="2_53#id# light off#id#"></div>
+		<div class="2_54#id# light off#id#"></div>
+		<div class="2_55#id# light off#id#"></div>
+		<div class="2_56#id# light off#id#"></div>
+		<div class="2_57#id# light off#id#"></div>
+		<div class="2_58#id# light off#id#"></div>
+		<div class="2_59#id# light off#id#"></div>
+		<div class="3_0#id# light off#id#"></div>
+		<div class="3_1#id# light off#id#"></div>
+		<div class="3_2#id# light off#id#"></div>
+		<div class="3_3#id# light off#id#"></div>
+		<div class="3_4#id# light off#id#"></div>
+		<div class="3_5#id# light off#id#"></div>
+		<div class="3_6#id# light off#id#"></div>
+		<div class="3_7#id# light off#id#"></div>
+		<div class="3_8#id# light off#id#"></div>
+		<div class="3_9#id# light off#id#"></div>
+		<div class="3_10#id# light off#id#"></div>
+		<div class="3_11#id# light off#id#"></div>
+		<div class="3_12#id# light off#id#"></div>
+		<div class="3_13#id# light off#id#"></div>
+		<div class="3_14#id# light off#id#"></div>
+		<div class="3_15#id# light off#id#"></div>
+		<div class="3_16#id# light off#id#"></div>
+		<div class="3_17#id# light off#id#"></div>
+		<div class="3_18#id# light off#id#"></div>
+		<div class="3_19#id# light off#id#"></div>
+		<div class="3_20#id# light off#id#"></div>
+		<div class="3_21#id# light off#id#"></div>
+		<div class="3_22#id# light off#id#"></div>
+		<div class="3_23#id# light off#id#"></div>
+		<div class="3_24#id# light off#id#"></div>
+		<div class="3_25#id# light off#id#"></div>
+		<div class="3_26#id# light off#id#"></div>
+		<div class="3_27#id# light off#id#"></div>
+		<div class="3_28#id# light off#id#"></div>
+		<div class="3_29#id# light off#id#"></div>
+		<div class="3_30#id# light off#id#"></div>
+		<div class="3_31#id# light off#id#"></div>
+		<div class="3_32#id# light off#id#"></div>
+		<div class="3_33#id# light off#id#"></div>
+		<div class="3_34#id# light off#id#"></div>
+		<div class="3_35#id# light off#id#"></div>
+		<div class="3_36#id# light off#id#"></div>
+		<div class="3_37#id# light off#id#"></div>
+		<div class="3_38#id# light off#id#"></div>
+		<div class="3_39#id# light off#id#"></div>
+		<div class="3_40#id# light off#id#"></div>
+		<div class="3_41#id# light off#id#"></div>
+		<div class="3_42#id# light off#id#"></div>
+		<div class="3_43#id# light off#id#"></div>
+		<div class="3_44#id# light off#id#"></div>
+		<div class="3_45#id# light off#id#"></div>
+		<div class="3_46#id# light off#id#"></div>
+		<div class="3_47#id# light off#id#"></div>
+		<div class="3_48#id# light off#id#"></div>
+		<div class="3_49#id# light off#id#"></div>
+		<div class="3_50#id# light off#id#"></div>
+		<div class="3_51#id# light off#id#"></div>
+		<div class="3_52#id# light off#id#"></div>
+		<div class="3_53#id# light off#id#"></div>
+		<div class="3_54#id# light off#id#"></div>
+		<div class="3_55#id# light off#id#"></div>
+		<div class="3_56#id# light off#id#"></div>
+		<div class="3_57#id# light off#id#"></div>
+		<div class="3_58#id# light off#id#"></div>
+		<div class="3_59#id# light off#id#"></div>
+		<div class="4_0#id# light off#id#"></div>
+		<div class="4_1#id# light off#id#"></div>
+		<div class="4_2#id# light off#id#"></div>
+		<div class="4_3#id# light off#id#"></div>
+		<div class="4_4#id# light off#id#"></div>
+		<div class="4_5#id# light off#id#"></div>
+		<div class="4_6#id# light off#id#"></div>
+		<div class="4_7#id# light off#id#"></div>
+		<div class="4_8#id# light off#id#"></div>
+		<div class="4_9#id# light off#id#"></div>
+		<div class="4_10#id# light off#id#"></div>
+		<div class="4_11#id# light off#id#"></div>
+		<div class="4_12#id# light off#id#"></div>
+		<div class="4_13#id# light off#id#"></div>
+		<div class="4_14#id# light off#id#"></div>
+		<div class="4_15#id# light off#id#"></div>
+		<div class="4_16#id# light off#id#"></div>
+		<div class="4_17#id# light off#id#"></div>
+		<div class="4_18#id# light off#id#"></div>
+		<div class="4_19#id# light off#id#"></div>
+		<div class="4_20#id# light off#id#"></div>
+		<div class="4_21#id# light off#id#"></div>
+		<div class="4_22#id# light off#id#"></div>
+		<div class="4_23#id# light off#id#"></div>
+		<div class="4_24#id# light off#id#"></div>
+		<div class="4_25#id# light off#id#"></div>
+		<div class="4_26#id# light off#id#"></div>
+		<div class="4_27#id# light off#id#"></div>
+		<div class="4_28#id# light off#id#"></div>
+		<div class="4_29#id# light off#id#"></div>
+		<div class="4_30#id# light off#id#"></div>
+		<div class="4_31#id# light off#id#"></div>
+		<div class="4_32#id# light off#id#"></div>
+		<div class="4_33#id# light off#id#"></div>
+		<div class="4_34#id# light off#id#"></div>
+		<div class="4_35#id# light off#id#"></div>
+		<div class="4_36#id# light off#id#"></div>
+		<div class="4_37#id# light off#id#"></div>
+		<div class="4_38#id# light off#id#"></div>
+		<div class="4_39#id# light off#id#"></div>
+		<div class="4_40#id# light off#id#"></div>
+		<div class="4_41#id# light off#id#"></div>
+		<div class="4_42#id# light off#id#"></div>
+		<div class="4_43#id# light off#id#"></div>
+		<div class="4_44#id# light off#id#"></div>
+		<div class="4_45#id# light off#id#"></div>
+		<div class="4_46#id# light off#id#"></div>
+		<div class="4_47#id# light off#id#"></div>
+		<div class="4_48#id# light off#id#"></div>
+		<div class="4_49#id# light off#id#"></div>
+		<div class="4_50#id# light off#id#"></div>
+		<div class="4_51#id# light off#id#"></div>
+		<div class="4_52#id# light off#id#"></div>
+		<div class="4_53#id# light off#id#"></div>
+		<div class="4_54#id# light off#id#"></div>
+		<div class="4_55#id# light off#id#"></div>
+		<div class="4_56#id# light off#id#"></div>
+		<div class="4_57#id# light off#id#"></div>
+		<div class="4_58#id# light off#id#"></div>
+		<div class="4_59#id# light off#id#"></div>
+		<div class="5_0#id# light off#id#"></div>
+		<div class="5_1#id# light off#id#"></div>
+		<div class="5_2#id# light off#id#"></div>
+		<div class="5_3#id# light off#id#"></div>
+		<div class="5_4#id# light off#id#"></div>
+		<div class="5_5#id# light off#id#"></div>
+		<div class="5_6#id# light off#id#"></div>
+		<div class="5_7#id# light off#id#"></div>
+		<div class="5_8#id# light off#id#"></div>
+		<div class="5_9#id# light off#id#"></div>
+		<div class="5_10#id# light off#id#"></div>
+		<div class="5_11#id# light off#id#"></div>
+		<div class="5_12#id# light off#id#"></div>
+		<div class="5_13#id# light off#id#"></div>
+		<div class="5_14#id# light off#id#"></div>
+		<div class="5_15#id# light off#id#"></div>
+		<div class="5_16#id# light off#id#"></div>
+		<div class="5_17#id# light off#id#"></div>
+		<div class="5_18#id# light off#id#"></div>
+		<div class="5_19#id# light off#id#"></div>
+		<div class="5_20#id# light off#id#"></div>
+		<div class="5_21#id# light off#id#"></div>
+		<div class="5_22#id# light off#id#"></div>
+		<div class="5_23#id# light off#id#"></div>
+		<div class="5_24#id# light off#id#"></div>
+		<div class="5_25#id# light off#id#"></div>
+		<div class="5_26#id# light off#id#"></div>
+		<div class="5_27#id# light off#id#"></div>
+		<div class="5_28#id# light off#id#"></div>
+		<div class="5_29#id# light off#id#"></div>
+		<div class="5_30#id# light off#id#"></div>
+		<div class="5_31#id# light off#id#"></div>
+		<div class="5_32#id# light off#id#"></div>
+		<div class="5_33#id# light off#id#"></div>
+		<div class="5_34#id# light off#id#"></div>
+		<div class="5_35#id# light off#id#"></div>
+		<div class="5_36#id# light off#id#"></div>
+		<div class="5_37#id# light off#id#"></div>
+		<div class="5_38#id# light off#id#"></div>
+		<div class="5_39#id# light off#id#"></div>
+		<div class="5_40#id# light off#id#"></div>
+		<div class="5_41#id# light off#id#"></div>
+		<div class="5_42#id# light off#id#"></div>
+		<div class="5_43#id# light off#id#"></div>
+		<div class="5_44#id# light off#id#"></div>
+		<div class="5_45#id# light off#id#"></div>
+		<div class="5_46#id# light off#id#"></div>
+		<div class="5_47#id# light off#id#"></div>
+		<div class="5_48#id# light off#id#"></div>
+		<div class="5_49#id# light off#id#"></div>
+		<div class="5_50#id# light off#id#"></div>
+		<div class="5_51#id# light off#id#"></div>
+		<div class="5_52#id# light off#id#"></div>
+		<div class="5_53#id# light off#id#"></div>
+		<div class="5_54#id# light off#id#"></div>
+		<div class="5_55#id# light off#id#"></div>
+		<div class="5_56#id# light off#id#"></div>
+		<div class="5_57#id# light off#id#"></div>
+		<div class="5_58#id# light off#id#"></div>
+		<div class="5_59#id# light off#id#"></div>
+		<div class="6_0#id# light off#id#"></div>
+		<div class="6_1#id# light off#id#"></div>
+		<div class="6_2#id# light off#id#"></div>
+		<div class="6_3#id# light off#id#"></div>
+		<div class="6_4#id# light off#id#"></div>
+		<div class="6_5#id# light off#id#"></div>
+		<div class="6_6#id# light off#id#"></div>
+		<div class="6_7#id# light off#id#"></div>
+		<div class="6_8#id# light off#id#"></div>
+		<div class="6_9#id# light off#id#"></div>
+		<div class="6_10#id# light off#id#"></div>
+		<div class="6_11#id# light off#id#"></div>
+		<div class="6_12#id# light off#id#"></div>
+		<div class="6_13#id# light off#id#"></div>
+		<div class="6_14#id# light off#id#"></div>
+		<div class="6_15#id# light off#id#"></div>
+		<div class="6_16#id# light off#id#"></div>
+		<div class="6_17#id# light off#id#"></div>
+		<div class="6_18#id# light off#id#"></div>
+		<div class="6_19#id# light off#id#"></div>
+		<div class="6_20#id# light off#id#"></div>
+		<div class="6_21#id# light off#id#"></div>
+		<div class="6_22#id# light off#id#"></div>
+		<div class="6_23#id# light off#id#"></div>
+		<div class="6_24#id# light off#id#"></div>
+		<div class="6_25#id# light off#id#"></div>
+		<div class="6_26#id# light off#id#"></div>
+		<div class="6_27#id# light off#id#"></div>
+		<div class="6_28#id# light off#id#"></div>
+		<div class="6_29#id# light off#id#"></div>
+		<div class="6_30#id# light off#id#"></div>
+		<div class="6_31#id# light off#id#"></div>
+		<div class="6_32#id# light off#id#"></div>
+		<div class="6_33#id# light off#id#"></div>
+		<div class="6_34#id# light off#id#"></div>
+		<div class="6_35#id# light off#id#"></div>
+		<div class="6_36#id# light off#id#"></div>
+		<div class="6_37#id# light off#id#"></div>
+		<div class="6_38#id# light off#id#"></div>
+		<div class="6_39#id# light off#id#"></div>
+		<div class="6_40#id# light off#id#"></div>
+		<div class="6_41#id# light off#id#"></div>
+		<div class="6_42#id# light off#id#"></div>
+		<div class="6_43#id# light off#id#"></div>
+		<div class="6_44#id# light off#id#"></div>
+		<div class="6_45#id# light off#id#"></div>
+		<div class="6_46#id# light off#id#"></div>
+		<div class="6_47#id# light off#id#"></div>
+		<div class="6_48#id# light off#id#"></div>
+		<div class="6_49#id# light off#id#"></div>
+		<div class="6_50#id# light off#id#"></div>
+		<div class="6_51#id# light off#id#"></div>
+		<div class="6_52#id# light off#id#"></div>
+		<div class="6_53#id# light off#id#"></div>
+		<div class="6_54#id# light off#id#"></div>
+		<div class="6_55#id# light off#id#"></div>
+		<div class="6_56#id# light off#id#"></div>
+		<div class="6_57#id# light off#id#"></div>
+		<div class="6_58#id# light off#id#"></div>
+		<div class="6_59#id# light off#id#"></div>
+	</div>
+</div>
+</div>
+
+<script id="rendered-js#id#">
+	
+	var SCROLLER_LENGTH = 60;
+	var HEIGHT = 7;
+	var fps = 30;
+
+	var myMessage#id# = textToLED#id#('');
+	var leftPointer#id# = SCROLLER_LENGTH + 1;
+	var rightPointer#id# = 0;
+	var furthestLeftPoint#id# = 0 - myMessage#id#.length;
+
+	function changeText#id#(newText) {
+	  clearLights#id#();
+	  myMessage#id# = textToLED#id#(newText);
+	  furthestLeftPoint#id# = 0 - myMessage#id#.length;
+	  leftPointer#id# = SCROLLER_LENGTH + 1;
+	}
+
+	function clearLights#id#() {
+	  let lightsOn = $('.on#id#');
+	  lightsOn.removeClass('on#id#');
+	  lightsOn.addClass('off#id#');
+	}
+	function setLight#id#(row, col, state) {
+	  let theLight = $('.' + row + '_' + col + '#id#');
+
+	  if (theLight.hasClass('on#id#') && !state) {
+		theLight.removeClass('on#id#');
+		theLight.addClass('off#id#');
+	  } else if (theLight.hasClass('off#id#') && state) {
+		theLight.removeClass('off#id#');
+		theLight.addClass('on#id#');
+	  }
+	}
+
+	function drawMessage#id#(messageArray, leftPointer) {
+	  let messageLength = messageArray.length;
+	  let totalScrollLength = SCROLLER_LENGTH + messageLength;
+
+	  if (messageLength > 0) {
+
+		for (let col = 0; col < messageLength; col++) {
+		  for (let row = 0; row < HEIGHT; row++) {
+			let offsetCol = leftPointer + col;
+
+			if (offsetCol < SCROLLER_LENGTH || offsetCol >= 0) {
+              setLight#id#(row, offsetCol, messageArray[col][row]);
+			}
+
+		  }
+		}
+	  }
+	}
+
+	function textToLED#id#(theWord) {
+	  let theMessage = [];
+	  theWord = theWord.toUpperCase();
+	  for (let i = 0; i < theWord.length; i++) {
+		theMessage.push(charToLED(theWord.charAt(i)));
+		theMessage.push(charToLED());
+	  }
+
+	  let flatten = [];
+	  flatten = flatten.concat.apply(flatten, theMessage);
+
+	  return flatten;
+	}
+
+	function charToLED(theChar) {
+	  let theLed = [];
+	  switch (theChar) {
+		case 'A':
+		  theLed = [[false, false, true, true, true, true, true],
+		  [false, true, false, false, true, false, false],
+		  [true, false, false, false, true, false, false],
+		  [false, true, false, false, true, false, false],
+		  [false, false, true, true, true, true, true]];
+		  break;
+		case 'B':
+		  theLed = [[true, true, true, true, true, true, true],
+		  [true, false, false, true, false, false, true],
+		  [true, false, false, true, false, false, true],
+		  [true, false, false, true, false, false, true],
+		  [false, true, true, false, true, true, false]];
+		  break;
+		case 'C':
+		  theLed = [[false, true, true, true, true, true, false],
+		  [true, false, false, false, false, false, true],
+		  [true, false, false, false, false, false, true],
+		  [true, false, false, false, false, false, true],
+		  [false, true, false, false, false, true, false]];
+		  break;
+		case 'D':
+		  theLed = [[true, true, true, true, true, true, true],
+		  [true, false, false, false, false, false, true],
+		  [true, false, false, false, false, false, true],
+		  [true, false, false, false, false, false, true],
+		  [false, true, true, true, true, true, false]];
+		  break;
+		case 'E':
+		  theLed = [[true, true, true, true, true, true, true],
+		  [true, false, false, true, false, false, true],
+		  [true, false, false, true, false, false, true],
+		  [true, false, false, true, false, false, true],
+		  [true, false, false, false, false, false, true]];
+		  break;
+		case 'F':
+		  theLed = [[true, true, true, true, true, true, true],
+		  [true, false, false, true, false, false, false],
+		  [true, false, false, true, false, false, false],
+		  [true, false, false, true, false, false, false],
+		  [true, false, false, false, false, false, false]];
+		  break;
+		case 'G':
+		  theLed = [[false, true, true, true, true, true, false],
+		  [true, false, false, false, false, false, true],
+		  [true, false, false, false, false, false, true],
+		  [true, false, false, false, true, false, true],
+		  [true, true, false, false, true, true, true]];
+		  break;
+		case 'H':
+		  theLed = [[true, true, true, true, true, true, true],
+		  [false, false, false, true, false, false, false],
+		  [false, false, false, true, false, false, false],
+		  [false, false, false, true, false, false, false],
+		  [true, true, true, true, true, true, true]];
+		  break;
+		case 'I':
+		  theLed = [[false, false, false, false, false, false, false],
+		  [true, false, false, false, false, false, true],
+		  [true, true, true, true, true, true, true],
+		  [true, false, false, false, false, false, true],
+		  [false, false, false, false, false, false, false]];
+		  break;
+		case 'J':
+		  theLed = [[false, false, false, false, false, true, false],
+		  [false, false, false, false, false, false, true],
+		  [true, false, false, false, false, false, true],
+		  [true, true, true, true, true, true, false],
+		  [true, false, false, false, false, false, false]];
+		  break;
+		case 'K':
+		  theLed = [[true, true, true, true, true, true, true],
+		  [false, false, false, true, false, false, false],
+		  [false, false, true, false, true, false, false],
+		  [false, true, false, false, false, true, false],
+		  [true, false, false, false, false, false, true]];
+		  break;
+		case 'L':
+		  theLed = [[true, true, true, true, true, true, true],
+		  [false, false, false, false, false, false, true],
+		  [false, false, false, false, false, false, true],
+		  [false, false, false, false, false, false, true],
+		  [false, false, false, false, false, false, true]];
+		  break;
+		case 'M':
+		  theLed = [[true, true, true, true, true, true, true],
+		  [false, true, false, false, false, false, false],
+		  [false, false, true, false, false, false, false],
+		  [false, true, false, false, false, false, false],
+		  [true, true, true, true, true, true, true]];
+		  break;
+		case 'N':
+		  theLed = [[true, true, true, true, true, true, true],
+		  [false, false, true, false, false, false, false],
+		  [false, false, false, true, false, false, false],
+		  [false, false, false, false, true, false, false],
+		  [true, true, true, true, true, true, true]];
+		  break;
+		case 'O':
+		  theLed = [[false, true, true, true, true, true, false],
+		  [true, false, false, false, false, false, true],
+		  [true, false, false, false, false, false, true],
+		  [true, false, false, false, false, false, true],
+		  [false, true, true, true, true, true, false]];
+		  break;
+		case 'P':
+		  theLed = [[true, true, true, true, true, true, true],
+		  [true, false, false, true, false, false, false],
+		  [true, false, false, true, false, false, false],
+		  [true, false, false, true, false, false, false],
+		  [false, true, true, false, false, false, false]];
+		  break;
+		case 'Q':
+		  theLed = [[false, true, true, true, true, true, false],
+		  [true, false, false, false, false, false, true],
+		  [true, false, false, false, true, false, true],
+		  [true, false, false, false, false, true, false],
+		  [false, true, true, true, true, false, true]];
+		  break;
+		case 'R':
+		  theLed = [[true, true, true, true, true, true, true],
+		  [true, false, false, true, false, false, false],
+		  [true, false, false, true, false, false, false],
+		  [true, false, false, true, false, false, false],
+		  [false, true, true, false, true, true, true]];
+		  break;
+		case 'S':
+		  theLed = [[false, true, true, false, false, false, true],
+		  [true, false, false, true, false, false, true],
+		  [true, false, false, true, false, false, true],
+		  [true, false, false, true, false, false, true],
+		  [true, false, false, false, true, true, false]];
+		  break;
+		case 'T':
+		  theLed = [[true, false, false, false, false, false, false],
+		  [true, false, false, false, false, false, false],
+		  [true, true, true, true, true, true, true],
+		  [true, false, false, false, false, false, false],
+		  [true, false, false, false, false, false, false]];
+		  break;
+		case 'U':
+		  theLed = [[true, true, true, true, true, true, false],
+		  [false, false, false, false, false, false, true],
+		  [false, false, false, false, false, false, true],
+		  [false, false, false, false, false, false, true],
+		  [true, true, true, true, true, true, false]];
+		  break;
+		case 'V':
+		  theLed = [[true, true, true, true, true, false, false],
+		  [false, false, false, false, false, true, false],
+		  [false, false, false, false, false, false, true],
+		  [false, false, false, false, false, true, false],
+		  [true, true, true, true, true, false, false]];
+		  break;
+		case 'W':
+		  theLed = [[true, true, true, true, true, true, false],
+		  [false, false, false, false, false, false, true],
+		  [false, false, false, false, true, true, false],
+		  [false, false, false, false, false, false, true],
+		  [true, true, true, true, true, true, false]];
+		  break;
+		case 'X':
+		  theLed = [[true, false, false, false, false, false, true],
+		  [false, true, true, false, true, true, false],
+		  [false, false, false, true, false, false, false],
+		  [false, true, true, false, true, true, false],
+		  [true, false, false, false, false, false, true]];
+		  break;
+		case 'Y':
+		  theLed = [[true, false, false, false, false, false, false],
+		  [false, true, false, false, false, false, false],
+		  [false, false, true, true, true, true, true],
+		  [false, true, false, false, false, false, false],
+		  [true, false, false, false, false, false, false]];
+		  break;
+		case 'Z':
+		  theLed = [[true, false, false, false, false, true, true],
+		  [true, false, false, false, true, false, true],
+		  [true, false, false, true, false, false, true],
+		  [true, false, true, false, false, false, true],
+		  [true, true, false, false, false, false, true]];
+		  break;
+		default:
+		  theLed = [[false, false, false, false, false, false, false]];}
+
+	  return theLed;
+	}
+
+
+	var ledTimeout#id# = null;
+    var reqAnimFrame#id# = null;
+
+    function draw#id#() {
+	  clearTimeout(ledTimeout#id#);
+      ledTimeout#id# = setTimeout(function () {
+		reqAnimFrame#id# = requestAnimationFrame(draw#id#);
+
+		if (leftPointer#id# == furthestLeftPoint#id#) {
+		  leftPointer#id# = SCROLLER_LENGTH + 1;
+		}
+
+		drawMessage#id#(myMessage#id#, leftPointer#id#);
+		leftPointer#id#--;
+
+	  }, 1000 / fps);
+	}
+	
+	jeedom.cmd.update['#id#'] = function (_options) {
+		
+		// Récupération des paramètres
+		// couleur des leds du texte
+      	let ledColor = ('#couleurLed#' != '#' + 'couleurLed#') ? "#couleurLed#" : '#0ff';
+		document.documentElement.style.setProperty('--led-color#id#', ledColor);
+		// couleurs des leds de font
+      	let ledBackgroundColor = ('#couleurFondLed#' != '#' + 'couleurFondLed#') ? "#couleurFondLed#" : '#121212';
+		document.documentElement.style.setProperty('--led-background-color#id#', ledBackgroundColor);
+		
+		// Ne pas modifier : non paramétré
+      	//let marqueeWidth = ('#largeurMarquee#' != '#' + 'largeurMarquee#') ? "#largeurMarquee#" : '420px';
+		//document.documentElement.style.setProperty('--marquee-width#id#', marqueeWidth);
+		// Ne pas modifier : non paramétré
+      	//let marqueeHeight = ('#hauteurMarquee#' != '#' + 'hauteurMarquee#') ? "#hauteurMarquee#" : '55px';
+		//document.documentElement.style.setProperty('--marquee-height#id#', marqueeHeight);
+
+		// Récupération de la valeur de la commande info
+        let cmdValue = _options.display_value;
+        changeText#id#(cmdValue);
+		draw#id#();
+	};
+
+	jeedom.cmd.update['#id#']({
+		display_value: '#state#',
+		valueDate: '#valueDate#',
+		collectDate: '#collectDate#',
+		alertLevel: '#alertLevel#'
+	});
+</script>
+
