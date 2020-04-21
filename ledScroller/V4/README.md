@@ -23,6 +23,11 @@
 - Sinon, si vous souhaitez créer un nouveau led scroller :
 	- Créer un virtuel depuis le plugin Virtuel (Plugin -> Programmation -> Virtuel)
 	- Dans ce virtuel, ajouter une commande info et de sous-type Autre
+		- Les caractères autorisés du champ texte sont :
+			ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890°#|'€"/%[]()-*+=?!:,.
+		- Ce champ texte peut être modifié par scénario avec la commande event : la mise à jour du texte sera alors immédiate sur le design
+
+![](doc/images/scenarioEvent.png)
 
 ## association du widget à la commande info
 
@@ -49,4 +54,4 @@
 		- Clic droit, puis sélectionnez 'Ajouter équipement'
 		- Sélectionner l'équipement souhaité
 		- Sélectionner Valider
-		- Rafraichir la page : le led Scroller est visible dans le design	
+		- Rafraichir la page : le led Scroller est visible dans le design
