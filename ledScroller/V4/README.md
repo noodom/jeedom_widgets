@@ -27,7 +27,7 @@
 			ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890°#|'€"/%[]()-*+=?!:,.
 		- Ce champ texte peut être modifié par scénario avec la commande event : la mise à jour du texte sera alors immédiate sur le design
 
-![](doc/images/scenarioEvent.png)
+![](doc/images/scenarioEvent.jpg)
 
 ## association du widget à la commande info
 
