@@ -1,6 +1,6 @@
 # scenarioModificationParametre
 
-Scénario permettant la modification d'un paramètre de commande
+Scénario permettant la modification d'un paramètre de commande associée à un widget
 
 ## Paramètres optionnels
 
@@ -31,7 +31,7 @@ Ce contenu du scénario ayant pour nom **modification paramètre de commande** e
 
 >**IMPORTANT**
 >
->Pour le nom de la commande, il ne faut retirer le caractère '#' en début de fin de commande dans le tag **nomCommande**
+>Pour le nom de la commande, il faut retirer le caractère '#' en début de fin de commande dans le tag **nomCommande**
 
 ### Modification de plusieurs paramètres
 
