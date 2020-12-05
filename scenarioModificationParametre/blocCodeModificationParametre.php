@@ -13,7 +13,7 @@ $tags = $scenario->getTags();
 // initialisation de variables locales
 $tags['#erreur#'] = "";
 
-if ((!empty($tags['#idCommande#']) || !empty($tags['#nomCommande#'])) && !empty($tags['#nomParametre#']) && !empty($tags['#valeurParametre#'])) {
+if ((!empty($tags['#idCommande#']) || !empty($tags['#nomCommande#'])) && !empty($tags['#nomParametre#']) && isset($tags['#valeurParametre#'])) {
   $scenario->setLog("- Modification du paramètre ".$tags['#nomParametre#']." de la commande ".$tags['#nomCommande#']." : ".$tags['#valeurParametre#']);
 
   // Récupération de la commande en fonction de son id ou de son nom passés en paramètre
