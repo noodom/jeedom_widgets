@@ -1,10 +1,19 @@
 # Widget circleProgress
 
-![](doc/images/circleProgress.png)
+![](doc/images/circleProgress.gif)
 
 ## A récupérer sous /jeedom_widgets/circleProgress/cmd.info.numeric.circleProgress.html
 
 ## Création du widget
+
+Depuis le plugin Pimp My Jeedom :
+
+- Depuis l'onglet 'Général', sélectionner le bouton 'Ajouter un Widget Tiers'
+- Saisir le nom circleProgress, la version Dashboard, le type Info et le Sous-Type Numérique puis valider avec le bouton 'Créer'
+- Dans la zone de texte 'Edition', coller le code du fichier cmd.info.numeric.circleProgress.html
+- Sélectionner le bouton 'Ajouter des fichiers', puis 'Envoyer des fichiers', ajouter le fichier /cmd.info.numeric.circleProgress/circle-progress.js et fermer la fenêtre
+- Sélectionner le bouton 'Sauvegarder'
+
 
 ## (facultatif) Création d'un virtuel avec commande info
 
@@ -15,14 +24,27 @@
 		- Ce champ texte peut être modifié par scénario avec la commande event : la mise à jour de la valeur sera alors immédiate sur le design
 
 ## association du widget à la commande info
-	
+
+Depuis le plugin Pimp My Jeedom :
+
+- Sélectionner le bouton 'Appliquer sur'
+- Cocher les commandes de type Infos souhaitées
+- Enregistrer les commandes avec le bouton 'Valider'
+
+- La liste des commandes associées au widget sont visibles dans la partie 'Commandes liées'
+- Une prévisualisation basée sur le premier virtuel associé est visible
+
 ## (facultatif) Paramètres de la commande associée au widget
 
-## Ajout dans un design
+De nombreux parmètres sont possibles pour personnaliser les virtuels et obtenir des rendus très différents
 
-	- Depuis un design, ajouter l'équipement ou le virtuel et suivez les étapes suivantes :
+![](doc/images/circleProgressParams.gif)
+
+## Ajout dans un Design
+
+	- Depuis un Design, ajouter l'équipement ou le virtuel et suivez les étapes suivantes :
 		- Clic droit, Sélectionnez 'Edition'
 		- Clic droit, puis sélectionnez 'Ajouter équipement'
 		- Sélectionner l'équipement souhaité
 		- Sélectionner Valider
-		- Rafraichir la page : le widget circleProgress est visible dans le design
+		- Rafraichir la page : le widget circleProgress est visible dans le Design
