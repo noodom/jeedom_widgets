@@ -36,7 +36,7 @@ Depuis le plugin Pimp My Jeedom :
 
 ## (facultatif) Paramètres de la commande associée au widget
 
-De nombreux parmètres sont possibles pour personnaliser les virtuels et obtenir des rendus très différents
+De nombreux paramètres sont possibles pour personnaliser les virtuels et obtenir des rendus très différents
 
 ![](doc/images/circleProgressParams.gif)
 
