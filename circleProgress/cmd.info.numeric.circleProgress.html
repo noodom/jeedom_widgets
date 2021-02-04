@@ -1,218 +1,229 @@
-<div style="margin:5px 2px 5px 2px;" class="cmd cmd-widget tooltips #history#" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
-	<!-- circleProgress by noodom -->
-	<!-- inspired by https://codepen.io/tiggr/pen/VwwZoOR, based on https://tigrr.github.io/circle-progress/ -->  <div class="title #hide_name#">
-    <div class="cmdName">#name_display#</div>
-  </div>
-  <div class="progress#id#">
+<div style="margin:5px 2px 5px 2px;" class="cmd cmd-widget tooltips #history#" data-type="info" data-subtype="numeric"
+    data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+    <!-- circleProgress by noodom -->
+    <!-- inspired by https://codepen.io/tiggr/pen/VwwZoOR, based on https://tigrr.github.io/circle-progress/ -->
+    <div class="title #hide_name#">
+        <div class="cmdName">#name_display#</div>
+    </div>
+    <div class="progress#id#">
 
-<script>
+        <script>
 
-    $.include(['data/customTemplates/dashboard/cmd.info.numeric.circleProgress/circle-progress.js'],
-		function() {
-      
-      		// Récupération des paramètres
-      		// Paramètre min/max : valeur max. autorisée (0-100 par défaut)
-      		let min = (isNaN(parseFloat('#min#'))) ?  0 : parseFloat('#min#');
-      		let max = (isNaN(parseFloat('#max#'))) ?  100 : parseFloat('#max#');
-      		// Angle de début d'affichage (0 par défaut)
-      		let angleDebut = (isNaN(parseFloat('#angleDebut#'))) ?  0 : parseFloat('#angleDebut#');
-            // direction inverse du sens des aiguilles d'une montre
-      		let ordreInverse = (isNaN(parseFloat('#ordreInverse#'))) ?  0 : parseFloat('#ordreInverse#');
-            // Parametre taille (250px par défaut)
-      		let taille = ('#taille#' != '#' + 'taille#') ? "#taille#" : "250px";
-      		// Paramètre couleurFond : couleur de fond (#1d1e22 par défaut)
-      		let couleurFond = ('#couleurFond#' != '#' + 'couleurFond#') ? "#couleurFond#" : "transparent";
-      		// Paramètre de l'unité : ex. % ou ° (° par défaut) 
-      		let unite = ('#uniteChamp#' != '#' + 'uniteChamp#') ? "#uniteChamp#" : "none";
-      		//unite = (unite=="")?"°":unite
-      		// Paramètre du format d'affichage : horizontal, vertical, percent, value, valueOnCircle, none
-      		let format = ('#format#' != '#' + 'format#') ? "#format#" : "percent";
-      		let dureeAnimation = (isNaN(parseFloat('#dureeAnimation#'))) ?  400 : parseFloat('#dureeAnimation#');
-      		let style = (isNaN(parseFloat('#style#'))) ?  0 : parseFloat('#style#');
-      		
-      		// Paramètre des couleurs/taille en CSS
-      		// Valeur
-      		let widthValue = ('#largeurValeur#' != '#' + 'largeurValeur#') ? "#largeurValeur#" : "5px"; // stroke-width
-      		let colorValue = ('#couleurValeur#' != '#' + 'couleurValeur#') ? "#couleurValeur#" : "hsl(160deg 100% 45%)";//hsl(228, 63%, 55%)"; // stroke
-      		let dasharrayValue = ('#ecartValeur#' != '#' + 'ecartValeur#') ? "#ecartValeur#" : ""; // stroke-dasharray
-      		let dashoffsetValue = ('#offsetValeur#' != '#' + 'offsetValeur#') ? "#offsetValeur#" : ""; // stroke-dashoffset
-      		let roundValue = ('#arrondiValeur#' != '#' + 'arrondiValeur#') ? "#arrondiValeur#" : ""; // stroke-linecap
-      		// Cercle
-      		let widthCircle = ('#largeurCercle#' != '#' + 'largeurCercle#') ? "#largeurCercle#" : "2px"; // stroke-width
-      		let colorCircle = ('#couleurCercle#' != '#' + 'couleurCercle#') ? "#couleurCercle#" : "hsl(0, 0%, 87%)"; // stroke
-      		let dasharrayCircle = ('#ecartCercle#' != '#' + 'ecartCercle#') ? "#ecartCercle#" : ""; // stroke-dasharray
-      		let backgroundColorCircle = ('#couleurFondCercle#' != '#' + 'couleurFondCercle#') ? "#couleurFondCercle#" : ""; // fill
-      		// Texte
-      		let fontWeightText = ('#fonteTexte#' != '#' + 'fonteTexte#') ? "#fonteTexte#" : ""; // font-weight
-      		let colorText = ('#couleurTexte#' != '#' + 'couleurTexte#') ? "#couleurTexte#" : "";//hsl(39, 100%, 50%)"; // fill
-      		// TODO : ajouter "font-size": "13px", "font-family": "Georgia", animation:none
+            $.include(['data/customTemplates/dashboard/cmd.info.numeric.circleProgress/circle-progress.js'],
+                function () {
 
-			jeedom.cmd.update['#id#'] = function(_options){
-              let cmd = $('.cmd[data-cmd_uid=#uid#]');
-              var valeur = is_numeric(_options.display_value) ? parseFloat(_options.display_value):parseFloat(_options.display_value);
-              
-              // mise à jour des variables CSS
-              //document.documentElement.style.setProperty('--text-color', couleurTexte);
+                    // Récupération des paramètres
+                    // Paramètre min/max : valeur max. autorisée (0-100 par défaut)
+                    let min = (isNaN(parseFloat('#min#'))) ? 0 : parseFloat('#min#');
+                    let max = (isNaN(parseFloat('#max#'))) ? 100 : parseFloat('#max#');
+                    // Angle de début d'affichage (0 par défaut)
+                    let angleDebut = (isNaN(parseFloat('#angleDebut#'))) ? 0 : parseFloat('#angleDebut#');
+                    // direction inverse du sens des aiguilles d'une montre
+                    let ordreInverse = (isNaN(parseFloat('#ordreInverse#'))) ? 0 : parseFloat('#ordreInverse#');
+                    // Parametre taille (250px par défaut)
+                    let taille = ('#taille#' != '#' + 'taille#') ? "#taille#" : "250px";
+                    // Paramètre couleurFond : couleur de fond (#1d1e22 par défaut)
+                    let couleurFond = ('#couleurFond#' != '#' + 'couleurFond#') ? "#couleurFond#" : "transparent";
+                    // Paramètre de l'unité : ex. % ou ° (° par défaut) 
+                    let unite = ('#uniteChamp#' != '#' + 'uniteChamp#') ? "#uniteChamp#" : "none";
+                    //unite = (unite=="")?"°":unite
+                    // Paramètre du format d'affichage : horizontal, vertical, percent, value, valueOnCircle, none
+                    let format = ('#format#' != '#' + 'format#') ? "#format#" : "percent";
+                    let dureeAnimation = (isNaN(parseFloat('#dureeAnimation#'))) ? 400 : parseFloat('#dureeAnimation#');
+                    //let style = (isNaN(parseFloat('#style#'))) ? 0 : parseFloat('#style#');
 
-              let cp = new CircleProgress('.progress#id#', {
-                  min: min,
-                  max: max,
-                  startAngle:angleDebut,
-                  clockwise: (ordreInverse==0),
-                  value: valeur,
-                  animationDuration: dureeAnimation,
-                  //textFormat: (val) => val + unite,
-                  textFormat: format,
-              });
-              
-              if (unite != "none" && unite != "") {
-                cp.textFormat = (val) => val + unite;
-              }
+                    // Paramètre des couleurs/taille en CSS
+                    // Valeur
+                    let widthValue = ('#largeurValeur#' != '#' + 'largeurValeur#') ? "#largeurValeur#" : "5px"; // stroke-width
+                    let colorValue = ('#couleurValeur#' != '#' + 'couleurValeur#') ? "#couleurValeur#" : "hsl(160deg 100% 45%)";//hsl(228, 63%, 55%)"; // stroke
+                    let dasharrayValue = ('#ecartValeur#' != '#' + 'ecartValeur#') ? "#ecartValeur#" : ""; // stroke-dasharray
+                    let dashoffsetValue = ('#offsetValeur#' != '#' + 'offsetValeur#') ? "#offsetValeur#" : ""; // stroke-dashoffset
+                    let roundValue = ('#arrondiValeur#' != '#' + 'arrondiValeur#') ? "#arrondiValeur#" : ""; // stroke-linecap
+                    // Cercle
+                    let widthCircle = ('#largeurCercle#' != '#' + 'largeurCercle#') ? "#largeurCercle#" : "2px"; // stroke-width
+                    let colorCircle = ('#couleurCercle#' != '#' + 'couleurCercle#') ? "#couleurCercle#" : "hsl(0, 0%, 87%)"; // stroke
+                    let dasharrayCircle = ('#ecartCercle#' != '#' + 'ecartCercle#') ? "#ecartCercle#" : ""; // stroke-dasharray
+                    let backgroundColorCircle = ('#couleurFondCercle#' != '#' + 'couleurFondCercle#') ? "#couleurFondCercle#" : ""; // fill
+                    // Texte
+                    let fontWeightText = ('#fonteTexte#' != '#' + 'fonteTexte#') ? "#fonteTexte#" : ""; // font-weight
+                    let colorText = ('#couleurTexte#' != '#' + 'couleurTexte#') ? "#couleurTexte#" : "";//hsl(39, 100%, 50%)"; // fill
+                    // TODO : ajouter "font-size": "13px", "font-family": "Georgia", animation:none
 
-              cp.el.style.setProperty('--progress#id#-value', valeur / max);
-              cp.el.style.setProperty('background', couleurFond);
-              cp.el.style.setProperty('--taille', taille);
-              
-              // value
-              cp.el.style.setProperty('--width-value', widthValue);
-              if (colorValue != "") {
-                cp.el.style.setProperty('--color-value', colorValue);
-              }
-              cp.el.style.setProperty('--dasharray-value', dasharrayValue);
-              cp.el.style.setProperty('--dashoffset-value', dashoffsetValue);
-              cp.el.style.setProperty('--round-value', roundValue);
-              // circle
-              cp.el.style.setProperty('--width-circle', widthCircle);
-              cp.el.style.setProperty('--color-circle', colorCircle);
-              cp.el.style.setProperty('--dasharray-circle', dasharrayCircle);
-              cp.el.style.setProperty('--background-color-circle', backgroundColorCircle);
-              // text
-              cp.el.style.setProperty('--font-weight-text', fontWeightText);
-              if (colorText != "") {
-              	cp.el.style.setProperty('--color-text', colorText);
-              }
+                    let cp = new CircleProgress('.progress#id#', {
+                        min: min,
+                        max: max,
+                        startAngle: angleDebut,
+                        clockwise: (ordreInverse == 0),
+                        value: 0,
+                        animationDuration: dureeAnimation,
+                        //textFormat: (val) => val + unite,
+                        textFormat: format,
+                    });
+
+                    jeedom.cmd.update['#id#'] = function (_options) {
+                        let cmd = $('.cmd[data-cmd_uid=#uid#]');
+                        var valeur = is_numeric(_options.display_value) ? parseFloat(_options.display_value) : parseFloat(_options.display_value);
+                        cp.value = valeur;
+
+                        if (unite != "none" && unite != "") {
+                            cp.textFormat = (val) => val + unite;
+                        }
+
+                        cp.el.style.setProperty('--progress#id#-value', valeur / max);
+                        cp.el.style.setProperty('background', couleurFond);
+                        cp.el.style.setProperty('--taille', taille);
+
+                        // value
+                        cp.el.style.setProperty('--width-value', widthValue);
+                        if (colorValue != "") {
+                            cp.el.style.setProperty('--color-value', colorValue);
+                        }
+                        cp.el.style.setProperty('--dasharray-value', dasharrayValue);
+                        cp.el.style.setProperty('--dashoffset-value', dashoffsetValue);
+                        cp.el.style.setProperty('--round-value', roundValue);
+                        // circle
+                        cp.el.style.setProperty('--width-circle', widthCircle);
+                        cp.el.style.setProperty('--color-circle', colorCircle);
+                        cp.el.style.setProperty('--dasharray-circle', dasharrayCircle);
+                        cp.el.style.setProperty('--background-color-circle', backgroundColorCircle);
+                        // text
+                        cp.el.style.setProperty('--font-weight-text', fontWeightText);
+                        if (colorText != "") {
+                            cp.el.style.setProperty('--color-text', colorText);
+                        }
+                    }
+                    jeedom.cmd.update['#id#']({ display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#' });
+                });
+
+        </script>
+        <style>
+            .progress#id# {
+                --progress#id#-value: .3243;
+                --color: hsl(calc(240 * (1 - var(--progress#id#-value))), 100%, calc(30% + 20% * var(--progress#id#-value)));
+                --width-value: 6px;
+                --color-value: var(--color);
+                --dasharray-value: '';
+                --dashoffset-value: '';
+                --round-value: '';
+                --width-circle: 2px;
+                --color-circle: hsl(228, 8%, 10%);
+                --dasharray-circle: '',
+                --background-color-circle:'';
+                --font-weight-text: '';
+                --color-text: var(--color);
+                background: transparent;
+
+                padding: 20px;
             }
-          	jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
-     });
-  
-</script>
-<style>
 
-.progress#id# {
-	--progress#id#-value: .3243;
-	--color: hsl(calc(240 * (1 - var(--progress#id#-value))), 100%, calc(30% + 20% * var(--progress#id#-value)));
-  	--width-value:6px;
-  	--color-value:var(--color);
-  	--dasharray-value:'';
-  	--dashoffset-value:'';
-  	--round-value:'';
-  	--width-circle:2px;
-  	--color-circle:hsl(228, 8%, 10%);
-  	--dasharray-circle:'',
-    --background-color-circle:'';
-  	--font-weight-text:'';
-  	--color-text:var(--color);
-  	background: transparent;
-  	
-  	padding : 20px;
-}
+            .circle-progress {
+                width: var(--taille);
+                height: var(--taille);
+            }
 
-.circle-progress {
-	width: var(--taille);
-	height: var(--taille);
-}
+            .circle-progress-value {
+                stroke-width: var(--width-value);
+                stroke: var(--color-value);
 
-.circle-progress-value {
-	stroke-width: var(--width-value);/*50px;*/
-	stroke: var(--color-value);
-  	
-	stroke-dasharray: var(--dasharray-value);
-  	stroke-dashoffset: var(--dashoffset-value);
-	transition: stroke .4s;
-  	stroke-linecap : var(--round-value);
-}
+                stroke-dasharray: var(--dasharray-value);
+                stroke-dashoffset: var(--dashoffset-value);
+                transition: stroke .4s;
+                stroke-linecap: var(--round-value);
+            }
 
-.circle-progress-circle {
-	stroke-width: var(--width-circle);
-	stroke: var(--color-circle);
-  	fill: var(--background-color-circle);
-  	stroke-dasharray: var(--dasharray-circle);
-}
+            .circle-progress-circle {
+                stroke-width: var(--width-circle);
+                stroke: var(--color-circle);
+                fill: var(--background-color-circle);
+                stroke-dasharray: var(--dasharray-circle);
+            }
 
-.circle-progress-text {
-	font-weight: var(--font-weight-text);
-	fill: var(--color-text);
-	transform: translateX(.2em);
-	transition: fill .4s;
-}
+            .circle-progress-text {
+                font-weight: var(--font-weight-text);
+                fill: var(--color-text);
+                transform: translateX(.2em);
+                transition: fill .4s;
+            }
 
-input[type=range] {
-  width: 210px;
-  margin-top: 30px;
-  margin-bottom: 20px;
-  -webkit-appearance: none;
-  display: inline-block;
-  background: none;
-  cursor: pointer;
-}
-input[type=range]:focus {
-  outline: none;
-}
-input[type=range]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 6px;
-  background: #17181c;
-  outline: none;
-}
-input[type=range]::-moz-range-track {
-  width: 100%;
-  height: 6px;
-  background: #17181c;
-  outline: none;
-}
-input[type=range]::-ms-track {
-  width: 100%;
-  height: 6px;
-  background: #17181c;
-  outline: none;
-}
-input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 16px;
-  height: 16px;
-  margin-top: -5px;
-  background: #464953;
-  transition: 0.15s;
-  border: none;
-  border-radius: 0;
-}
-input[type=range]::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
-  margin-top: -5px;
-  background: #464953;
-  transition: 0.15s;
-  border: none;
-  border-radius: 0;
-}
-input[type=range]::-ms-thumb {
-  width: 16px;
-  height: 16px;
-  margin-top: -5px;
-  background: #464953;
-  transition: 0.15s;
-  border: none;
-  border-radius: 0;
-}
-input[type=range]:hover::-webkit-slider-thumb, input[type=range]:focus::-webkit-slider-thumb {
-  background: #75798a;
-}
-input[type=range]:hover::-moz-range-thumb, input[type=range]:focus::-moz-range-thumb {
-  background: #75798a;
-}
-input[type=range]:hover::-ms-thumb, input[type=range]:focus::-ms-thumb {
-  background: #75798a;
-}
-  
-</style>
-</div>
+            input[type=range] {
+                width: 210px;
+                margin-top: 30px;
+                margin-bottom: 20px;
+                -webkit-appearance: none;
+                display: inline-block;
+                background: none;
+                cursor: pointer;
+            }
+
+            input[type=range]:focus {
+                outline: none;
+            }
+
+            input[type=range]::-webkit-slider-runnable-track {
+                width: 100%;
+                height: 6px;
+                background: #17181c;
+                outline: none;
+            }
+
+            input[type=range]::-moz-range-track {
+                width: 100%;
+                height: 6px;
+                background: #17181c;
+                outline: none;
+            }
+
+            input[type=range]::-ms-track {
+                width: 100%;
+                height: 6px;
+                background: #17181c;
+                outline: none;
+            }
+
+            input[type=range]::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                width: 16px;
+                height: 16px;
+                margin-top: -5px;
+                background: #464953;
+                transition: 0.15s;
+                border: none;
+                border-radius: 0;
+            }
+
+            input[type=range]::-moz-range-thumb {
+                width: 16px;
+                height: 16px;
+                margin-top: -5px;
+                background: #464953;
+                transition: 0.15s;
+                border: none;
+                border-radius: 0;
+            }
+
+            input[type=range]::-ms-thumb {
+                width: 16px;
+                height: 16px;
+                margin-top: -5px;
+                background: #464953;
+                transition: 0.15s;
+                border: none;
+                border-radius: 0;
+            }
+
+            input[type=range]:hover::-webkit-slider-thumb,
+            input[type=range]:focus::-webkit-slider-thumb {
+                background: #75798a;
+            }
+
+            input[type=range]:hover::-moz-range-thumb,
+            input[type=range]:focus::-moz-range-thumb {
+                background: #75798a;
+            }
+
+            input[type=range]:hover::-ms-thumb,
+            input[type=range]:focus::-ms-thumb {
+                background: #75798a;
+            }
+        </style>
+    </div>
