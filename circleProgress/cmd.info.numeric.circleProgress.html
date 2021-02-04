@@ -1,7 +1,6 @@
 <div style="margin:5px 2px 5px 2px;" class="cmd cmd-widget tooltips #history#" data-type="info" data-subtype="numeric" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
-  <!-- circleProgress by noodom -->
-  <!-- inspired by https://codepen.io/tiggr/pen/VwwZoOR, based on https://tigrr.github.io/circle-progress/ -->
-  <div class="title #hide_name#">
+	<!-- circleProgress by noodom -->
+	<!-- inspired by https://codepen.io/tiggr/pen/VwwZoOR, based on https://tigrr.github.io/circle-progress/ -->  <div class="title #hide_name#">
     <div class="cmdName">#name_display#</div>
   </div>
   <div class="progress#id#">
@@ -22,19 +21,39 @@
             // Parametre taille (250px par défaut)
       		let taille = ('#taille#' != '#' + 'taille#') ? "#taille#" : "250px";
       		// Paramètre couleurFond : couleur de fond (#1d1e22 par défaut)
-      		let couleurFond = ('#couleurFond#' != '#' + 'couleurFond#') ? "#couleurFond#" : "#1d1e22";
+      		let couleurFond = ('#couleurFond#' != '#' + 'couleurFond#') ? "#couleurFond#" : "transparent";
       		// Paramètre de l'unité : ex. % ou ° (° par défaut) 
-      		let unite = ('#unite#' != '#' + 'unite#') ? "#unite#" : "none";
+      		let unite = ('#uniteChamp#' != '#' + 'uniteChamp#') ? "#uniteChamp#" : "none";
       		//unite = (unite=="")?"°":unite
       		// Paramètre du format d'affichage : horizontal, vertical, percent, value, valueOnCircle, none
       		let format = ('#format#' != '#' + 'format#') ? "#format#" : "percent";
       		let dureeAnimation = (isNaN(parseFloat('#dureeAnimation#'))) ?  400 : parseFloat('#dureeAnimation#');
       		let style = (isNaN(parseFloat('#style#'))) ?  0 : parseFloat('#style#');
-            
-      	  	jeedom.cmd.update['#id#'] = function(_options){
+      		
+      		// Paramètre des couleurs/taille en CSS
+      		// Valeur
+      		let widthValue = ('#largeurValeur#' != '#' + 'largeurValeur#') ? "#largeurValeur#" : "5px"; // stroke-width
+      		let colorValue = ('#couleurValeur#' != '#' + 'couleurValeur#') ? "#couleurValeur#" : "hsl(160deg 100% 45%)";//hsl(228, 63%, 55%)"; // stroke
+      		let dasharrayValue = ('#ecartValeur#' != '#' + 'ecartValeur#') ? "#ecartValeur#" : ""; // stroke-dasharray
+      		let dashoffsetValue = ('#offsetValeur#' != '#' + 'offsetValeur#') ? "#offsetValeur#" : ""; // stroke-dashoffset
+      		let roundValue = ('#arrondiValeur#' != '#' + 'arrondiValeur#') ? "#arrondiValeur#" : ""; // stroke-linecap
+      		// Cercle
+      		let widthCircle = ('#largeurCercle#' != '#' + 'largeurCercle#') ? "#largeurCercle#" : "2px"; // stroke-width
+      		let colorCircle = ('#couleurCercle#' != '#' + 'couleurCercle#') ? "#couleurCercle#" : "hsl(0, 0%, 87%)"; // stroke
+      		let dasharrayCircle = ('#ecartCercle#' != '#' + 'ecartCercle#') ? "#ecartCercle#" : ""; // stroke-dasharray
+      		let backgroundColorCircle = ('#couleurFondCercle#' != '#' + 'couleurFondCercle#') ? "#couleurFondCercle#" : ""; // fill
+      		// Texte
+      		let fontWeightText = ('#fonteTexte#' != '#' + 'fonteTexte#') ? "#fonteTexte#" : ""; // font-weight
+      		let colorText = ('#couleurTexte#' != '#' + 'couleurTexte#') ? "#couleurTexte#" : "";//hsl(39, 100%, 50%)"; // fill
+      		// TODO : ajouter "font-size": "13px", "font-family": "Georgia", animation:none
+
+			jeedom.cmd.update['#id#'] = function(_options){
               let cmd = $('.cmd[data-cmd_uid=#uid#]');
               var valeur = is_numeric(_options.display_value) ? parseFloat(_options.display_value):parseFloat(_options.display_value);
               
+              // mise à jour des variables CSS
+              //document.documentElement.style.setProperty('--text-color', couleurTexte);
+
               let cp = new CircleProgress('.progress#id#', {
                   min: min,
                   max: max,
@@ -54,109 +73,23 @@
               cp.el.style.setProperty('background', couleurFond);
               cp.el.style.setProperty('--taille', taille);
               
-              // TODO : refaire une passe sur les CSS (valeurs possibles : 1 à 12)
-              switch (style) {
-                case 1:
-                  $(".circle-progress-value").css("stroke-dasharray","");
-                  $(".circle-progress-value").css("transition","");
-
-                  $(".circle-progress-value").css("stroke-width","6px");
-                  $(".circle-progress-value").css("stroke","hsl(39, 100%, 50%)");
-                  $(".circle-progress-circle").css("stroke-width","6px");
-                  $(".circle-progress-circle").css("stroke","hsl(39, 100%, 85%)");
-                  $(".circle-progress-text1").css("fill","hsl(39, 100%, 50%)");
-                  break;
-                case 2:
-                  $(".circle-progress-value").css("stroke-width","6px");
-                  $(".circle-progress-value").css("stroke","hsl(320, 80%, 60%)");
-                  $(".circle-progress-value").css("stroke-dasharray","4 1");
-                  $(".circle-progress-circle").css("stroke-width","6px");
-                  $(".circle-progress-circle").css("stroke","#eee");
-                  $(".circle-progress-text").css("font-weight","4 1");
-                  $(".circle-progress-text").css("fill","hsl(180, 80%, 47%)");
-                  break;
-                case 3:
-                  $(".circle-progress-value").css("stroke-width","6px");
-                  $(".circle-progress-value").css("stroke","hsl(280, 90%, 50%)");
-                  $(".circle-progress-value").css("stroke-linecap","round");
-                  $(".circle-progress-circle").css("stroke-width","2px");
-                  $(".circle-progress-circle").css("stroke","#eee");
-                  break;
-                case 4:
-                  $(".circle-progress-value").css("stroke-width","50px");
-                  $(".circle-progress-value").css("stroke","hsl(160, 63%, 55%)");
-                  $(".circle-progress-circle").css("stroke-width","50px");
-                  $(".circle-progress-circle").css("stroke","#999");
-                  $(".circle-progress-text").css("fill","white");
-                  break;
-                case 5:
-                  $(".circle-progress-value").css("stroke-width","6px");
-                  $(".circle-progress-value").css("stroke","white");
-                  $(".circle-progress-value").css("stroke-linecap","round");
-                  $(".circle-progress-circle").css("stroke-width","8px");
-                  $(".circle-progress-circle").css("stroke","#888");
-                  $(".circle-progress-text").css("fill","#888");
-    			  break;
-                case 6:
-                  $(".circle-progress-value").css("stroke-width","50px");
-                  $(".circle-progress-value").css("stroke","hsl(100, 90%, 70%)");
-                  $(".circle-progress-circle").css("stroke-width","40px");
-                  $(".circle-progress-circle").css("stroke","hsl(100, 15%, 60%)");
-                  $(".circle-progress-circle").css("fill","hsl(100, 15%, 60%)");
-                  $(".circle-progress-text").css("fill","white");
-                  $(".circle-progress-text").css("font-weight","bold");
-                  break;
-                case 7:
-  				  break;
-                case 8:
-                  $(".circle-progress-value").css("stroke-width","12px");
-                  $(".circle-progress-value").css("stroke","hsl(210, 100%, 45%)");
-                  $(".circle-progress-circle").css("stroke","white");
-                  $(".circle-progress-circle").css("stroke-width","22px");
-                  $(".circle-progress-text").css("font-family","Georgia");
-                  $(".circle-progress-text").css("font-size","13px");
-                  break;
-                case 9:
-                  $(".circle-progress-value").css("stroke-width","2px");
-                  $(".circle-progress-value").css("stroke","aquamarine");
-                  $(".circle-progress-circle").css("stroke","#ddd");
-                  $(".circle-progress-circle").css("stroke-width","2px");
-                  $(".circle-progress-text").css("font-family","Georgia");
-                  $(".circle-progress-text").css("font-size","13px");
-                  break;
-                case 10:
-                  $(".circle-progress-value").css("stroke-width","6px");
-                  $(".circle-progress-value").css("stroke","hsl(100, 100%, 60%)");
-                  $(".circle-progress-value").css("stroke-dasharray","0.6 3");
-                  $(".circle-progress-circle").css("stroke-width","6px");
-                  $(".circle-progress-circle").css("stroke","#ddd");
-                  $(".circle-progress-circle").css("stroke-dasharray","0.6 3");
-                  $(".circle-progress-circle").css("stroke-dashoffset","1.6");
-                  $(".circle-progress-text").css("font-family","Gotham Rounded Light");
-                  $(".circle-progress-text").css("fill","hsl(100, 81%, 55%)");
-                  $(".circle-progress-text").css("font-size","26px");
-                  break;
-                case 11:
-                  $(".circle-progress-value").css("stroke-width","12px");
-                  $(".circle-progress-value").css("stroke","darkmagenta");
-                  $(".circle-progress-circle").css("stroke","white");
-                  $(".circle-progress-circle").css("stroke-width","11px");
-                  $(".circle-progress-circle").css("fill","#666");
-                  $(".circle-progress-text").css("font-family","Georgia");
-                  $(".circle-progress-text").css("font-size","13px");
-                  $(".circle-progress-text").css("fill","white");
-                  break;
-                case 12:
-                  $(".circle-progress-value").css("stroke-width","25px");
-                  $(".circle-progress-value").css("stroke","hsl(210, 100%, 45%)");
-                  $(".circle-progress-value").css("stroke-dasharray","58 1");
-                  $(".circle-progress-circle").css("stroke","hsl(210, 100%, 85%)");
-                  $(".circle-progress-circle").css("stroke-width","25px");
-                  $(".circle-progress-circle").css("fill","hsl(210, 100%, 85%)");
-                  $(".circle-progress-text").css("font-family","Gotham");
-                  $(".circle-progress-text").css("font-size","16px");
-                  $(".circle-progress-text").css("fill","hsl(210, 100%, 45%)");
-                  break;
+              // value
+              cp.el.style.setProperty('--width-value', widthValue);
+              if (colorValue != "") {
+                cp.el.style.setProperty('--color-value', colorValue);
+              }
+              cp.el.style.setProperty('--dasharray-value', dasharrayValue);
+              cp.el.style.setProperty('--dashoffset-value', dashoffsetValue);
+              cp.el.style.setProperty('--round-value', roundValue);
+              // circle
+              cp.el.style.setProperty('--width-circle', widthCircle);
+              cp.el.style.setProperty('--color-circle', colorCircle);
+              cp.el.style.setProperty('--dasharray-circle', dasharrayCircle);
+              cp.el.style.setProperty('--background-color-circle', backgroundColorCircle);
+              // text
+              cp.el.style.setProperty('--font-weight-text', fontWeightText);
+              if (colorText != "") {
+              	cp.el.style.setProperty('--color-text', colorText);
               }
             }
           	jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
@@ -164,12 +97,24 @@
   
 </script>
 <style>
-  
+
 .progress#id# {
 	--progress#id#-value: .3243;
 	--color: hsl(calc(240 * (1 - var(--progress#id#-value))), 100%, calc(30% + 20% * var(--progress#id#-value)));
-  	background: #1d1e22;
-  	height: var(--taille);
+  	--width-value:6px;
+  	--color-value:var(--color);
+  	--dasharray-value:'';
+  	--dashoffset-value:'';
+  	--round-value:'';
+  	--width-circle:2px;
+  	--color-circle:hsl(228, 8%, 10%);
+  	--dasharray-circle:'',
+    --background-color-circle:'';
+  	--font-weight-text:'';
+  	--color-text:var(--color);
+  	background: transparent;
+  	
+  	padding : 20px;
 }
 
 .circle-progress {
@@ -178,194 +123,28 @@
 }
 
 .circle-progress-value {
-	stroke-width: 6px;
-	stroke: var(--color);
-	stroke-dasharray: 5.98 2;
+	stroke-width: var(--width-value);/*50px;*/
+	stroke: var(--color-value);
+  	
+	stroke-dasharray: var(--dasharray-value);
+  	stroke-dashoffset: var(--dashoffset-value);
 	transition: stroke .4s;
+  	stroke-linecap : var(--round-value);
 }
 
 .circle-progress-circle {
-	stroke-width: 2px;
-	stroke: hsl(228, 8%, 10%);
+	stroke-width: var(--width-circle);
+	stroke: var(--color-circle);
+  	fill: var(--background-color-circle);
+  	stroke-dasharray: var(--dasharray-circle);
 }
 
 .circle-progress-text {
-	font-weight: bold;
-	fill: var(--color);
+	font-weight: var(--font-weight-text);
+	fill: var(--color-text);
 	transform: translateX(.2em);
 	transition: fill .4s;
 }
-
-/*
-
-.circle-progress-value1 {
-	stroke-width: 6px;
-	stroke: hsl(39, 100%, 50%);
-}
-.circle-progress-circle1 {
-	stroke-width: 6px;
-	stroke: hsl(39, 100%, 85%);
-}
-.circle-progress-text1 {
-	fill: hsl(39, 100%, 50%);
-}
-
-.circle-progress-value2 {
-	stroke-width: 6px;
-	stroke: hsl(320, 80%, 60%);
-	stroke-dasharray: 4 1;
-}
-.circle-progress-circle2 {
-	stroke-width: 6px;
-	stroke: #eee;
-}
-.circle-progress-text2 {
-	font-weight: bold;
-	fill: hsl(180, 80%, 47%);
-}
-
-.circle-progress-value3 {
-	stroke-width: 6px;
-	stroke: hsl(280, 90%, 50%);
-	stroke-linecap: round;
-}
-.circle-progress-circle3 {
-	stroke-width: 2px;
-}
-
-.circle-progress-value4 {
-	stroke-width: 50px;
-	stroke: hsl(160, 63%, 55%);
-}
-.circle-progress-circle4 {
-	stroke-width: 50px;
-	stroke: #999;
-}
-.circle-progress-text4 {
-	fill: white;
-}
-
-.circle-progress-value5 {
-	stroke-width: 6px;
-	stroke: white;
-	stroke-linecap: round;
-}
-.circle-progress-circle5 {
-	stroke-width: 8px;
-	stroke: #888;
-}
-.circle-progress-text5 {
-	fill: #888;
-}
-
-.circle-progress-value6 {
-	stroke-width: 50px;
-	stroke: hsl(100, 90%, 70%);
-}
-.circle-progress-circle6 {
-	stroke-width: 40px;
-	stroke: hsl(100, 15%, 60%);
-	fill: hsl(100, 15%, 60%);
-}
-.circle-progress-text6 {
-	fill: white;
-	font-weight: bold;
-}
-
-.circle-progress-value7 {
-	stroke-width: 11px;
-	stroke: aqua;
-	stroke-dasharray: 0 23.3;
-	stroke-linecap: round;
-}
-.progress[aria-valuenow="0"] .circle-progress-value7 {
-	display: none;
-}
-.circle-progress-circle7 {
-	stroke: transparent;
-}
-.circle-progress-text7 {
-	font-family: "Gotham rounded";
-	font-size: 13px;
-	fill: fuchsia;
-}
-
-.circle-progress-value8 {
-	stroke-width: 12px;
-	stroke: hsl(210, 100%, 45%);
-}
-.circle-progress-circle8 {
-	stroke: white;
-	stroke-width: 22px;
-	fill: #666;
-}
-.circle-progress-text8 {
-	font-family: "Georgia";
-	font-size: 13px;
-	fill: white;
-}
-
-.circle-progress-value9 {
-	stroke-width: 2px;
-	stroke: aquamarine;
-}
-.circle-progress-circle9 {
-	stroke: #ddd;
-	stroke-width: 2px;
-}
-.circle-progress-text9 {
-	font-family: "Georgia";
-	font-size: 13px;
-}
-
-.circle-progress-value10 {
-	stroke-width: 6px;
-	stroke: hsl(100, 100%, 60%);
-	stroke-dasharray: 0.6 3;
-}
-.circle-progress-circle10 {
-	stroke-width: 6px;
-	stroke: #ddd;
-	stroke-dasharray: 0.6 3;
-	stroke-dashoffset: 1.6;
-}
-.circle-progress-text10 {
-	font-family: "Gotham Rounded Light";
-	fill: hsl(100, 81%, 55%);
-	font-size: 26px;
-}
-
-.circle-progress-value11 {
-	stroke-width: 12px;
-	stroke: darkmagenta;
-}
-.circle-progress-circle11 {
-	stroke: white;
-	stroke-width: 11px;
-	fill: #666;
-}
-.circle-progress-text11 {
-	font-family: "Georgia";
-	font-size: 13px;
-	fill: white;
-}
-
-.circle-progress-value12 {
-	stroke-width: 25px;
-	stroke: hsl(210, 100%, 45%);
-	stroke-dasharray: 58 1;
-}
-.circle-progress-circle12 {
-	stroke: hsl(210, 100%, 85%);
-	stroke-width: 25px;
-	fill: hsl(210, 100%, 85%);
-}
-.circle-progress-text12 {
-	font-family: "Gotham";
-	font-size: 16px;
-	fill: hsl(210, 100%, 45%);
-}
-*/
 
 input[type=range] {
   width: 210px;
