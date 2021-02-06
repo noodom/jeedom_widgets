@@ -38,6 +38,38 @@ Depuis le plugin Pimp My Jeedom :
 
 De nombreux paramètres sont possibles pour personnaliser les virtuels et obtenir des rendus très différents
 
+	style : choix parmi une liste de paramétrages prédéfinis des champs ci-dessous (valeur de 1 à 13)
+
+	min : valeur minimum autorisée (0 par défaut)
+	max : valeur maximum autorisée (100 par défaut)
+	angleDebut : Angle de début d'affichage (0 par défaut)
+	ordreInverse : 0=non, 1=oui (0 par défaut)
+	taille : hauteur et largeur (250px par défaut)
+	couleurFond : couleur de fond du widget (transparent par défaut)
+	uniteChamp : unité à afficher avec la valeur dans le cercle si précisé (ex ° pour afficher '22°')
+	format : format prédéfini d'affichage (valeurs possibles : horizontal, vertical, percent, value, valueOnCircle, none)
+	dureeAnimation : durée de l'animation de remplissage de la valeur dans le cercle au chargement
+
+	largeurValeur : largeur de la partie du cercle représentant la valeur
+	couleurValeur : couleur de la partie du cercle représentant la valeur
+	ecartValeur :  permet de mettre des pointillés (taille point et espace, ex : '4 1') pour la partie du cercle représentant la valeur
+	offsetValeur : décalage de la partie du cercle représentant la valeur
+	arrondiValeur :  de la partie du cercle représentant la valeur
+	largeurCercle :  largeur du cercle de fond complet
+	couleurCercle : couleur du tour du cercle complet
+	couleurFondCercle : couleur de remplissage de fond du cercle
+	ecartCercle :  permet de mettre des pointillés (taille point et espace, ex : '4 1') pour le cercle complet
+	offsetCercle : décalage du cercle de fond complet
+	nomFonteTexte : nom de la fonte du texte
+	renduFonteTexte : type de fonte du texte
+	tailleFonteTexte : taille du texte
+	couleurTexte : couleur du texte
+
+	=> 3 possiblités pour paramétrer le rendu du widget :
+		- ajouter seulement le paramètre style avec une valeur de 1 à 13 : prédéfinit les autres paramètres
+		- ajouter les paramètres de son choix pour créer son propre affichage de widget
+		- ajouter le paramètre style et modifier l'apparence en ajoutant quelques paramètres pour modifier le rendu final du style ajouté
+			
 ![](doc/images/circleProgressParams.gif)
 
 ## Ajout dans un Design
