@@ -10,8 +10,14 @@ Depuis le plugin Pimp My Jeedom :
 
 - Depuis l'onglet 'Général', sélectionner le bouton 'Ajouter un Widget Tiers'
 - Saisir le nom circleProgress, la version Dashboard, le type Info et le Sous-Type Numérique puis valider avec le bouton 'Créer'
+
+![](doc/images/pimpWidgetCreation.png)
+
 - Dans la zone de texte 'Edition', coller le code du fichier cmd.info.numeric.circleProgress.html
 - Sélectionner le bouton 'Ajouter des fichiers', puis 'Envoyer des fichiers', ajouter le fichier /cmd.info.numeric.circleProgress/circle-progress.js et fermer la fenêtre
+
+![](doc/images/pimpjsFileAdd.png)
+
 - Sélectionner le bouton 'Sauvegarder'
 
 
