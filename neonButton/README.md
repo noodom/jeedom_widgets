@@ -47,7 +47,7 @@ De nombreux paramètres sont possibles pour personnaliser les virtuels et obteni
 	nameTextOn : contenu du texte du bouton On (vide si non renseigné)
 	nameTextOff : contenu du texte du bouton Off (nameTextOn si non renseigné, vide si nameTextOn non renseigné)
 			
-![](doc/images/neonButtonParams.gif)
+![](doc/images/neonButtonParams.png)
 
 ## Ajout dans un Design
 
