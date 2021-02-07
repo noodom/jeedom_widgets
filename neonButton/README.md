@@ -31,6 +31,8 @@ Depuis le plugin Pimp My Jeedom :
 
 Depuis le plugin Pimp My Jeedom :
 
+![](doc/images/commandAssociation.png)
+
 - Sélectionner le bouton 'Appliquer sur'
 - Cocher les commandes de type Action souhaitées
 - Enregistrer les commandes avec le bouton 'Valider'
