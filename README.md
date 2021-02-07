@@ -1,6 +1,6 @@
 # jeedom_widgets
 
-Développements de widgets pour Jeedom et Nextdom
+Développements de widgets pour Jeedom
 
 ## Liste des widgets
 
@@ -9,3 +9,15 @@ Développements de widgets pour Jeedom et Nextdom
 	- voir l'installation dans /ledScroller/V4/README.md
 
 ![](ledScroller/V4/doc/images/ledScroller.png) 
+
+### Widget circleProgress : à récupérer sous /jeedom_widgets/circleProgress/cmd.info.numeric.circleProgress.html
+
+	- voir l'installation dans /circleProgress/README.md
+
+![](circleProgress/doc/images/circleProgress.gif) 
+
+### Widget neonButton : à récupérer sous /jeedom_widgets/neonButton/cmd.action.other.neonButton.html
+
+	- voir l'installation dans /neonButton/README.md
+
+![](neonButton/doc/images/neonButton.gif) 
