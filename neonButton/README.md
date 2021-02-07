@@ -10,9 +10,13 @@ Depuis le plugin Pimp My Jeedom :
 
 - Depuis l'onglet 'Général', sélectionner le bouton 'Ajouter un Widget Tiers'
 - Saisir le nom neonButton, la version Dashboard, le type Action et le Sous-Type Défaut puis valider avec le bouton 'Créer'
+
+![](doc/images/pimpWidgetCreation.png)
+
 - Dans la zone de texte 'Edition', coller le code du fichier cmd.action.other.neonButton.html
 - Sélectionner le bouton 'Sauvegarder'
 
+![](doc/images/pimpCodeAdd.png)
 
 ## (facultatif) Création d'un virtuel avec commande action
 
