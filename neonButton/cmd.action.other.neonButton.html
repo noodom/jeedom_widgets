@@ -10,8 +10,9 @@
         colorTextOff : couleur du texte du bouton Off (colorTextOn si non renseigné, '#000' si colorTextOn non renseigné)
         nameTextOn : contenu du texte du bouton On (vide si non renseigné)
         nameTextOff : contenu du texte du bouton Off (nameTextOn si non renseigné, vide si nameTextOn non renseigné)
+        scale : pourcentage de réduction de la taille du bouton (ex : '0.5' pour réduire de moitié)
 
-       ########### by @noodom ;)  ############# -->
+       ########### by @noodom ;) inspiré par https://codepen.io/Stockin/pen/qJqVYy ############# -->
   
   <div id="neonText#id#"></div>
   <input type="checkbox" id="neonInput#id#" class="neonInput#id#"  class="toggle cursor cmd tooltips cmd-widget"
@@ -21,7 +22,7 @@
 <script type="text/javascript">
   
   // Chargement des paramètres optionnels
-  // Bleu (#70a1ff-#1e90ff) , Orange (#e67e22-#f39c12)
+  // Bleu (#70a1ff-#1e90ff) , Bleu clair (#6dd1ff-#20b7ff), Orange (#e67e22-#f39c12)
   // Dégradé pour bouton On
   let backgroundColorFromOn#id# = ('#backgroundColorFromOn#' != '#' + 'backgroundColorFromOn#') ? "#backgroundColorFromOn#" : '#70a1ff';
   let backgroundColorToOn#id# = ('#backgroundColorToOn#' != '#' + 'backgroundColorToOn#') ? "#backgroundColorToOn#" : '#1e90ff';
