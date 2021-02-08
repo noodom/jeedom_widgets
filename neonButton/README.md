@@ -52,6 +52,7 @@ De nombreux paramètres sont possibles pour personnaliser les virtuels et obteni
 	colorTextOff : couleur du texte du bouton Off (colorTextOn si non renseigné, '#000' si colorTextOn non renseigné)
 	nameTextOn : contenu du texte du bouton On (vide si non renseigné)
 	nameTextOff : contenu du texte du bouton Off (nameTextOn si non renseigné, vide si nameTextOn non renseigné)
+	scale : permet de réduire la taille du bouton (ex : 0.5 pour réduire le bouton de moitié)
 			
 ![](doc/images/neonButtonParams.png)
 
