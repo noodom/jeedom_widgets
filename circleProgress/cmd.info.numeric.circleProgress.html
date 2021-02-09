@@ -221,7 +221,7 @@
               cp.textFormat = (val) => val + unite;
             }
 
-            cp.el.style.setProperty('--progress#id#-value', valeur / max);
+            cp.el.style.setProperty('--progress#id#-value', (valeur-min) / (max-min));
           }
           jeedom.cmd.update['#id#']({
             display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'
