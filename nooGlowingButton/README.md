@@ -18,6 +18,13 @@ Depuis le plugin Pimp My Jeedom :
 
 ![](../neonButton/doc/images/pimpCodeAdd.png)
 
+>**Note** : Le widget peut évidemment être créé de façon classique comme un widget tiers sans le plugin Pimp my Jeedom
+> - Sélectionner le menu Outil -> Widgets,
+> - Sélectionner Code, puis Nouveau
+> - Saisir le nom nooGlowingButton, la version Dashboard, le type Action et le Sous-Type Défaut puis valider avec le bouton 'Créer'
+> - Dans la zone de texte 'Edition', coller le code du fichier cmd.action.other.nooGlowingButton.html
+> - Sélectionner le bouton 'Sauvegarder'
+
 ## (facultatif) Création d'un virtuel avec commande action
 
 - Si vous souhaitez associer le widget à une commande existante, cette étape n'est pas nécessaire
@@ -40,6 +47,13 @@ Depuis le plugin Pimp My Jeedom :
 - La liste des commandes associées au widget sont visibles dans la partie 'Commandes liées'
 - Une prévisualisation basée sur le premier virtuel associé est visible
 
+>**Note** : Sans le plugin Pimp my Jeedom, faire les actions suivantes pour chaque commande à associer
+> - Depuis le plugin Virtuel, srechercher le virtuel contenant la commande à associer
+> -Sélectionner l'onglet Commandes
+> - Sélectionner la roue dentée de la commande
+> - Sélectionner l'onglet Affichage
+> - Sélectionner le widget CustomTemp/NooGlowingButton (ligne Widget, colonne Dashboard)
+
 ## (facultatif) Paramètres de la commande associée au widget
 
 Les paramètres suivants sont possibles pour personnaliser les virtuels et obtenir des rendus différents
@@ -50,6 +64,16 @@ Les paramètres suivants sont possibles pour personnaliser les virtuels et obten
 	colorLogo : couleur du bouton fixe (couleurs du bouton On/Off si non renseigné)
 
 ![](doc/images/nooGlowingButtonParams.png)
+
+
+>On aura au final l'arborescence suivante (A vérifier avec le plugin jeeExplorer) :
+>
+>- /html
+>    - /montheme
+>        - /menuJsonFsb33Frame  
+>            - /css/perso.css : le css du menu (Modification non nécessaire)
+>            - /img : les images du menu
+>            - /json/perso.json : le json de personnalisation du menu (A personnaliser)
 
 ## Ajout dans un Design
 
