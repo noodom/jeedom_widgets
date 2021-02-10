@@ -24,21 +24,21 @@
   // Chargement des paramètres optionnels
   // Bleu (#70a1ff-#1e90ff) , Bleu clair (#6dd1ff-#20b7ff), Orange (#e67e22-#f39c12)
   // Dégradé pour bouton On
-  let backgroundColorFromOn#id# = ('#backgroundColorFromOn#' != '#' + 'backgroundColorFromOn#') ? "#backgroundColorFromOn#" : '#70a1ff';
-  let backgroundColorToOn#id# = ('#backgroundColorToOn#' != '#' + 'backgroundColorToOn#') ? "#backgroundColorToOn#" : '#1e90ff';
+  var backgroundColorFromOn#id# = ('#backgroundColorFromOn#' != '#' + 'backgroundColorFromOn#') ? "#backgroundColorFromOn#" : '#70a1ff';
+  var backgroundColorToOn#id# = ('#backgroundColorToOn#' != '#' + 'backgroundColorToOn#') ? "#backgroundColorToOn#" : '#1e90ff';
   // Dégradé pour bouton Off
-  let backgroundColorFromOff#id# = ('#backgroundColorFromOff#' != '#' + 'backgroundColorFromOff#') ? "#backgroundColorFromOff#" : '#333';
-  let backgroundColorToOff#id# = ('#backgroundColorToOff#' != '#' + 'backgroundColorToOff#') ? "#backgroundColorToOff#" : '#000';
+  var backgroundColorFromOff#id# = ('#backgroundColorFromOff#' != '#' + 'backgroundColorFromOff#') ? "#backgroundColorFromOff#" : '#333';
+  var backgroundColorToOff#id# = ('#backgroundColorToOff#' != '#' + 'backgroundColorToOff#') ? "#backgroundColorToOff#" : '#000';
   // Couleur texte pour bouton On
-  let colorTextOn#id# = ('#colorTextOn#' != '#' + 'colorTextOn#') ? "#colorTextOn#" : backgroundColorFromOn#id#;
+  var colorTextOn#id# = ('#colorTextOn#' != '#' + 'colorTextOn#') ? "#colorTextOn#" : backgroundColorFromOn#id#;
   // Couleur texte pour bouton Off
-  let colorTextOff#id# = ('#colorTextOff#' != '#' + 'colorTextOff#') ? "#colorTextOff#" : ((colorTextOn#id# !='')?colorTextOn#id#:'#000'); 
+  var colorTextOff#id# = ('#colorTextOff#' != '#' + 'colorTextOff#') ? "#colorTextOff#" : ((colorTextOn#id# !='')?colorTextOn#id#:'#000'); 
   // Texte pour bouton On
   let nameTextOn#id# = ('#nameTextOn#' != '#' + 'nameTextOn#') ? "#nameTextOn#" : ''; 
   // Texte pour bouton Off
-  let nameTextOff#id# = ('#nameTextOff#' != '#' + 'nameTextOff#') ? "#nameTextOff#" : ((nameTextOn#id# !='')?nameTextOn#id#:'');
+  var nameTextOff#id# = ('#nameTextOff#' != '#' + 'nameTextOff#') ? "#nameTextOff#" : ((nameTextOn#id# !='')?nameTextOn#id#:'');
   // Scale pour réduire la taille du bouton (ex : '0.5' pour réduire de moitié)
-  let scale#id# = ('#scale#' != '#' + 'scale#') ? "#scale#" : '1';
+  var scale#id# = ('#scale#' != '#' + 'scale#') ? "#scale#" : '1';
 
   if (backgroundColorFromOn#id# != '') {
     document.documentElement.style.setProperty('--background-color-from-on#id#', backgroundColorFromOn#id#);
