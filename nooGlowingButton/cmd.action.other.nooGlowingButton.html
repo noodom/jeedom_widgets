@@ -1,0 +1,150 @@
+<div id="glowingContainer#id#">
+  <!-- ################ nooGlowingButton ################ 
+       ********** Paramètres Optionnels ***************
+		
+        logo : logo au format fontawesome ('fa fa-home' si non renseigné)
+        colorButtonOn : couleur du bouton en mode On ('rgba(0, 176, 255, 1)' si non renseigné)
+        colorButtonOff : couleur du bouton en mode On ('#222' si non renseigné)
+        colorLogo : couleur du bouton fixe (couleurs du bouton On/Off si non renseigné)
+
+       ########### by @noodom ;)  ############# -->
+  <div class="glowingButton#id#">
+    <label class="glowingLabel#id#">
+        <input type="checkbox" id="glowingInput#id#" class="glowingInput#id#"  class="toggle cursor cmd tooltips cmd-widget"
+              data-type="action" data-subtype="other" data-cmd_id="#id#" data-cmd_uid="#uid#">
+        <!-- <input type="checkbox" checked name=""> -->
+        <i id="mylogo#id#" aria-hidden="true"></i>
+        <span class="check"></span>
+      </label>
+  </div>
+</div>
+
+<script type="text/javascript">
+  // Chargement des paramètres optionnels
+  // choix du logo et du bouton (font-awesome)
+  var logo#id# = ('#logo#' != '#' + 'logo#') ? "#logo#" : 'fa fa-home'; 
+  // couleurs On/Off du bouton
+  var colorButtonOn#id# = ('#colorButtonOn#' != '#' + 'colorButtonOn#') ? "#colorButtonOn#" : 'rgba(0, 176, 255, 1)'; 
+  var colorButtonOff#id# = ('#colorButtonOff#' != '#' + 'colorButtonOff#') ? "#colorButtonOff#" : '#222';
+  // couleurs On/Off du logo
+  var colorLogoOn#id# = ('#colorLogo#' != '#' + 'colorLogo#') ? "#colorLogo#" : colorButtonOn#id#;
+  var colorLogoOff#id# = ('#colorLogo#' != '#' + 'colorLogo#') ? "#colorLogo#" : colorButtonOff#id#;
+  
+  document.documentElement.style.setProperty('--color-button-on#id#', colorButtonOn#id#);
+  document.documentElement.style.setProperty('--color-button-off#id#', colorButtonOff#id#);
+  document.documentElement.style.setProperty('--color-logo-on#id#', colorLogoOn#id#);
+  document.documentElement.style.setProperty('--color-logo-off#id#', colorLogoOff#id#);
+
+  jeedom.cmd.update['#id#'] = function(_options){   
+    
+    $('#mylogo#id#').addClass(logo#id#);
+    
+    if (_options.display_value == '1' || _options.display_value == 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
+      document.getElementById('glowingInput#id#').checked = true;
+      if (jeedom.cmd.normalizeName('#name#') == 'on') {
+        $('.cmd[data-cmd_uid=#uid#]').hide();
+      }else{
+        $('.cmd[data-cmd_uid=#uid#]').show();
+      }
+    } else {
+      document.getElementById('glowingInput#id#').checked = false;
+      if (jeedom.cmd.normalizeName('#name#') == 'off') {
+        $('.cmd[data-cmd_uid=#uid#]').hide();
+      }else{
+        $('.cmd[data-cmd_uid=#uid#]').show();
+      }
+    }
+  }
+  jeedom.cmd.update['#id#']({display_value:'#state#'});
+  
+  $('#glowingInput#id#').off().on('click', function () {
+    jeedom.cmd.execute({id: '#id#'});
+  });
+</script>
+
+<style>
+  :root {
+    --color-button-on#id# : rgba(0, 176, 255, 1);
+    --color-button-off#id# : #222;
+    --color-logo-on#id# : rgba(0, 176, 255, 1);
+    --color-logo-off#id# : #222;
+  }
+  
+  #glowingContainer#id# {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+  }
+
+  #glowingContainer#id# .glowingButton#id# {
+    width: 100px;
+    text-align: center;
+
+  }
+
+  #glowingContainer#id# .glowingButton#id# .glowingLabel#id# .fa,
+  #glowingContainer#id# .glowingButton#id# .glowingLabel#id# .glowingInput#id#[type="checkbox"] {
+    display: block;
+    text-align: center;
+  }
+
+  #glowingContainer#id# .glowingButton#id# .glowingLabel#id# .fa {
+    font-size: 30px;
+    color: var(--color-logo-off#id#);
+    transition: 0.5s;
+  }
+
+  #glowingContainer#id# .glowingButton#id# .glowingLabel#id# .glowingInput#id#[type="checkbox"] {
+    display: none;
+  }
+
+  #glowingContainer#id# .glowingButton#id# .glowingLabel#id# .check {
+    position: relative;
+    display: block;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(#000, #333);
+    border-radius: 50%;
+    margin: 10px auto 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #glowingContainer#id# .glowingButton#id# .glowingLabel#id# .check::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-button-off#id#);
+    transition: 0.5s;
+    z-index: 3;
+  }
+
+  #glowingContainer#id# .glowingButton#id# .glowingLabel#id# .check::after {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+    background-color: #222;
+    border-radius: 50%;
+    z-index: 2;
+    border: 2px solid #161616;
+  }
+
+  #glowingContainer#id# .glowingButton#id# .glowingLabel#id# .glowingInput#id#[type="checkbox"]:checked ~ .check::before {
+    background-color: var(--color-button-on#id#);
+    box-shadow: 0 0 10px var(--color-button-on#id#),
+                0 0 15px var(--color-button-on#id#),
+                0 0 20px var(--color-button-on#id#),
+                0 0 25px var(--color-button-on#id#),
+                0 0 0 2px var(--color-button-on#id#);
+  }
+
+  #glowingContainer#id# .glowingButton#id# .glowingLabel#id# .glowingInput#id#[type="checkbox"]:checked ~ .fa {
+    color: var(--color-logo-on#id#);
+  }
+</style>
