@@ -44,7 +44,6 @@ Depuis le plugin Pimp My Jeedom :
 
 Les paramètres suivants sont possibles pour personnaliser les virtuels et obtenir des rendus différents
 
-	backgroundColorFromOn : couleur de début du dégradé du bouton On ('#70a1ff' si non renseigné)
 	logo : logo au format fontawesome ('fa fa-home' si non renseigné)
 	colorButtonOn : couleur du bouton en mode On ('rgba(0, 176, 255, 1)' si non renseigné)
 	colorButtonOff : couleur du bouton en mode On ('#222' si non renseigné)
