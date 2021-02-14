@@ -69,7 +69,7 @@ De nombreux paramètres sont possibles pour personnaliser les virtuels et obteni
  			leftColor = couleur à droite du curseur de séparation ('green' par défaut)
  			
 			// type image
-			images : liste des images à mettre en fond dans le mode image
+			images : liste des images à mettre en fond dans le mode image (ex: 'presence.png,presence_int.png,presence_no.png,presence_prog.png')
 			imageWidth : hauteur de chaque image de fond pour le type image (60 par défaut)
 			imageHeight : hauteur de chaque image pour le type image (40 par défaut)
 			
