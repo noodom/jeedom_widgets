@@ -1,5 +1,6 @@
-<div style="margin:5px;" class="cmd cmd-widget" data-type="action" data-subtype="slider" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
-  <!-- ################ nooSlider ################ 
+<div style="margin:5px;" class="cmd cmd-widget" data-type="action" data-subtype="slider" data-cmd_id="#id#"
+    data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+    <!-- ################ nooSlider ################ 
        ********** Paramètres Optionnels ***************
 
 			type : 'button'/'images', format d'affichage ('button' par défaut)
@@ -16,10 +17,10 @@
 			step : pas de défilement (1 par défaut)
 			minRange : valeur minimale accessible (valeur min par défaut)
  			maxRange : valeur maximale accessible (valeur max par défaut)
-        	fixedHandle : bouton de slider fixe, 0:non fixe / 1:fixe (0 par défaut)
-        	addPlus : 0:pas de '+' devant valeur positive / 1: '+' devant valeur positive (0 par défaut)
+ 			fixedHandle : bouton de slider fixe, 0:non fixe / 1:fixe (0 par défaut)
+ 			addPlus : 0:pas de '+' devant valeur positive / 1: '+' devant valeur positive (0 par défaut)
 			cursorColor : couleur du curseur de position
-        	displayedValues : valeurs visibles sous slider (ex : '0,20,40,60,80,100')
+ 			displayedValues : valeurs visibles sous slider (ex : '0,20,40,60,80,100')
 			centerValue : valeur de la position séparant le slider pour définir les couleurs à gauche et droite (vide par défaut)
 			rightColor = couleur à gauche du curseur de séparation ('red' par défaut)
  			leftColor = couleur à droite du curseur de séparation ('green' par défaut)
@@ -31,408 +32,425 @@
 
        ########### By @noodom ;) 
        ########### Pensez au café pour les nuits blanches de codage ;) https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=noodom.fr%40gmail.com&currency_code=EUR&source=url
-  	   ########### Code disponible ici : https://github.com/noodom/jeedom_widgets/tree/master/nooSlider
+       ########### Code disponible ici : https://github.com/noodom/jeedom_widgets/tree/master/nooSlider
        ########### Basé sur https://github.com/ruisoftware/jquery-rsSliderLens ############# -->
-  <div class="title #hide_name#">
-    <div class="cmdName">#name_display#</div>
-  </div>
+    <div class="title #hide_name#">
+        <div class="cmdName">#name_display#</div>
+    </div>
     <div id="nooSliderContainer#id#">
         <span id="nooSpan#id#" tabIndex="0"> </span>
-      	<input id="nooSlider#id#" type="range">
-   		<script>
+        <input id="nooSlider#id#" type="range">
+        <script>
 
-      $.include(['data/customTemplates/dashboard/cmd.action.slider.nooSlider/rsSliderLens.js'],
-        function () {
-        
-        	// Récupération des paramètres
-          	let type = 'button', orientation = 'horiz', width = 'auto', height = 'auto',
-              	min = 0, max = 100, step = 1,
-                minRange = min, maxRange = max,
-            	paddingStart = 0.1, paddingEnd = 0.1,
-                fixedHandle = false,
-                cursorColor = 'white',
-                displayedValues = '',
-                centerValue= null, // (min+max)/2,
-            	leftColor = 'red', rightColor = 'green',
-                addPlus = false,
-                immediateChange = false,
-                images = '',
-                imageWidth = 60,
-                imageHeight = 40,
-                visibleRuler = true;
-        
-        	// Chargement du style d'affichage
-        	type = ('#type#' != '#' + 'type#') ? "#type#" : type;
-        	orientation = ('#orientation#' != '#' + 'orientation#') ? "#orientation#" : orientation;
-        	console.log("orientation=" + orientation);
-        	orientation = (orientation == 'vertical' || orientation == 'verticale' || orientation == 'vert') ? 'vert' : 'horiz';
-        	width = ('#width#' != '#' + 'width#') ? "#width#" : width;
-        	height = ('#height#' != '#' + 'height#') ? "#height#" : height;
-        	min = (isNaN(parseFloat('#min#'))) ? min : parseFloat('#min#');
-        	max = (isNaN(parseFloat('#max#'))) ? max : parseFloat('#max#');
-        	step = (isNaN(parseFloat('#step#'))) ? step : parseFloat('#step#');
-        	paddingStart = (isNaN(parseFloat('#paddingStart#'))) ? paddingStart : parseFloat('#paddingStart#');
-        	paddingEnd = (isNaN(parseFloat('#paddingEnd#'))) ? paddingEnd : parseFloat('#paddingEnd#');
-        	fixedHandle = (isNaN(parseFloat('#fixedHandle#'))) ? false : (parseFloat('#fixedHandle#')==1);
-        	addPlus = (isNaN(parseFloat('#addPlus#'))) ? '' : ((parseFloat('#addPlus#')==1) ? '+' : '');
-        	minRange = (isNaN(parseFloat('#minRange#'))) ? min : parseFloat('#minRange#');
-            maxRange = (isNaN(parseFloat('#maxRange#'))) ? max : parseFloat('#maxRange#');
-            displayedValues = ('#displayedValues#' != '#' + 'displayedValues#') ? ("#displayedValues#".split(",")) : displayedValues;
-        	cursorColor = ('#cursorColor#' != '#' + 'cursorColor#') ? "#cursorColor#" : cursorColor;
+            $.include(['data/customTemplates/dashboard/cmd.action.slider.nooSlider/rsSliderLens.js'],
+                function () {
 
-        	centerValue = (displayedValues=='') ? null : ((isNaN(parseFloat('#centerValue#'))) ? null : (parseFloat('#centerValue#')));
-        	leftColor = (centerValue==null) ? '' : (('#leftColor#' != '#' + 'leftColor#') ? "#leftColor#" : leftColor);
-        	rightColor = (centerValue==null) ? '' : (('#rightColor#' != '#' + 'rightColor#') ? "#rightColor#" : rightColor);
-        	addPlus = (isNaN(parseFloat('#addPlus#'))) ? '' : ((parseFloat('#addPlus#')==1) ? '+' : '');
-        	immediateChange = (isNaN(parseFloat('#immediateChange#'))) ? false : (parseFloat('#immediateChange#')==1);
-        	images = ('#images#' != '#' + 'images#') ? "#images#" : images;
-        	imageWidth = (isNaN(parseFloat('#imageWidth#'))) ? imageWidth : parseFloat('#imageWidth#');
-        	imageHeight = (isNaN(parseFloat('#imageHeight#'))) ? imageHeight : parseFloat('#imageHeight#');
+                    // Récupération des paramètres
+                    let type = 'button', orientation = 'horiz', width = 'auto', height = 'auto',
+                        min = 0, max = 100, step = 1,
+                        minRange = min, maxRange = max,
+                        paddingStart = 0.1, paddingEnd = 0.1,
+                        fixedHandle = false,
+                        cursorColor = 'white',
+                        displayedValues = '',
+                        centerValue = null, // (min+max)/2,
+                        leftColor = 'red', rightColor = 'green',
+                        addPlus = false,
+                        immediateChange = false,
+                        images = '',
+                        imageWidth = 60,
+                        imageHeight = 40,
+                        visibleRuler = true;
 
-        	switch (type) {
-              case 'image' :
-              case 'images' :
-                // images
-        		$("#nooSlider#id#").remove();
-                $cmd#id# = $("#nooSpan#id#");
-                let imagesList = images.split(',');
-                let imagesLenth = imagesList.length;
-                let imgContent = "";
-                for (i=0;i<imagesLenth;i++) {
-                	imgContent += '<img src="' + 'data/customTemplates/dashboard/cmd.action.slider.nooSlider/' + imagesList[i] + '" width="' + imageWidth + '" height="' + imageHeight + '">"';
-                }
-                //width = (imageWidth+2) * imagesLenth;
-                //height = imageHeight;
-                max = imagesLenth-1;
-                step = 1;
-                visibleRuler = false;
-                console.log("contenu image=" + imgContent);
-                $cmd#id#.html(imgContent);
-                break;
-              default :
-                // button
-                $("#nooSpan#id#").remove();
-            	$cmd#id# = $("#nooSlider#id#");
-                document.documentElement.style.setProperty('--color-cursor#id#', cursorColor);
-            }
-              
-        	$cmd#id#.rsSliderLens({
-        		orientation: orientation,
-                width: width,
-              	height: height,
-              	min: min,
-            	max: max,
-              	step: step,
-              	paddingStart: paddingStart,
-        		paddingEnd: paddingEnd,
-              	fixedHandle: fixedHandle,
-              	range: {
-                  type: [minRange, maxRange],
-                  draggable: true
-              	},
-        		ruler: {
-                  	visible : visibleRuler,
-                  	labels: {
-                      	values: displayedValues,
-                        onCustomLabel: function(event, value) {
-                            return (value > 0) ? addPlus + value : value;
+                    // Chargement du style d'affichage
+                    type = ('#type#' != '#' + 'type#') ? "#type#" : type;
+                    orientation = ('#orientation#' != '#' + 'orientation#') ? "#orientation#" : orientation;
+                    console.log("orientation=" + orientation);
+                    orientation = (orientation == 'vertical' || orientation == 'verticale' || orientation == 'vert') ? 'vert' : 'horiz';
+                    width = ('#width#' != '#' + 'width#') ? "#width#" : width;
+                    height = ('#height#' != '#' + 'height#') ? "#height#" : height;
+                    min = (isNaN(parseFloat('#min#'))) ? min : parseFloat('#min#');
+                    max = (isNaN(parseFloat('#max#'))) ? max : parseFloat('#max#');
+                    step = (isNaN(parseFloat('#step#'))) ? step : parseFloat('#step#');
+                    paddingStart = (isNaN(parseFloat('#paddingStart#'))) ? paddingStart : parseFloat('#paddingStart#');
+                    paddingEnd = (isNaN(parseFloat('#paddingEnd#'))) ? paddingEnd : parseFloat('#paddingEnd#');
+                    fixedHandle = (isNaN(parseFloat('#fixedHandle#'))) ? false : (parseFloat('#fixedHandle#') == 1);
+                    addPlus = (isNaN(parseFloat('#addPlus#'))) ? '' : ((parseFloat('#addPlus#') == 1) ? '+' : '');
+                    minRange = (isNaN(parseFloat('#minRange#'))) ? min : parseFloat('#minRange#');
+                    maxRange = (isNaN(parseFloat('#maxRange#'))) ? max : parseFloat('#maxRange#');
+                    displayedValues = ('#displayedValues#' != '#' + 'displayedValues#') ? ("#displayedValues#".split(",")) : displayedValues;
+                    cursorColor = ('#cursorColor#' != '#' + 'cursorColor#') ? "#cursorColor#" : cursorColor;
+
+                    centerValue = (displayedValues == '') ? null : ((isNaN(parseFloat('#centerValue#'))) ? null : (parseFloat('#centerValue#')));
+                    leftColor = (centerValue == null) ? '' : (('#leftColor#' != '#' + 'leftColor#') ? "#leftColor#" : leftColor);
+                    rightColor = (centerValue == null) ? '' : (('#rightColor#' != '#' + 'rightColor#') ? "#rightColor#" : rightColor);
+                    addPlus = (isNaN(parseFloat('#addPlus#'))) ? '' : ((parseFloat('#addPlus#') == 1) ? '+' : '');
+                    immediateChange = (isNaN(parseFloat('#immediateChange#'))) ? false : (parseFloat('#immediateChange#') == 1);
+                    images = ('#images#' != '#' + 'images#') ? "#images#" : images;
+                    imageWidth = (isNaN(parseFloat('#imageWidth#'))) ? imageWidth : parseFloat('#imageWidth#');
+                    imageHeight = (isNaN(parseFloat('#imageHeight#'))) ? imageHeight : parseFloat('#imageHeight#');
+
+                    switch (type) {
+                        case 'image':
+                        case 'images':
+                            // images
+                            $("#nooSlider#id#").remove();
+                            $cmd#id# = $("#nooSpan#id#");
+                            let imagesList = images.split(',');
+                            let imagesLenth = imagesList.length;
+                            let imgContent = "";
+                            for (i = 0; i < imagesLenth; i++) {
+                                imgContent += '<img src="' + 'data/customTemplates/dashboard/cmd.action.slider.nooSlider/' + imagesList[i] + '" width="' + imageWidth + '" height="' + imageHeight + '">"';
+                            }
+                            //width = (imageWidth+2) * imagesLenth;
+                            //height = imageHeight;
+                            max = imagesLenth - 1;
+                            step = 1;
+                            visibleRuler = false;
+                            console.log("contenu image=" + imgContent);
+                            $cmd#id#.html(imgContent);
+                            break;
+                        default:
+                            // button
+                            $("#nooSpan#id#").remove();
+                            $cmd#id# = $("#nooSlider#id#");
+                            document.documentElement.style.setProperty('--color-cursor#id#', cursorColor);
+                    }
+
+                    $cmd#id#.rsSliderLens({
+                        orientation: orientation,
+                        width: width,
+                        height: height,
+                        min: min,
+                        max: max,
+                        step: step,
+                        paddingStart: paddingStart,
+                        paddingEnd: paddingEnd,
+                        fixedHandle: fixedHandle,
+                        range: {
+                            type: [minRange, maxRange],
+                            draggable: true
                         },
-                      	onCustomAttrs: function(event, value) {
-                            if (value < centerValue) return { style: 'fill:' + leftColor };
-                            if (value > centerValue) return { style: 'fill:' + rightColor };
+                        ruler: {
+                            visible: visibleRuler,
+                            labels: {
+                                values: displayedValues,
+                                onCustomLabel: function (event, value) {
+                                    return (value > 0) ? addPlus + value : value;
+                                },
+                                onCustomAttrs: function (event, value) {
+                                    if (value < centerValue) return { style: 'fill:' + leftColor };
+                                    if (value > centerValue) return { style: 'fill:' + rightColor };
+                                }
+                            }
+                        },
+
+                        onCreate: function (event) {
+                            if (type == 'button') {
+                                // ajout du libellé pour affichage de la valeur courante
+                                $(event.currentTarget).nextAll(".handle").append("<label>");
+                                console.log("css label");
+                            }
+                        },
+                        onChange: function (event, value) {
+                            if (type == 'button') {
+                                // mise à jour du libellé
+                                var $labelElement = $(event.currentTarget).nextAll(".handle").children("label");
+                                $labelElement.addClass("libelle#id#");
+                                $labelElement.text(value < 0 ? value : ((value > 0 ? addPlus : '') + value));
+                            }
+
+                            if (immediateChange) {
+                                // mise à jour Jeedom
+                                jeedom.cmd.execute({ id: '#id#', value: { slider: value } });
+                            }
+                        },
+                        onFinalChange: function (event, value) {
+                            if (!immediateChange) {
+                                // mise à jour Jeedom
+                                jeedom.cmd.execute({ id: '#id#', value: { slider: value } });
+                            }
                         }
-            		}
-        		},
+                    });
 
-                onCreate: function (event) {
-                    if (type == 'button') {
-                      // ajout du libellé pour affichage de la valeur courante
-                      $(event.currentTarget).nextAll(".handle").append("<label>");
-                      console.log("css label");
-                    }
-                },
-                onChange: function (event, value) {
-                    if (type == 'button') {
-                      // mise à jour du libellé
-                      var $labelElement = $(event.currentTarget).nextAll(".handle").children("label");
-                      $labelElement.addClass("libelle#id#");
-                      $labelElement.text(value < 0 ? value : ((value > 0 ? addPlus : '') + value));
-                    }
-                  
-                  if (immediateChange) {
-                    // mise à jour Jeedom
-                    jeedom.cmd.execute({id: '#id#', value: {slider: value}});
-                  }
-            	},
-              	onFinalChange: function (event, value) {
-                  	if (!immediateChange) {
-                      // mise à jour Jeedom
-                      jeedom.cmd.execute({id: '#id#', value: {slider: value}});
-                    }
-                }
-    		});
+                });
 
-      	});
-          
-   jeedom.cmd.update['#id#'] = function(_options){
-     	let valeur = is_numeric(_options.display_value) ? parseFloat(_options.display_value) : parseFloat(_options.display_value);
-     	$cmd#id#.rsSliderLens('option', 'value', valeur);
-    }
-    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#'});
-    
-</script>
+            jeedom.cmd.update['#id#'] = function (_options) {
+                let valeur = is_numeric(_options.display_value) ? parseFloat(_options.display_value) : parseFloat(_options.display_value);
+                $cmd#id#.rsSliderLens('option', 'value', valeur);
+            }
+            jeedom.cmd.update['#id#']({ display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#' });
 
-<style>
+        </script>
 
-:root {
-  --color-cursor#id#: white;
-}
+        <style>
+            :root {
+                --color-cursor#id#: white;
+            }
 
-label.libelle#id# {
-  color:var(--color-cursor#id#);
-}
+            label.libelle#id# {
+                color: var(--color-cursor#id#);
+            }
 
-    #custom + .range, // range outside the handle 
-    #custom ~ .handle .range { 
-    	// range inside the handle 
-        background: -moz-linear-gradient(left, red 0%, green 100%)!important;
-        background: -webkit-linear-gradient(left, red 0%, green 100%)!important;
-        background: linear-gradient(to right, red 0%, green 100%)!important;
-    }
+            #custom+.range,
+            // range outside the handle 
+            #custom~.handle .range {
+                // range inside the handle 
+                background: -moz-linear-gradient(left, red 0%, green 100%) !important;
+                background: -webkit-linear-gradient(left, red 0%, green 100%) !important;
+                background: linear-gradient(to right, red 0%, green 100%) !important;
+            }
 
-  	.sliderlens {
-    	opacity: .8;
-		cursor: pointer;
-		line-height: 1.5em;
-	}
+            .sliderlens {
+                opacity: .8;
+                cursor: pointer;
+                line-height: 1.5em;
+            }
 
-    .sliderlens.focus {
-         opacity: 1;
-    }
+            .sliderlens.focus {
+                opacity: 1;
+            }
 
-    .sliderlens .range {
-         background-color: #050505;
-         border-width: 0.0625em;
-         border-style: solid;
-         -webkit-border-image: -webkit-linear-gradient(top,#121212,#787878) 1;
-         -moz-border-image: -moz-linear-gradient(top,#121212,#787878) 1;
-         -o-border-image: -o-linear-gradient(top,#121212,#787878) 1;
-         -ms-border-image: -ms-linear-gradient(top,#121212,#787878) 1;
-         border-image: linear-gradient(to bottom,#121212,#787878) 1;
-    }
+            .sliderlens .range {
+                background-color: #050505;
+                border-width: 0.0625em;
+                border-style: solid;
+                -webkit-border-image: -webkit-linear-gradient(top, #121212, #787878) 1;
+                -moz-border-image: -moz-linear-gradient(top, #121212, #787878) 1;
+                -o-border-image: -o-linear-gradient(top, #121212, #787878) 1;
+                -ms-border-image: -ms-linear-gradient(top, #121212, #787878) 1;
+                border-image: linear-gradient(to bottom, #121212, #787878) 1;
+            }
 
-    .sliderlens .range > div {
-         background-color: #313131;
-    }
-  
-    .sliderlens .range.drag > div {
-         cursor: ew-resize;
-    }
+            .sliderlens .range>div {
+                background-color: #313131;
+            }
 
-    .sliderlens .range.drag.dragging > div {
-         cursor: none;
-    }
+            .sliderlens .range.drag>div {
+                cursor: ew-resize;
+            }
 
-    .sliderlens > .handle, .sliderlens > .handle1, .sliderlens > .handle2 {
-         border-radius: 3em/.75em;
-         cursor: ew-resize;
-         background-color: #454545;
-         box-shadow: 0 0 0.3125em -0.03125em #000000;
-         border: 0 solid #787878;
-         border-bottom-color: #121212;
-         border-width: 0.0625em 0;
-    }
+            .sliderlens .range.drag.dragging>div {
+                cursor: none;
+            }
 
-    .sliderlens > .handle:before, .sliderlens > .handle:after, .sliderlens > .handle1:before, .sliderlens > .handle1:after, .sliderlens > .handle2:before, .sliderlens > .handle2:after {
-         content: '';
-         position: absolute;
-         top: 0;
-         right: 0;
-         bottom: 0;
-         left: 0;
-    }
+            .sliderlens>.handle,
+            .sliderlens>.handle1,
+            .sliderlens>.handle2 {
+                border-radius: 3em/.75em;
+                cursor: ew-resize;
+                background-color: #454545;
+                box-shadow: 0 0 0.3125em -0.03125em #000000;
+                border: 0 solid #787878;
+                border-bottom-color: #121212;
+                border-width: 0.0625em 0;
+            }
 
-    .sliderlens > .handle.dragging, .sliderlens > .handle1.dragging, .sliderlens > .handle2.dragging {
-         box-shadow: 0 0 0.3125em -0.0625em #000000;
-    }
+            .sliderlens>.handle:before,
+            .sliderlens>.handle:after,
+            .sliderlens>.handle1:before,
+            .sliderlens>.handle1:after,
+            .sliderlens>.handle2:before,
+            .sliderlens>.handle2:after {
+                content: '';
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+            }
 
-    .sliderlens > .handle .range, .sliderlens > .handle1 .range, .sliderlens > .handle2 .range {
-         -webkit-border-image: -webkit-linear-gradient(top,#121212,#d1d1d1) 1;
-         -moz-border-image: -moz-linear-gradient(top,#121212,#d1d1d1) 1;
-         -o-border-image: -o-linear-gradient(top,#121212,#d1d1d1) 1;
-         -ms-border-image: -ms-linear-gradient(top,#121212,#d1d1d1) 1;
-         border-image: linear-gradient(to bottom,#121212,#d1d1d1) 1;
-    }
+            .sliderlens>.handle.dragging,
+            .sliderlens>.handle1.dragging,
+            .sliderlens>.handle2.dragging {
+                box-shadow: 0 0 0.3125em -0.0625em #000000;
+            }
 
-  	.sliderlens > .handle:before {
-         right: 50%;
-         bottom: 55%;
-         border-right: 0.0625em solid rgba(186,186,186,0.6);
-         z-index: 1;
-    }
+            .sliderlens>.handle .range,
+            .sliderlens>.handle1 .range,
+            .sliderlens>.handle2 .range {
+                -webkit-border-image: -webkit-linear-gradient(top, #121212, #d1d1d1) 1;
+                -moz-border-image: -moz-linear-gradient(top, #121212, #d1d1d1) 1;
+                -o-border-image: -o-linear-gradient(top, #121212, #d1d1d1) 1;
+                -ms-border-image: -ms-linear-gradient(top, #121212, #d1d1d1) 1;
+                border-image: linear-gradient(to bottom, #121212, #d1d1d1) 1;
+            }
 
-  	.sliderlens > .handle:after {
-         background: -webkit-linear-gradient(left,rgba(69,69,69,0.95) 0%,rgba(120,120,120,0.25) 50%,rgba(56,56,56,0.25) 50%,rgba(56,56,56,0.95) 100%);
-         background: -moz-linear-gradient(left,rgba(69,69,69,0.95) 0%,rgba(120,120,120,0.25) 50%,rgba(56,56,56,0.25) 50%,rgba(56,56,56,0.95) 100%);
-         background: -o-linear-gradient(left,rgba(69,69,69,0.95) 0%,rgba(120,120,120,0.25) 50%,rgba(56,56,56,0.25) 50%,rgba(56,56,56,0.95) 100%);
-         background: -ms-linear-gradient(left,rgba(69,69,69,0.95) 0%,rgba(120,120,120,0.25) 50%,rgba(56,56,56,0.25) 50%,rgba(56,56,56,0.95) 100%);
-         background: linear-gradient(to right,rgba(69,69,69,0.95) 0%,rgba(120,120,120,0.25) 50%,rgba(56,56,56,0.25) 50%,rgba(56,56,56,0.95) 100%);
-    }
+            .sliderlens>.handle:before {
+                right: 50%;
+                bottom: 55%;
+                border-right: 0.0625em solid rgba(186, 186, 186, 0.6);
+                z-index: 1;
+            }
 
-    .sliderlens > .handle1 {
-         border-top-right-radius: 0;
-         border-bottom-right-radius: 0;
-    }
+            .sliderlens>.handle:after {
+                background: -webkit-linear-gradient(left, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 50%, rgba(56, 56, 56, 0.25) 50%, rgba(56, 56, 56, 0.95) 100%);
+                background: -moz-linear-gradient(left, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 50%, rgba(56, 56, 56, 0.25) 50%, rgba(56, 56, 56, 0.95) 100%);
+                background: -o-linear-gradient(left, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 50%, rgba(56, 56, 56, 0.25) 50%, rgba(56, 56, 56, 0.95) 100%);
+                background: -ms-linear-gradient(left, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 50%, rgba(56, 56, 56, 0.25) 50%, rgba(56, 56, 56, 0.95) 100%);
+                background: linear-gradient(to right, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 50%, rgba(56, 56, 56, 0.25) 50%, rgba(56, 56, 56, 0.95) 100%);
+            }
 
-    .sliderlens > .handle1:after {
-         background: -webkit-linear-gradient(left,rgba(69,69,69,0.95) 0%,rgba(120,120,120,0.25) 100%);
-         background: -moz-linear-gradient(left,rgba(69,69,69,0.95) 0%,rgba(120,120,120,0.25) 100%);
-         background: -o-linear-gradient(left,rgba(69,69,69,0.95) 0%,rgba(120,120,120,0.25) 100%);
-         background: -ms-linear-gradient(left,rgba(69,69,69,0.95) 0%,rgba(120,120,120,0.25) 100%);
-         background: linear-gradient(to right,rgba(69,69,69,0.95) 0%,rgba(120,120,120,0.25) 100%);
-    }
+            .sliderlens>.handle1 {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
 
-    .sliderlens > .handle2 {
-         border-top-left-radius: 0;
-         border-bottom-left-radius: 0;
-    }
+            .sliderlens>.handle1:after {
+                background: -webkit-linear-gradient(left, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 100%);
+                background: -moz-linear-gradient(left, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 100%);
+                background: -o-linear-gradient(left, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 100%);
+                background: -ms-linear-gradient(left, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 100%);
+                background: linear-gradient(to right, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 100%);
+            }
 
-    .sliderlens > .handle2:after {
-         background: -webkit-linear-gradient(left,rgba(56,56,56,0.25) 0%,rgba(56,56,56,0.95) 100%);
-         background: -moz-linear-gradient(left,rgba(56,56,56,0.25) 0%,rgba(56,56,56,0.95) 100%);
-         background: -o-linear-gradient(left,rgba(56,56,56,0.25) 0%,rgba(56,56,56,0.95) 100%);
-         background: -ms-linear-gradient(left,rgba(56,56,56,0.25) 0%,rgba(56,56,56,0.95) 100%);
-         background: linear-gradient(to right,rgba(56,56,56,0.25) 0%,rgba(56,56,56,0.95) 100%);
-    }
+            .sliderlens>.handle2 {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
 
-    .sliderlens svg > path {
-         stroke: rgba(186,186,186,0.6);
-    }
+            .sliderlens>.handle2:after {
+                background: -webkit-linear-gradient(left, rgba(56, 56, 56, 0.25) 0%, rgba(56, 56, 56, 0.95) 100%);
+                background: -moz-linear-gradient(left, rgba(56, 56, 56, 0.25) 0%, rgba(56, 56, 56, 0.95) 100%);
+                background: -o-linear-gradient(left, rgba(56, 56, 56, 0.25) 0%, rgba(56, 56, 56, 0.95) 100%);
+                background: -ms-linear-gradient(left, rgba(56, 56, 56, 0.25) 0%, rgba(56, 56, 56, 0.95) 100%);
+                background: linear-gradient(to right, rgba(56, 56, 56, 0.25) 0%, rgba(56, 56, 56, 0.95) 100%);
+            }
 
-    .sliderlens svg > g > text {
-         fill: rgba(186,186,186,0.6);
-         font-size: 1em;
-    }
+            .sliderlens svg>path {
+                stroke: rgba(186, 186, 186, 0.6);
+            }
 
-    .sliderlens.vert > .handle, .sliderlens.vert > .handle1, .sliderlens.vert > .handle2 {
-         cursor: ns-resize;
-         border-radius: 3em/.75em;
-    }
+            .sliderlens svg>g>text {
+                fill: rgba(186, 186, 186, 0.6);
+                font-size: 1em;
+            }
 
-    .sliderlens.vert > .handle .range, .sliderlens.vert > .handle1 .range, .sliderlens.vert > .handle2 .range {
-         -webkit-border-image: -webkit-linear-gradient(top,#121212,#787878) 1;
-         -moz-border-image: -moz-linear-gradient(top,#121212,#787878) 1;
-         -o-border-image: -o-linear-gradient(top,#121212,#787878) 1;
-         -ms-border-image: -ms-linear-gradient(top,#121212,#787878) 1;
-         border-image: linear-gradient(to bottom,#121212,#787878) 1;
-    }
+            .sliderlens.vert>.handle,
+            .sliderlens.vert>.handle1,
+            .sliderlens.vert>.handle2 {
+                cursor: ns-resize;
+                border-radius: 3em/.75em;
+            }
 
-    .sliderlens.vert > .handle:before {
-         right: 55%;
-         bottom: 50%;
-         border-right: none;
-         border-bottom: 0.0625em solid rgba(186,186,186,0.6);
-    }
+            .sliderlens.vert>.handle .range,
+            .sliderlens.vert>.handle1 .range,
+            .sliderlens.vert>.handle2 .range {
+                -webkit-border-image: -webkit-linear-gradient(top, #121212, #787878) 1;
+                -moz-border-image: -moz-linear-gradient(top, #121212, #787878) 1;
+                -o-border-image: -o-linear-gradient(top, #121212, #787878) 1;
+                -ms-border-image: -ms-linear-gradient(top, #121212, #787878) 1;
+                border-image: linear-gradient(to bottom, #121212, #787878) 1;
+            }
 
-    .sliderlens.vert > .handle:after {
-         background: -webkit-linear-gradient(top,rgba(69,69,69,0.95) 0%,rgba(120,120,120,0.25) 50%,rgba(56,56,56,0.25) 50%,rgba(56,56,56,0.95) 100%);
-         background: -moz-linear-gradient(top,rgba(69,69,69,0.95) 0%,rgba(120,120,120,0.25) 50%,rgba(56,56,56,0.25) 50%,rgba(56,56,56,0.95) 100%);
-         background: -o-linear-gradient(top,rgba(69,69,69,0.95) 0%,rgba(120,120,120,0.25) 50%,rgba(56,56,56,0.25) 50%,rgba(56,56,56,0.95) 100%);
-         background: -ms-linear-gradient(top,rgba(69,69,69,0.95) 0%,rgba(120,120,120,0.25) 50%,rgba(56,56,56,0.25) 50%,rgba(56,56,56,0.95) 100%);
-         background: linear-gradient(to bottom,rgba(69,69,69,0.95) 0%,rgba(120,120,120,0.25) 50%,rgba(56,56,56,0.25) 50%,rgba(56,56,56,0.95) 100%);
-    }
+            .sliderlens.vert>.handle:before {
+                right: 55%;
+                bottom: 50%;
+                border-right: none;
+                border-bottom: 0.0625em solid rgba(186, 186, 186, 0.6);
+            }
 
-    .sliderlens.vert > .handle1 {
-         border-bottom: none;
-         border-bottom-left-radius: 0;
-         border-bottom-right-radius: 0;
-    }
+            .sliderlens.vert>.handle:after {
+                background: -webkit-linear-gradient(top, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 50%, rgba(56, 56, 56, 0.25) 50%, rgba(56, 56, 56, 0.95) 100%);
+                background: -moz-linear-gradient(top, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 50%, rgba(56, 56, 56, 0.25) 50%, rgba(56, 56, 56, 0.95) 100%);
+                background: -o-linear-gradient(top, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 50%, rgba(56, 56, 56, 0.25) 50%, rgba(56, 56, 56, 0.95) 100%);
+                background: -ms-linear-gradient(top, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 50%, rgba(56, 56, 56, 0.25) 50%, rgba(56, 56, 56, 0.95) 100%);
+                background: linear-gradient(to bottom, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 50%, rgba(56, 56, 56, 0.25) 50%, rgba(56, 56, 56, 0.95) 100%);
+            }
 
-    .sliderlens.vert > .handle1:after {
-         background: -webkit-linear-gradient(top,rgba(69,69,69,0.95) 0%,rgba(120,120,120,0.25) 100%);
-         background: -moz-linear-gradient(top,rgba(69,69,69,0.95) 0%,rgba(120,120,120,0.25) 100%);
-         background: -o-linear-gradient(top,rgba(69,69,69,0.95) 0%,rgba(120,120,120,0.25) 100%);
-         background: -ms-linear-gradient(top,rgba(69,69,69,0.95) 0%,rgba(120,120,120,0.25) 100%);
-         background: linear-gradient(to bottom,rgba(69,69,69,0.95) 0%,rgba(120,120,120,0.25) 100%);
-    }
+            .sliderlens.vert>.handle1 {
+                border-bottom: none;
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
 
-    .sliderlens.vert > .handle2 {
-         border-top: none;
-         border-top-left-radius: 0;
-         border-top-right-radius: 0;
-    }
+            .sliderlens.vert>.handle1:after {
+                background: -webkit-linear-gradient(top, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 100%);
+                background: -moz-linear-gradient(top, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 100%);
+                background: -o-linear-gradient(top, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 100%);
+                background: -ms-linear-gradient(top, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 100%);
+                background: linear-gradient(to bottom, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 100%);
+            }
 
-    .sliderlens.vert > .handle2:after {
-         background: -webkit-linear-gradient(top,rgba(56,56,56,0.25) 0%,rgba(56,56,56,0.95) 100%);
-         background: -moz-linear-gradient(top,rgba(56,56,56,0.25) 0%,rgba(56,56,56,0.95) 100%);
-         background: -o-linear-gradient(top,rgba(56,56,56,0.25) 0%,rgba(56,56,56,0.95) 100%);
-         background: -ms-linear-gradient(top,rgba(56,56,56,0.25) 0%,rgba(56,56,56,0.95) 100%);
-         background: linear-gradient(to bottom,rgba(56,56,56,0.25) 0%,rgba(56,56,56,0.95) 100%);
-    }
+            .sliderlens.vert>.handle2 {
+                border-top: none;
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+            }
 
-    .sliderlens.fixed {
-         border-width: 0.0625em;
-         border-style: solid;
-         -webkit-border-image: -webkit-linear-gradient(top,#121212,#787878) 1;
-         -moz-border-image: -moz-linear-gradient(top,#121212,#787878) 1;
-         -o-border-image: -o-linear-gradient(top,#121212,#787878) 1;
-         -ms-border-image: -ms-linear-gradient(top,#121212,#787878) 1;
-         border-image: linear-gradient(to bottom,#121212,#787878) 1;
-         background-color: #383838;
-         cursor: ew-resize;
-    }
+            .sliderlens.vert>.handle2:after {
+                background: -webkit-linear-gradient(top, rgba(56, 56, 56, 0.25) 0%, rgba(56, 56, 56, 0.95) 100%);
+                background: -moz-linear-gradient(top, rgba(56, 56, 56, 0.25) 0%, rgba(56, 56, 56, 0.95) 100%);
+                background: -o-linear-gradient(top, rgba(56, 56, 56, 0.25) 0%, rgba(56, 56, 56, 0.95) 100%);
+                background: -ms-linear-gradient(top, rgba(56, 56, 56, 0.25) 0%, rgba(56, 56, 56, 0.95) 100%);
+                background: linear-gradient(to bottom, rgba(56, 56, 56, 0.25) 0%, rgba(56, 56, 56, 0.95) 100%);
+            }
 
-    .sliderlens.fixed:before, .sliderlens.fixed:after {
-         content: '';
-         position: absolute;
-         top: 0;
-         right: 0;
-         bottom: 0;
-         left: 0;
-         border-width: 0 0 0.0625em 0;
-         border-style: solid;
-         pointer-events: none;
-         -webkit-border-image: -webkit-linear-gradient(top,#050505,#5f5f5f) 1;
-         -moz-border-image: -moz-linear-gradient(top,#050505,#5f5f5f) 1;
-         -o-border-image: -o-linear-gradient(top,#050505,#5f5f5f) 1;
-         -ms-border-image: -ms-linear-gradient(top,#050505,#5f5f5f) 1;
-         border-image: linear-gradient(to bottom,#050505,#5f5f5f) 1;
-    }
+            .sliderlens.fixed {
+                border-width: 0.0625em;
+                border-style: solid;
+                -webkit-border-image: -webkit-linear-gradient(top, #121212, #787878) 1;
+                -moz-border-image: -moz-linear-gradient(top, #121212, #787878) 1;
+                -o-border-image: -o-linear-gradient(top, #121212, #787878) 1;
+                -ms-border-image: -ms-linear-gradient(top, #121212, #787878) 1;
+                border-image: linear-gradient(to bottom, #121212, #787878) 1;
+                background-color: #383838;
+                cursor: ew-resize;
+            }
 
-    .sliderlens.fixed:after {
-         border-width: 0 0.0625em;
-         box-shadow: inset 1em 0 1.25em -0.5em #000000, inset -1em 0 1.25em -0.5em #000000;
-    }
+            .sliderlens.fixed:before,
+            .sliderlens.fixed:after {
+                content: '';
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                border-width: 0 0 0.0625em 0;
+                border-style: solid;
+                pointer-events: none;
+                -webkit-border-image: -webkit-linear-gradient(top, #050505, #5f5f5f) 1;
+                -moz-border-image: -moz-linear-gradient(top, #050505, #5f5f5f) 1;
+                -o-border-image: -o-linear-gradient(top, #050505, #5f5f5f) 1;
+                -ms-border-image: -ms-linear-gradient(top, #050505, #5f5f5f) 1;
+                border-image: linear-gradient(to bottom, #050505, #5f5f5f) 1;
+            }
 
-    .sliderlens.fixed.vert {
-         cursor: ns-resize;
-    }
+            .sliderlens.fixed:after {
+                border-width: 0 0.0625em;
+                box-shadow: inset 1em 0 1.25em -0.5em #000000, inset -1em 0 1.25em -0.5em #000000;
+            }
 
-    .sliderlens.fixed.vert:before {
-         border-width: 0 0.0625em;
-    }
+            .sliderlens.fixed.vert {
+                cursor: ns-resize;
+            }
 
-    .sliderlens.fixed.vert:after {
-         border-width: 0 0 0.0625em 0;
-         box-shadow: inset 0 1em 1.25em -0.5em #000000, inset 0 -1em 1.25em -0.5em #000000;
-    }
+            .sliderlens.fixed.vert:before {
+                border-width: 0 0.0625em;
+            }
 
-    .sliderlens.fixed > .handle {
-         border-radius: 0;
-         border: none;
-    }
+            .sliderlens.fixed.vert:after {
+                border-width: 0 0 0.0625em 0;
+                box-shadow: inset 0 1em 1.25em -0.5em #000000, inset 0 -1em 1.25em -0.5em #000000;
+            }
 
-    .sliderlens.vert .range.drag > div {
-         cursor: ns-resize;
-    }
+            .sliderlens.fixed>.handle {
+                border-radius: 0;
+                border: none;
+            }
 
-    .sliderlens.dragging {
-         cursor: none;
-    }
+            .sliderlens.vert .range.drag>div {
+                cursor: ns-resize;
+            }
 
-    .sliderlens.dragging > .handle, .sliderlens.dragging > .handle1, .sliderlens.dragging > .handle2 {
-         cursor: none;
-    }
+            .sliderlens.dragging {
+                cursor: none;
+            }
 
- </style>
-</div>
+            .sliderlens.dragging>.handle,
+            .sliderlens.dragging>.handle1,
+            .sliderlens.dragging>.handle2 {
+                cursor: none;
+            }
+        </style>
+    </div>
