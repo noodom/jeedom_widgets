@@ -67,7 +67,6 @@
                     // Chargement du style d'affichage
                     type = ('#type#' != '#' + 'type#') ? "#type#" : type;
                     orientation = ('#orientation#' != '#' + 'orientation#') ? "#orientation#" : orientation;
-                    console.log("orientation=" + orientation);
                     orientation = (orientation == 'vertical' || orientation == 'verticale' || orientation == 'vert') ? 'vert' : 'horiz';
                     width = ('#width#' != '#' + 'width#') ? "#width#" : width;
                     height = ('#height#' != '#' + 'height#') ? "#height#" : height;
@@ -103,14 +102,13 @@
                             let imagesLenth = imagesList.length;
                             let imgContent = "";
                             for (i = 0; i < imagesLenth; i++) {
-                                imgContent += '<img src="' + 'data/customTemplates/dashboard/cmd.action.slider.nooSlider/' + imagesList[i] + '" width="' + imageWidth + '" height="' + imageHeight + '">"';
+                                imgContent += '<img src="' + 'data/customTemplates/dashboard/cmd.action.slider.nooSlider/' + imagesList[i] + '" width="' + imageWidth + '" height="' + imageHeight + '">';
                             }
                             //width = (imageWidth+2) * imagesLenth;
                             //height = imageHeight;
                             max = imagesLenth - 1;
                             step = 1;
                             visibleRuler = false;
-                            console.log("contenu image=" + imgContent);
                             $cmd#id#.html(imgContent);
                             break;
                         default:
@@ -145,8 +143,8 @@
                                     return (value > 0) ? addPlus + value : value;
                                 },
                                 onCustomAttrs: function (event, value) {
-                                    if (value < centerValue) return { style: 'fill:' + leftColor };
-                                    if (value > centerValue) return { style: 'fill:' + rightColor };
+                                    if (leftColor !='' && value < centerValue) return { style: 'fill:' + leftColor };
+                                    if (leftColor !='' && value > centerValue) return { style: 'fill:' + rightColor };
                                 }
                             }
                         },
@@ -195,6 +193,15 @@
 
             label.libelle#id# {
                 color: var(--color-cursor#id#);
+                display: inline-block;
+                position: absolute;
+                overflow: hidden;
+                left: 46%;
+                width: 100%;
+                transform: translate(-50%, -25%);
+                height: 100%;
+                top: 30%;
+                z-index:1;
             }
 
             #custom+.range,
