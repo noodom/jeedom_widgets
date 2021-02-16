@@ -61,6 +61,7 @@ De nombreux paramètres sont possibles pour personnaliser les virtuels et obteni
  			immediateChange : 0: prise en compte de la nouvelle valeur du changement à l'arrêt du défilement, 1: prise en compte de la nouvelle valeur immédiate à chaque changement (0 par défaut)
 			paddingStart : décalage en % (0 à 1) à droite si slider gauche (0.1 par défaut, soit 10%)
  			paddingEnd : décalage à droite en % (0 à 1) si slider coupé (0.1 par défaut, soit 10%)
+			handleZoom : précise le zoom à appliquer sur les valeurs survolées par le bouton ou sur la taille de l'image zoomée (1 par défaut)
 
 			// type button
 			orientation : 'horizontale'/'verticale', affichage horizontal ou vertical ('horizontale' par défaut)
