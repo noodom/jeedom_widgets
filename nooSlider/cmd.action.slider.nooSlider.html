@@ -28,6 +28,7 @@
 			centerValue : valeur de la position séparant le slider pour définir les couleurs à gauche et droite (vide par défaut)
 			rightColor = couleur à gauche du curseur de séparation ('red' par défaut)
  			leftColor = couleur à droite du curseur de séparation ('green' par défaut)
+ 			flipped : indique la direction du slider, 0 : min vers max, 1 max vers min (0 par défaut)
  			
 			// type image
 			images : liste des images à mettre en fond dans le mode image
@@ -68,7 +69,8 @@
                         images = '',
                         imageWidth = 60,
                         imageHeight = 40,
-                        visibleRuler = true;
+                        visibleRuler = true,
+                        flipped = false;
 
                     // Chargement du style d'affichage
                     type = ('#type#' != '#' + 'type#') ? "#type#" : type;
@@ -100,6 +102,7 @@
                     images = ('#images#' != '#' + 'images#') ? "#images#" : images;
                     imageWidth = (isNaN(parseFloat('#imageWidth#'))) ? imageWidth : parseFloat('#imageWidth#');
                     imageHeight = (isNaN(parseFloat('#imageHeight#'))) ? imageHeight : parseFloat('#imageHeight#');
+                    flipped = (isNaN(parseFloat('#flipped#'))) ? false : (parseFloat('#flipped#') == 1);
 
                     switch (type) {
                         case 'image':
@@ -136,6 +139,7 @@
                         min: min,
                         max: max,
                         step: step,
+                        flipped: flipped,
                         paddingStart: paddingStart,
                         paddingEnd: paddingEnd,
                         fixedHandle: fixedHandle,
