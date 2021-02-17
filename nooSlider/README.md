@@ -82,6 +82,7 @@ De nombreux paramètres sont possibles pour personnaliser les virtuels et obteni
 			centerValue : valeur de la position séparant le slider pour définir les couleurs à gauche et droite (vide par défaut)
 			rightColor = couleur à gauche du curseur de séparation ('red' par défaut)
  			leftColor = couleur à droite du curseur de séparation ('green' par défaut)
+ 			flipped : indique la direction du slider, 0 : min vers max, 1 max vers min (0 par défaut)
  			
 			// type image
 			images : liste des images à mettre en fond dans le mode image (ex: 'presence.png,presence_int.png,presence_no.png,presence_prog.png')
