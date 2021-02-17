@@ -62,6 +62,7 @@ De nombreux paramètres sont possibles pour personnaliser les virtuels et obteni
 			paddingStart : décalage en % (0 à 1) à droite si slider gauche (0.1 par défaut, soit 10%)
  			paddingEnd : décalage à droite en % (0 à 1) si slider coupé (0.1 par défaut, soit 10%)
 			handleZoom : précise le zoom à appliquer sur les valeurs survolées par le bouton ou sur la taille de l'image zoomée (1 par défaut)
+			handleSize : taille du bouton en % de la taille totale du slider (% de la largeur pour slider horizontal, % de la hauteur pour slider vertical)
 
 			// type button
 			orientation : 'horizontale'/'verticale', affichage horizontal ou vertical ('horizontale' par défaut)
@@ -75,6 +76,8 @@ De nombreux paramètres sont possibles pour personnaliser les virtuels et obteni
 			fixedHandle : bouton de slider fixe, 0:non fixe / 1:fixe (0 par défaut)
 			addPlus : 0:pas de '+' devant valeur positive / 1: '+' devant valeur positive (0 par défaut)
 			cursorColor : couleur du curseur de position
+			cursorLeftPos : position à gauche en % du bouton (par défaut 40%)
+			cursorTopPos : position en % depuis le haut du bouton, 0 à 10 (par défaut 40%)
 			displayedValues : valeurs visibles sous slider (ex : '0,20,40,60,80,100')
 			centerValue : valeur de la position séparant le slider pour définir les couleurs à gauche et droite (vide par défaut)
 			rightColor = couleur à gauche du curseur de séparation ('red' par défaut)
