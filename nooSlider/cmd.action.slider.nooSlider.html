@@ -9,6 +9,7 @@
  			paddingEnd : décalage à droite en % (0 à 1) si slider coupé (0.1 par défaut, soit 10%)
  			handleZoom : précise le zoom à appliquer sur les valeurs survolées par le bouton ou sur la taille de l'image zoomée (1 par défaut)
  			handleSize : taille du bouton en % de la taille totale du slider, % de la largeur pour slider horizontal, % de la hauteur pour slider vertical (30 par défaut)
+			animationDelay : temps de l'animation de déplacement en ms du bouton suite à un changement de valeur (100 par défaut)
 
    			// type button
 			orientation : 'horizontale'/'verticale', affichage horizontal ou vertical ('horizontale' par défaut)
@@ -70,7 +71,8 @@
                         imageWidth = 60,
                         imageHeight = 40,
                         visibleRuler = true,
-                        flipped = false;
+                        flipped = false,
+                        animationDelay = 100;
 
                     // Chargement du style d'affichage
                     type = ('#type#' != '#' + 'type#') ? "#type#" : type;
@@ -103,6 +105,7 @@
                     imageWidth = (isNaN(parseFloat('#imageWidth#'))) ? imageWidth : parseFloat('#imageWidth#');
                     imageHeight = (isNaN(parseFloat('#imageHeight#'))) ? imageHeight : parseFloat('#imageHeight#');
                     flipped = (isNaN(parseFloat('#flipped#'))) ? false : (parseFloat('#flipped#') == 1);
+                    animationDelay = (isNaN(parseFloat('#animationDelay#'))) ? animationDelay : parseFloat('#animationDelay#');
 
                     switch (type) {
                         case 'image':
@@ -146,7 +149,8 @@
                         handle: {
                             size: handleSize,
                             zoom: handleZoom,
-                            pos: 0.5
+                            pos: 0.5,
+                            animation: animationDelay
                         },
                         range: {
                             type: [minRange, maxRange],
