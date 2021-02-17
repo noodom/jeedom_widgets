@@ -63,6 +63,7 @@ De nombreux paramètres sont possibles pour personnaliser les virtuels et obteni
  			paddingEnd : décalage à droite en % (0 à 1) si slider coupé (0.1 par défaut, soit 10%)
 			handleZoom : précise le zoom à appliquer sur les valeurs survolées par le bouton ou sur la taille de l'image zoomée (1 par défaut)
 			handleSize : taille du bouton en % de la taille totale du slider (% de la largeur pour slider horizontal, % de la hauteur pour slider vertical)
+			animationDelay : temps de l'animation de déplacement en ms du bouton suite à un changement de valeur (100 par défaut)
 
 			// type button
 			orientation : 'horizontale'/'verticale', affichage horizontal ou vertical ('horizontale' par défaut)
