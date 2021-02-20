@@ -1,0 +1,480 @@
+<div style="margin:5px;" class="cmd cmd-widget" data-type="action" data-subtype="slider" data-cmd_id="#id#"
+    data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+    <!-- ################ nooClockPicker ################ 
+       ********** Paramètres Optionnels ***************
+
+		autoclose : fermeture automatique de la popup de saisie, valeurs possibles : 1=fermeture auto / 0=fermeture par validation (1 par défaut)
+		buttonText : texte du bouton de validation (dans le cas d'une fermture par validation ('OK' par défaut)
+		placement : position de la popup de saisie, valeurs possibles : top, left, bottom, right ('bottom' par défaut)
+		align = ('left' par défaut)
+		(Attention à la cohérence placement/align pour la prise en compte des valeurs : (top,bottom) avec (top,left))
+		focusColor = couleur du champ en cours de saisie ('#428BCA' par défaut)
+		blurColor = couleur du champ hors saisie ('#999' par défaut)
+		clockColor = couleur des valeurs possibles de sélection ('#666' par défaut)
+		lineColor = couleur de la ligne de sélection ('rgb(0, 149, 221)' par défaut)
+		focusCircleColor couleur de valeur courante sélectionnée ('rgb(192, 229, 247)' par défaut)
+		blurCircleColor = couleur de passage sur une valeur ('rgba(0, 149, 221, .25)' par défaut)
+
+       ########### By @noodom ;) 
+       ########### Pensez au café pour les nuits blanches de codage ;) https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=noodom.fr%40gmail.com&currency_code=EUR&source=url
+       ########### Code disponible ici : https://github.com/noodom/jeedom_widgets/tree/master/nooClockPicker
+       ########### Basé sur https://weareoutman.github.io/clockpicker ############# -->
+
+  	<div class="title #hide_name#">
+        <div class="cmdName">#name_display#</div>
+    </div>
+
+	<div id="container#id#">
+      <input type="text" name="time#id#" value="#state#">
+  	</div>
+  
+    <script>
+        $.include(['data/customTemplates/dashboard/cmd.action.slider.nooClockPicker/jquery-clockpicker.min.js'], function() {
+          $(document).ready(function () {
+            
+            // Récupération des paramètres
+            let autoclose = true, buttonText = 'OK',
+                placement = 'bottom', align = 'left',
+            	focusColor = '#428BCA', blurColor = '#999', clockColor = '#666',
+                lineColor = 'rgb(0, 149, 221)',
+            	focusCircleColor = 'rgb(192, 229, 247)',
+                blurCircleColor = 'rgba(0, 149, 221, .25)';
+                
+            
+            // Chargement du style d'affichage
+            autoclose = (isNaN(parseFloat('#autoclose#'))) ? true : (parseFloat('#autoclose#') == 1);
+            buttonText = ('#buttonText#' != '#' + 'buttonText#') ? "#buttonText#" : buttonText;
+            placement = ('#placement#' != '#' + 'placement#') ? "#placement#" : placement;
+            align = ('#align#' != '#' + 'align#') ? "#align#" : align;
+            focusColor = ('#focusColor#' != '#' + 'focusColor#') ? "#focusColor#" : focusColor;
+            blurColor = ('#blurColor#' != '#' + 'blurColor#') ? "#blurColor#" : blurColor;
+            clockColor = ('#clockColor#' != '#' + 'clockColor#') ? "#clockColor#" : clockColor;
+            lineColor = ('#lineColor#' != '#' + 'lineColor#') ? "#lineColor#" : lineColor;
+            focusCircleColor = ('#focusCircleColor#' != '#' + 'focusCircleColor#') ? "#focusCircleColor#" : focusCircleColor;
+            blurCircleColor = ('#blurCircleColor#' != '#' + 'blurCircleColor#') ? "#blurCircleColor#" : blurCircleColor;
+            
+            document.documentElement.style.setProperty('--focus-color#id#', focusColor);
+            document.documentElement.style.setProperty('--blur-color#id#', blurColor);
+            document.documentElement.style.setProperty('--clock-color#id#', clockColor);
+            document.documentElement.style.setProperty('--line-color#id#', lineColor);
+            document.documentElement.style.setProperty('--focus-circle-color#id#', focusCircleColor);
+            document.documentElement.style.setProperty('--blur-circle-color#id#', blurCircleColor);
+
+            $("input[name=time#id#]").clockpicker({
+                wId : '#id#',
+              	placement: 'bottom',
+                align: 'left',
+                autoclose: autoclose,
+                default: 'now',
+                donetext: buttonText,
+              	twelvehour : false,
+              	placement : placement,
+              	align: align,
+                afterDone: function() {
+                  	let newValue = (parseInt(document.querySelector("input[name=time#id#]").value.split(':')[0])*100) 
+                    	+ parseInt(document.querySelector("input[name=time#id#]").value.split(':')[1]);
+                  	jeedom.cmd.execute({id: '#id#', value: {slider: newValue}});
+                }
+              });
+          });
+        });
+                               
+        jeedom.cmd.update['#id#'] = function (_options) {
+          let displayValue = (_options.display_value/100).toFixed(2);
+          let hours = displayValue.toString().split('.')[0]
+          hours = (hours<10)?('0' + hours):hours;
+          let minutes = displayValue.toString().split('.')[1];
+          document.querySelector("input[name='time#id#']").value = hours + ':' + minutes;
+        }
+
+        jeedom.cmd.update['#id#']({ display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#' });
+
+		//# sourceURL=nooscript.js
+    </script>
+  <style>
+
+:root {
+  --focus-color#id# : #428BCA;
+  --blur-color#id# : #999999;
+  --clock-color#id# : #666;
+  --line-color#id# : rgb(0, 149, 221);
+  --focus-circle-color#id# : rgb(192, 229, 247);
+  --blur-circle-color#id# : rgba(0, 149, 221, .25);
+}
+
+/*!
+ * ClockPicker v0.0.7 for jQuery (http://weareoutman.github.io/clockpicker/)
+ * Copyright 2014 Wang Shenwei.
+ * Licensed under MIT (https://github.com/weareoutman/clockpicker/blob/gh-pages/LICENSE)
+ * 
+ * Bootstrap v3.1.1 (http://getbootstrap.com)
+ * Copyright 2011-2014 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+
+/* Picked from bootstrap: .popover, .btn, .text-primary */
+
+.popover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1010;
+  display: none;
+  max-width: 276px;
+  padding: 1px;
+  text-align: left;
+  white-space: normal;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, .2);
+  border-radius: 6px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+          box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+}
+.popover.top {
+  margin-top: -10px;
+}
+.popover.right {
+  margin-left: 10px;
+}
+.popover.bottom {
+  margin-top: 10px;
+}
+.popover.left {
+  margin-left: -10px;
+}
+.popover-title {
+  padding: 8px 14px;
+  margin: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 18px;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #ebebeb;
+  border-radius: 5px 5px 0 0;
+}
+.popover-content {
+  padding: 9px 14px;
+}
+.popover > .arrow,
+.popover > .arrow:after {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  /* The following are set in WordPress (wp-admin/css/revisions.css) - reset them to initial values */
+  overflow:visible;
+  margin:0;
+  padding:0;
+  z-index:auto;
+  background-color:transparent;
+  -webkit-box-shadow:none;
+  box-shadow:none;
+  bottom:auto;
+  left:auto;
+  right:auto;
+  top:auto;
+  -webkit-transform:none;
+  -ms-transform:none;
+  transform:none;
+}
+.popover > .arrow {
+  border-width: 11px;
+}
+.popover > .arrow:after {
+  content: "";
+  border-width: 10px;
+}
+.popover.top > .arrow {
+  bottom: -11px;
+  left: 50%;
+  margin-left: -11px;
+  border-top-color: #999;
+  border-top-color: rgba(0, 0, 0, .25);
+  border-bottom-width: 0;
+}
+.popover.top > .arrow:after {
+  bottom: 1px;
+  margin-left: -10px;
+  content: " ";
+  border-top-color: #fff;
+  border-bottom-width: 0;
+}
+.popover.right > .arrow {
+  top: 50%;
+  left: -11px;
+  margin-top: -11px;
+  border-right-color: #999;
+  border-right-color: rgba(0, 0, 0, .25);
+  border-left-width: 0;
+}
+.popover.right > .arrow:after {
+  bottom: -10px;
+  left: 1px;
+  content: " ";
+  border-right-color: #fff;
+  border-left-width: 0;
+}
+.popover.bottom > .arrow {
+  top: -11px;
+  left: 50%;
+  margin-left: -11px;
+  border-top-width: 0;
+  border-bottom-color: #999;
+  border-bottom-color: rgba(0, 0, 0, .25);
+}
+.popover.bottom > .arrow:after {
+  top: 1px;
+  margin-left: -10px;
+  content: " ";
+  border-top-width: 0;
+  border-bottom-color: #fff;
+}
+.popover.left > .arrow {
+  top: 50%;
+  right: -11px;
+  margin-top: -11px;
+  border-right-width: 0;
+  border-left-color: #999;
+  border-left-color: rgba(0, 0, 0, .25);
+}
+.popover.left > .arrow:after {
+  right: 1px;
+  bottom: -10px;
+  content: " ";
+  border-right-width: 0;
+  border-left-color: #fff;
+}
+.btn {
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+
+}
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.btn:hover,
+.btn:focus {
+  color: #333;
+  text-decoration: none;
+}
+.btn:active,
+.btn.active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+          box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+.btn-default {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+}
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active,
+.open .dropdown-toggle.btn-default {
+  color: #333;
+  background-color: #ebebeb;
+  border-color: #adadad;
+}
+.btn-default:active,
+.btn-default.active,
+.open .dropdown-toggle.btn-default {
+  background-image: none;
+}
+.btn-block {
+  display: block;
+  width: 100%;
+}
+.text-primary#id# {
+  color: var(--focus-color#id#);
+}
+
+/*!
+ * ClockPicker v{package.version} for Bootstrap (http://weareoutman.github.io/clockpicker/)
+ * Copyright 2014 Wang Shenwei.
+ * Licensed under MIT (https://github.com/weareoutman/clockpicker/blob/gh-pages/LICENSE)
+ */
+
+.clockpicker .input-group-addon {
+	cursor: pointer;
+}
+.clockpicker-moving {
+	cursor: move;
+}
+.clockpicker-align-left.popover > .arrow {
+	left: 25px;
+}
+.clockpicker-align-top.popover > .arrow {
+	top: 17px;
+}
+.clockpicker-align-right.popover > .arrow {
+	left: auto;
+	right: 25px;
+}
+.clockpicker-align-bottom.popover > .arrow {
+	top: auto;
+	bottom: 6px;
+}
+.clockpicker-popover .popover-title {
+	background-color: #fff;
+	font-size: 24px;
+	font-weight: bold;
+	line-height: 30px;
+	text-align: center;
+}
+.clockpicker-popover .popover-title#id# {
+	color: var(--blur-color#id#);
+}
+.clockpicker-popover .popover-title span {
+	cursor: pointer;
+}
+.clockpicker-popover .popover-content {
+	background-color: #f8f8f8;
+	padding: 12px;
+}
+.popover-content:last-child {
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+.clockpicker-plate {
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 50%;
+	width: 200px;
+	height: 200px;
+	overflow: visible;
+	position: relative;
+	/* Disable text selection highlighting. Thanks to Hermanya */
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.clockpicker-canvas,
+.clockpicker-dial {
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	left: -1px;
+	top: -1px;
+}
+.clockpicker-minutes {
+	visibility: hidden;
+}
+.clockpicker-tick {
+	border-radius: 50%;
+	line-height: 26px;
+	text-align: center;
+	width: 26px;
+	height: 26px;
+	position: absolute;
+	cursor: pointer;
+}
+.clockpicker-tick#id# {
+	color: var(--clock-color#id#);
+}
+.clockpicker-tick#id#.active,
+.clockpicker-tick#id#:hover {
+	background-color: rgb(192, 229, 247);
+	background-color: var(--blur-circle-color#id#);
+}
+.clockpicker-button {
+	background-image: none;
+	background-color: #fff;
+	border-width: 1px 0 0;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	margin: 0;
+	padding: 10px 0;
+}
+.clockpicker-button:hover {
+	background-image: none;
+	background-color: #ebebeb;
+}
+.clockpicker-button:focus {
+	outline: none!important;
+}
+.clockpicker-dial {
+	-webkit-transition: -webkit-transform 350ms, opacity 350ms;
+	-moz-transition: -moz-transform 350ms, opacity 350ms;
+	-ms-transition: -ms-transform 350ms, opacity 350ms;
+	-o-transition: -o-transform 350ms, opacity 350ms;
+	transition: transform 350ms, opacity 350ms;
+}
+.clockpicker-dial-out {
+	opacity: 0;
+}
+.clockpicker-hours.clockpicker-dial-out {
+	-webkit-transform: scale(1.2, 1.2);
+	-moz-transform: scale(1.2, 1.2);
+	-ms-transform: scale(1.2, 1.2);
+	-o-transform: scale(1.2, 1.2);
+	transform: scale(1.2, 1.2);
+}
+.clockpicker-minutes.clockpicker-dial-out {
+	-webkit-transform: scale(.8, .8);
+	-moz-transform: scale(.8, .8);
+	-ms-transform: scale(.8, .8);
+	-o-transform: scale(.8, .8);
+	transform: scale(.8, .8);
+}
+.clockpicker-canvas {
+	-webkit-transition: opacity 175ms;
+	-moz-transition: opacity 175ms;
+	-ms-transition: opacity 175ms;
+	-o-transition: opacity 175ms;
+	transition: opacity 175ms;
+}
+.clockpicker-canvas-out {
+	opacity: 0.25;
+}
+.clockpicker-canvas-bearing#id#,
+.clockpicker-canvas-fg#id# {
+	stroke: none;
+	fill: var(--line-color#id#);
+}
+.clockpicker-canvas-bg#id# {
+	stroke: none;
+	fill: var(--focus-circle-color#id#);
+}
+.clockpicker-canvas-bg-trans {
+	fill: rgba(0, 149, 221, .25);
+}
+.clockpicker-canvas#id# line {
+	stroke: var(--line-color#id#);
+	stroke-width: 1;
+	stroke-linecap: round;
+	/*shape-rendering: crispEdges;*/
+}
+.clockpicker-button.am-button {
+	margin: 1px;
+	padding: 5px;
+	border: 1px solid rgba(0, 0, 0, .2);
+	border-radius: 4px;
+	
+}
+.clockpicker-button.pm-button {
+	margin: 1px 1px 1px 136px;
+	padding: 5px;
+	border: 1px solid rgba(0, 0, 0, .2);
+	border-radius: 4px;
+}
+  </style>
+  
