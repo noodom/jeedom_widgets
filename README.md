@@ -26,7 +26,7 @@ Développements de widgets pour Jeedom
 
 	- voir l'installation dans /nooGlowingButton/README.md
 
-![](neonButton/doc/images/nooGlowingButton.gif) 
+![](nooGlowingButton/doc/images/nooGlowingButton.gif) 
 
 ### Widget [nooSlider](./nooSlider) : à récupérer sous /jeedom_widgets/nooSlider/cmd.action.other.nooSlider.html
 
