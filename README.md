@@ -28,7 +28,7 @@ Développements de widgets pour Jeedom
 
 ![](nooSlider/doc/images/nooSliderDemo.gif) 
 
-### Widget [nooClocPicker](./nooClockPicker) : à récupérer sous /jeedom_widgets/nooClockPicker/cmd.action.slider.nooSlider.html
+### Widget [nooClockPicker](./nooClockPicker) : à récupérer sous /jeedom_widgets/nooClockPicker/cmd.action.slider.nooSlider.html
 
 	- voir l'installation dans /nooClockPicker/README.md
 
