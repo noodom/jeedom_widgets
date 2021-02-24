@@ -15,7 +15,7 @@ Depuis le plugin Pimp My Jeedom :
 
 - Dans la zone de texte 'Edition', coller le code du fichier cmd.action.slider.nooClockPicker.html
 
-![](../nooClockPicker/doc/images/pimpCodeAdd.png)
+![](../nooSlider/doc/images/pimpCodeAdd.png)
 
 - Sélectionner le bouton 'Ajouter des fichiers', puis 'Envoyer des fichiers', ajouter le fichier /cmd.action.slider.nooClockPicker/jquery-clockpicker.min.js et fermer la fenêtre
 
