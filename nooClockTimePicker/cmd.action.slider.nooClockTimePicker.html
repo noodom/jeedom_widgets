@@ -1,0 +1,236 @@
+<div style="margin:5px;" class="cmd cmd-widget" data-type="action" data-subtype="slider" data-cmd_id="#id#"
+    data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+    <!-- ################ nooClockPicker ################ 
+       ********** Paramètres Optionnels ***************
+
+		width : taille de la popup de saisie (par défaut 200)
+		afternoonHoursInOuterCircle : affiche les heures > 12h à l'extérieur (par défaut 0)
+		alwaysSelectHoursFirst : affiche les heures en premier, sinon affiche les minutes si clic dessus (par défaut 1)
+		autosize : ajuste la taille du champ de saisie au contenu (par défaut 0)
+		hideUnselectableNumbers : cache les valeurs non saisissables suivant min/max (par défaut 0)
+		min : affiche l'heure minimale autorisée, peut être négatif (par défaut '00:00')
+		max : affiche l'heure maximale autorisée (par défaut '23:59')
+		modeSwitchSpeed : délai d'animation entre le passage heures/minutes en ms (par défaut 500)
+		precision : pas de sélection des minutes, valeurs possibles : 1, 5, 10, 15, 30, 60 (par défaut 1)
+
+  		buttonTextColor : couleur du texte des boutons sur mobile (par défaut '#0797FF')
+		clockFaceColor : couleur de fond de l'horloge (par défaut '#EEEEEE')
+		clockInnerCircleTextColor : couleur des nombres intérieurs (par défaut '#888888')
+		clockInnerCircleUnselectableTextColor : couleur des nombres intérieurs non sélectionnables (par défaut '#CCCCCC')
+		clockOuterCircleTextColor : couleur des nombres extérieurs (par défaut '#000000')
+		clockOuterCircleUnselectableTextColor : couleur des nombres intérieurs non sélectionnables (par défaut '#CCCCCC')
+		hoverCircleColor = couleur du cercle des nombres au passage de la souris (par défaut '#DDDDDD')
+		popupBackgroundColor : couleur de fond de la popup (par défaut '#FFFFFF')
+		popupHeaderBackgroundColor : couleur de l'entête sur mobile (par défaut '#0797FF')
+		popupHeaderTextColor : couleur du texte de l'entête sur mobile (par défaut '#FFFFFF')
+		selectorColor : couleur du cercle de sélection (par défaut '#0797FF') 
+		selectorNumberColor : couleur du nombre sélectionné (par défaut '#FFFFFF')
+		fontName : définition de la fonte des boutons pour mobile (Par défaut 'Arial',)
+		clockOuterCircleFontSize : taille des valeurs du cercle extérieur (par défaut 24)
+		clockInnerCircleFontSize : taille des valeurs du cercle intérieur (par défaut 12)
+		buttonFontSize : taille des boutons OK/Cancel pour mobile (par défaut 20)
+
+		okButtonText = (par défaut 'OK')
+		cancelButtonText = (par défaut 'Cancel')
+                
+		duration = autorise une saisie supérieure à 23h, pour une durée (par défaut 0)
+		durationNegative : autorise une saisie négative, pour une durée (par défaut 0)
+
+		onlyShowClockOnMobile = affiche l'horloge seulement sur mobile (par défaut 0)
+		separator = définit le séparateur (par défaut ':')
+		useDurationPlusSign = affiche le signe + (par défaut 0)
+
+       ########### By @noodom ;) 
+       ########### Pensez au café pour les nuits blanches de codage ;) https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=noodom.fr%40gmail.com&currency_code=EUR&source=url
+       ########### Code disponible ici : https://github.com/noodom/jeedom_widgets/tree/master/nooClockTimePicker
+       ########### Basé sur https://github.com/loebi-ch/jquery-clock-timepicker ############# -->
+
+  	<div class="title #hide_name#">
+        <div class="cmdName">#name_display#</div>
+    </div>
+  
+    <input type="text" class="time" name="time#id#" value="#state#">
+  
+    <script>
+      	var separator#id# = ":";
+        var useDurationPlusSign#id# = ":";
+
+        $.include(['data/customTemplates/dashboard/cmd.action.slider.nooClockTimePicker/jquery-clock-timepicker.min.js'], function() {
+          $(document).ready(function () {
+            
+            // Récupération des paramètres
+            let width = 200,
+                afternoonHoursInOuterCircle = false,
+                alwaysSelectHoursFirst = true,
+                autosize = false,
+                hideUnselectableNumbers = false,
+                min = '00:00',
+                max = '23:59',
+                modeSwitchSpeed = 500,
+                precision = 1,
+                vibrate = false,
+                
+                buttonTextColor = '#0797FF',
+                clockFaceColor = '#EEEEEE',
+                clockInnerCircleTextColor = '#888888',
+                clockInnerCircleUnselectableTextColor = '#CCCCCC',
+                clockOuterCircleTextColor = '#000000',
+                clockOuterCircleUnselectableTextColor = '#CCCCCC',
+                hoverCircleColor = '#DDDDDD',
+                popupBackgroundColor = '#FFFFFF',
+                popupHeaderBackgroundColor = '#0797FF',
+                popupHeaderTextColor = '#FFFFFF',        
+                selectorColor = '#0797FF',       
+                selectorNumberColor = '#FFFFFF',
+                signButtonColor = '#FFFFFF',
+                signButtonBackgroundColor = '#0797FF',
+                fontName = 'Arial',
+                clockOuterCircleFontSize = 24,
+                clockInnerCircleFontSize = 12,
+                buttonFontSize = 20,
+                
+                okButtonText = 'OK',
+                cancelButtonText = 'Cancel',
+                
+                duration = false,
+                durationNegative = false,
+                
+                onlyShowClockOnMobile = false;
+                //separator = separator,
+                //useDurationPlusSign = false;
+
+            // Chargement du style d'affichage
+            width = (isNaN(parseFloat('#width#'))) ? width : parseFloat('#width#');
+            afternoonHoursInOuterCircle = (isNaN(parseFloat('#afternoonHoursInOuterCircle#'))) ? afternoonHoursInOuterCircle : (parseFloat('#afternoonHoursInOuterCircle#') == 1);
+            alwaysSelectHoursFirst = (isNaN(parseFloat('#alwaysSelectHoursFirst#'))) ? alwaysSelectHoursFirst : (parseFloat('#alwaysSelectHoursFirst#') == 1);
+            autosize = (isNaN(parseFloat('#autosize#'))) ? autosize : (parseFloat('#autosize#') == 1);
+            hideUnselectableNumbers = (isNaN(parseFloat('#hideUnselectableNumbers#'))) ? autosize : (parseFloat('#hideUnselectableNumbers#') == 1);
+            min = ('#min#' != '#' + 'min#') ? "#min#" : min;
+            max = ('#max#' != '#' + 'max#') ? "#max#" : max;
+            modeSwitchSpeed = (isNaN(parseFloat('#modeSwitchSpeed#'))) ? modeSwitchSpeed : parseFloat('#modeSwitchSpeed#');
+            precision = (isNaN(parseFloat('#precision#'))) ? precision : parseFloat('#precision#');
+            vibrate = (isNaN(parseFloat('#vibrate#'))) ? vibrate : (parseFloat('#vibrate#') == 1);
+
+            buttonTextColor = ('#buttonTextColor#' != '#' + 'buttonTextColor#') ? "#buttonTextColor#" : buttonTextColor;
+            clockFaceColor = ('#clockFaceColor#' != '#' + 'clockFaceColor#') ? "#clockFaceColor#" : clockFaceColor;
+            clockInnerCircleTextColor = ('#clockInnerCircleTextColor#' != '#' + 'clockInnerCircleTextColor#') ? "#clockInnerCircleTextColor#" : clockInnerCircleTextColor;
+            clockInnerCircleUnselectableTextColor = ('#clockInnerCircleUnselectableTextColor#' != '#' + 'clockInnerCircleUnselectableTextColor#') ? "#clockInnerCircleUnselectableTextColor#" : clockInnerCircleUnselectableTextColor;
+            clockOuterCircleTextColor = ('#clockOuterCircleTextColor#' != '#' + 'clockOuterCircleTextColor#') ? "#clockOuterCircleTextColor#" : clockOuterCircleTextColor;
+            clockOuterCircleUnselectableTextColor = ('#clockOuterCircleUnselectableTextColor#' != '#' + 'clockOuterCircleUnselectableTextColor#') ? "#clockOuterCircleUnselectableTextColor#" : clockOuterCircleUnselectableTextColor;
+            hoverCircleColor = ('#hoverCircleColor#' != '#' + 'hoverCircleColor#') ? "#hoverCircleColor#" : hoverCircleColor;
+            popupBackgroundColor = ('#popupBackgroundColor#' != '#' + 'popupBackgroundColor#') ? "#popupBackgroundColor#" : popupBackgroundColor;
+            popupHeaderBackgroundColor = ('#popupHeaderBackgroundColor#' != '#' + 'popupHeaderBackgroundColor#') ? "#popupHeaderBackgroundColor#" : popupHeaderBackgroundColor;
+            popupHeaderTextColor = ('#popupHeaderTextColor#' != '#' + 'popupHeaderTextColor#') ? "#popupHeaderTextColor#" : popupHeaderTextColor;
+            selectorColor = ('#selectorColor#' != '#' + 'selectorColor#') ? "#selectorColor#" : selectorColor;
+            selectorNumberColor = ('#selectorNumberColor#' != '#' + 'selectorNumberColor#') ? "#selectorNumberColor#" : selectorNumberColor;
+            signButtonColor = ('#signButtonColor#' != '#' + 'signButtonColor#') ? "#signButtonColor#" : signButtonColor;
+            signButtonBackgroundColor = ('#signButtonBackgroundColor#' != '#' + 'signButtonBackgroundColor#') ? "#signButtonBackgroundColor#" : signButtonBackgroundColor;
+            fontName = ('#fontName#' != '#' + 'fontName#') ? "#fontName#" : fontName;
+            clockOuterCircleFontSize = (isNaN(parseFloat('#clockOuterCircleFontSize#'))) ? clockOuterCircleFontSize : parseFloat('#clockOuterCircleFontSize#');
+            clockInnerCircleFontSize = (isNaN(parseFloat('#clockInnerCircleFontSize#'))) ? clockInnerCircleFontSize : parseFloat('#clockInnerCircleFontSize#');
+            buttonFontSize = (isNaN(parseFloat('#buttonFontSize#'))) ? buttonFontSize : parseFloat('#buttonFontSize#');
+
+            okButtonText = ('#okButtonText#' != '#' + 'okButtonText#') ? "#okButtonText#" : okButtonText;
+            cancelButtonText = ('#cancelButtonText#' != '#' + 'cancelButtonText#') ? "#cancelButtonText#" : cancelButtonText;
+                
+            duration = (isNaN(parseFloat('#duration#'))) ? duration : (parseFloat('#duration#') == 1);
+            durationNegative = (isNaN(parseFloat('#durationNegative#'))) ? durationNegative : (parseFloat('#durationNegative#') == 1);
+            
+            onlyShowClockOnMobile = (isNaN(parseFloat('#onlyShowClockOnMobile#'))) ? onlyShowClockOnMobile : (parseFloat('#onlyShowClockOnMobile#') == 1);
+            separator#id# = ('#separator#' != '#' + 'separator#') ? "#separator#" : separator#id#;
+            useDurationPlusSign#id# = (isNaN(parseFloat('#useDurationPlusSign#'))) ? useDurationPlusSign#id# : (parseFloat('#useDurationPlusSign#') == 1);
+
+            $("input[name=time#id#]").clockTimePicker({
+				// displays the afternoon hours in the outer circle instead of the inner circle
+				afternoonHoursInOuterCircle: afternoonHoursInOuterCircle,
+				// If you set this option to true, <a href="https://www.jqueryscript.net/tags.php?/popup/">popup</a> is always opened to select hours first before selecting the minutes.
+				alwaysSelectHoursFirst: alwaysSelectHoursFirst,
+				// auto resize
+				autosize: autosize,
+				// custom colors
+				colors: {
+                  buttonTextColor: buttonTextColor,
+                  clockFaceColor: clockFaceColor,
+                  clockInnerCircleTextColor: clockInnerCircleTextColor,
+                  clockInnerCircleUnselectableTextColor: clockInnerCircleUnselectableTextColor,
+                  clockOuterCircleTextColor: clockOuterCircleTextColor,
+                  clockOuterCircleUnselectableTextColor: clockOuterCircleUnselectableTextColor,
+                  hoverCircleColor: hoverCircleColor,
+                  popupBackgroundColor: popupBackgroundColor,
+                  popupHeaderBackgroundColor: popupHeaderBackgroundColor,
+                  popupHeaderTextColor: popupHeaderTextColor,
+                  selectorColor: selectorColor,
+                  selectorNumberColor: selectorNumberColor,
+                  signButtonColor:'#FFFFFF',
+                  signButtonBackgroundColor:'#0797FF'
+
+				},
+				// If true, the hours can be greater than 23.
+				duration: duration,
+                // If true, the duration can be negative. 
+                // This settings only has effect if the setting duration is set to true.
+                durationNegative: durationNegative,
+                // font options
+                fonts: {
+                  fontFamily: fontName,
+                  clockOuterCircleFontSize: clockOuterCircleFontSize,
+                  clockInnerCircleFontSize: clockInnerCircleFontSize,
+                  buttonFontSize: buttonFontSize
+                },
+                // hides the unselectable number
+                hideUnselectableNumbers: hideUnselectableNumbers,
+                // i18n
+                i18n: {
+                  okButton: okButtonText,
+                  cancelButton: cancelButtonText
+                },
+                // min/max times
+                minimum: min,
+                maximum: max,
+                // animation speed when switching modes
+                modeSwitchSpeed: modeSwitchSpeed,
+                // only shows clock on mobile device
+                onlyShowClockOnMobile: false,
+                // callbacks
+                onChange: function(newVal, oldVal) { 
+                  let negativeValue = (newVal.substr(0, 1)=='-')?'-':'';
+                  newVal = newVal.replace('-', '');
+                  newVal = negativeValue + (parseInt(newVal.split(separator#id#)[0])*100 + parseInt(newVal.split(separator#id#)[1]));
+                  jeedom.cmd.execute({id: '#id#', value: {slider: newVal}});
+                },
+                //onAdjust: function(newVal, oldVal) { },
+                //onClose: function() { },
+                //onModeSwitch: function() { },
+                //onOpen: function() { },
+                // width of the popup in the Desktop
+                popupWidthOnDesktop: width,
+                // precision
+                precision: precision,
+                // if this option is set to true, a user cannot empty the field by hitting delete or backspace.
+                required: false,
+                // custom separator
+                separator: separator#id#,
+                // if true, positive durations use the plus sign (+) as a prefix.
+                useDurationPlusSign: useDurationPlusSign#id#,
+                // if true, the mobile phone vibrates while changing the time.
+                vibrate: vibrate,
+                onlyShowClockOnMobile: onlyShowClockOnMobile,
+
+			});
+
+          });
+        });
+                               
+        jeedom.cmd.update['#id#'] = function (_options) {
+          let displayValue = (_options.display_value/100).toFixed(2);
+          let negativeValue = (displayValue<0)?'-':(useDurationPlusSign#id#?'+':'');
+          let hours = Math.abs(displayValue).toString().split('.')[0]
+          hours = (hours<10)?('0' + hours):hours;
+          let minutes = displayValue.toString().split('.')[1];
+          document.querySelector("input[name='time#id#']").value = negativeValue + hours + separator#id# + minutes;
+        }
+
+        jeedom.cmd.update['#id#']({ display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#' });
+
+		//# sourceURL=nooscript.js
+    </script>
