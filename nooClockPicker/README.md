@@ -19,7 +19,7 @@ Depuis le plugin Pimp My Jeedom :
 
 - Sélectionner le bouton 'Ajouter des fichiers', puis 'Envoyer des fichiers', ajouter le fichier /cmd.action.slider.nooClockPicker/jquery-clockpicker.min.js et fermer la fenêtre
 
-![](doc/images/pimpjsFileAdd.png)
+![](../nooSlider/doc/images/pimpjsFileAdd.png)
 
 - Sélectionner le bouton 'Sauvegarder'
 
