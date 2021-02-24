@@ -96,8 +96,6 @@
                 durationNegative = false,
                 
                 onlyShowClockOnMobile = false;
-                //separator = separator,
-                //useDurationPlusSign = false;
 
             // Chargement du style d'affichage
             width = (isNaN(parseFloat('#width#'))) ? width : parseFloat('#width#');
@@ -141,14 +139,10 @@
             useDurationPlusSign#id# = (isNaN(parseFloat('#useDurationPlusSign#'))) ? useDurationPlusSign#id# : (parseFloat('#useDurationPlusSign#') == 1);
 
             $("input[name=time#id#]").clockTimePicker({
-				// displays the afternoon hours in the outer circle instead of the inner circle
-				afternoonHoursInOuterCircle: afternoonHoursInOuterCircle,
-				// If you set this option to true, <a href="https://www.jqueryscript.net/tags.php?/popup/">popup</a> is always opened to select hours first before selecting the minutes.
-				alwaysSelectHoursFirst: alwaysSelectHoursFirst,
-				// auto resize
-				autosize: autosize,
-				// custom colors
-				colors: {
+                afternoonHoursInOuterCircle: afternoonHoursInOuterCircle,
+                alwaysSelectHoursFirst: alwaysSelectHoursFirst,
+                autosize: autosize,
+                colors: {
                   buttonTextColor: buttonTextColor,
                   clockFaceColor: clockFaceColor,
                   clockInnerCircleTextColor: clockInnerCircleTextColor,
@@ -163,33 +157,23 @@
                   selectorNumberColor: selectorNumberColor,
                   signButtonColor:'#FFFFFF',
                   signButtonBackgroundColor:'#0797FF'
-
-				},
-				// If true, the hours can be greater than 23.
-				duration: duration,
-                // If true, the duration can be negative. 
-                // This settings only has effect if the setting duration is set to true.
+                },
+                duration: duration,
                 durationNegative: durationNegative,
-                // font options
                 fonts: {
                   fontFamily: fontName,
                   clockOuterCircleFontSize: clockOuterCircleFontSize,
                   clockInnerCircleFontSize: clockInnerCircleFontSize,
                   buttonFontSize: buttonFontSize
                 },
-                // hides the unselectable number
                 hideUnselectableNumbers: hideUnselectableNumbers,
-                // i18n
                 i18n: {
                   okButton: okButtonText,
                   cancelButton: cancelButtonText
                 },
-                // min/max times
                 minimum: min,
                 maximum: max,
-                // animation speed when switching modes
                 modeSwitchSpeed: modeSwitchSpeed,
-                // only shows clock on mobile device
                 onlyShowClockOnMobile: false,
                 // callbacks
                 onChange: function(newVal, oldVal) { 
@@ -202,22 +186,14 @@
                 //onClose: function() { },
                 //onModeSwitch: function() { },
                 //onOpen: function() { },
-                // width of the popup in the Desktop
                 popupWidthOnDesktop: width,
-                // precision
                 precision: precision,
-                // if this option is set to true, a user cannot empty the field by hitting delete or backspace.
                 required: false,
-                // custom separator
                 separator: separator#id#,
-                // if true, positive durations use the plus sign (+) as a prefix.
                 useDurationPlusSign: useDurationPlusSign#id#,
-                // if true, the mobile phone vibrates while changing the time.
                 vibrate: vibrate,
                 onlyShowClockOnMobile: onlyShowClockOnMobile,
-
-			});
-
+            });
           });
         });
                                
@@ -232,5 +208,5 @@
 
         jeedom.cmd.update['#id#']({ display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#' });
 
-		//# sourceURL=nooscript.js
+        //# sourceURL=nooscript.js
     </script>
