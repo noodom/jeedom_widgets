@@ -2,7 +2,7 @@
 
 ![](doc/images/nooClockPicker.gif)
 
-## A récupérer sous /jeedom_widgets/nooSlider/cmd.action.slider.nooClockPicker.html
+## A récupérer sous /jeedom_widgets/nooClockPicker/cmd.action.slider.nooClockPicker.html
 
 ## Création du widget
 
