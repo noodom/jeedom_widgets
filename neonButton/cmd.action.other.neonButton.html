@@ -1,5 +1,5 @@
 <div class="neonButton#id#">
-  <!-- ################ neonButton ################ 
+    <!-- ################ neonButton ################ 
        ********** Paramètres Optionnels ***************
 		
         backgroundColorFromOn : couleur de début du dégradé du bouton On ('#70a1ff' si non renseigné)
@@ -13,153 +13,142 @@
         scale : pourcentage de réduction de la taille du bouton (ex : '0.5' pour réduire de moitié)
 
        ########### by @noodom ;) inspiré par https://codepen.io/Stockin/pen/qJqVYy ############# -->
-  
-  <div id="neonText#id#"></div>
-  <input type="checkbox" id="neonInput#id#" class="neonInput#id#"  class="toggle cursor cmd tooltips cmd-widget"
+
+    <div id="neonText#id#"></div>
+    <input type="checkbox" id="neonInput#id#" class="neonInput#id#" class="toggle cursor cmd tooltips cmd-widget"
         data-type="action" data-subtype="other" data-cmd_id="#id#" data-cmd_uid="#uid#">
 </div>
 
 <script type="text/javascript">
-  
-  // Chargement des paramètres optionnels
-  // Bleu (#70a1ff-#1e90ff) , Bleu clair (#6dd1ff-#20b7ff), Orange (#e67e22-#f39c12)
-  // Dégradé pour bouton On
-  var backgroundColorFromOn#id# = ('#backgroundColorFromOn#' != '#' + 'backgroundColorFromOn#') ? "#backgroundColorFromOn#" : '#70a1ff';
-  var backgroundColorToOn#id# = ('#backgroundColorToOn#' != '#' + 'backgroundColorToOn#') ? "#backgroundColorToOn#" : '#1e90ff';
-  // Dégradé pour bouton Off
-  var backgroundColorFromOff#id# = ('#backgroundColorFromOff#' != '#' + 'backgroundColorFromOff#') ? "#backgroundColorFromOff#" : '#333';
-  var backgroundColorToOff#id# = ('#backgroundColorToOff#' != '#' + 'backgroundColorToOff#') ? "#backgroundColorToOff#" : '#000';
-  // Couleur texte pour bouton On
-  var colorTextOn#id# = ('#colorTextOn#' != '#' + 'colorTextOn#') ? "#colorTextOn#" : backgroundColorFromOn#id#;
-  // Couleur texte pour bouton Off
-  var colorTextOff#id# = ('#colorTextOff#' != '#' + 'colorTextOff#') ? "#colorTextOff#" : ((colorTextOn#id# !='')?colorTextOn#id#:'#000'); 
-  // Texte pour bouton On
-  var nameTextOn#id# = ('#nameTextOn#' != '#' + 'nameTextOn#') ? "#nameTextOn#" : ''; 
-  // Texte pour bouton Off
-  var nameTextOff#id# = ('#nameTextOff#' != '#' + 'nameTextOff#') ? "#nameTextOff#" : ((nameTextOn#id# !='')?nameTextOn#id#:'');
-  // Scale pour réduire la taille du bouton (ex : '0.5' pour réduire de moitié)
-  var scale#id# = ('#scale#' != '#' + 'scale#') ? "#scale#" : '1';
 
-  if (backgroundColorFromOn#id# != '') {
-    document.documentElement.style.setProperty('--background-color-from-on#id#', backgroundColorFromOn#id#);
-  }
-  if (backgroundColorToOn#id# != '') {
-  	document.documentElement.style.setProperty('--background-color-to-on#id#', backgroundColorToOn#id#);
-  }
-  if (backgroundColorFromOff#id# != '') {
-    document.documentElement.style.setProperty('--background-color-from-off#id#', backgroundColorFromOff#id#);
-  }
-  if (backgroundColorToOff#id# != '') {
-  	document.documentElement.style.setProperty('--background-color-to-off#id#', backgroundColorToOff#id#);
-  }
-  document.documentElement.style.setProperty('--scale#id#', scale#id#);
-  
-  jeedom.cmd.update['#id#'] = function(_options){   
-  	if (_options.display_value == '1' || _options.display_value == 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
-      document.getElementById('neonInput#id#').checked = true;
-      if (jeedom.cmd.normalizeName('#name#') == 'on') {
-        $('.cmd[data-cmd_uid=#uid#]').hide();
-      }else{
-        $('.cmd[data-cmd_uid=#uid#]').show();
-      	document.documentElement.style.setProperty('--text-color#id#', colorTextOn#id#);
-        document.getElementById('neonText#id#').innerHTML = nameTextOn#id#;
-      }
-    } else {
-      document.getElementById('neonInput#id#').checked = false;
-      if (jeedom.cmd.normalizeName('#name#') == 'off') {
-        $('.cmd[data-cmd_uid=#uid#]').hide();
-      }else{
-        $('.cmd[data-cmd_uid=#uid#]').show();
-      	document.documentElement.style.setProperty('--text-color#id#', colorTextOff#id#);
-      	document.getElementById('neonText#id#').innerHTML = nameTextOff#id#;
-      }
+    // Chargement des paramètres optionnels
+    // Bleu (#70a1ff-#1e90ff) , Bleu clair (#6dd1ff-#20b7ff), Orange (#e67e22-#f39c12)
+    // Dégradé pour bouton On
+    var backgroundColorFromOn#id# = ('#backgroundColorFromOn#' != '#' + 'backgroundColorFromOn#') ? "#backgroundColorFromOn#" : '#70a1ff';
+    var backgroundColorToOn#id# = ('#backgroundColorToOn#' != '#' + 'backgroundColorToOn#') ? "#backgroundColorToOn#" : '#1e90ff';
+    // Dégradé pour bouton Off
+    var backgroundColorFromOff#id# = ('#backgroundColorFromOff#' != '#' + 'backgroundColorFromOff#') ? "#backgroundColorFromOff#" : '#333';
+    var backgroundColorToOff#id# = ('#backgroundColorToOff#' != '#' + 'backgroundColorToOff#') ? "#backgroundColorToOff#" : '#000';
+    // Couleur texte pour bouton On
+    var colorTextOn#id# = ('#colorTextOn#' != '#' + 'colorTextOn#') ? "#colorTextOn#" : backgroundColorFromOn#id#;
+    // Couleur texte pour bouton Off
+    var colorTextOff#id# = ('#colorTextOff#' != '#' + 'colorTextOff#') ? "#colorTextOff#" : ((colorTextOn#id# != '')?colorTextOn#id#: '#000');
+    // Texte pour bouton On
+    var nameTextOn#id# = ('#nameTextOn#' != '#' + 'nameTextOn#') ? "#nameTextOn#" : '';
+    // Texte pour bouton Off
+    var nameTextOff#id# = ('#nameTextOff#' != '#' + 'nameTextOff#') ? "#nameTextOff#" : ((nameTextOn#id# != '')?nameTextOn#id#: '');
+    // Scale pour réduire la taille du bouton (ex : '0.5' pour réduire de moitié)
+    var scale#id# = ('#scale#' != '#' + 'scale#') ? "#scale#" : '1';
+
+    if (backgroundColorFromOn#id# != '') {
+        document.documentElement.style.setProperty('--background-color-from-on#id#', backgroundColorFromOn#id#);
     }
-  }
-  jeedom.cmd.update['#id#']({display_value:'#state#'});
-  
-  $('#neonInput#id#').off().on('click', function () {
-  	jeedom.cmd.execute({id: '#id#'});
-  });
+    if (backgroundColorToOn#id# != '') {
+        document.documentElement.style.setProperty('--background-color-to-on#id#', backgroundColorToOn#id#);
+    }
+    if (backgroundColorFromOff#id# != '') {
+        document.documentElement.style.setProperty('--background-color-from-off#id#', backgroundColorFromOff#id#);
+    }
+    if (backgroundColorToOff#id# != '') {
+        document.documentElement.style.setProperty('--background-color-to-off#id#', backgroundColorToOff#id#);
+    }
+    document.documentElement.style.setProperty('--scale#id#', scale#id#);
+
+    jeedom.cmd.update['#id#'] = function (_options) {
+        if (_options.display_value == '1' || _options.display_value == 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
+            document.getElementById('neonInput#id#').checked = true;
+            document.documentElement.style.setProperty('--text-color#id#', colorTextOn#id#);
+            document.getElementById('neonText#id#').innerHTML = nameTextOn#id#;
+        } else {
+            document.getElementById('neonInput#id#').checked = false;
+            document.documentElement.style.setProperty('--text-color#id#', colorTextOff#id#);
+            document.getElementById('neonText#id#').innerHTML = nameTextOff#id#;
+        }
+    }
+    jeedom.cmd.update['#id#']({ display_value: '#state#' });
+
+    $('#neonInput#id#').off().on('click', function () {
+        jeedom.cmd.execute({ id: '#id#' });
+    });
 </script>
 
 <style>
+    :root {
+        --text-color-on#id#: green;
+        --text-color-off#id#: red;
+        --background-color-from-on#id#: #70a1ff;
+        --background-color-to-on#id#: #1e90ff;
+        --background-color-from-off#id#: #333;
+        --background-color-to-off#id#: #000;
+        --scale#id#: 1;
+    }
 
-  :root {
-    --text-color-on#id#: green;
-    --text-color-off#id#: red;
-    --background-color-from-on#id#: #70a1ff;
-    --background-color-to-on#id#: #1e90ff;
-    --background-color-from-off#id#: #333;
-    --background-color-to-off#id#: #000;
-    --scale#id#: 1;
-  }
+    .neonButton#id# {
+        transform: scale(var(--scale#id#));
+    }
 
-  .neonButton#id# {
-    transform : scale(var(--scale#id#));
-  }
+    .neonInput#id#[type="checkbox"] {
+        margin: 10px !important;
+        position: relative !important;
+        width: 120px !important;
+        height: 40px !important;
+        -webkit-appearance: none !important;
+        background: linear-gradient(0deg, var(--background-color-from-off#id#), var(--background-color-to-off#id#)) !important;
+        outline: none !important;
+        border-radius: 20px !important;
+        box-shadow: 0 0 0 4px #353535, 0 0 0 5px #3e3e3e, inset 0 0 10px rgba(0, 0, 0, 1) !important;
+    }
 
-  .neonInput#id#[type="checkbox"] {
-    margin:10px !important;
-    position:relative!important;
-    width:120px !important;
-    height:40px !important;
-    -webkit-appearance: none !important;
-    background: linear-gradient(0deg, var(--background-color-from-off#id#), var(--background-color-to-off#id#)) !important;
-    outline: none !important;
-    border-radius: 20px !important;
-    box-shadow: 0 0 0 4px #353535, 0 0 0 5px #3e3e3e, inset 0 0 10px rgba(0,0,0,1) !important;
-  }
+    .neonInput#id#:checked[type="checkbox"] {
+        background: linear-gradient(0deg, var(--background-color-from-on#id#), var(--background-color-to-on#id#)) !important;
+        box-shadow: 0 0 0 4px #353535, 0 0 0 5px #3e3e3e, inset 0 0 10px rgba(0, 0, 0, 1) !important;
+    }
 
-  .neonInput#id#:checked[type="checkbox"] {
-    background: linear-gradient(0deg, var(--background-color-from-on#id#), var(--background-color-to-on#id#)) !important;
-    box-shadow: 0 0 0 4px #353535, 0 0 0 5px #3e3e3e, inset 0 0 10px rgba(0,0,0,1) !important;
-  }
+    .neonInput#id#[type="checkbox"]:before {
+        content: '' !important;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 80px;
+        height: 40px;
+        background: linear-gradient(0deg, #000, #6b6b6b);
+        border-radius: 20px;
+        box-shadow: 0 0 0 1px #232323;
+        transform: scale(.98, .96);
+        transition: .5s;
+    }
 
-  .neonInput#id#[type="checkbox"]:before {
-    content:'' !important;
-    position:absolute;
-    top:0;
-    left:0;
-    width:80px;
-    height:40px;
-    background: linear-gradient(0deg, #000, #6b6b6b);
-    border-radius: 20px;
-    box-shadow: 0 0 0 1px #232323;
-    transform: scale(.98,.96);
-    transition:.5s;
-  }
+    .neonInput#id#:checked[type="checkbox"]:before {
+        left: 40px;
+    }
 
-  .neonInput#id#:checked[type="checkbox"]:before {
-    left:40px;
-  }
+    .neonInput#id#[type="checkbox"]:after {
+        content: '' !important;
+        position: absolute;
+        top: calc(50% - 2px);
+        left: 70px;
+        width: 4px;
+        height: 4px;
+        background: linear-gradient(0deg, #6b6b6b, #000);
+        border-radius: 50%;
+        transition: .5s;
+    }
 
-  .neonInput#id#[type="checkbox"]:after{
-    content:'' !important;
-    position:absolute;
-    top:calc(50% - 2px);
-    left:70px;
-    width:4px;
-    height:4px;
-    background: linear-gradient(0deg, #6b6b6b, #000);
-    border-radius: 50%;
-    transition:.5s;
-  }
+    .neonInput#id#:checked[type="checkbox"]:after {
+        content: '' !important;
+        background: var(--background-color-from-on#id#) !important;
+        left: 110px;
+    }
 
-  .neonInput#id#:checked[type="checkbox"]:after {
-    content:'' !important;
-    background: var(--background-color-from-on#id#) !important;
-    left:110px;
-  }
-
-  #neonText#id# {
-    margin:0;
-    padding:0;
-    font-family: sans-serif;
-    text-align:center;
-    color:var(--text-color#id#);
-    font-size:16px;
-    padding:15px 0;
-    text-transform: uppercase;
-    letter-spacing:4px;
-  }
+    #neonText#id# {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        text-align: center;
+        color: var(--text-color#id#);
+        font-size: 16px;
+        padding: 15px 0;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+    }
 </style>
