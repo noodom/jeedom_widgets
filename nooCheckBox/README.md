@@ -60,3 +60,5 @@ De nombreux paramètres sont possibles pour personnaliser les virtuels et obteni
 		- Sélectionner l'équipement souhaité
 		- Sélectionner Valider
 		- Rafraichir la page : le widget neonButton est visible dans le Design
+
+Pensez au café pour les nuits blanches de codage ;) https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=noodom.fr%40gmail.com&currency_code=EUR&source=url
