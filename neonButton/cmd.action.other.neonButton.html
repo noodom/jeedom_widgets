@@ -55,6 +55,7 @@
     document.documentElement.style.setProperty('--scale#id#', scale#id#);
 
     jeedom.cmd.update['#id#'] = function (_options) {
+        document.getElementById('neonText#id#').style.display = (nameTextOn#id# == '' && nameTextOn#id# == '')?"none":"block";
         if (_options.display_value == '1' || _options.display_value == 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
             document.getElementById('neonInput#id#').checked = true;
             document.documentElement.style.setProperty('--text-color#id#', colorTextOn#id#);
