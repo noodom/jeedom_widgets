@@ -49,8 +49,8 @@ De nombreux paramètres sont possibles pour personnaliser les virtuels et obteni
 		color2 : couleur de dégradé de la checkbox (par défaut '#27ae60')
 		arrowColor : couleur de la coche pour les types roundedTwo, squaredTwo, squaredThree, squaredFour
 		squaredBorder : forme carrée du contour de la checkbox pour les types sliderOne, sliderTwo, roundedOne, roundedTwo (par défaut : 0), valeurs possibles : 0 : non /1 : oui
-		textOn : texte en état ON pour le type slideThree (par défaut 'ON')
-		textOff : texte en état OFF pour le type slideThree (par défaut 'OFF')
+		(inactif) textOn : texte en état ON pour le type slideThree (par défaut 'ON')
+		(inactif) textOff : texte en état OFF pour le type slideThree (par défaut 'OFF')
 
 ## Ajout dans un Design
 
