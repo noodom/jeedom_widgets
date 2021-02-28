@@ -39,8 +39,8 @@ if ((!empty($tags['#idCommande#']) || !empty($tags['#nomCommande#'])) && !empty(
 
   if ($tags['#erreur#'] == "") {
     // Log de la valeur de la commande
-    $valeurCommande=$cmd->execCmd();
-    $scenario->setLog("- Valeur de la commande : ".$valeurCommande);
+    //$valeurCommande=$cmd->execCmd();
+    //$scenario->setLog("- Valeur de la commande : ".$valeurCommande);
     // Mise à jour du paramètre
     $arr = $cmd->getDisplay('parameters');
     $scenario->setLog("- Mise à jour du paramètre ".$tags['#nomParametre#']." : ".$tags['#valeurParametre#']);
