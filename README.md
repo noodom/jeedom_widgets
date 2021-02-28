@@ -51,3 +51,9 @@ Développements de widgets pour Jeedom
 	- voir l'installation dans /nooCheckBox/README.md
 
 ![](nooCheckBox/doc/images/nooCheckBoxDemo.gif) 
+
+### Widget [nooPickAColor](./nooPickAColor) : à récupérer sous /jeedom_widgets/nooPickAColor/cmd.action.color.nooPickAColor.html
+
+	- voir l'installation dans /nooPickAColor/README.md
+
+![](nooPickAColor/doc/images/nooPickAColorDemo.gif) 
