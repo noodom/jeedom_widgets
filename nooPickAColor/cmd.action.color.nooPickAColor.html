@@ -1,0 +1,78 @@
+<link rel="stylesheet" href="data/customTemplates/dashboard/cmd.action.color.nooPickAColor/pick-a-color-1.2.3.min.css">
+  <!-- ################ nooPickAColor ################ 
+       ********** Paramètres Optionnels ***************
+		
+        showBasicColors : affiche l'onglet 'Couleurs basiques' (par défaut 1)
+        showSavedColors : affiche l'onglet 'Sauvegardes' de la liste des dernières couleurs sélectionnées (par défaut 1)
+        showAdvanced : affiche l'onglet 'Mode avancé' (par défaut 1)
+        fadeMenuToggle : affiche un effet d'ouverture et fermeture progressif de la popup (par défaut 1)
+
+        showHexInput : affiche la valeur de la couleur (par défaut 0)
+        showSpectrum : affiche le spectre de la couleur correspondante dans l'onglet 'Couleurs basiques' (par défaut 1)
+
+       ########### By @noodom ;) 
+       ########### Pensez au café pour les nuits blanches de codage ;) https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=noodom.fr%40gmail.com&currency_code=EUR&source=url
+       ########### Code disponible ici : https://github.com/noodom/jeedom_widgets/tree/master/nooPickAColor
+       ########### Basé sur https://github.com/lauren/pick-a-color ############# -->
+
+<div style="margin:10px;" class="cmd cmd-widget" data-type="action" data-subtype="color" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#">
+
+<div id="picker#id#">
+  <input type="text" value="#state#" name="pickacolor#id#" class="pick-a-color form-control" style="background-color:transparent !important">
+</div>
+
+<script>
+  	$.include(['data/customTemplates/dashboard/cmd.action.color.nooPickAColor/pick-a-color.min.js','data/customTemplates/dashboard/cmd.action.color.nooPickAColor/tinycolor-0.9.15.min.js'], function() {
+      $(document).ready(function () {
+        
+        // Récupération des paramètres
+        let showBasicColors = 1,
+            showSavedColors = 1,
+            showAdvanced = 1,
+            fadeMenuToggle = 1,
+
+            showHexInput = 0,
+            allowBlank = 1,
+            showSpectrum = 1,
+            saveColorsPerElement = 1,
+            inlineDropdown = 1;
+        
+        showBasicColors = (isNaN(parseFloat('#showBasicColors#'))) ? true : (parseFloat('#showBasicColors#') == 1);
+        showSavedColors = (isNaN(parseFloat('#showSavedColors#'))) ? true : (parseFloat('#showSavedColors#') == 1);
+        showAdvanced =  (isNaN(parseFloat('#showAdvanced#'))) ? true : (parseFloat('#showAdvanced#') == 1);
+        fadeMenuToggle = (isNaN(parseFloat('#fadeMenuToggle#'))) ? true : (parseFloat('#fadeMenuToggle#') == 1);
+
+        showHexInput = (isNaN(parseFloat('#showHexInput#'))) ? false : (parseFloat('#showHexInput#') == 1);
+        //allowBlank = (isNaN(parseFloat('#allowBlank#'))) ? true : (parseFloat('#allowBlank#') == 1);
+        allowBlank = false,
+        showSpectrum = (isNaN(parseFloat('#showSpectrum#'))) ? true : (parseFloat('#showSpectrum#') == 1);
+        saveColorsPerElement = (isNaN(parseFloat('#saveColorsPerElement#'))) ? true : (parseFloat('#saveColorsPerElement#') == 1);
+        //inlineDropdown = (isNaN(parseFloat('#inlineDropdown#'))) ? true : (parseFloat('#inlineDropdown#') == 1);
+        inlineDropdown = true;
+        
+        var myCmd = $("input[name='pickacolor#id#']");
+        myCmd.pickAColor({
+          showBasicColors         : showBasicColors,
+          showSavedColors         : showSavedColors,
+          showAdvanced            : showAdvanced,
+          fadeMenuToggle          : fadeMenuToggle,
+          showHexInput            : showHexInput,
+          allowBlank              : allowBlank,
+          showSpectrum            : showSpectrum,
+          saveColorsPerElement    : saveColorsPerElement,
+          inlineDropdown          : inlineDropdown
+        });        
+       
+        myCmd.on("change", function () {
+          jeedom.cmd.execute({id: '#id#', value: {color: '#' + $(this).val()}});
+        });
+
+        jeedom.cmd.update['#id#'] = function(_options){
+           $("input#pickacolor#id#").pickAColor({method:"val", value:_options.display_value.replace('#','')});
+        }
+      });
+  	});
+  
+  //# sourceURL=nooscript.js
+    </script>
+</div>
