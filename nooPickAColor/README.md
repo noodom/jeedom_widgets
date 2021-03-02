@@ -63,6 +63,7 @@ De nombreux paramètres sont possibles pour personnaliser les virtuels et obteni
 
 		showHexInput : affiche la valeur de la couleur (par défaut 0)
 		showSpectrum : affiche le spectre de la couleur correspondante dans l'onglet 'Couleurs basiques' (par défaut 1)
+		basicColors : liste de couleurs basiques personnalisées, ex : Poubelle verte:'#008000',Poubelle jaune:'#ff0',Poubelle marron:'#5b3c11',Poubelle bleue:'#00f'
 
 ## Ajout dans un Design
 
