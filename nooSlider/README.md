@@ -78,7 +78,7 @@ De nombreux paramètres sont possibles pour personnaliser les virtuels et obteni
 			addPlus : 0:pas de '+' devant valeur positive / 1: '+' devant valeur positive (0 par défaut)
 			cursorColor : couleur du curseur de position
 			cursorLeftPos : position à gauche en % du bouton (par défaut 40%)
-			cursorTopPos : position en % depuis le haut du bouton, 0 à 10 (par défaut 40%)
+			cursorTopPos : position en % depuis le haut du bouton, 0 à 100 (par défaut 40%)
 			displayedValues : valeurs visibles sous slider (ex : '0,20,40,60,80,100')
 			centerValue : valeur de la position séparant le slider pour définir les couleurs à gauche et droite (vide par défaut)
 			rightColor = couleur à gauche du curseur de séparation ('red' par défaut)
