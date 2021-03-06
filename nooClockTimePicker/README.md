@@ -81,8 +81,8 @@ De nombreux paramètres sont possibles pour personnaliser les virtuels et obteni
 		clockOuterCircleFontSize : taille des valeurs du cercle extérieur (par défaut 24)
 		clockInnerCircleFontSize : taille des valeurs du cercle intérieur (par défaut 12)
 		buttonFontSize : taille des boutons OK/Cancel pour mobile (par défaut 20)
-		okButtonText = (par défaut 'OK')
-		cancelButtonText = (par défaut 'Cancel')
+		okButtonText = Texte du bouton de validation (par défaut 'OK')
+		cancelButtonText = Texte du bouton d'annulation (par défaut 'Cancel')
                 
 		duration = autorise une saisie supérieure à 23h, pour une durée (par défaut 0)
 		durationNegative : autorise une saisie négative, pour une durée (par défaut 0)
