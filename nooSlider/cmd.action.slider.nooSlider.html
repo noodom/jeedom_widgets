@@ -27,8 +27,8 @@
 			cursorTopPos : position en % depuis le haut du bouton, 0 à 10 (par défaut 40%)
  			displayedValues : valeurs visibles sous slider (ex : '0,20,40,60,80,100')
 			centerValue : valeur de la position séparant le slider pour définir les couleurs à gauche et droite (vide par défaut)
-			rightColor = couleur à gauche du curseur de séparation ('red' par défaut)
- 			leftColor = couleur à droite du curseur de séparation ('green' par défaut)
+			lefttColor = couleur à gauche du curseur de séparation ('#ff0000' par défaut)
+ 			rightColor = couleur à droite du curseur de séparation ('#00ff00' par défaut)
  			flipped : indique la direction du slider, 0 : min vers max, 1 max vers min (0 par défaut)
  			
 			// type image
@@ -64,7 +64,7 @@
                         cursorTopPos = '40%',
                         displayedValues = '',
                         centerValue = null, // (min+max)/2,
-                        leftColor = 'red', rightColor = 'green',
+                        leftColor = '#ff0000', rightColor = '#00ff00',
                         addPlus = false,
                         immediateChange = false,
                         images = '',
