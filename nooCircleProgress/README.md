@@ -44,7 +44,8 @@ Depuis le plugin Pimp My Jeedom :
 
 De nombreux paramètres sont possibles pour personnaliser les virtuels et obtenir des rendus très différents
 
-	style : choix parmi une liste de paramétrages prédéfinis des champs ci-dessous (valeur de 1 à 13)
+        style : choix parmi une liste de paramétrages prédéfinis des champs ci-dessous (valeur de 1 à 13)
+	useStyle : choix d'utilisation des styes prédéfini (par défaut 'only_style', valeurs possible : no_style,only_style,style_with_options)
 
 	min : valeur minimum autorisée (0 par défaut)
 	max : valeur maximum autorisée (100 par défaut)
