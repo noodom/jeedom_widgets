@@ -10,17 +10,17 @@ Développements de widgets pour Jeedom
 
 ![](ledScroller/V4/doc/images/ledScroller.png) 
 
-### Widget [circleProgress](./circleProgress) : à récupérer sous /jeedom_widgets/circleProgress/cmd.info.numeric.circleProgress.html
+### Widget [nooCircleProgress](./nooCircleProgress) : à récupérer sous /jeedom_widgets/nooCircleProgress/cmd.info.numeric.nooCircleProgress.html
 
-	- voir l'installation dans /circleProgress/README.md
+	- voir l'installation dans /nooCircleProgress/README.md
 
-![](circleProgress/doc/images/circleProgress.gif) 
+![](nooCircleProgress/doc/images/nooCircleProgress.gif) 
 
-### Widget [neonButton](./neonButton) : à récupérer sous /jeedom_widgets/neonButton/cmd.action.other.neonButton.html
+### Widget [nooNeonButton](./nooNeonButton) : à récupérer sous /jeedom_widgets/nooNeonButton/cmd.action.other.nooNeonButton.html
 
-	- voir l'installation dans /neonButton/README.md
+	- voir l'installation dans /nooNeonButton/README.md
 
-![](neonButton/doc/images/neonButton.gif) 
+![](nooNeonButton/doc/images/nooNeonButton.gif) 
 
 ### Widget [nooGlowingButton](./nooGlowingButton) : à récupérer sous /jeedom_widgets/nooGlowingButton/cmd.action.other.nooGlowingButton.html
 

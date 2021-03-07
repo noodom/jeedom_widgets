@@ -11,12 +11,12 @@ Depuis le plugin Pimp My Jeedom :
 - Depuis l'onglet 'Général', sélectionner le bouton 'Ajouter un Widget Tiers'
 - Saisir le nom nooGlowingButton, la version Dashboard, le type Action et le Sous-Type Défaut puis valider avec le bouton 'Créer'
 
-![](../neonButton/doc/images/pimpWidgetCreation.png)
+![](../nooNeonButton/doc/images/pimpWidgetCreation.png)
 
 - Dans la zone de texte 'Edition', coller le code du fichier cmd.action.other.nooGlowingButton.html
 - Sélectionner le bouton 'Sauvegarder'
 
-![](../neonButton/doc/images/pimpCodeAdd.png)
+![](../nooNeonButton/doc/images/pimpCodeAdd.png)
 
 >**Note** : Le widget peut évidemment être créé de façon classique comme un widget tiers sans le plugin Pimp my Jeedom
 > - Sélectionner le menu Outil -> Widgets,
@@ -38,7 +38,7 @@ Depuis le plugin Pimp My Jeedom :
 
 Depuis le plugin Pimp My Jeedom :
 
-![](../neonButton/doc/images/commandAssociation.png)
+![](../nooNeonButton/doc/images/commandAssociation.png)
 
 - Sélectionner le bouton 'Appliquer sur'
 - Cocher les commandes de type Action souhaitées
@@ -72,4 +72,4 @@ Les paramètres suivants sont possibles pour personnaliser les virtuels et obten
 		- Clic droit, puis sélectionnez 'Ajouter équipement'
 		- Sélectionner l'équipement souhaité
 		- Sélectionner Valider
-		- Rafraichir la page : le widget neonButton est visible dans le Design
+		- Rafraichir la page : le widget nooNeonButton est visible dans le Design

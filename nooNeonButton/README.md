@@ -1,19 +1,19 @@
-# Widget neonButton
+# Widget nooNeonButton
 
 ![](doc/images/neonButton.gif)
 
-## A récupérer sous /jeedom_widgets/neonButton/cmd.action.other.neonButton.html
+## A récupérer sous /jeedom_widgets/nooNeonButton/cmd.action.other.nooNeonButton.html
 
 ## Création du widget
 
 Depuis le plugin Pimp My Jeedom :
 
 - Depuis l'onglet 'Général', sélectionner le bouton 'Ajouter un Widget Tiers'
-- Saisir le nom neonButton, la version Dashboard, le type Action et le Sous-Type Défaut puis valider avec le bouton 'Créer'
+- Saisir le nom nooNeonButton, la version Dashboard, le type Action et le Sous-Type Défaut puis valider avec le bouton 'Créer'
 
 ![](doc/images/pimpWidgetCreation.png)
 
-- Dans la zone de texte 'Edition', coller le code du fichier cmd.action.other.neonButton.html
+- Dans la zone de texte 'Edition', coller le code du fichier cmd.action.other.nooNeonButton.html
 - Sélectionner le bouton 'Sauvegarder'
 
 ![](doc/images/pimpCodeAdd.png)
@@ -21,11 +21,11 @@ Depuis le plugin Pimp My Jeedom :
 ## (facultatif) Création d'un virtuel avec commande action
 
 - Si vous souhaitez associer le widget à une commande existante, cette étape n'est pas nécessaire
-- Sinon, si vous souhaitez créer un nouveau neonButton :
+- Sinon, si vous souhaitez créer un nouveau nooNeonButton :
 	- Créer un virtuel depuis le plugin Virtuel (Plugin -> Programmation -> Virtuel)
 	- Ajouter une commande info Etat et de sous-type Binaire
   - Ajouter une commande action à associer à la commande info Etat
-  - Saisir pour valeur 'not(#[monObjet][monNeonButton][Etat]#)'
+  - Saisir pour valeur 'not(#[monObjet][monNooNeonButton][Etat]#)'
 
 ## association du widget à la commande action
 
@@ -54,7 +54,7 @@ De nombreux paramètres sont possibles pour personnaliser les virtuels et obteni
 	nameTextOff : contenu du texte du bouton Off (nameTextOn si non renseigné, vide si nameTextOn non renseigné)
 	scale : permet de réduire la taille du bouton (ex : 0.5 pour réduire le bouton de moitié)
 			
-![](doc/images/neonButtonParams.png)
+![](doc/images/nooNeonButtonParams.png)
 
 ## Ajout dans un Design
 
@@ -63,4 +63,4 @@ De nombreux paramètres sont possibles pour personnaliser les virtuels et obteni
 		- Clic droit, puis sélectionnez 'Ajouter équipement'
 		- Sélectionner l'équipement souhaité
 		- Sélectionner Valider
-		- Rafraichir la page : le widget neonButton est visible dans le Design
+		- Rafraichir la page : le widget nooNeonButton est visible dans le Design

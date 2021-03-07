@@ -1,20 +1,20 @@
-# Widget circleProgress
+# Widget nooCircleProgress
 
-![](doc/images/circleProgress.gif)
+![](doc/images/nooCircleProgress.gif)
 
-## A récupérer sous /jeedom_widgets/circleProgress/cmd.info.numeric.circleProgress.html
+## A récupérer sous /jeedom_widgets/nooCircleProgress/cmd.info.numeric.nooCircleProgress.html
 
 ## Création du widget
 
 Depuis le plugin Pimp My Jeedom :
 
 - Depuis l'onglet 'Général', sélectionner le bouton 'Ajouter un Widget Tiers'
-- Saisir le nom circleProgress, la version Dashboard, le type Info et le Sous-Type Numérique puis valider avec le bouton 'Créer'
+- Saisir le nom nooCircleProgress, la version Dashboard, le type Info et le Sous-Type Numérique puis valider avec le bouton 'Créer'
 
 ![](doc/images/pimpWidgetCreation.png)
 
-- Dans la zone de texte 'Edition', coller le code du fichier cmd.info.numeric.circleProgress.html
-- Sélectionner le bouton 'Ajouter des fichiers', puis 'Envoyer des fichiers', ajouter le fichier /cmd.info.numeric.circleProgress/circle-progress.js et fermer la fenêtre
+- Dans la zone de texte 'Edition', coller le code du fichier cmd.info.numeric.nooCircleProgress.html
+- Sélectionner le bouton 'Ajouter des fichiers', puis 'Envoyer des fichiers', ajouter le fichier /cmd.info.numeric.nooCircleProgress/circle-progress.js et fermer la fenêtre
 
 ![](doc/images/pimpjsFileAdd.png)
 
@@ -24,7 +24,7 @@ Depuis le plugin Pimp My Jeedom :
 ## (facultatif) Création d'un virtuel avec commande info
 
 - Si vous souhaitez associer le widget à une commande existante, cette étape n'est pas nécessaire
-- Sinon, si vous souhaitez créer un nouveau circleProgress :
+- Sinon, si vous souhaitez créer un nouveau nooCircleProgress :
 	- Créer un virtuel depuis le plugin Virtuel (Plugin -> Programmation -> Virtuel)
 	- Dans ce virtuel, ajouter une commande info et de sous-type Numérique
 		- Ce champ texte peut être modifié par scénario avec la commande event : la mise à jour de la valeur sera alors immédiate sur le design
@@ -76,7 +76,7 @@ De nombreux paramètres sont possibles pour personnaliser les virtuels et obteni
 		- ajouter les paramètres de son choix pour créer son propre affichage de widget
 		- ajouter le paramètre style et modifier l'apparence en ajoutant quelques paramètres pour modifier le rendu final du style ajouté
 			
-![](doc/images/circleProgressParams.gif)
+![](doc/images/nooCircleProgressParams.gif)
 
 ## Ajout dans un Design
 
@@ -85,4 +85,4 @@ De nombreux paramètres sont possibles pour personnaliser les virtuels et obteni
 		- Clic droit, puis sélectionnez 'Ajouter équipement'
 		- Sélectionner l'équipement souhaité
 		- Sélectionner Valider
-		- Rafraichir la page : le widget circleProgress est visible dans le Design
+		- Rafraichir la page : le widget nooCircleProgress est visible dans le Design

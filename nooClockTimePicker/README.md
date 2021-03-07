@@ -34,7 +34,7 @@ Depuis le plugin Pimp My Jeedom :
 ## (facultatif) Création d'un virtuel avec commande info et commande action Curseur
 
 - Si vous souhaitez associer le widget à une commande existante, cette étape n'est pas nécessaire
-- Sinon, si vous souhaitez créer un nouveau circleProgress :
+- Sinon, si vous souhaitez créer un nouveau nooClockTimePicker :
 	- Créer un virtuel depuis le plugin Virtuel (Plugin -> Programmation -> Virtuel)
 	- Dans ce virtuel, ajouter une commande info et de sous-type Numérique
 		- Ce champ texte peut être modifié par scénario avec la commande event : la mise à jour de la valeur sera alors immédiate sur le design
