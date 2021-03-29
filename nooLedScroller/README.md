@@ -1,4 +1,4 @@
-# Widget V4 led Scroller
+# Widget nooLedScroller
 
 ![](doc/images/nooCheckBoxDemo.gif)
 
