@@ -1,0 +1,376 @@
+<noscript>Your browser does not support JavaScript!</noscript>
+    <!-- ################ nooLedScroller ################ 
+       ********** Paramètres Optionnels ***************
+		ledColor = code couleur des leds allumées (par défaut #0ff)
+		ledBackgroundColor = code couleur des leds de fond éteintes (par défaut #121212)
+		scrollSpeed = vitesse de défilement, nombre de rafraichissements par seconde (par défaut 300)
+		pixelsNumber = nombre de leds horizontaux (60 par défaut)
+		scale = facteur multipliant la taille (par défaut 1)
+
+       ########### By @noodom ;) 
+       ########### Pensez au café pour les nuits blanches de codage ;) https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=noodom.fr%40gmail.com&currency_code=EUR&source=url
+       ########### Code disponible ici : https://github.com/noodom/jeedom_widgets/tree/master/nooLedScroller
+       ########### Basé sur https://codepen.io/timkim/pen/EajvGw ############# -->
+
+<style>
+	:root {
+		--marquee-width#id#: 420px;
+		--marquee-height#id#: 50px;
+      	--light-size#id#:5px;
+      	--light-margin#id#:1px;
+		--led-color#id#: #0ff;
+		--led-background-color#id#: #121212;
+	}
+
+	#wrapper#id#{
+ 		width: var(--marquee-width#id#);
+		margin: 0px auto;
+	}
+
+	#theMarquee#id#{
+        height: var(--marquee-height#id#);
+        background: linear-gradient(0deg, #111, #222);
+        box-shadow: 0px 0px 2px 0px #aaa inset,
+        0px -1px 2px 0px #aaa inset,
+        2px -5px 5px 0px #111 inset,
+        0px -5px 5px 0px #111 inset,
+        2px 5px 5px 0px #111;
+        border-radius: 5px;
+	}
+
+	.light {
+		width: var(--light-size#id#);
+		height: var(--light-size#id#);
+		margin: var(--light-margin#id#) var(--light-margin#id#);
+		text-align: center;
+		font-size: 15px;
+		float: left;
+		border-radius: 50%;
+	}
+
+	#wrapper#id# .off{
+ 		background-color: var(--led-background-color#id#);
+	}
+
+	#wrapper#id# .on{
+		background-color: var(--led-color#id#);
+		box-shadow: 0px 0px 5px var(--led-color#id#);
+	}
+</style>
+
+<div style="padding:0px;"
+	class="cmd #history# tooltips cmd-widget container-fluid" data-type="info" data-subtype="string" data-cmd_id="#id#"
+	data-cmd_uid="#uid#" data-version="#version#" title="#collectDate#">
+	<div id="wrapper#id#">
+		<div id="theMarquee#id#">
+		</div>
+	</div>
+</div>
+
+<script id="rendered-js#id#">
+
+	var horizontalLedsNumber = 60;
+	var verticalLedsNumber = 7;
+  	var scale = 1;
+	var fps#id# = 30;
+    
+	var myMessage#id# = textToLED('');
+	var leftPointer#id# = horizontalLedsNumber + 1;
+	var rightPointer#id# = 0;
+	var furthestLeftPoint#id# = 0 - myMessage#id#.length;
+
+	function changeText#id#(newText) {
+		clearLights(#id#);
+		myMessage#id# = textToLED(newText);
+		furthestLeftPoint#id# = 0 - myMessage#id#.length;
+		leftPointer#id# = horizontalLedsNumber + 1;
+	}
+
+	function clearLights(id) {
+		let lightsOn = $('.cmd[data-cmd_id=' + id + '] .on');
+		lightsOn.removeClass('on');
+		lightsOn.addClass('off');
+	}
+	function setLight(id, row, col, state) {
+    	let theLight = $('.cmd[data-cmd_id=' + id + '] .' + row + '_' + col);
+		theLight.hasClass('on') && !state && theLight.removeClass('on') && theLight.addClass('off');
+		theLight.hasClass('off') && state && theLight.removeClass('off') && theLight.addClass('on');
+	}
+
+	function drawMessage(id, messageArray, leftPointer) {
+		let messageLength = messageArray.length;
+		let totalScrollLength = horizontalLedsNumber + messageLength;
+
+		if (messageLength > 0) {
+			for (let col = 0; col < messageLength; col++) {
+				for (let row = 0; row < verticalLedsNumber; row++) {
+					let offsetCol = leftPointer + col;
+					if (offsetCol < horizontalLedsNumber || offsetCol >= 0) {
+						setLight(id, row, offsetCol, messageArray[col][row]);
+					}
+				}
+			}
+		}
+	}
+
+	function textToLED(theWord) {
+		let theMessage = [];
+		theWord = theWord.toUpperCase();
+		for (let i = 0; i < theWord.length; i++) {
+			theMessage.push(charToLED(theWord.charAt(i)));
+			theMessage.push(charToLED());
+		}
+
+		let flatten = [];
+		flatten = flatten.concat.apply(flatten, theMessage);
+
+      	return flatten;
+	}
+
+	function charToLED(theChar) {
+		let theLed = [];
+		switch (theChar) {
+			case 'A':
+				theLed = [[false, false, true, true, true, true, true], [false, true, false, false, true, false, false], [true, false, false, false, true, false, false], [false, true, false, false, true, false, false], [false, false, true, true, true, true, true]];
+				break;
+			case 'B':
+				theLed = [[true, true, true, true, true, true, true], [true, false, false, true, false, false, true], [true, false, false, true, false, false, true], [true, false, false, true, false, false, true], [false, true, true, false, true, true, false]];
+				break;
+			case 'C':
+				theLed = [[false, true, true, true, true, true, false], [true, false, false, false, false, false, true], [true, false, false, false, false, false, true], [true, false, false, false, false, false, true], [false, true, false, false, false, true, false]];
+				break;
+			case 'D':
+				theLed = [[true, true, true, true, true, true, true], [true, false, false, false, false, false, true], [true, false, false, false, false, false, true], [true, false, false, false, false, false, true], [false, true, true, true, true, true, false]];
+				break;
+			case 'E':
+				theLed = [[true, true, true, true, true, true, true], [true, false, false, true, false, false, true], [true, false, false, true, false, false, true], [true, false, false, true, false, false, true], [true, false, false, false, false, false, true]];
+				break;
+			case 'F':
+				theLed = [[true, true, true, true, true, true, true], [true, false, false, true, false, false, false], [true, false, false, true, false, false, false], [true, false, false, true, false, false, false], [true, false, false, false, false, false, false]];
+				break;
+			case 'G':
+				theLed = [[false, true, true, true, true, true, false], [true, false, false, false, false, false, true], [true, false, false, false, false, false, true], [true, false, false, false, true, false, true], [true, true, false, false, true, true, true]];
+				break;
+			case 'H':
+				theLed = [[true, true, true, true, true, true, true], [false, false, false, true, false, false, false], [false, false, false, true, false, false, false], [false, false, false, true, false, false, false], [true, true, true, true, true, true, true]];
+				break;
+			case 'I':
+				theLed = [[false, false, false, false, false, false, false], [true, false, false, false, false, false, true], [true, true, true, true, true, true, true], [true, false, false, false, false, false, true], [false, false, false, false, false, false, false]];
+				break;
+			case 'J':
+				theLed = [[false, false, false, false, false, true, false], [false, false, false, false, false, false, true], [true, false, false, false, false, false, true], [true, true, true, true, true, true, false], [true, false, false, false, false, false, false]];
+				break;
+			case 'K':
+				theLed = [[true, true, true, true, true, true, true], [false, false, false, true, false, false, false], [false, false, true, false, true, false, false], [false, true, false, false, false, true, false], [true, false, false, false, false, false, true]];
+				break;
+			case 'L':
+				theLed = [[true, true, true, true, true, true, true], [false, false, false, false, false, false, true], [false, false, false, false, false, false, true], [false, false, false, false, false, false, true], [false, false, false, false, false, false, true]];
+				break;
+			case 'M':
+				theLed = [[true, true, true, true, true, true, true], [false, true, false, false, false, false, false], [false, false, true, false, false, false, false], [false, true, false, false, false, false, false], [true, true, true, true, true, true, true]];
+				break;
+			case 'N':
+				theLed = [[true, true, true, true, true, true, true], [false, false, true, false, false, false, false], [false, false, false, true, false, false, false], [false, false, false, false, true, false, false], [true, true, true, true, true, true, true]];
+				break;
+			case 'O':
+				theLed = [[false, true, true, true, true, true, false], [true, false, false, false, false, false, true], [true, false, false, false, false, false, true], [true, false, false, false, false, false, true], [false, true, true, true, true, true, false]];
+				break;
+			case 'P':
+				theLed = [[true, true, true, true, true, true, true], [true, false, false, true, false, false, false], [true, false, false, true, false, false, false], [true, false, false, true, false, false, false], [false, true, true, false, false, false, false]];
+				break;
+			case 'Q':
+				theLed = [[false, true, true, true, true, true, false], [true, false, false, false, false, false, true], [true, false, false, false, true, false, true], [true, false, false, false, false, true, false], [false, true, true, true, true, false, true]];
+				break;
+			case 'R':
+				theLed = [[true, true, true, true, true, true, true], [true, false, false, true, false, false, false], [true, false, false, true, false, false, false], [true, false, false, true, false, false, false], [false, true, true, false, true, true, true]];
+				break;
+			case 'S':
+				theLed = [[false, true, true, false, false, false, true], [true, false, false, true, false, false, true], [true, false, false, true, false, false, true], [true, false, false, true, false, false, true], [true, false, false, false, true, true, false]];
+				break;
+			case 'T':
+				theLed = [[true, false, false, false, false, false, false], [true, false, false, false, false, false, false], [true, true, true, true, true, true, true], [true, false, false, false, false, false, false], [true, false, false, false, false, false, false]];
+				break;
+			case 'U':
+				theLed = [[true, true, true, true, true, true, false], [false, false, false, false, false, false, true], [false, false, false, false, false, false, true], [false, false, false, false, false, false, true], [true, true, true, true, true, true, false]];
+				break;
+			case 'V':
+				theLed = [[true, true, true, true, true, false, false], [false, false, false, false, false, true, false], [false, false, false, false, false, false, true], [false, false, false, false, false, true, false], [true, true, true, true, true, false, false]];
+				break;
+			case 'W':
+				theLed = [[true, true, true, true, true, true, false], [false, false, false, false, false, false, true], [false, false, false, false, true, true, false], [false, false, false, false, false, false, true], [true, true, true, true, true, true, false]];
+				break;
+			case 'X':
+				theLed = [[true, false, false, false, false, false, true], [false, true, true, false, true, true, false], [false, false, false, true, false, false, false], [false, true, true, false, true, true, false], [true, false, false, false, false, false, true]];
+				break;
+			case 'Y':
+				theLed = [[true, false, false, false, false, false, false], [false, true, false, false, false, false, false], [false, false, true, true, true, true, true], [false, true, false, false, false, false, false], [true, false, false, false, false, false, false]];
+				break;
+			case 'Z':
+				theLed = [[true, false, false, false, false, true, true], [true, false, false, false, true, false, true], [true, false, false, true, false, false, true], [true, false, true, false, false, false, true], [true, true, false, false, false, false, true]];
+				break;
+			case '0':
+				theLed = [[false, true, true, true, true, true, false], [true, false, false, false, true, false, true], [true, false, false, true, false, false, true], [true, false, true, false, false, false, true], [false, true, true, true, true, true, false]];
+				break;
+			case '1':
+				theLed = [[false, false, true, false, false, false, false], [false, true, false, false, false, false, false], [true, true, true, true, true, true, true], [false, false, false, false, false, false, false], [false, false, false, false, false, false, false]];
+				break;
+			case '2':
+				theLed = [[false, true, false, false, false, false, true], [true, false, false, false, false, true, true], [true, false, false, false, true, false, true], [true, false, false, true, false, false, true], [false, true, true, false, false, false, true]];
+				break;
+			case '3':
+				theLed = [[false, true, false, false, false, true, false], [true, false, false, false, false, false, true], [true, false, false, true, false, false, true], [true, false, false, true, false, false, true], [false, true, true, false, true, true, false]];
+				break;
+			case '4':
+				theLed = [[false, false, false, true, true, false, false], [false, false, true, false, true, false, false], [false, true, false, false, true, false, false], [true, true, true, true, true, true, true], [false, false, false, false, true, false, false]];
+				break;
+			case '5':
+				theLed = [[true, true, true, false, false, false, true], [true, false, true, false, false, false, true], [true, false, true, false, false, false, true], [true, false, false, true, true, true, false], [false, false, false, false, false, false, false]];
+				break;
+			case '6':
+				theLed = [[false, true, true, false, true, true, false], [true, false, false, true, false, false, true], [true, false, false, true, false, false, true], [true, false, false, true, false, false, true], [false, false, false, false, true, true, false]];
+				break;
+			case '7':
+				theLed = [[true, false, false, false, false, false, true], [true, false, false, false, false, true, false], [true, false, false, false, true, false, false], [true, false, false, true, false, false, false], [true, true, true, false, false, false, false]];
+				break;
+			case '8':
+				theLed = [[false, true, true, false, true, true, false], [true, false, false, true, false, false, true], [true, false, false, true, false, false, true], [true, false, false, true, false, false, true], [false, true, true, false, true, true, false]];
+				break;
+			case '9':
+				theLed = [[false, true, true, false, false, false, false], [true, false, false, true, false, false, true], [true, false, false, true, false, false, true], [true, false, false, true, false, false, true], [false, true, true, false, true, true, false]];
+				break;
+			case '°':
+				theLed = [[false, false, false, false, false, false, false], [false, true, false, false, false, false, false], [true, false, true, false, false, false, false], [false, true, false, false, false, false, false], [false, false, false, false, false, false, false]];
+				break;
+			case '#':
+				theLed = [[false, false, true, false, true, false, false], [true, true, true, true, true, true, true], [false, false, true, false, true, false, false], [true, true, true, true, true, true, true], [false, false, true, false, true, false, false]];
+				break;
+			case '|':
+				theLed = [[false, false, false, false, false, false, false], [false, false, false, false, false, false, false], [true, true, true, true, true, true, true], [false, false, false, false, false, false, false], [false, false, false, false, false, false, false]];
+				break;
+			case "'":
+				theLed = [[false, false, false, false, false, false, false], [false, false, false, false, false, false, false], [true, true, true, false, false, false, false], [false, false, false, false, false, false, false], [false, false, false, false, false, false, false]];
+				break;
+			case '"':
+				theLed = [[false, false, false, false, false, false, false], [true, true, true, false, false, false, false], [false, false, false, false, false, false, false], [true, true, true, false, false, false, false], [false, false, false, false, false, false, false]];
+				break;
+			case '€':
+				theLed = [[false, false, true, false, true, false, false], [false, true, true, true, true, true, false], [true, false, true, false, true, false, true], [true, false, true, false, true, false, true], [false, false, false, false, false, false, false]];
+				break;
+			case '/':
+				theLed = [[false, false, false, false, false, false, true], [false, false, false, false, false, true, false], [false, false, false, false, true, false, false], [false, false, false, true, false, false, false], [false, false, true, false, false, false, false], [false, true, false, false, false, false, false],				[true, false, false, false, false, false, false]];
+				break;
+			case '%':
+				theLed = [[false, true, false, false, false, false, true], [true, false, true, false, false, true, false], [false, true, false, false, true, false, false], [false, false, false, true, false, false, false], [false, false, true, false, false, true, false], [false, true, false, false, true, false, true], [true, false, false, false, false, true, false]];
+				break;
+			case ']':
+				theLed = [[true, false, false, false, false, false, true], [true, false, false, false, false, false, true], [true, true, true, true, true, true, true], [false, false, false, false, false, false, false], [false, false, false, false, false, false, false]];
+				break;
+			case '[':
+				theLed = [[false, false, false, false, false, false, false], [false, false, false, false, false, false, false], [true, true, true, true, true, true, true], [true, false, false, false, false, false, true], [true, false, false, false, false, false, true]];
+				break;
+			case '(':
+				theLed = [[false, false, false, false, false, false, false], [false, false, false, false, false, false, false], [false, false, true, true, true, false, false], [false, true, false, false, false, true, false], [true, false, false, false, false, false, true]];
+				break;
+			case ')':
+				theLed = [[true, false, false, false, false, false, true], [false, true, false, false, false, true, false], [false, false, true, true, true, false, false], [false, false, false, false, false, false, false], [false, false, false, false, false, false, false]];
+				break;
+			case '_':
+				theLed = [[false, false, false, false, false, false, true], [false, false, false, false, false, false, true], [false, false, false, false, false, false, true], [false, false, false, false, false, false, true], [false, false, false, false, false, false, true]];
+				break;
+			case '-':
+				theLed = [[false, false, false, false, false, false, false], [false, false, false, true, false, false, false], [false, false, false, true, false, false, false], [false, false, false, true, false, false, false], [false, false, false, false, false, false, false]];
+				break;
+			case '*':
+				theLed = [[false, false, false, false, false, false, false], [false, true, false, true, false, true, false], [false, false, true, true, true, false, false], [false, false, false, true, false, false, false], [false, false, true, true, true, false, false], [false, true, false, true, false, true, false],				[false, false, false, false, false, false, false]];
+				break;
+			case '+':
+				theLed = [[false, false, false, true, false, false, false], [false, false, false, true, false, false, false], [false, true, true, true, true, true, false], [false, false, false, true, false, false, false], [false, false, false, true, false, false, false]];
+				break;
+			case '=':
+				theLed = [[false, false, false, false, false, false, false], [false, false, true, false, true, false, false], [false, false, true, false, true, false, false], [false, false, true, false, true, false, false], [false, false, false, false, false, false, false]];
+				break;
+			case '!':
+				theLed = [[false, false, false, false, false, false, false], [false, false, false, false, false, false, false], [true, true, true, true, true, false, true], [false, false, false, false, false, false, false], [false, false, false, false, false, false, false]];
+				break;
+			case '?':
+				theLed = [[false, true, false, false, false, false, false], [true, false, false, false, false, false, false], [true, false, false, false, true, false, true], [true, false, false, true, false, false, false], [false, true, true, false, false, false, false]];
+				break;
+			case ':':
+				theLed = [[false, false, false, false, false, false, false], [false, false, false, false, false, false, false], [false, false, true, false, true, false, false], [false, false, false, false, false, false, false], [false, false, false, false, false, false, false]];
+				break;
+			case ',':
+				theLed = [[false, false, false, false, false, false, false], [false, false, false, false, false, false, true], [false, false, false, false, true, true, false], [false, false, false, false, false, false, false], [false, false, false, false, false, false, false]];
+				break;
+			case '.':
+				theLed = [[false, false, false, false, false, false, false], [false, false, false, false, false, false, false], [false, false, false, false, false, false, true], [false, false, false, false, false, false, false], [false, false, false, false, false, false, false]];
+				break;
+			default:
+				theLed = [[false, false, false, false, false, false, false]];
+		}
+
+		return theLed;
+	}
+
+
+	var ledTimeout#id# = null;
+	var reqAnimFrame#id# = null;
+
+	function draw#id#() {
+		clearTimeout(ledTimeout#id#);
+		ledTimeout#id# = setTimeout(function () {
+			reqAnimFrame#id# = requestAnimationFrame(draw#id#);
+
+			if (leftPointer#id# == furthestLeftPoint#id#) {
+				leftPointer#id# = horizontalLedsNumber + 1;
+            }
+
+            drawMessage(#id#, myMessage#id#, leftPointer#id#);
+            leftPointer#id#--;
+
+        }, 1000 / fps#id#);
+	}
+
+	jeedom.cmd.update['#id#'] = function (_options) {
+
+		// Récupération des paramètres
+		// couleur des leds du texte
+		let ledColor = ('#ledColor#' != '#' + 'ledColor#') ? "#ledColor#" : '#0ff';
+		document.documentElement.style.setProperty('--led-color#id#', ledColor);
+		// couleurs des leds de font
+		let ledBackgroundColor = ('#ledBackgroundColor#' != '#' + 'ledBackgroundColor#') ? "#ledBackgroundColor#" : '#121212';
+		document.documentElement.style.setProperty('--led-background-color#id#', ledBackgroundColor);
+		// nombre de rafraichissement par seconde
+		let fps = is_numeric('#scrollSpeed#') ? parseFloat('#scrollSpeed#') : 30;
+      	// multiplication de la taille (par défaut 1)
+      	scale =  (isNaN(parseFloat('#scale#'))) ? scale : parseFloat('#scale#');
+		fps#id# = fps;
+
+        // Ne pas modifier : non paramétré
+		horizontalLedsNumber = is_numeric('#pixelsNumber#') ? parseFloat('#pixelsNumber#') : horizontalLedsNumber;
+		document.documentElement.style.setProperty('--marquee-width#id#', (horizontalLedsNumber*scale*7) + 'px');
+		document.documentElement.style.setProperty('--marquee-height#id#', (50*scale) + 'px');
+      	document.documentElement.style.setProperty('--light-size#id#', (5*scale) + 'px');
+      	document.documentElement.style.setProperty('--light-margin#id#', (1*scale) + 'px');
+
+        let marqueeContent = "";
+        for (let i=0; i<verticalLedsNumber ; i++) {
+          for (let j=0; j<horizontalLedsNumber ; j++) {
+            marqueeContent += '<div class="' + i + '_' + j + ' light off"></div>';
+          }
+        }
+
+  		$('.cmd[data-cmd_id=#id#] #wrapper#id# #theMarquee#id#').empty().html(marqueeContent);
+
+		// Récupération de la valeur de la commande info
+		let cmdValue = _options.display_value;
+		changeText#id#(cmdValue);
+		draw#id#();
+	};
+
+	jeedom.cmd.update['#id#']({
+		display_value: '#state#',
+		valueDate: '#valueDate#',
+		collectDate: '#collectDate#',
+		alertLevel: '#alertLevel#'
+	});
+</script>
