@@ -1,8 +1,8 @@
 # Widget nooLedScroller
 
-![](doc/images/nooCheckBoxDemo.gif)
+![](doc/images/ledScroller.png)
 
-![](doc/images/nooCheckBoxDemo.gif)
+![](doc/images/demoNooLedScroller.gif)
 
 ## A récupérer sous /jeedom_widgets/nooLedScroller/cmd.info.string.nooLedScroller.html
 
