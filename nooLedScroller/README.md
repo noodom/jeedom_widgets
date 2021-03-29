@@ -14,7 +14,7 @@
 
 ![](../nooNeonButton/doc/images/pimpWidgetCreation.png)
 
-- Depuis la page d'édition de widgets (Menu Outils -> Widget),
+- Depuis la page d'édition de widgets (Menu Outils -> Widget -> Code),
 	- Sélectionner dashboard, puis sélectionner Nouveau
 	- Dans les options, préciser Version:Dashboard, Type:Info, Sous-type:Autre et Nom:nooLedScroller
 	- Sélectionner Créer pour valider
@@ -41,7 +41,7 @@
 
 	- Depuis la commande info, sélectionner la roue dentée
 	- Sélectionner l'onglet Affichage
-	- Sélectionner CustomTemp/ledScroller dans la liste des widgets proposés pour Widget en mode Dashboard
+	- Sélectionner CustomTemp/nooLedScroller dans la liste des widgets proposés pour Widget en mode Dashboard
 	- Enregistrer
 	
 ## (facultatif) Paramètres de la commande associée au widget
@@ -50,7 +50,7 @@
 
 		ledColor = code couleur des leds allumées (par défaut #0ff)
 		ledBackgroundColor = code couleur des leds de fond éteintes (par défaut #121212)
-		scrollSpeed = vitesse de défilement, nombre de rafraichissements par seconde (par défaut 300)
+		scrollSpeed = vitesse de défilement, nombre de rafraichissements par seconde (par défaut 30)
 		pixelsNumber = nombre de leds horizontaux (60 par défaut)
 		scale = facteur multipliant la taille (par défaut 1)
 
