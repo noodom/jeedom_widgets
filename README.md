@@ -6,7 +6,7 @@ Développements de widgets pour Jeedom
 
 ### Widget [nooLedScroller](./nooLedScroller) : à récupérer sous /jeedom_widgets/nooLedScroller/cmd.info.string.nooLedScroller.html
 
-	- voir l'installation dans [README.md](./nooLedScroller/README.md)
+- voir l'installation dans [README.md](./nooLedScroller/README.md)
 
 ![](nooLedScroller/doc/images/ledScroller.png) 
 
