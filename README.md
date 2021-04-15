@@ -6,9 +6,9 @@ Développements de widgets pour Jeedom
 
 ### Widget [nooLedScroller](./nooLedScroller) : à récupérer sous /jeedom_widgets/nooLedScroller/cmd.info.string.nooLedScroller.html
 
-	- voir l'installation dans /nooLedScroller/README.md
+	- voir l'installation dans [README.md](./nooLedScroller/README.md)
 
-![](ledScroller/nooLedScroller/doc/images/ledScroller.png) 
+![](nooLedScroller/doc/images/ledScroller.png) 
 
 ### Widget [nooCircleProgress](./nooCircleProgress) : à récupérer sous /jeedom_widgets/nooCircleProgress/cmd.info.numeric.nooCircleProgress.html
 
