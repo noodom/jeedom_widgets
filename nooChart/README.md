@@ -41,7 +41,8 @@ La saisie des paramètres suivants sont facultatif excepté le paramètre 'idCom
 
 De nombreux paramètres sont possibles pour personnaliser les virtuels et obtenir des rendus très différents
 
-        chartType : (par défaut 'line',valeurs possibles : line : ligne, column : colonnes, area : aire, pie : camembert, bar : barres horizontales)
+        idCommand : id des commandes à afficher (par défaut 0, pour afficher plusieurs grphiques, séparer les ids par des '|', ex : 1234|5678)
+	chartType : (par défaut 'line',valeurs possibles : line : ligne, column : colonnes, area : aire, pie : camembert, bar : barres horizontales)
         width : largeur du graphique (par défaut 300)
         height : hauteur du graphique (par défaut 500)
         chartTitle : titre du graphique (vide par défaut)
