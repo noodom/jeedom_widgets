@@ -1,0 +1,329 @@
+<div style="margin:5px 2px 5px 2px;" class="cmd cmd-widget tooltips #history#" data-type="info" data-subtype="numeric"
+  data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+  <!-- ################ nooChart ################ 
+
+       ********** Paramètres Obligatoires ***************
+        idCommand : id des commandes à afficher (par défaut 0, pour afficher plusieurs grphiques, séparer les ids par des '|', ex : 1234|5678)
+
+       ********** Paramètres Optionnels ***************
+        chartType : (par défaut 'line',valeurs possibles : line : ligne, column : colonnes, area : aire, pie : camembert, bar : barres horizontales)
+        width : largeur du graphique (par défaut 300)
+        height : hauteur du graphique (par défaut 500)
+        chartTitle : titre du graphique (vide par défaut)
+        chartSubtitle : sous-titre du graphique (vide par défaut)
+        xTitle : légende de l'axe horizontal (vide par défaut)
+        yTitle : légende de l'axe vertical (vide par défaut)
+        yMin : valeur minimale de l'axe vertical (par défaut 0)
+        yMax : = valeur maximale de l'axe vertical (par défaut 100)
+        dateStart : date de début d'affichage au format 'YYYY-MM-JJ' (par défaut "2020-01-01")
+        dateEnd : date de fin d'affichage (par défaut date courante)
+        addSerieLabel : texte à afficher dans la popup affichée à chaque création de série de données (vide par défaut et donc pas d'affichage de popup)
+        addSerialColor : couleur du texte addSerieLabel (par défaut '#FFFFFF')
+        addSerialBackgroundColor : couleur de fond du texte addSerieLabel (par défaut '#FFFFFF')
+        suffix : chaine de caractères à ajouter aux valeurs (vide par défaut, par exemple ' %', ' °')
+        nbDecimals : nombre de décimales affichées pour les valeurs affichées (par défaut 2)
+        // Pie
+        allowPointSelectPie : (actif seulement pour chartType='pie') autorisation de sélectionner un élément du camembert (par défaut 1, valeurs possibles : 0 : non, 1: oui)
+        depthPie : (actif seulement si enabled3D est à 1) épaisseur du camembert (par défaut 35),
+        innerSizePie : largeur du trou à l'intérieur du camembert (par défaut 0),
+        enabledLabelsPie : affichage du libellé relié à chaque partie du camembert (par défaut 0, valeurs possibles : 0 : non, 1: oui)
+        // 3D
+        enabled3D : active la visualisation 3D (par défaut 0, valeurs possibles : 0 : non, 1: oui)
+        alpha3D : (actif seulement si enabled3D est à 1) angle d'affichage pour la vue de haut (par défaut à 20)
+        beta3D : (actif seulement si enabled3D est à 1) angle d'affichage horizontal (par défaut à 20, valeurs cohérentes : -45 à 45)
+        depth3D : (actif seulement si enabled3D est à 1) distance du graphique par rapport au fond (par défaut à 20)
+        viewDistance3D : (par défaut 25)
+        showExportMenu : affiche le bouton permettant d'exporter l'affichage (png, jpeg, pdf, ..), par défaut à 0, valeurs possibles : 0 : non, 1: oui
+		description : texte de description à ajouter en bas du graphique (vide par défaut)
+
+       ########### by @noodom ;) 
+  	   ########### code disponible ici : https://github.com/noodom/jeedom_widgets/tree/master/nooChart
+  	   ########### inspiré par https://www.highcharts.com/demo/line-basic #############
+    -->
+
+  <div class="title #hide_name#">
+    <div class="cmdName">#name_display#</div>
+  </div>
+  <figure class="highcharts-figure">
+    <div id="container#id#"></div>
+    <p class="highcharts-description#id#">
+    </p>
+  </figure>
+  
+    <script language="javascript">
+      $.include(['3rdparty/highstock/highcharts-3d.js'],
+		function () {
+          // Récupération des paramètres
+          var idCommand#id# = 0,
+          	chartType#id# = 'line', // line, column, area, pie, bar
+          	width#id# = 300,
+            height#id# = 500,
+          	chartTitle#id# = "",
+          	chartSubtitle#id# = "",
+          	xTitle#id# = "",
+            yTitle#id# = "",
+          	yMin#id# = 0,
+            yMax#id# = 100,
+            dateStart#id# = "2020-01-01",
+            dateEnd#id# = new Date().toISOString().slice(0, 10),
+            addSerieLabel#id# = '',
+            addSerialColor#id# = '#FFFFFF',
+            addSerialBackgroundColor#id# = Highcharts.getOptions().colors[0],
+            suffix#id# = '',
+            nbDecimals#id# = 2,
+            // Pie
+            allowPointSelectPie#id# = true,
+            depthPie#id# = 35,
+            innerSizePie#id# = 0,
+            enabledLabelsPie#id# = false,
+            // 3D
+            enabled3D#id# = false,
+            alpha3D#id# = 20,
+            beta3D#id# = 20,
+            depth3D#id# = 20,
+            viewDistance3D#id# = 25;
+            
+            showExportMenu#id# = false;
+            description#id# = '';
+
+            idCommand#id# = ('#idCommand#' != '#' + 'idCommand#') ? "#idCommand#" : idCommand#id#;
+            idCommand#id# = idCommand#id#.split('|');
+            width#id# = (isNaN(parseFloat('#width#'))) ? width#id# : parseFloat('#width#');
+            height#id# = (isNaN(parseFloat('#height#'))) ? height#id# : parseFloat('#height#');
+            //height#id# = ('#height#' != '#' + 'height#') ? "#height#" : height#id#;
+            chartType#id# = ('#chartType#' != '#' + 'chartType#') ? "#chartType#" : chartType#id#;
+            chartTitle#id# = ('#chartTitle#' != '#' + 'chartTitle#') ? "#chartTitle#" : chartTitle#id#;
+            chartSubtitle#id# = ('#chartSubtitle#' != '#' + 'chartSubtitle#') ? "#chartSubtitle#" : chartSubtitle#id#;
+            xTitle#id# = ('#xTitle#' != '#' + 'xTitle#') ? "#xTitle#" : xTitle#id#;
+            yTitle#id# = ('#yTitle#' != '#' + 'yTitle#') ? "#yTitle#" : yTitle#id#;
+            yMin#id# = ('#yMin#' != '#' + 'yMin#') ? "#yMin#" : yMin#id#;
+            yMax#id# = ('#yMax#' != '#' + 'yMax#') ? "#yMax#" : yMax#id#;
+            dateStart#id# = ('#dateStart#' != '#' + 'dateStart#') ? "#dateStart#" : dateStart#id#;
+            dateEnd#id# = ('#dateEnd#' != '#' + 'dateEnd#') ? "#dateEnd#" : dateEnd#id#;
+            addSerieLabel#id# = ('#addSerieLabel#' != '#' + 'addSerieLabel#') ? "#addSerieLabel#" : addSerieLabel#id#;
+            addSerialColor#id# = ('#addSerialColor#' != '#' + 'addSerialColor#') ? "#addSerialColor#" : addSerialColor#id#;
+            addSerialBackgroundColor#id# = ('#addSerialBackgroundColor#' != '#' + 'addSerialBackgroundColor#') ? "#addSerialBackgroundColor#" : addSerialBackgroundColor#id#;
+            suffix#id#  = ('#suffix#' != '#' + 'suffix#') ? "#suffix#" : suffix#id#;
+            suffix#id# = suffix#id#.split('|');
+            nbDecimals#id# = (isNaN(parseFloat('#nbDecimals#'))) ? nbDecimals#id# : parseFloat('#nbDecimals#');
+            // Pie
+            allowPointSelectPie#id# = (isNaN(parseFloat('#allowPointSelectPie#'))) ? allowPointSelectPie#id# : (parseFloat('#allowPointSelectPie#') == 0) ? false : true;
+            depthPie#id# = (isNaN(parseFloat('#depthPie#'))) ? depthPie#id# : parseFloat('#depthPie#');
+            innerSizePie#id# = (isNaN(parseFloat('#innerSizePie#'))) ? innerSizePie#id# : parseFloat('#innerSizePie#');
+            enabledLabelsPie#id# = (isNaN(parseFloat('#enabledLabelsPie#'))) ? enabledLabelsPie#id# : (parseFloat('#enabledLabelsPie#') == 0) ? false : true,
+            // 3D
+            enabled3D#id# = (isNaN(parseFloat('#enabled3D#'))) ? enabled3D#id# : (parseFloat('#enabled3D#') == 0) ? false : true;
+            alpha3D#id# = (isNaN(parseFloat('#alpha3D#'))) ? alpha3D#id# : parseFloat('#alpha3D#');
+            beta3D#id# = (isNaN(parseFloat('#beta3D#'))) ? beta3D#id# : parseFloat('#beta3D#');
+            depth3D#id# = (isNaN(parseFloat('#depth3D#'))) ? depth3D#id# : parseFloat('#depth3D#');
+            viewDistance3D#id# = (isNaN(parseFloat('#viewDistance3D#'))) ? viewDistance3D#id# : parseFloat('#viewDistance3D#');
+
+            showExportMenu#id# = (isNaN(parseFloat('#showExportMenu#'))) ? showExportMenu#id# : (parseFloat('#showExportMenu#') == 0) ? false : true;
+            description#id# = ('#description#' != '#' + 'description#') ? "#description#" : description#id#;
+            
+          var nooChart#id# = new Highcharts.chart('container#id#', {
+            chart: {
+              	type: chartType#id#,
+                options3d: {
+                  enabled: enabled3D#id#,
+                  alpha: alpha3D#id#,
+                  beta: beta3D#id#,
+                  depth: depth3D#id#,
+                  viewDistance: viewDistance3D#id#
+                },
+              	height: height#id#,
+              	zoomType: 'x',
+                panning: true,
+                panKey: 'shift',
+                events: {
+                  addSeries: function () {
+              		  if (addSerieLabel#id# !== '') {
+                        var label = this.renderer.label(addSerieLabel#id#, 100, 120)
+                            .attr({
+                                fill: addSerialBackgroundColor#id#,
+                                padding: 10,
+                                r: 5,
+                                zIndex: 8
+                            })
+                            .css({
+                                color: addSerialColor#id#,
+                              	backgroundColor: addSerialBackgroundColor#id#
+                            })
+                            .add();
+
+                        setTimeout(function () {
+                          label.fadeOut();
+                        }, 1000);
+              		  }
+                  }
+        		}
+            },
+            title: {
+              text: chartTitle#id#
+            },
+
+            subtitle: {
+              text: chartSubtitle#id#
+            },
+            
+            credits: {
+            	enabled: false
+            },
+            
+            yAxis: {
+              title: {
+                text: yTitle#id#
+              },
+              min: yMin#id#,
+              max: yMax#id#
+            },
+
+            xAxis: {
+              title: {
+      			text: xTitle#id#
+              },
+              type: 'datetime'
+            },
+
+            legend: {
+              layout: 'vertical',
+              align: 'right',
+              verticalAlign: 'middle'
+            },
+
+            plotOptions: {
+              series: {
+                label: {
+                  connectorAllowed: false
+                }
+              },
+              pie: {
+                allowPointSelect: allowPointSelectPie#id#,
+                cursor: 'pointer',
+                depth: depthPie#id#,
+                innerSize: innerSizePie#id#,
+                dataLabels: {
+                  enabled: enabledLabelsPie#id#,
+                  format: '{point.name}'
+                }
+              }
+            },
+            series: [],
+
+            responsive: {
+              rules: [{
+                condition: {
+                  maxWidth: 500
+                },
+                chartOptions: {
+                  legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom'
+                  }
+                }
+              }]
+            }
+
+          });
+
+          var idSerie#id# = 0;
+          jeedom.cmd.update['#id#'] = function (_options) {           
+            // création des séries pour tous les ids passés en paramètre sous la forme "id1|id2|.."
+            idCommand#id#.map(newSerie, idSerie#id#);
+          }
+
+          function newSerie (idCommand, newIdSerie) {
+            // ajoute une nouvelle série (serie newIdSerie) pour l'id de commande idCommand
+
+            jeedom.history.get ({
+              cmd_id: idCommand,
+              dateStart: dateStart#id#,
+              dateEnd: dateEnd#id#,
+              success:  function(result) {
+                // history_name : [Objet][Equipement][Commande]
+                const [objValue, eqValue, commandValue] = result.history_name.substring(1).replaceAll("]","").split("[");
+                let suffix = (suffix#id#.length > newIdSerie) ? suffix#id#[newIdSerie] : suffix#id#[0];
+                if (typeof nooChart#id#.series === 'undefined' || newIdSerie == nooChart#id#.series.length) {
+                  nooChart#id#.addSeries({
+                    name: result.history_name, 
+                    data: [], 
+                    tooltip: {
+                      valueSuffix: suffix,
+                      valueDecimals: nbDecimals#id#
+                    }
+                  });
+                }
+                result.data.map(
+                  function(t) {
+                    const point = t;
+                    const series = nooChart#id#.series[newIdSerie],
+                          shift = series.data.length > 20;
+                    // ajoute une nouvelle valeur
+                    if (chartType#id# == 'pie') {
+                    	// camembert
+                        let piePoint = {name:point[1] + suffix#id#, y: point[1]};
+                    	nooChart#id#.series[newIdSerie].addPoint(piePoint, true, shift);
+                    }
+            		else {
+                    	nooChart#id#.series[newIdSerie].addPoint(point, true, shift);
+                    }
+                });
+                nooChart#id#.setSize(width#id#);
+              }
+            });
+
+          	idSerie#id#++;
+          	nooChart#id#.setSize(width#id#);
+          }
+        });
+      
+        
+      	$('.highcharts-description#id#').html(description#id#);
+      	
+      	// supprime export différents formats
+		if (!showExportMenu#id#) {
+            $('.highcharts-exporting-group').remove();
+      	}
+
+      	jeedom.cmd.update['#id#']({
+        	display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'
+		});
+        //# sourceURL=nooChart.js
+    </script>
+    <style>
+        .highcharts-figure, .highcharts-data-table table {
+          min-width: 360px; 
+          max-width: 800px;
+          margin: 1em auto;
+        }
+
+        .highcharts-data-table table {
+            font-family: Verdana, sans-serif;
+            border-collapse: collapse;
+            border: 1px solid #EBEBEB;
+            margin: 10px auto;
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+        }
+        .highcharts-data-table caption {
+          padding: 1em 0;
+          font-size: 1.2em;
+          color: #555;
+        }
+        .highcharts-data-table th {
+            font-weight: 600;
+          padding: 0.5em;
+        }
+        .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+          padding: 0.5em;
+        }
+        .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+          background: #f8f8f8;
+        }
+        .highcharts-data-table tr:hover {
+          background: #f1f7ff;
+        }      
+    </style>
+  </div>
