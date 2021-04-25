@@ -2,7 +2,7 @@
 
 ![](doc/images/nooChart.gif)
 
-## A récupérer sous [./nooChart/cmd.info.numeric.nooChart.html](./nooChart/cmd.info.numeric.nooChart.html)
+## A récupérer sous [/nooChart/cmd.info.numeric.nooChart.html](./nooChart/cmd.info.numeric.nooChart.html)
 
 ## Création du widget
 
