@@ -81,3 +81,17 @@ De nombreux paramètres sont possibles pour personnaliser les virtuels et obteni
 		- Sélectionner l'équipement souhaité
 		- Sélectionner Valider
 		- Rafraichir la page : le widget nooChart est visible dans le Design
+
+## Quelques exemples des possibilités
+
+- Paramètre chartType=bar, enabled3D=0
+
+![](doc/images/nooChartBar.png)
+
+- Paramètre chartType=bar, enabled3D=1
+
+![](doc/images/nooChartBar3D.png)
+
+- Paramètre chartType=area
+
+![](doc/images/nooChartArea.png)
