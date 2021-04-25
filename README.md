@@ -4,6 +4,13 @@ Développements de widgets pour Jeedom
 
 ## Liste des widgets
 
+### Widget [nooChart](./nooChart) :
+- à récupérer sous [./nooChart/cmd.info.numeric.nooChart.html](./nooChart/cmd.info.numeric.nooChart.html)
+
+- voir l'installation dans [README.md](./nooChart/README.md)
+
+![](nooChart/doc/images/nooChart.gif) 
+
 ### Widget [nooLedScroller](./nooLedScroller) :
 - à récupérer sous [./nooLedScroller/cmd.info.string.nooLedScroller.html](./nooLedScroller/cmd.info.string.nooLedScroller.html)
 - voir l'installation dans [README.md](./nooLedScroller/README.md)
