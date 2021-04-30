@@ -51,7 +51,6 @@
             $.include(['data/customTemplates/dashboard/cmd.action.slider.nooSlider/rsSliderLens.js'],
                 function () {
 
-                    let firstLoad = 0;
                     // Récupération des paramètres
                     let type = 'button', orientation = 'horiz', width = 'auto', height = 'auto',
                         min = 0, max = 100, step = 1,
@@ -191,11 +190,10 @@
                             }
                         },
                         onFinalChange: function (event, value) {
-                            if (!immediateChange && firstLoad > 1) {
+                            if (!immediateChange) {
                                 // mise à jour Jeedom
                                 jeedom.cmd.execute({ id: '#id#', value: { slider: value } });
                             }
-                            firstLoad<2 && firstLoad++;
                         }
                     });
 
