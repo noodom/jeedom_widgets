@@ -51,7 +51,8 @@ De nombreux paramètres sont possibles pour personnaliser les virtuels et obteni
         yTitle : légende de l'axe vertical (vide par défaut)
         yMin : valeur minimale de l'axe vertical (par défaut 0)
         yMax : = valeur maximale de l'axe vertical (par défaut 100)
-        dateStart : date de début d'affichage au format 'YYYY-MM-JJ' (par défaut "2020-01-01")
+        duration : durée d'affichage jusqu'à la date de fin (dateEnd) (format : "3y-6m-45m", "24h", ..)
+	dateStart : date de début d'affichage au format 'YYYY-MM-JJ' (par défaut "2020-01-01"), non pris en compte si duration est défini
         dateEnd : date de fin d'affichage (par défaut date courante)
         addSerieLabel : texte à afficher dans la popup affichée à chaque création de série de données (vide par défaut et donc pas d'affichage de popup)
         addSerialColor : couleur du texte addSerieLabel (par défaut '#FFFFFF')
