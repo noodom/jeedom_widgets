@@ -6,7 +6,7 @@
         idCommand : id des commandes à afficher (par défaut 0, pour afficher plusieurs graphiques, séparer les ids par des '|', ex : 1234|5678)
 
        ********** Paramètres Optionnels ***************
-        chartType : (par défaut 'line',valeurs possibles : line : ligne, column : colonnes, area : aire, pie : camembert, bar : barres horizontales)
+        chartType : (par défaut 'line',valeurs possibles: line : ligne, column : colonnes, area : aire, pie : camembert, bar : barres horizontales)
         width : largeur du graphique (par défaut 300)
         height : hauteur du graphique (par défaut 500)
         chartTitle : titre du graphique (vide par défaut)
@@ -15,7 +15,8 @@
         yTitle : légende de l'axe vertical (vide par défaut)
         yMin : valeur minimale de l'axe vertical (par défaut 0)
         yMax : = valeur maximale de l'axe vertical (par défaut 100)
-        dateStart : date de début d'affichage au format 'YYYY-MM-JJ' (par défaut "2020-01-01")
+        duration : durée d'affichage jusqu'à dateEnd (format : "3y-6m-45m", "24h", ..)
+        dateStart : date de début d'affichage au format 'YYYY-MM-JJ' (par défaut "2020-01-01"), non pris en compte si duration est défini
         dateEnd : date de fin d'affichage (par défaut date courante)
         addSerieLabel : texte à afficher dans la popup affichée à chaque création de série de données (vide par défaut et donc pas d'affichage de popup)
         addSerialColor : couleur du texte addSerieLabel (par défaut '#FFFFFF')
@@ -51,6 +52,52 @@
   </figure>
   
     <script language="javascript">
+      
+      Date.prototype.addSeconds = function(seconds) {
+          this.setSeconds(this.getSeconds() + seconds);
+          return this;
+      };
+
+      Date.prototype.addMinutes = function(minutes) {
+          this.setMinutes(this.getMinutes() + minutes);
+          return this;
+      };
+
+      Date.prototype.addHours = function(hours) {
+          this.setHours(this.getHours() + hours);
+          return this;
+      };
+
+      Date.prototype.addDays = function(days) {
+          this.setDate(this.getDate() + days);
+          return this;
+      };
+
+      Date.prototype.addWeeks = function(weeks) {
+          this.addDays(weeks*7);
+          return this;
+      };
+
+      Date.prototype.addMonths = function (months) {
+          var d = this.getDate();
+          this.setMonth(this.getMonth() + months);
+          var currentDate = this.getDate();
+          if (d !== currentDate) {
+            this.ajouteJours(-currentDate);
+          }
+          return this;
+      };
+
+      Date.prototype.addYears = function(years) {
+          var d = this.getDate();
+          this.setFullYear(this.getFullYear() + years);
+          var currentDate = this.getDate();
+          if (d !== currentDate) {  
+            this.addDays(-currentDate);
+          }
+          return this;
+      };
+
       $.include(['3rdparty/highstock/highcharts-3d.js'],
 		function () {
           // Récupération des paramètres
@@ -64,8 +111,9 @@
             yTitle#id# = "",
           	yMin#id# = 0,
             yMax#id# = 100,
+            duration#id# = "",
             dateStart#id# = "2020-01-01",
-            dateEnd#id# = new Date().toISOString().slice(0, 10),
+            dateEnd#id# = new Date().toISOString(),
             addSerieLabel#id# = '',
             addSerialColor#id# = '#FFFFFF',
             addSerialBackgroundColor#id# = Highcharts.getOptions().colors[0],
@@ -98,8 +146,36 @@
             yTitle#id# = ('#yTitle#' != '#' + 'yTitle#') ? "#yTitle#" : yTitle#id#;
             yMin#id# = ('#yMin#' != '#' + 'yMin#') ? "#yMin#" : yMin#id#;
             yMax#id# = ('#yMax#' != '#' + 'yMax#') ? "#yMax#" : yMax#id#;
-            dateStart#id# = ('#dateStart#' != '#' + 'dateStart#') ? "#dateStart#" : dateStart#id#;
+            duration#id# = ('#duration#' != '#' + 'duration#') ? "#duration#" : duration#id#;
             dateEnd#id# = ('#dateEnd#' != '#' + 'dateEnd#') ? "#dateEnd#" : dateEnd#id#;
+            if (duration#id# == "") {
+              dateStart#id# = ('#dateStart#' != '#' + 'dateStart#') ? "#dateStart#" : dateStart#id#;
+            }
+            else {
+              let dateStart = new Date(dateEnd#id#);
+              durationSplit = duration#id#.split('-');
+              durationSplit.reduce(function (dateStart, sDuration) {
+                if (sDuration.endsWith('s')) {
+                  return dateStart.addSeconds(-parseInt(sDuration.substring(0, sDuration.length-1)));
+                }
+                else if (sDuration.endsWith('m')) {
+                  return dateStart.addMinutes(-parseInt(sDuration.substring(0, sDuration.length-1)));
+                }
+                else if (sDuration.endsWith('h')) {
+                  return dateStart.addHours(-parseInt(sDuration.substring(0, sDuration.length-1)));
+                }
+                else if (sDuration.endsWith('d')) {
+                  return dateStart.addDays(-parseInt(sDuration.substring(0, sDuration.length-1)));
+                }
+                else if (sDuration.endsWith('w')) {
+                  return dateStart.addWeeks(-parseInt(sDuration.substring(0, sDuration.length-1)));
+                }
+                else if (sDuration.endsWith('M')) {
+                  return dateStart.addMonths(-parseInt(sDuration.substring(0, sDuration.length-1)));
+                }
+              }, dateStart);
+              dateStart#id# = dateStart.toISOString();
+            }
             addSerieLabel#id# = ('#addSerieLabel#' != '#' + 'addSerieLabel#') ? "#addSerieLabel#" : addSerieLabel#id#;
             addSerialColor#id# = ('#addSerialColor#' != '#' + 'addSerialColor#') ? "#addSerialColor#" : addSerialColor#id#;
             addSerialBackgroundColor#id# = ('#addSerialBackgroundColor#' != '#' + 'addSerialBackgroundColor#') ? "#addSerialBackgroundColor#" : addSerialBackgroundColor#id#;
