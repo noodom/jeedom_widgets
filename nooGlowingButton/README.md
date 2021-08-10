@@ -62,7 +62,14 @@ Les paramètres suivants sont possibles pour personnaliser les virtuels et obten
 	colorButtonOn : couleur du bouton en mode On ('rgba(0, 176, 255, 1)' si non renseigné)
 	colorButtonOff : couleur du bouton en mode On ('#222' si non renseigné)
 	colorLogo : couleur du bouton fixe (couleurs du bouton On/Off si non renseigné)
-
+ 	time : affichage des informations de temps depuis le dernier allumage/extinction, 
+        	valeurs possibles :
+        	- duree': affiche la durée depuis le dernier allumage/extinction, '
+        	- heure': affiche l'heure de dernier allumage extinction, 
+        	- 'date': affiche la date et l'heure de dernier allumage/extinction)
+	colorTime : couleur du texte des infos de temps
+	colorBackgroundTime : couleur de fond des infos de temps
+	
 ![](doc/images/nooGlowingButtonParams.png)
 
 ## Ajout dans un Design
