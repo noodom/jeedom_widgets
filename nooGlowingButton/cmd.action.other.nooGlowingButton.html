@@ -6,20 +6,30 @@
         colorButtonOn : couleur du bouton en mode On ('rgba(0, 176, 255, 1)' si non renseigné)
         colorButtonOff : couleur du bouton en mode Off ('#222' si non renseigné)
         colorLogo : couleur du logo fixe (couleurs du bouton On/Off si non renseigné)
+        time : affichage des informations de temps depuis le dernier allumage/extinction, 
+        	valeurs possibles :
+        	- duree': affiche la durée depuis le dernier allumage/extinction, '
+        	- heure': affiche l'heure de dernier allumage extinction, 
+        	- 'date': affiche la date et l'heure de dernier allumage/extinction)
+        colorTime : couleur du texte des infos de temps
+        colorBackgroundTime : couleur de fond des infos de temps
 
        ########### by @noodom ;)  ############# -->
   <div class="glowingButton#id#">
     <label class="glowingLabel#id#">
-        <input type="checkbox" id="glowingInput#id#" class="glowingInput#id#"  class="toggle cursor cmd tooltips cmd-widget"
+        <input type="checkbox" id="glowingInput#id#" class="glowingInput#id#" class="toggle cursor cmd tooltips cmd-widget"
               data-type="action" data-subtype="other" data-cmd_id="#id#" data-cmd_uid="#uid#">
         <!-- <input type="checkbox" checked name=""> -->
         <i id="mylogo#id#" aria-hidden="true"></i>
         <span class="check"></span>
+      	<span class="timeCmd label label-default" data-type="info"></span>
       </label>
   </div>
 </div>
 
 <script type="text/javascript">
+  var cmd = $('.glowingLabel#id#');
+  
   // Chargement des paramètres optionnels
   // choix du logo et du bouton (font-awesome)
   var logo#id# = ('#logo#' != '#' + 'logo#') ? "#logo#" : 'fa fa-home'; 
@@ -29,11 +39,20 @@
   // couleurs On/Off du logo
   var colorLogoOn#id# = ('#colorLogo#' != '#' + 'colorLogo#') ? "#colorLogo#" : colorButtonOn#id#;
   var colorLogoOff#id# = ('#colorLogo#' != '#' + 'colorLogo#') ? "#colorLogo#" : colorButtonOff#id#;
+  // couleurs time
+  var colorTime#id# = ('#colorTime#' != '#' + 'colorTime#') ? "#colorTime#" : '';
+  var colorBackgroundTime#id# = ('#colorBackgroundTime#' != '#' + 'colorBackgroundTime#') ? "#colorBackgroundTime#" : '';
   
   document.documentElement.style.setProperty('--color-button-on#id#', colorButtonOn#id#);
   document.documentElement.style.setProperty('--color-button-off#id#', colorButtonOff#id#);
   document.documentElement.style.setProperty('--color-logo-on#id#', colorLogoOn#id#);
   document.documentElement.style.setProperty('--color-logo-off#id#', colorLogoOff#id#);
+  if (colorTime#id# != '') {
+    cmd.find('.timeCmd').css('color', colorTime#id#);
+  }
+  if (colorBackgroundTime#id# != '') {
+    cmd.find('.timeCmd').css('background-color', colorBackgroundTime#id#);
+  }
 
   jeedom.cmd.update['#id#'] = function(_options){   
     
@@ -54,12 +73,33 @@
         $('.cmd[data-cmd_uid=#uid#]').show();
       }
     }
+    
+    if ('#time#' == 'duree') {  
+        jeedom.cmd.displayDuration(_options.valueDate,cmd.find('.timeCmd'));
+    }
+    else if ('#time#' == 'date') {
+        var week = ['dim.', 'lun.', 'mar.', 'mer.', 'jeu.', 'ven.', 'sam.'];
+    	var date = new Date(_options.valueDate.replace(' ', 'T'));
+        var t = _options.valueDate.split(/[- :]/);
+		var format = week[date.getDay()]+" "+t[2]+"/"+t[1];
+        var time = "à "+t[3]+":"+t[4];
+        cmd.find('.timeCmd').html(format+'<br>'+time);
+    }
+    else if ('#time#' == 'heure') {
+        var date = new Date(_options.valueDate.replace(' ', 'T'));
+        var t = _options.valueDate.split(/[- :]/);
+        var time = "à "+t[3]+":"+t[4]+":"+t[5];  
+        cmd.find('.timeCmd').html(time);
+    }
   }
-  jeedom.cmd.update['#id#']({display_value:'#state#'});
+
+  jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
   
   $('#glowingInput#id#').off().on('click', function () {
     jeedom.cmd.execute({id: '#id#'});
   });
+  
+  //# sourceURL=nooscript.js
 </script>
 
 <style>
@@ -146,5 +186,16 @@
 
   #glowingContainer#id# .glowingButton#id# .glowingLabel#id# .glowingInput#id#[type="checkbox"]:checked ~ .fa {
     color: var(--color-logo-on#id#);
+  }
+  
+  .glowingLabel#id# .timeCmd {
+    width: 90px;
+    margin-top: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 5px !important;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 1) inset,
+      			0px 2px 2px 0px rgba(255, 255, 255, 0.5);
+    text-shadow: 1px 2px 8px #000;
   }
 </style>
