@@ -5,7 +5,7 @@ Développements de widgets pour Jeedom
 ## Liste des widgets
 
 ### Widget [nooImgProgress](./nooImgProgress) :
-- à récupérer sous [./nooImgProgress/cmd.info.numeric.nooImgProgress.html](./nooChart/cmd.info.numeric.nooImgProgress.html)
+- à récupérer sous [./nooImgProgress/cmd.info.numeric.nooImgProgress.html](./nooImgProgress/cmd.info.numeric.nooImgProgress.html)
 
 - voir l'installation dans [README.md](./nooImgProgress/README.md)
 
