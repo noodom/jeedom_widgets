@@ -7,6 +7,7 @@
        animation (inactif) : affichage progressif sur changement de valeur (par défaut 1) 
        type (inactif) : type d'affichage (par défaut 'fill'), 
        image : url de l'image à afficher au format png (par défaut 'data/customTemplates/dashboard/cmd.info.numeric.nooImgProgress/default.png')
+       	si l'image est chargée depuis le plugin Pimp my Jeedom (bouton 'Ajouter des fichiers'), seul le nom de l'image est nécessaire (sinon, mettre le path complet)
        size : taille de l'image au format 'largeur,hauteur', ex : '200,100' (par défaut, taille de l'image avec la valeur '')
        direction : direction de remplissage de l'image ('btt' : bas vers haut, ''ttb' : haut vers bas, 'ltr' : gauche vers droite, 'rtl' : droite vers gauche), par défaut 'btt'
        precision : chiffres après la virgule : 0, 0.1, 0.01, ... (par défaut 0),
@@ -50,10 +51,10 @@
             var ldBar#id# = null;
           	$.include(['data/customTemplates/dashboard/cmd.info.numeric.nooImgProgress/loading-bar.min.js'], 
               function () {
-                    // Récupération des paramètres
+                  	// Récupération des paramètres
               		let animation = true, 
                         type = 'fill', 
-                        image = 'data/customTemplates/dashboard/cmd.info.numeric.nooImgProgress/default.png',
+                        image = 'default.png',
                         size = '',
                         direction = 'btt',
                         precision = 0,
@@ -65,12 +66,15 @@
 
               		animation = (isNaN(parseFloat('#animation#'))) ? animation : (parseFloat('#animation#') == 0) ? false : true;
               		image = ('#image#' != '#' + 'image#') ? "#image#" : image;
+              		if (image.indexOf('/') == -1) {
+                        	image = 'data/customTemplates/dashboard/cmd.info.numeric.nooImgProgress/' + image;
+              		}
               		size =  ('#size#' != '#' + 'size#') ? "#size#" : size;
-                    direction = ('#direction#' == 'btt' || '#direction#' == 'ttb' || '#direction#' == 'ltr' || '#direction#' == 'rtl')?'#direction#':direction;
+              		direction = ('#direction#' == 'btt' || '#direction#' == 'ttb' || '#direction#' == 'ltr' || '#direction#' == 'rtl')?'#direction#':direction;
               		precision = ('#precision#' != '#' + 'precision#') ? "#precision#" : precision;
               		backgroundColor = ('#backgroundColor#' != '#' + 'backgroundColor#') ? "#backgroundColor#" : backgroundColor;
               		backgroundExtrude = (isNaN(parseFloat('#backgroundExtrude#'))) ? backgroundExtrude : parseFloat('#backgroundExtrude#');
-    				unit = ('#unit#' != '#' + 'unit#') ? "#unit#" : unit;
+                  	unit = ('#unit#' != '#' + 'unit#') ? "#unit#" : unit;
               		min = (isNaN(parseFloat('#min#'))) ? min : parseFloat('#min#');
               		max = (isNaN(parseFloat('#max#'))) ? max : parseFloat('#max#');
               		duration = (isNaN(parseFloat('#duration#'))) ? duration : parseFloat('#duration#');
@@ -83,19 +87,19 @@
               		// Création du widget
                   	let params = '{';
                    	params += '"type": "' + type + '",';
-                    params += '"img": "' + image + '",'; 
-                    params += (size != '')?'"img-size": "' + size + '",':'';
+                  	params += '"img": "' + image + '",'; 
+                  	params += (size != '')?'"img-size": "' + size + '",':'';
                   	params += '"fill-dir": "' + direction +'",';
                   	params += '"data-precision": "' + precision +'",';
-                    params += '"fill-background": "' + backgroundColor + '",';
-                    params += '"fill-background-extrude": ' + backgroundExtrude + ',';
-                    params += '"min": ' + min + ',';
-                    params += '"max": ' + max + ',';
-                    params += '"duration": ' + duration;
-					params += '}';
-					let jsonParams = JSON.parse(params);
+                  	params += '"fill-background": "' + backgroundColor + '",';
+                  	params += '"fill-background-extrude": ' + backgroundExtrude + ',';
+                  	params += '"min": ' + min + ',';
+                  	params += '"max": ' + max + ',';
+                  	params += '"duration": ' + duration;
+                  	params += '}';
+                  	let jsonParams = JSON.parse(params);
               
-					document.documentElement.style.setProperty('--unit-value#id#', "'" + unit + "'");
+                  	document.documentElement.style.setProperty('--unit-value#id#', "'" + unit + "'");
               		document.documentElement.style.setProperty('--label-top#id#', labelTop);
               		document.documentElement.style.setProperty('--label-left#id#', labelLeft);
               		document.documentElement.style.setProperty('--label-color#id#', labelColor);
@@ -103,17 +107,17 @@
               
               		ldBar#id# = new ldBar("#progress#id# .ldBar", jsonParams);
 
-                    jeedom.cmd.update['#id#'] = function (_options) {
-                      let valeur = is_numeric(_options.display_value) ? parseFloat(_options.display_value) : parseFloat(_options.display_value);
-                      ldBar#id#.set(valeur, animation);
-                    }
-                    jeedom.cmd.update['#id#']({
-                      display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'
-                    });
+                  	jeedom.cmd.update['#id#'] = function (_options) {
+                  		let valeur = is_numeric(_options.display_value) ? parseFloat(_options.display_value) : parseFloat(_options.display_value);
+                  		ldBar#id#.set(valeur, animation);
+                  	}
+                  	jeedom.cmd.update['#id#']({
+                  		display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'
+                  	});
               });
 
-        //# sourceURL=nooscript.js
-  		</script>
+              //# sourceURL=nooscript.js
+        </script>
     </div>
 
 
