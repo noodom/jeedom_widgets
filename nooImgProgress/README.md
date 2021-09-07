@@ -2,6 +2,8 @@
 
 ![](doc/images/nooImgProgress.gif)
 
+![](doc/images/nooImgProgressBubble.gif)
+
 ## A récupérer sous /jeedom_widgets/nooImgProgress/cmd.info.numeric.nooImgProgress.html
 
 ## Création du widget
@@ -71,6 +73,12 @@ De nombreux paramètres sont possibles pour personnaliser les virtuels et obteni
        labelLeft : positionnement horizontal du libellé de la valeur, ex : '-20px', '120%' (par défaut '50%')
        labelColor : couleur du libellé de la valeur (par défaut '#fff')
        labelFontsize : taille du libellé de la valeur (par défaut '14px')
+
+       bubbleBackGroundColor : couleur de fond des bulles (par défaut '#248')
+       bubbleColor : couleur des bulles (par défaut '#fff')
+       bubbleCount : nombre de bulles affichées sur la durée bubbleDuration (par défaut 50)
+       bubbleDuration : durée d'affichage des bulles (par défaut 0 : pas de bulles)
+       bubblePath : Format du conteneur des bulles (valeurs possibles : square : carré sans bordure, squareBorder : carré avec bordure, round/roundBorder : rond avec une bordure, par défaut : rond avec bordure)
 
 ## Ajout dans un Design
 
