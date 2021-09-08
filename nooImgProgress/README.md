@@ -58,7 +58,7 @@ Depuis le plugin Pimp My Jeedom :
 De nombreux paramètres sont possibles pour personnaliser les virtuels et obtenir des rendus très différents
 
        animation (inactif) : affichage progressif sur changement de valeur (par défaut 1) 
-       type : type d'affichage ('fill' : affichage par défaut 'fill', autre affichage possible, bulles :  'bubble')
+       type : type d'affichage ('fill' : affichage par défaut, autre affichage possible, bulles :  'bubble')
        image : url de l'image à afficher au format png (par défaut 'data/customTemplates/dashboard/cmd.info.numeric.nooImgProgress/default.png')
        size : taille de l'image au format 'largeur,hauteur', ex : '200,100' (par défaut, taille de l'image avec la valeur '')
        direction : direction de remplissage de l'image ('btt' : bas vers haut, ''ttb' : haut vers bas, 'ltr' : gauche vers droite, 'rtl' : droite vers gauche), par défaut 'btt'
