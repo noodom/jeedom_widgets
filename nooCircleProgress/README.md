@@ -71,6 +71,7 @@ De nombreux paramètres sont possibles pour personnaliser les virtuels et obteni
 	renduFonteTexte : type de fonte du texte
 	tailleFonteTexte : taille du texte
 	couleurTexte : couleur du texte
+	contrainteMinMax : force la valeur entre (min, max), 0: pas de contrainte sur valeur, 1: contrainte sur valeur (1 par défaut)
 
 	=> 3 possiblités pour paramétrer le rendu du widget :
 		- ajouter seulement le paramètre style avec une valeur de 1 à 13 : prédéfinit les autres paramètres
