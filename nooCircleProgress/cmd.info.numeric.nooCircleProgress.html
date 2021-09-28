@@ -29,6 +29,7 @@
         renduFonteTexte : type de fonte du texte
         tailleFonteTexte : taille du texte
         couleurTexte : couleur du texte
+        contrainteMinMax : force la valeur entre (min, max), 0: pas de contrainte sur valeur, 1: contrainte sur valeur (1 par défaut)
 
         => 3 possiblités pour paramétrer le rendu du widget :
           - ajouter seulement le paramètre style avec une valeur de 1 à 13 : prédéfinit les autres paramètres
@@ -48,7 +49,7 @@
             $.include(['data/customTemplates/dashboard/cmd.info.numeric.nooCircleProgress/circle-progress.js'],
                 function () {
                     // Récupération des paramètres
-                    let min = 0, max = 100, angleDebut = 0, ordreInverse = 0, taille = '250px', couleurFond = 'transparent', unite = 'none', format = 'percent', dureeAnimation = 400;
+                    let min = 0, max = 100, contrainteMinMax = true, angleDebut = 0, ordreInverse = 0, taille = '250px', couleurFond = 'transparent', unite = 'none', format = 'percent', dureeAnimation = 400;
 
                     let widthValue = '5px', colorValue = 'hsl(160deg 100% 45%)', dasharrayValue = '', dashoffsetValue = '', roundValue = '';
                     let widthCircle = '2px', colorCircle = 'hsl(0, 0%, 87%)', dasharrayCircle = '', dashoffsetCircle = '', backgroundColorCircle = '';
@@ -144,6 +145,7 @@
                         // Paramètres min/max : valeur max. autorisée (0-100 par défaut)
                         min = (isNaN(parseFloat('#min#'))) ? min : parseFloat('#min#');
                         max = (isNaN(parseFloat('#max#'))) ? max : parseFloat('#max#');
+                        contrainteMinMax = (isNaN(parseFloat('#contrainteMinMax#'))) ? contrainteMinMax : (parseFloat('#contrainteMinMax#') == 0) ? false : true;
                         // Angle de début d'affichage (0 par défaut)
                         angleDebut = (isNaN(parseFloat('#angleDebut#'))) ? angleDebut : parseFloat('#angleDebut#');
                         // direction inverse du sens des aiguilles d'une montre
@@ -184,6 +186,7 @@
                     let cp = new CircleProgress('.progress#id#', {
                         min: min,
                         max: max,
+                        constrain: contrainteMinMax,
                         startAngle: angleDebut,
                         clockwise: (ordreInverse == 0),
                         value: 0,
