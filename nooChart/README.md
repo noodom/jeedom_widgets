@@ -52,7 +52,7 @@ De nombreux paramètres sont possibles pour personnaliser les virtuels et obteni
         yMin : valeur minimale de l'axe vertical (par défaut 0)
         yMax : = valeur maximale de l'axe vertical (par défaut 100)
         duration : durée d'affichage jusqu'à la date de fin (dateEnd) (format : "3y-6m-45m", "24h", ..)
-	dateStart : date de début d'affichage au format 'YYYY-MM-JJ' (par défaut "2020-01-01"), non pris en compte si duration est défini
+        dateStart : date de début d'affichage au format 'YYYY-MM-JJ' (par défaut "2020-01-01"), non pris en compte si duration est défini
         dateEnd : date de fin d'affichage (par défaut date courante)
         addSerieLabel : texte à afficher dans la popup affichée à chaque création de série de données (vide par défaut et donc pas d'affichage de popup)
         addSerialColor : couleur du texte addSerieLabel (par défaut '#FFFFFF')
@@ -71,7 +71,7 @@ De nombreux paramètres sont possibles pour personnaliser les virtuels et obteni
         depth3D : (actif seulement si enabled3D est à 1) distance du graphique par rapport au fond (par défaut à 20)
         viewDistance3D : (par défaut 25)
         showExportMenu : affiche le bouton permettant d'exporter l'affichage (png, jpeg, pdf, ..), par défaut à 0, valeurs possibles : 0 : non, 1: oui
-		description : texte de description à ajouter en bas du graphique (vide par défaut)
+        description : texte de description à ajouter en bas du graphique (vide par défaut)
 			
 ![](doc/images/nooChartParams.png)
 
