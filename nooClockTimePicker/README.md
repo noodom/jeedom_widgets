@@ -77,6 +77,8 @@ De nombreux paramètres sont possibles pour personnaliser les virtuels et obteni
 		popupHeaderTextColor : couleur du texte de l'entête sur mobile (par défaut '#FFFFFF')
 		selectorColor : couleur du cercle de sélection (par défaut '#0797FF') 
 		selectorNumberColor : couleur du nombre sélectionné (par défaut '#FFFFFF')
+		borderRadius : angle des coins du fond de la popup (par défaut '5' pour '5px')
+		border : css personnalisé pour le bord de l'horloge (par défaut 'solid white 1px')
 		fontName : définition de la fonte des boutons pour mobile (Par défaut 'Arial',)
 		clockOuterCircleFontSize : taille des valeurs du cercle extérieur (par défaut 24)
 		clockInnerCircleFontSize : taille des valeurs du cercle intérieur (par défaut 12)
