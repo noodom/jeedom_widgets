@@ -7,15 +7,20 @@
         color2 : couleur de dégradé de la checkbox (par défaut '#27ae60')
         arrowColor : couleur de la coche pour les types roundedTwo, squaredTwo, squaredThree, squaredFour
         squaredBorder : forme carrée du contour de la checkbox pour les types sliderOne, sliderTwo, roundedOne, roundedTwo (par défaut : 0), valeurs possibles : 0 : non /1 : oui
-        blinkingOn : provoque un clignotement de l'état On pour les types roundedOne et squaredOne (par défaut 0), 0 : non clignotant, 1 : clignotant
-        blinkingOnSpeed : vitesse de clignotement avec unité à préciser (par défaut '1s' pour une seconde), ex : '0.5s', '1s', '2s', '500ms', ..
-        (inactif) textOn : texte en état ON pour le type slideThree (par défaut 'ON')
-        (inactif) textOff : texte en état OFF pour le type slideThree (par défaut 'OFF')
+		(inactif) textOn : texte en état ON pour le type slideThree (par défaut 'ON')
+		(inactif) textOff : texte en état OFF pour le type slideThree (par défaut 'OFF')
+		blinkingOn : provoque un clignotement de l'état On pour les types roundedOne et squaredOne (par défaut 0), 0 : non clignotant, 1 : clignotant
+        colorTextOn : couleur du texte du bouton On ('#27ae60' si non renseigné)
+        colorTextOff : couleur du texte du bouton Off (colorTextOn si non renseigné, '#145b32' si colorTextOn non renseigné)
+        nameTextOn : contenu du texte du bouton On (vide si non renseigné)
+        nameTextOff : contenu du texte du bouton Off (nameTextOn si non renseigné, vide si nameTextOn non renseigné)
+        paddingText : position du texte ('30px 0 0 0' si non renseigné), '30px 0 0 0' : texte en bas, '0 0 0 35px' : texte à droite
 
        ########### by @noodom ;) inspiré par https://codepen.io/bbodine1/pen/novBm #############
        ########### Pensez au café pour les nuits blanches de codage ;) https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=noodom.fr%40gmail.com&currency_code=EUR&source=url
        ########### Code disponible ici : https://github.com/noodom/jeedom_widgets/tree/master/nooCheckBox -->
 
+    <div id="nooText#id#"></div>
     <input type="checkbox" id="nooCheckBox#id#" name="check" class="nooCheckBox"
         class="toggle cursor cmd tooltips cmd-widget" data-type="action" data-subtype="other" data-cmd_id="#id#"
         data-cmd_uid="#uid#">
@@ -39,6 +44,12 @@
     var blinkingOnSpeed = ('#blinkingOnSpeed#' != '#' + 'blinkingOnSpeed#') ? "#blinkingOnSpeed#" : '1s';
     var blinkingOn = (isNaN(parseFloat('#blinkingOn#'))) ? '' : ((parseFloat('#blinkingOn#') == 1) ? 'blinker ' + blinkingOnSpeed + ' linear infinite' : '');
 
+    var colorTextOn#id# = ('#colorTextOn#' != '#' + 'colorTextOn#') ? "#colorTextOn#" : '#27ae60';
+    var colorTextOff#id# = ('#colorTextOff#' != '#' + 'colorTextOff#') ? "#colorTextOff#" : (('#colorTextOn#' != '#' + 'colorTextOn#')?colorTextOn#id#: '#145b32');
+    var nameTextOn#id# = ('#nameTextOn#' != '#' + 'nameTextOn#') ? "#nameTextOn#" : '';
+    var nameTextOff#id# = ('#nameTextOff#' != '#' + 'nameTextOff#') ? "#nameTextOff#" : ((nameTextOn#id# != '')?nameTextOn#id#: '');
+    var paddingText = ('#paddingText#' != '#' + 'paddingText#') ? "#paddingText#" : '30px 0 0 0';
+
     $('.nooDivCheckBox#id#').addClass(type);
     document.documentElement.style.setProperty('--checkbox-color1#id#', color1);
     document.documentElement.style.setProperty('--checkbox-color2#id#', color2);
@@ -47,13 +58,20 @@
     document.documentElement.style.setProperty('--border-radius#id#', squaredBorder);
     document.documentElement.style.setProperty('--text-on#id#', textOn);
     document.documentElement.style.setProperty('--text-off#id#', textOff);
+    document.documentElement.style.setProperty('--text-padding#id#', paddingText);
     document.documentElement.style.setProperty('--blinking-on#id#', blinkingOn);
 
     jeedom.cmd.update['#id#'] = function (_options) {
+
+        document.getElementById('nooText#id#').style.display = (nameTextOn#id# == '' && nameTextOff#id# == '')?"none": "block";
         if (_options.display_value == '1' || _options.display_value == 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
             document.getElementById('nooCheckBox#id#').checked = true;
+            document.documentElement.style.setProperty('--text-color#id#', colorTextOn#id#);
+            document.getElementById('nooText#id#').innerHTML = nameTextOn#id#;
         } else {
             document.getElementById('nooCheckBox#id#').checked = false;
+            document.documentElement.style.setProperty('--text-color#id#', colorTextOff#id#);
+            document.getElementById('nooText#id#').innerHTML = nameTextOff#id#;
         }
     }
     jeedom.cmd.update['#id#']({ display_value: '#state#' });
@@ -61,10 +79,13 @@
     $('#nooCheckBox#id#').off().on('click', function () {
         jeedom.cmd.execute({ id: '#id#' });
     });
+
+    //# sourceURL=nooCheckbox.js
 </script>
 
 <style>
     :root {
+        --text-color#id#: #145b32;
         --checkbox-color1#id#: #27ae60;
         --checkbox-color1#id#: #145b32 --border-radius#id#: 50px;
         --arrow-color1#id#: #fcfff4;
@@ -72,6 +93,18 @@
         --text-on#id#: 'ON';
         --text-off#id#: 'OFF';
         --blinking-on#id#: '';
+        --text-padding#id#: '30px 0 0 0';
+    }
+
+    #nooText#id# {
+        margin: 0;
+        font-family: sans-serif;
+        text-align: center;
+        color: var(--text-color#id#);
+        font-size: 16px;
+        padding: var(--text-padding#id#);
+        text-transform: uppercase;
+        letter-spacing: 4px;
     }
 
     /* .slideOne */
@@ -79,6 +112,7 @@
         width: 50px;
         height: 10px;
         background: #333;
+        margin: 20px auto;
         position: relative;
         border-radius: var(--border-radius#id#);
         box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2);
@@ -113,6 +147,7 @@
         width: 80px;
         height: 30px;
         background: #333;
+        margin: 20px auto;
         position: relative;
         border-radius: var(--border-radius#id#);
         box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2);
@@ -177,13 +212,14 @@
         width: 80px;
         height: 26px;
         background: #333;
+        margin: 20px auto;
         position: relative;
         border-radius: var(--border-radius#id#);
         box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2);
     }
 
     .slideThree#id#:after {
-        content: 'OFF'; //var(--text-off#id#);
+        content: var(--text-off#id#);
         color: #000;
         position: absolute;
         right: 10px;
@@ -194,7 +230,7 @@
     }
 
     .slideThree#id#:before {
-        content: 'ON'; //var(--text-on#id#);
+        content: var(--text-on#id#);
         color: var(--checkbox-color1#id#);
         position: absolute;
         left: 10px;
@@ -233,6 +269,7 @@
         width: 28px;
         height: 28px;
         position: relative;
+        margin: 20px auto;
         background: #fcfff4;
         background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
         border-radius: var(--border-radius#id#);
@@ -278,6 +315,11 @@
         animation: var(--blinking-on#id#);
     }
 
+    /*@keyframes blinker {
+          50% {
+            opacity: 0;
+          }
+        }*/
     @-webkit-keyframes blinker {
         0% {
             opacity: 1.0;
@@ -298,6 +340,7 @@
         width: 28px;
         height: 28px;
         position: relative;
+        margin: 20px auto;
         background: #fcfff4;
         background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
         border-radius: var(--border-radius#id#);
@@ -349,6 +392,7 @@
         width: 28px;
         height: 28px;
         position: relative;
+        margin: 20px auto;
         background: #fcfff4;
         background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
         box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
@@ -397,6 +441,7 @@
         width: 28px;
         height: 28px;
         position: relative;
+        margin: 20px auto;
         background: #fcfff4;
         background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
         box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
@@ -445,6 +490,7 @@
     .squaredThree#id# {
         width: 20px;
         position: relative;
+        margin: 20px auto;
     }
 
     .squaredThree#id# label {
@@ -491,6 +537,7 @@
     .squaredFour#id# {
         width: 20px;
         position: relative;
+        margin: 20px auto;
     }
 
     .squaredFour#id# label {

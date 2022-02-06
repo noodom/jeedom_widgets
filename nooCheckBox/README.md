@@ -55,6 +55,11 @@ De nombreux paramètres sont possibles pour personnaliser les virtuels et obteni
 		blinkingOnSpeed : vitesse de clignotement avec unité à préciser (par défaut '1s' pour une seconde), ex : '0.5s', '1s', '2s', '500ms', ..
 		(inactif) textOn : texte en état ON pour le type slideThree (par défaut 'ON')
 		(inactif) textOff : texte en état OFF pour le type slideThree (par défaut 'OFF')
+        colorTextOn : couleur du texte du bouton On ('#27ae60' si non renseigné)
+        colorTextOff : couleur du texte du bouton Off (colorTextOn si non renseigné, '#145b32' si colorTextOn non renseigné)
+        nameTextOn : contenu du texte du bouton On (vide si non renseigné)
+        nameTextOff : contenu du texte du bouton Off (nameTextOn si non renseigné, vide si nameTextOn non renseigné)
+        paddingText : position du texte ('30px 0 0 0' si non renseigné), '30px 0 0 0' : texte en bas, '0 0 0 35px' : texte à droite
 
 ## Ajout dans un Design
 
