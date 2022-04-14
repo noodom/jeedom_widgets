@@ -37,11 +37,43 @@
         showExportMenu : affiche le bouton permettant d'exporter l'affichage (png, jpeg, pdf, ..), par défaut à 0, valeurs possibles : 0 : non, 1: oui
 	description : texte de description à ajouter en bas du graphique (vide par défaut)
 
+        Pensez au café pour les nuits blanches de codage ;) 
+       	https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=noodom.fr%40gmail.com&currency_code=EUR&source=url
        ########### by @noodom ;) 
   	   ########### code disponible ici : https://github.com/noodom/jeedom_widgets/tree/master/nooChart
   	   ########### inspiré par https://www.highcharts.com/demo/line-basic #############
     -->
-
+  <template>
+	<div>idCommand : (obligatoire) id des commandes à afficher (par défaut 0, pour afficher plusieurs graphiques, séparer les ids par des '|', ex : 1234|5678)</div>
+        <div>chartType : (par défaut 'line',valeurs possibles: line : ligne, column : colonnes, area : aire, pie : camembert, bar : barres horizontales)</div>
+        <div>width : largeur du graphique (par défaut 300)</div>
+        <div>height : hauteur du graphique (par défaut 500)</div>
+        <div>chartTitle : titre du graphique (vide par défaut)</div>
+        <div>chartSubtitle : sous-titre du graphique (vide par défaut)</div>
+        <div>xTitle : légende de l'axe horizontal (vide par défaut)</div>
+        <div>yTitle : légende de l'axe vertical (vide par défaut)</div>
+        <div>yMin : valeur minimale de l'axe vertical (par défaut 0)</div>
+        <div>yMax : = valeur maximale de l'axe vertical (par défaut 100)</div>
+        <div>duration : durée d'affichage jusqu'à dateEnd (format : "3y-6m-45m", "24h", ..)</div>
+        <div>dateStart : date de début d'affichage au format 'YYYY-MM-JJ' (par défaut "2020-01-01"), non pris en compte si duration est défini</div>
+        <div>dateEnd : date de fin d'affichage (par défaut date courante)</div>
+        <div>addSerieLabel : texte à afficher dans la popup affichée à chaque création de série de données (vide par défaut et donc pas d'affichage de popup)</div>
+        <div>addSerialColor : couleur du texte addSerieLabel (par défaut '#FFFFFF')</div>
+        <div>addSerialBackgroundColor : couleur de fond du texte addSerieLabel (par défaut '#FFFFFF')</div>
+        <div>suffix : chaine de caractères à ajouter aux valeurs (vide par défaut, par exemple ' %', ' °')</div>
+        <div>nbDecimals : nombre de décimales affichées pour les valeurs affichées (par défaut 2)</div>
+        <div>allowPointSelectPie : (actif seulement pour chartType='pie') autorisation de sélectionner un élément du camembert (par défaut 1, valeurs possibles : 0 : non, 1: oui)</div>
+        <div>depthPie : (actif seulement si enabled3D est à 1) épaisseur du camembert (par défaut 35),</div>
+        <div>innerSizePie : largeur du trou à l'intérieur du camembert (par défaut 0)</div>
+        <div>enabledLabelsPie : affichage du libellé relié à chaque partie du camembert (par défaut 0, valeurs possibles : 0 : non, 1: oui)</div>
+        <div>enabled3D : active la visualisation 3D (par défaut 0, valeurs possibles : 0 : non, 1: oui)</div>
+        <div>alpha3D : (actif seulement si enabled3D est à 1) angle d'affichage pour la vue de haut (par défaut à 20)</div>
+        <div>beta3D : (actif seulement si enabled3D est à 1) angle d'affichage horizontal (par défaut à 20, valeurs cohérentes : -45 à 45)</div>
+        <div>depth3D : (actif seulement si enabled3D est à 1) distance du graphique par rapport au fond (par défaut à 20)</div>
+        <div>viewDistance3D : (par défaut 25)</div>
+        <div>showExportMenu : affiche le bouton permettant d'exporter l'affichage (png, jpeg, pdf, ..), par défaut à 0, valeurs possibles : 0 : non, 1: oui</div>
+	<div>description : texte de description à ajouter en bas du graphique (vide par défaut)</div>
+  </template>
   <div class="title #hide_name#">
     <div class="cmdName">#name_display#</div>
   </div>
