@@ -12,8 +12,23 @@
         nameTextOff : contenu du texte du bouton Off (nameTextOn si non renseigné, vide si nameTextOn non renseigné)
         scale : pourcentage de réduction de la taille du bouton (ex : '0.5' pour réduire de moitié)
 
-       ########### by @noodom ;) inspiré par https://codepen.io/Stockin/pen/qJqVYy ############# -->
-
+        Pensez au café pour les nuits blanches de codage ;) 
+       	https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=noodom.fr%40gmail.com&currency_code=EUR&source=url
+       ########### by @noodom ;) 
+       ########### code disponible ici : https://github.com/noodom/jeedom_widgets/tree/master/nooNeonButton
+       ########### inspiré par https://codepen.io/Stockin/pen/qJqVYy #############
+    -->
+    <template>	
+	<div>backgroundColorFromOn : couleur de début du dégradé du bouton On ('#70a1ff' si non renseigné)</div>
+        <div>backgroundColorToOn :  couleur de fin du dégradé du bouton On ('#1e90ff' si non renseigné)</div>
+        <div>backgroundColorFromOff : couleur de début du dégradé du bouton Off ('#333' si non renseigné)</div>
+        <div>backgroundColorToOff :  couleur de fin du dégradé du bouton Off ('#000' si non renseigné)</div>
+        <div>colorTextOn : couleur du texte du bouton On (backgroundColorFromOn si non renseigné)</div>
+        <div>colorTextOff : couleur du texte du bouton Off (colorTextOn si non renseigné, '#000' si colorTextOn non renseigné)</div>
+        <div>nameTextOn : contenu du texte du bouton On (vide si non renseigné)</div>
+        <div>nameTextOff : contenu du texte du bouton Off (nameTextOn si non renseigné, vide si nameTextOn non renseigné)</div>
+        <div>scale : pourcentage de réduction de la taille du bouton (ex : '0.5' pour réduire de moitié)</div>
+    </template>	
     <div id="neonText#id#"></div>
     <input type="checkbox" id="neonInput#id#" class="neonInput#id#" class="toggle cursor cmd tooltips cmd-widget"
         data-type="action" data-subtype="other" data-cmd_id="#id#" data-cmd_uid="#uid#">
