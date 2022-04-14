@@ -15,7 +15,19 @@
         colorBackgroundTime : couleur de fond des infos de temps
         showLogo : rend visible/invisible le logo (1 par défaut, valeurs possibles : 0 logo invisible, 1 logo visible)
 
+        Pensez au café pour les nuits blanches de codage ;) 
+        https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=noodom.fr%40gmail.com&currency_code=EUR&source=url
        ########### by @noodom ;)  ############# -->
+  <template>
+	<div>logo : logo au format fontawesome ('fa fa-home' si non renseigné)</div>
+	<div>showLogo : rend visible/invisible le logo (1 par défaut, valeurs possibles : 0 logo invisible, 1 logo visible)</div>
+	<div>colorButtonOn : couleur du bouton en mode On ('rgba(0, 176, 255, 1)' si non renseigné)</div>
+	<div>colorButtonOff : couleur du bouton en mode Off ('#222' si non renseigné)</div>
+	<div>colorLogo : couleur du logo fixe (couleurs du bouton On/Off si non renseigné)</div>
+	<div>time : affichage des informations de temps depuis le dernier allumage/extinction (valeurs possibles : 'duree', 'heure', 'date')</div>
+	<div>colorTime : couleur du texte des infos de temps</div>
+	<div>colorBackgroundTime : couleur de fond des infos de temps</div>
+  </template>
   <div class="glowingButton#id#">
     <label class="glowingLabel#id#">
         <input type="checkbox" id="glowingInput#id#" class="glowingInput#id#" class="toggle cursor cmd tooltips cmd-widget"
