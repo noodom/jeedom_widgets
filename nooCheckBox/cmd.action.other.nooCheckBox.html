@@ -16,10 +16,26 @@
         nameTextOff : contenu du texte du bouton Off (nameTextOn si non renseigné, vide si nameTextOn non renseigné)
         paddingText : position du texte ('30px 0 0 0' si non renseigné), '30px 0 0 0' : texte en bas, '0 0 0 35px' : texte à droite
 
-       ########### by @noodom ;) inspiré par https://codepen.io/bbodine1/pen/novBm #############
+       ########### by @noodom ;)
        ########### Pensez au café pour les nuits blanches de codage ;) https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=noodom.fr%40gmail.com&currency_code=EUR&source=url
-       ########### Code disponible ici : https://github.com/noodom/jeedom_widgets/tree/master/nooCheckBox -->
-
+       ########### Code disponible ici : https://github.com/noodom/jeedom_widgets/tree/master/nooCheckBox
+       ########### inspiré par https://codepen.io/bbodine1/pen/novBm #############
+    -->
+    <template>	
+	<div>type : type de la checkbox (par défaut slideOne), valeurs possibles : slideOne, slideTwo, slideThree, roundedOne, roundedTwo, squaredOne, squaredTwo, squaredThree, squaredFour</div>
+        <div>color1 : couleur de la checkbox (par défaut '#27ae60')</div>
+        <div>color2 : couleur de dégradé de la checkbox (par défaut '#27ae60')</div>
+        <div>arrowColor : couleur de la coche pour les types roundedTwo, squaredTwo, squaredThree, squaredFour</div>
+        <div>squaredBorder : forme carrée du contour de la checkbox pour les types sliderOne, sliderTwo, roundedOne, roundedTwo (par défaut : 0), valeurs possibles : 0 : non /1 : oui</div>
+	<div>(inactif) textOn : texte en état ON pour le type slideThree (par défaut 'ON')</div>
+	<div>(inactif) textOff : texte en état OFF pour le type slideThree (par défaut 'OFF')</div>
+	<div>blinkingOn : provoque un clignotement de l'état On pour les types roundedOne et squaredOne (par défaut 0), 0 : non clignotant, 1 : clignotant</div>
+        <div>colorTextOn : couleur du texte du bouton On ('#27ae60' si non renseigné)</div>
+        <div>colorTextOff : couleur du texte du bouton Off (colorTextOn si non renseigné, '#145b32' si colorTextOn non renseigné)</div>
+        <div>nameTextOn : contenu du texte du bouton On (vide si non renseigné)</div>
+        <div>nameTextOff : contenu du texte du bouton Off (nameTextOn si non renseigné, vide si nameTextOn non renseigné)</div>
+        <div>paddingText : position du texte ('30px 0 0 0' si non renseigné), '30px 0 0 0' : texte en bas, '0 0 0 35px' : texte à droite</div>
+    </template>	
     <div id="nooText#id#"></div>
     <input type="checkbox" id="nooCheckBox#id#" name="check" class="nooCheckBox"
         class="toggle cursor cmd tooltips cmd-widget" data-type="action" data-subtype="other" data-cmd_id="#id#"
