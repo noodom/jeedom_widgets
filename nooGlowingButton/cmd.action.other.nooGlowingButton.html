@@ -13,6 +13,7 @@
         	- 'date': affiche la date et l'heure de dernier allumage/extinction)
         colorTime : couleur du texte des infos de temps
         colorBackgroundTime : couleur de fond des infos de temps
+        showLogo : rend visible/invisible le logo (1 par défaut, valeurs possibles : 0 logo invisible, 1 logo visible)
 
        ########### by @noodom ;)  ############# -->
   <div class="glowingButton#id#">
@@ -42,6 +43,8 @@
   // couleurs time
   var colorTime#id# = ('#colorTime#' != '#' + 'colorTime#') ? "#colorTime#" : '';
   var colorBackgroundTime#id# = ('#colorBackgroundTime#' != '#' + 'colorBackgroundTime#') ? "#colorBackgroundTime#" : '';
+  // Logo
+  var showLogo#id# = (isNaN(parseFloat('#showLogo#'))) ? true : (parseFloat('#showLogo#') == 1);
   
   document.documentElement.style.setProperty('--color-button-on#id#', colorButtonOn#id#);
   document.documentElement.style.setProperty('--color-button-off#id#', colorButtonOff#id#);
@@ -57,6 +60,9 @@
   jeedom.cmd.update['#id#'] = function(_options){   
     
     $('#mylogo#id#').addClass(logo#id#);
+    if (!showLogo#id#) {
+      $('#mylogo#id#').hide();
+    }
     
     if (_options.display_value == '1' || _options.display_value == 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
       document.getElementById('glowingInput#id#').checked = true;
