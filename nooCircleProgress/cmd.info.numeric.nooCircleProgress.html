@@ -36,8 +36,40 @@
           - ajouter les paramètres de son choix pour créer son propre affichage de widget
           - ajouter le paramètre style et modifier l'apparence en ajoutant quelques paramètres pour modifier le rendu final du style ajouté
 
-       ########### by @noodom ;) inspiré par https://codepen.io/tiggr/pen/VwwZoOR, basé sur https://tigrr.github.io/circle-progress/ ############# -->
-
+       Pensez au café pour les nuits blanches de codage ;) 
+       https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=noodom.fr%40gmail.com&currency_code=EUR&source=url
+       ########### by @noodom ;) 
+       ########### code disponible ici : https://github.com/noodom/jeedom_widgets/tree/master/nooCircleProgress
+       ########### inspiré par https://codepen.io/tiggr/pen/VwwZoOR, basé sur https://tigrr.github.io/circle-progress/ ############# 
+    -->
+    <template>
+        <div>style : choix parmi une liste de paramétrages prédéfinis des champs ci-dessous (valeur de 1 à 13)</div>
+	<div>useStyle : choix d'utilisation des styles prédéfinis (par défaut 'only_style', valeurs possibles : no_style,only_style,style_with_options)</div>
+        <div>min : valeur minimum autorisée (0 par défaut)</div>
+        <div>max : valeur maximum autorisée (100 par défaut)</div>
+        <div>angleDebut : Angle de début d'affichage (0 par défaut)</div>
+        <div>ordreInverse : 0=non, 1=oui (0 par défaut)</div>
+        <div>taille : hauteur et largeur (250px par défaut)</div>
+        <div>couleurFond : couleur de fond du widget (transparent par défaut)</div>
+        <div>uniteChamp : unité à afficher avec la valeur dans le cercle si précisé (ex ° pour afficher '22°')</div>
+        <div>format : format prédéfini d'affichage (valeurs possibles : horizontal, vertical, percent, value, valueOnCircle, none)</div>
+        <div>dureeAnimation : durée de l'animation de remplissage de la valeur dans le cercle au chargement</div>
+        <div>largeurValeur : largeur de la partie du cercle représentant la valeur</div>
+        <div>couleurValeur : couleur de la partie du cercle représentant la valeur</div>
+        <div>ecartValeur :  permet de mettre des pointillés (taille point et espace, ex : '4 1') pour la partie du cercle représentant la valeur</div>
+        <div>offsetValeur : décalage de la partie du cercle représentant la valeur</div>
+        <div>arrondiValeur :  de la partie du cercle représentant la valeur</div>
+        <div>largeurCercle :  largeur du cercle de fond complet</div>
+        <div>couleurCercle : couleur du tour du cercle complet</div>
+        <div>couleurFondCercle : couleur de remplissage de fond du cercle</div>
+        <div>ecartCercle :  permet de mettre des pointillés (taille point et espace, ex : '4 1') pour le cercle complet</div>
+        <div>offsetCercle : décalage du cercle de fond complet</div>
+        <div>nomFonteTexte : nom de la fonte du texte</div>
+        <div>renduFonteTexte : type de fonte du texte</div>
+        <div>tailleFonteTexte : taille du texte</div>
+        <div>couleurTexte : couleur du texte</div>
+        <div>contrainteMinMax : force la valeur entre (min, max), 0: pas de contrainte sur valeur, 1: contrainte sur valeur (1 par défaut)</div>
+    </template>
     <div class="title #hide_name#">
         <div class="cmdName">#name_display#</div>
     </div>
