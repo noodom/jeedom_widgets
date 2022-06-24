@@ -10,7 +10,7 @@ Widgets list :
 Widget installation details :
 	- https://github.com/noodom/jeedom_widgets/blob/master/installation/nooWidgetsAutomaticInstallation.php
 
-- Pensez au café pour les nuits blanches de codage ;) https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=noodom.fr%40gmail.com&currency_code=EUR&source=url
+- Pensez au café pour les nuits blanches de codage ;) https://www.paypal.com/cgi-bin/webscr?currency_code=EUR&cmd=_donations&business=noodom.fr%40gmail.com&source=url
 
 */
 
@@ -52,6 +52,25 @@ if (is_dir($destinationDir)) {
 
 $scenario->setLog('==> Widget added : ' . $widgetName);
 
-$msg = 'new widget ' . $widgetName . ' created';
+$widgetLink = '';
+try {
+  $pimpJeedom = plugin::byId('pimpJeedom');
+  if ($pimpJeedom->isActive()) {
+    $scenario->setLog('Plugin pimpJeedom OK');
+    $files = glob($destinationDir . '/dashboard/cmd.*.' . $widgetName . '.html');
+	if (count($files) == 1) {
+        $name = 'dashboard_' . str_replace('.', '_', str_replace('cmd.', '', str_replace('.html', '', basename($files[0]))));
+		$widgetLink = ' : &l' . 't;a href="/index.php?v=d&m=pimpJeedom&p=pimpJeedom&logicalid=' . $name . '" target="_blank"&g' . 't;Ouverture dans Pimp My Jeedom' . '&l' . 't;/a&g' . 't;';
+  	}
+  }
+  else {
+    $scenario->setLog('Plugin pimpJeedom inactif');
+  }
+} 
+catch (Exception $e) {
+	$scenario->setLog('Erreur de récupération du plugin pimpJeedom');
+}
+
+$msg = 'Nouveau widget ' . $widgetName . ' créé' . $widgetLink;
 $actionMsg = '';
 message::add('Génération de widget Noodom', $msg, $actionMsg, null);
