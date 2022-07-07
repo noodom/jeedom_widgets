@@ -50,6 +50,12 @@ Développements de widgets pour Jeedom
 
 ![](nooSlider/doc/images/nooSliderDemo.gif) 
 
+### Widget [nooCircularSlider](./nooCircularSlider) :
+- à récupérer sous [./nooCircularSlider/cmd.action.slider.nooCircularSlider.html](./nooCircularSlider/cmd.action.slider.nooCircularSlider.html)
+- voir l'installation dans [README.md](./nooCircularSlider/README.md)
+
+![](nooCircularSlider/doc/images/nooCircularSliderDemo.gif) 
+
 ### Widget [nooClockPicker](./nooClockPicker) :
 - à récupérer sous [./nooClockPicker/cmd.action.slider.nooClockPicker.html](./nooClockPicker/cmd.action.slider.nooClockPicker.html)
 - voir l'installation dans [README.md](./nooClockPicker/README.md)
