@@ -2,6 +2,10 @@
 
 Développements de widgets pour Jeedom
 
+## :boom: [Installation automatique](./installation) d'un widget noodom à l'aide d'un scénario créé automatiquement
+
+Cette installation permet de créer les différents widgets ci-dessous automatiquement à partir d'un simple scénario.
+
 ## Liste des widgets
 
 ### Widget [nooImgProgress](./nooImgProgress) :
