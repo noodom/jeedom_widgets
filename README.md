@@ -1,4 +1,4 @@
-# jeedom_widgets
+# Widgets Jeedom
 
 Développements de widgets pour Jeedom
 
