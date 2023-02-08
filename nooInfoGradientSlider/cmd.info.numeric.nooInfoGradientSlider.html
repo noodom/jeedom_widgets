@@ -1,0 +1,364 @@
+<div
+  style="margin-right: 5px; margin-left: 5px; padding: 0px !important"
+  class="cmd #history# container-fluid tooltips cmd cmd-widget"
+  data-type="info"
+  data-subtype="numeric"
+  data-cmd_id="#id#"
+  data-cmd_uid="#uid#"
+  data-version="#version#"
+>
+  <!-- ################ nooInfoGradientSlider ################ 
+       ********** Paramètres Optionnels ***************
+		
+        width : couleur de début du dégradé du bouton On ('#70a1ff' si non renseigné)
+        height :  couleur de fin du dégradé du bouton On ('#1e90ff' si non renseigné)
+        bgColor : couleur de début du dégradé du bouton Off ('#333' si non renseigné)
+        bgPixelsOff :  couleur de fin du dégradé du bouton Off ('#000' si non renseigné)
+        gradientValues : valeurs des dégradés de couleurs ('0|80|100' si non renseigné)
+        gradientColors : couleur des pixels de fond ('green|yellow|red' si non renseigné)
+        vertical : affichage vertical : '0' pour affichage horizontal, '1' pour affichage vertical('0' si non renseigné)
+
+        Pensez au café pour les nuits blanches de codage ;) 
+       	https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=noodom.fr%40gmail.com&currency_code=EUR&source=url
+       ########### by @noodom ;) 
+       ########### code disponible ici : https://github.com/noodom/jeedom_widgets/tree/master/nooInfoGradientSlider
+    -->
+  <template>
+    <div>width : largeur ('200px' si non renseigné)</div>
+    <div>height : hauteur ('30px' si non renseigné)</div>
+    <div>bgColor : couleur de fond ('#333' si non renseigné)</div>
+    <div>
+      bgPixelsOff : couleur des pixels de fond ('#666' si non renseigné)
+    </div>
+    <div>
+      gradientValues : valeurs des dégradés de couleurs ('0|80|100' si non
+      renseigné)
+    </div>
+    <div>
+      gradientColors : couleur des pixels de fond ('green|yellow|red' si non
+      renseigné)
+    </div>
+    <div>vertical : affichage vertical ('0' si non renseigné)</div>
+  </template>
+  <center>
+    <div class="title #hide_name#">
+      <div class="cmdName">#name_display#</div>
+    </div>
+    <br />
+
+    <div>
+      <div class="centered">
+        <div class="val"></div>
+        <div class="content2">
+          <div class="levels" id="levels">
+            <div class="level" id="level"></div>
+          </div>
+          <div class="verticalLimits">
+            <div class="maxValue">100</div>
+            <div class="minValue">0</div>
+          </div>
+        </div>
+        <div class="horizontalLimits">
+          <div class="minValue">0</div>
+          <div class="maxValue">100</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="value #hide_history#">
+      <div class="col-xs-12 center-block">
+        <span title="{{Min}}" class="tooltips">#minHistoryValue#</span>|<span
+          title="{{Moyenne}}"
+          class="tooltips"
+          >#averageHistoryValue#</span
+        >|<span title="{{Max}}" class="tooltips">#maxHistoryValue#</span>
+        <i class="#tendance#"></i>
+      </div>
+    </div>
+  </center>
+  <script>
+
+       // Chargement des paramètres optionnels
+       var width#id# = ('#width#' != '#' + 'width#') ? "#width#" : '200px';
+       if (width#id# != '') {
+           document.documentElement.style.setProperty('--width#id#', width#id#);
+       }
+       var height#id# = ('#height#' != '#' + 'height#') ? "#height#" : '30px';
+       if (height#id# != '') {
+           document.documentElement.style.setProperty('--height#id#', height#id#);
+       }
+       var bgColor#id# = ('#bgColor#' != '#' + 'bgColor#') ? "#bgColor#" : '#333';
+       if (bgColor#id# != '') {
+           document.documentElement.style.setProperty('--bg-color#id#', bgColor#id#);
+       }
+       var bgPixelsOff#id# = ('#bgPixelsOff#' != '#' + 'bgPixelsOff#') ? "#bgPixelsOff#" : '#666';
+       if (bgPixelsOff#id# != '') {
+           document.documentElement.style.setProperty('--bg-pixels-off#id#', bgPixelsOff#id#);
+       }
+
+       var vertical#id# = ('#vertical#' != '#' + 'vertical#') ? "#vertical#" : '0';
+       var cmd = $('.cmd[data-cmd_id=#id#]')
+       if (vertical#id# === '1') {
+    	cmd.find('.levels').addClass('vertical');
+       }
+
+       var gradientValues#id# = ('#gradientValues#' != '#' + 'gradientValues#') ? "#gradientValues#" : '';
+       var gradientColors#id# = ('#gradientColors#' != '#' + 'gradientColors#') ? "#gradientColors#" : '';
+       if (gradientValues#id# != '' && gradientColors#id# != '') {
+           var percents = gradientValues#id#.split('|');
+           var colors = gradientColors#id#.split('|');
+         	var gradientGauge#id# = (vertical#id# === '1')?'linear-gradient(to top':'linear-gradient(to right';
+         	var nbGradientColors = colors.length;
+           for (let i=0 ; i<nbGradientColors ; i++) {
+             gradientGauge#id# += ', ' + colors[i] + ' ' + percents[i] + '%';
+           }
+         	gradientGauge#id# += ')';
+         	document.documentElement.style.setProperty('--gradient-gauge#id#', gradientGauge#id#);
+       }
+
+    // jeedom.cmd.update['#id#'] = function(_options){
+    jeedom.cmd.addUpdateFunction('#id#',function(_options) {
+         var value = ($.isNumeric(_options.display_value)) ? parseFloat(_options.display_value) : 0.0;
+         var intNum = Math.trunc(value);
+         var valsign = '-';
+         var decNum = Math.round((value - intNum) * 10);
+         if (value < 0) {
+           var intNum = (valsign+intNum*-1);
+           var decNum = Math.round((decNum)*-1);
+         }
+         var minValue = ($.isNumeric('#minValue#')) ? parseFloat('#minValue#') : 0.0;
+         var maxValue = ($.isNumeric('#maxValue#')) ? parseFloat('#maxValue#') : 100.0;
+         var moyValue = Math.round((maxValue+minValue)/2);
+         var maxvaleur = maxValue + minValue;
+         var minNegative = 0;
+         if (minValue < 0){
+           var minNegative = minValue*-1;
+           var maxvaleur = maxValue + minNegative;
+         }
+         var maxNegative = 0;
+         if (maxValue < 0){
+           var maxNegative = maxValue*-1;
+           var maxvaleur = maxNegative + minNegative;
+         }
+         var valeurState = value + minNegative;
+         var jauge = maxValue - Math.round( (_options.display_value - (minValue)) * (100/(maxValue - (minValue))) );
+
+
+         if (vertical#id# !== '1') {
+           // horizontal
+           document.documentElement.style.setProperty('--clip-path#id#', 'inset(0 ' + jauge + '% 0 0)');
+           $('.cmd[data-cmd_id=#id#] .verticalLimits').css('display', 'none');
+         }
+         else {
+           // vertical
+           document.documentElement.style.setProperty('--clip-path#id#', 'inset(' + jauge + '% 0 0 0)');
+           $('.cmd[data-cmd_id=#id#] .horizontalLimits').css('display', 'none');
+          }
+
+         $('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate);
+         //$('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value);
+         $('.cmd[data-cmd_id=#id#] .val').empty().append(_options.display_value);
+         $('.cmd[data-cmd_id=#id#] .minValue').empty().append(minValue);
+         $('.cmd[data-cmd_id=#id#] .maxValue').empty().append(maxValue);
+    });
+
+    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
+  </script>
+
+  <style>
+    :root {
+      --width#id#: 200px;
+      --height#id#: 30px;
+      --bg-color#id#: #333;
+      --bg-pixels-off#id#: #666;
+      --percent#id#: 20%;
+      --clip-path#id#: inset(0 50% 0 0);
+      --gradient-gauge#id#: linear-gradient(
+        to right,
+        green 0%,
+        yellow 80%,
+        red 100%
+      );
+    }
+
+    [data-cmd_id="#id#"] .limits {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    [data-cmd_id="#id#"] .verticalLimits {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-left: 3px;
+    }
+
+    [data-cmd_id="#id#"] .horizontalLimits {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-top: 3px;
+    }
+
+    [data-cmd_id="#id#"] .val {
+      height: 18px;
+      font-size: 14px;
+      width: 34px;
+      padding: 3px;
+      margin-bottom: 3px;
+      color: var(--bg-pixels-off#id#);
+      background-color: var(--bg-color#id#);
+      border-radius: 10%;
+    }
+
+    [data-cmd_id="#id#"] .value {
+      margin-top: 3px;
+    }
+
+    [data-cmd_id="#id#"] .content2 {
+      display: flex !important;
+      flex-direction: row;
+    }
+
+    /* paint background of level meter */
+    [data-cmd_id="#id#"] .levels {
+      width: var(--width#id#);
+      height: var(--height#id#);
+      background-color: var(--bg-color#id#);
+      border-radius: 2px;
+      display: flex;
+      flex-direction: column;
+      padding: 3px 4px;
+    }
+
+    /* paint not glowing LEDs */
+    [data-cmd_id="#id#"] .level {
+      position: relative;
+      margin: 2px 0;
+      flex-grow: 1;
+      z-index: 3;
+      background-color: transparent;
+      background-repeat: repeat-x;
+      background-image: linear-gradient(
+        to right,
+        var(--bg-pixels-off#id#) 3px,
+        transparent 1px
+      );
+      background-size: 4px 100%;
+    }
+
+    /* paint glowing LEDs */
+    [data-cmd_id="#id#"] .level:before {
+      width: 100%;
+      height: 100%;
+      content: " ";
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      z-index: 1;
+      background-repeat: no-repeat;
+      background-image: var(--gradient-gauge#id#);
+      background-size: 100% 100%;
+      clip-path: inset(0 0% 0 0);
+      /* switch off leds via clipping */
+      -webkit-clip-path: inset(0 0% 0 0);
+    }
+
+    /* paint gap lines of LEDs */
+    [data-cmd_id="#id#"] .level::after {
+      width: 100%;
+      height: 100%;
+      content: " ";
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      z-index: 2;
+      margin-left: 3px;
+      background-image: linear-gradient(
+        to right,
+        var(--bg-color#id#) 1px /* space between leds*/,
+        transparent 1px
+      );
+      background-repeat: repeat-x;
+      background-size: 4px 100%;
+      /* 4px LED height */
+      background-color: transparent;
+    }
+
+    [data-cmd_id="#id#"] #level::before {
+      clip-path: var(--clip-path#id#);
+      -webkit-clip-path: var(--clip-path#id#);
+    }
+
+    /** vertical **/
+    /* paint background of level meter */
+    [data-cmd_id="#id#"] .vertical .levels {
+      width: var(--width#id#);
+      height: var(--height#id#);
+      background-color: #333;
+      border-radius: 2px;
+      display: flex;
+      flex-direction: row;
+      padding: 4px 3px;
+      /*margin: auto;
+        margin-top: 20px;*/
+    }
+
+    /* paint not glowing LEDs */
+    [data-cmd_id="#id#"] .vertical .level {
+      position: relative;
+      margin: 0 2px;
+      flex-grow: 1;
+      z-index: 3;
+      background-color: transparent;
+      background-repeat: repeat-y;
+      background-image: linear-gradient(
+        to bottom,
+        var(--bg-pixels-off#id#) 3px,
+        transparent 1px
+      );
+      background-size: 100% 4px;
+    }
+
+    /* paint glowing LEDs */
+    [data-cmd_id="#id#"] .vertical .level::before {
+      width: 100%;
+      height: 100%;
+      content: " ";
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      z-index: 1;
+      background-repeat: no-repeat;
+      background-image: var(--gradient-gauge#id#);
+      background-size: 100% 100%;
+      clip-path: inset(0% 0 0 0);
+      /* switch off leds via clipping */
+      -webkit-clip-path: inset(0% 0 0 0);
+      /* Safari */
+      /*animation: level-animation 500ms alternate infinite;*/
+    }
+
+    /* paint gap lines of LEDs */
+    [data-cmd_id="#id#"] .vertical .level::after {
+      width: 100%;
+      height: 100%;
+      content: " ";
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      z-index: 2;
+      margin-top: 3px;
+      margin-left: unset;
+      background-image: linear-gradient(
+        to bottom,
+        #333 1px /* space between leds*/,
+        transparent 1px
+      );
+      background-repeat: repeat-y;
+      background-size: 100% 4px;
+      /* 4px LED height */
+      background-color: transparent;
+    }
+  </style>
+</div>
