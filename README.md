@@ -9,7 +9,7 @@ Cette installation permet de créer les différents widgets ci-dessous automatiq
 ## Liste des widgets
 
 ### :boom: Widget [nooInfoGradientSlider](./nooInfoGradientSlider) :
-- à récupérer sous [./nooInfoGradientSlider/cmd.info.numeric.nooImgProgress.html](./nooInfoGradientSlider/cmd.info.numeric.nooImgProgress.html)
+- à récupérer sous [./nooInfoGradientSlider/cmd.info.numeric.nooInfoGradientSlider.html](./nooInfoGradientSlider/cmd.info.numeric.nooImgProgress.html)
 
 - voir l'installation dans [README.md](./nooInfoGradientSlider/README.md)
 
