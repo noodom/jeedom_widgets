@@ -50,8 +50,8 @@ Depuis le plugin Pimp My Jeedom :
 
 De nombreux paramètres sont possibles pour personnaliser les virtuels et obtenir des rendus très différents
 
-        width : couleur de début du dégradé du bouton On ('#70a1ff' si non renseigné)
-        height :  couleur de fin du dégradé du bouton On ('#1e90ff' si non renseigné)
+        width : largeur ('200px' si non renseigné)
+        height :  hauteur ('30px' si non renseigné)
         bgColor : couleur de début du dégradé du bouton Off ('#333' si non renseigné)
         bgPixelsOff :  couleur de fin du dégradé du bouton Off ('#000' si non renseigné)
         gradientValues : valeurs des dégradés de couleurs ('0|80|100' si non renseigné)
