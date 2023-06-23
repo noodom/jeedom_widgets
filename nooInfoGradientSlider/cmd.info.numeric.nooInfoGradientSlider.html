@@ -141,7 +141,7 @@
            var maxvaleur = maxNegative + minNegative;
          }
          var valeurState = value + minNegative;
-         var jauge = maxValue - Math.round( (_options.display_value - (minValue)) * (100/(maxValue - (minValue))) );
+         var jauge = 100 - Math.round( (_options.display_value - (minValue)) * (100/(maxValue - (minValue))) );
 
 
          if (vertical#id# !== '1') {
