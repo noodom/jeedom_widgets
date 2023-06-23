@@ -157,7 +157,7 @@
 
          $('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate);
          //$('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value);
-         $('.cmd[data-cmd_id=#id#] .val').empty().append(_options.display_value);
+         $('.cmd[data-cmd_id=#id#] .val').empty().append(_options.display_value).append('#unite#');
          $('.cmd[data-cmd_id=#id#] .minValue').empty().append(minValue);
          $('.cmd[data-cmd_id=#id#] .maxValue').empty().append(maxValue);
     });
@@ -203,7 +203,7 @@
     [data-cmd_id="#id#"] .val {
       height: 18px;
       font-size: 14px;
-      width: 34px;
+      width: fit-content;
       padding: 3px;
       margin-bottom: 3px;
       color: var(--bg-pixels-off#id#);
