@@ -99,22 +99,20 @@
        var vertical#id# = ('#vertical#' != '#' + 'vertical#') ? "#vertical#" : '0';
        var cmd = $('.cmd[data-cmd_id=#id#]')
        if (vertical#id# === '1') {
-    	cmd.find('.levels').addClass('vertical');
+    	  cmd.find('.levels').addClass('vertical');
        }
 
-       var gradientValues#id# = ('#gradientValues#' != '#' + 'gradientValues#') ? "#gradientValues#" : '';
-       var gradientColors#id# = ('#gradientColors#' != '#' + 'gradientColors#') ? "#gradientColors#" : '';
-       if (gradientValues#id# != '' && gradientColors#id# != '') {
-           var percents = gradientValues#id#.split('|');
-           var colors = gradientColors#id#.split('|');
-         	var gradientGauge#id# = (vertical#id# === '1')?'linear-gradient(to top':'linear-gradient(to right';
-         	var nbGradientColors = colors.length;
-           for (let i=0 ; i<nbGradientColors ; i++) {
-             gradientGauge#id# += ', ' + colors[i] + ' ' + percents[i] + '%';
-           }
-         	gradientGauge#id# += ')';
-         	document.documentElement.style.setProperty('--gradient-gauge#id#', gradientGauge#id#);
-       }
+       var gradientValues#id# = ('#gradientValues#' != '#' + 'gradientValues#') ? "#gradientValues#" : '0|80|100';
+       var gradientColors#id# = ('#gradientColors#' != '#' + 'gradientColors#') ? "#gradientColors#" : 'green|yellow|red';
+       var percents = gradientValues#id#.split('|');
+       var colors = gradientColors#id#.split('|');
+       var gradientGauge#id# = (vertical#id# === '1')?'linear-gradient(to top':'linear-gradient(to right';
+       var nbGradientColors = colors.length;
+       for (let i=0 ; i<nbGradientColors ; i++) {
+        gradientGauge#id# += ', ' + colors[i] + ' ' + percents[i] + '%';
+      }
+        gradientGauge#id# += ')';
+        document.documentElement.style.setProperty('--gradient-gauge#id#', gradientGauge#id#);
 
     // jeedom.cmd.update['#id#'] = function(_options){
     jeedom.cmd.addUpdateFunction('#id#',function(_options) {
