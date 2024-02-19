@@ -30,6 +30,7 @@ Depuis le plugin Pimp My Jeedom :
 > - Saisir le nom nooCircularSlider, la version Dashboard, le type Action et le Sous-Type Curseur puis valider avec le bouton 'Créer'
 > - Dans la zone de texte 'Edition', coller le code du fichier cmd.action.other.nooCircularSlider.html
 > - Sélectionner le bouton 'Sauvegarder'
+> - Ajouter le fichier data/customTemplates/dashboard/cmd.action.slider.nooCircularSlider/nooCircularSlider.js
 
 
 ## (facultatif) Création d'un virtuel avec commande info et commande action Curseur
