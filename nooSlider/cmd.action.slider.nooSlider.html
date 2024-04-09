@@ -1,5 +1,5 @@
 <div style="margin:5px;" class="cmd cmd-widget" data-type="action" data-subtype="slider" data-cmd_id="#id#"
-     data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+    data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
     <!-- ################ nooSlider ################ 
        ********** Paramètres Optionnels ***************
 
@@ -62,44 +62,34 @@
     -->
 
     <template>
-        <div>type : 'button'/'images', format d'affichage ('button' par défaut)</div>
-        <div>immediateChange : 0: prise en compte de la nouvelle valeur du changement à l'arrêt du défilement, 1: prise
-            en compte de la nouvelle valeur immédiate à chaque changement (0 par défaut)
-        </div>
-        <div>paddingStart : décalage en % (0 à 1) à droite si slider gauche (0.1 par défaut, soit 10%)</div>
-        <div>paddingEnd : décalage à droite en % (0 à 1) si slider coupé (0.1 par défaut, soit 10%)</div>
-        <div>handleZoom : précise le zoom à appliquer sur les valeurs survolées par le bouton ou sur la taille de
-            l'image zoomée (1 par défaut)
-        </div>
-        <div>handleSize : taille du bouton en % de la taille totale du slider, % de la largeur pour slider horizontal, %
-            de la hauteur pour slider vertical (30 par défaut)
-        </div>
-        <div>animationDelay : temps de l'animation de déplacement en ms du bouton suite à un changement de valeur (100
-            par défaut)
-        </div>
-        <div>orientation : 'horizontale'/'verticale', affichage horizontal ou vertical ('horizontale' par défaut)</div>
-        <div>width : largeur</div>
-        <div>height : hauteur</div>
-        <div>min : valeur minimale du slider (0 par défaut)</div>
-        <div>max : valeur maximale du slider (100 par défaut)</div>
-        <div>step : pas de défilement (1 par défaut)</div>
-        <div>minRange : valeur minimale accessible (valeur min par défaut)</div>
-        <div>maxRange : valeur maximale accessible (valeur max par défaut)</div>
-        <div>fixedHandle : bouton de slider fixe, 0:non fixe / 1:fixe (0 par défaut)</div>
-        <div>addPlus : 0:pas de '+' devant valeur positive / 1: '+' devant valeur positive (0 par défaut)</div>
-        <div>cursorColor : couleur du curseur de position ('white' par défaut)</div>
-        <div>cursorLeftPos : position du libellé en % depuis la gauche du bouton (par défaut 40)</div>
-        <div>cursorTopPos : position du libellé en % depuis le haut du bouton, 0 à 100 (par défaut 40)</div>
-        <div>displayedValues : valeurs visibles sous slider (ex : '0,20,40,60,80,100')</div>
-        <div>centerValue : valeur de la position séparant le slider pour définir les couleurs à gauche et droite (vide
-            par défaut)
-        </div>
-        <div>leftColor = couleur à gauche du curseur de séparation ('#ff0000' par défaut)</div>
-        <div>rightColor = couleur à droite du curseur de séparation ('#00ff00' par défaut)</div>
-        <div>flipped : indique la direction du slider, 0 : min vers max, 1 max vers min (0 par défaut)</div>
-        <div>images : liste des images à mettre en fond dans le mode image</div>
-        <div>imageWidth : hauteur de chaque image de fond pour le type image (60 par défaut)</div>
-        <div>imageHeight : hauteur de chaque image pour le type image (40 par défaut)</div>
+	<div>type : 'button'/'images', format d'affichage ('button' par défaut)</div>
+	<div>immediateChange : 0: prise en compte de la nouvelle valeur du changement à l'arrêt du défilement, 1: prise en compte de la nouvelle valeur immédiate à chaque changement (0 par défaut)</div>
+	<div>paddingStart : décalage en % (0 à 1) à droite si slider gauche (0.1 par défaut, soit 10%)</div>
+	<div>paddingEnd : décalage à droite en % (0 à 1) si slider coupé (0.1 par défaut, soit 10%)</div>
+	<div>handleZoom : précise le zoom à appliquer sur les valeurs survolées par le bouton ou sur la taille de l'image zoomée (1 par défaut)</div>
+	<div>handleSize : taille du bouton en % de la taille totale du slider, % de la largeur pour slider horizontal, % de la hauteur pour slider vertical (30 par défaut)</div>
+	<div>animationDelay : temps de l'animation de déplacement en ms du bouton suite à un changement de valeur (100 par défaut)</div>
+	<div>orientation : 'horizontale'/'verticale', affichage horizontal ou vertical ('horizontale' par défaut)</div>
+	<div>width : largeur</div>
+	<div>height : hauteur</div>
+	<div>min : valeur minimale du slider (0 par défaut)</div>
+	<div>max : valeur maximale du slider (100 par défaut)</div>
+	<div>step : pas de défilement (1 par défaut)</div>
+	<div>minRange : valeur minimale accessible (valeur min par défaut)</div>
+	<div>maxRange : valeur maximale accessible (valeur max par défaut)</div>
+	<div>fixedHandle : bouton de slider fixe, 0:non fixe / 1:fixe (0 par défaut)</div>
+	<div>addPlus : 0:pas de '+' devant valeur positive / 1: '+' devant valeur positive (0 par défaut)</div>
+	<div>cursorColor : couleur du curseur de position ('white' par défaut)</div>
+	<div>cursorLeftPos : position du libellé en % depuis la gauche du bouton (par défaut 40)</div>
+	<div>cursorTopPos : position du libellé en % depuis le haut du bouton, 0 à 100 (par défaut 40)</div>
+	<div>displayedValues : valeurs visibles sous slider (ex : '0,20,40,60,80,100')</div>
+	<div>centerValue : valeur de la position séparant le slider pour définir les couleurs à gauche et droite (vide par défaut)</div>
+	<div>leftColor = couleur à gauche du curseur de séparation ('#ff0000' par défaut)</div>
+	<div>rightColor = couleur à droite du curseur de séparation ('#00ff00' par défaut)</div>
+	<div>flipped : indique la direction du slider, 0 : min vers max, 1 max vers min (0 par défaut)</div>
+	<div>images : liste des images à mettre en fond dans le mode image</div>
+	<div>imageWidth : hauteur de chaque image de fond pour le type image (60 par défaut)</div>
+	<div>imageHeight : hauteur de chaque image pour le type image (40 par défaut)</div>
     </template>
     <div class="title #hide_name#">
         <div class="cmdName">#name_display#</div>
@@ -120,7 +110,7 @@
                         fixedHandle = false,
                         handleZoom = 1,
                         handleSize = 0.3,
-                        cursorColor = 'white',
+			cursorColor = 'white',
                         cursorLeftPos = '40%',
                         cursorTopPos = '40%',
                         displayedValues = '',
@@ -136,117 +126,44 @@
                         animationDelay = 100;
 
                     // Chargement du style d'affichage
-                    type = ('#type#' != '#' + 'type#')
-                        ? "#type#"
-                        : type;
-                    orientation = ('#orientation#' != '#' + 'orientation#')
-                        ? "#orientation#"
-                        : orientation;
-                    orientation = (orientation == 'vertical' || orientation == 'verticale' || orientation == 'vert')
-                        ? 'vert'
-                        : 'horiz';
-                    width = ('#width#' != '#' + 'width#')
-                        ? "#width#"
-                        : width;
-                    height = ('#height#' != '#' + 'height#')
-                        ? "#height#"
-                        : height;
-                    min = (isNaN(parseFloat('#min#')))
-                        ? min
-                        : parseFloat('#min#');
-                    max = (isNaN(parseFloat('#max#')))
-                        ? max
-                        : parseFloat('#max#');
-                    step = (isNaN(parseFloat('#step#')))
-                        ? step
-                        : parseFloat('#step#');
-                    paddingStart = (isNaN(parseFloat('#paddingStart#')))
-                        ? paddingStart
-                        : parseFloat('#paddingStart#');
-                    paddingEnd = (isNaN(parseFloat('#paddingEnd#')))
-                        ? paddingEnd
-                        : parseFloat('#paddingEnd#');
-                    fixedHandle = (isNaN(parseFloat('#fixedHandle#')))
-                        ? false
-                        : (parseFloat('#fixedHandle#') == 1);
-                    handleZoom = (isNaN(parseFloat('#handleZoom#')))
-                        ? handleZoom
-                        : parseFloat('#handleZoom#');
-                    handleSize = (isNaN(parseFloat('#handleSize#')))
-                        ? handleSize
-                        : (parseFloat('#handleSize#') / 100);
-                    addPlus = (isNaN(parseFloat('#addPlus#')))
-                        ? ''
-                        : ((parseFloat('#addPlus#') == 1)
-                            ? '+'
-                            : '');
-                    minRange = (isNaN(parseFloat('#minRange#')))
-                        ? min
-                        : parseFloat('#minRange#');
-                    maxRange = (isNaN(parseFloat('#maxRange#')))
-                        ? max
-                        : parseFloat('#maxRange#');
-                    displayedValues = ('#displayedValues#' != '#' + 'displayedValues#')
-                        ? ("#displayedValues#".split(","))
-                        : displayedValues;
-                    cursorColor = ('#cursorColor#' != '#' + 'cursorColor#')
-                        ? "#cursorColor#"
-                        : cursorColor;
-                    cursorLeftPos = (isNaN(parseFloat('#cursorLeftPos#')))
-                        ? cursorLeftPos
-                        : (parseFloat('#cursorLeftPos#') + '%');
-                    cursorTopPos = (isNaN(parseFloat('#cursorTopPos#')))
-                        ? cursorTopPos
-                        : (parseFloat('#cursorTopPos#') + '%');
+                    type = ('#type#' != '#' + 'type#') ? "#type#" : type;
+                    orientation = ('#orientation#' != '#' + 'orientation#') ? "#orientation#" : orientation;
+                    orientation = (orientation == 'vertical' || orientation == 'verticale' || orientation == 'vert') ? 'vert' : 'horiz';
+                    width = ('#width#' != '#' + 'width#') ? "#width#" : width;
+                    height = ('#height#' != '#' + 'height#') ? "#height#" : height;
+                    min = (isNaN(parseFloat('#min#'))) ? min : parseFloat('#min#');
+                    max = (isNaN(parseFloat('#max#'))) ? max : parseFloat('#max#');
+                    step = (isNaN(parseFloat('#step#'))) ? step : parseFloat('#step#');
+                    paddingStart = (isNaN(parseFloat('#paddingStart#'))) ? paddingStart : parseFloat('#paddingStart#');
+                    paddingEnd = (isNaN(parseFloat('#paddingEnd#'))) ? paddingEnd : parseFloat('#paddingEnd#');
+                    fixedHandle = (isNaN(parseFloat('#fixedHandle#'))) ? false : (parseFloat('#fixedHandle#') == 1);
+                    handleZoom = (isNaN(parseFloat('#handleZoom#'))) ? handleZoom : parseFloat('#handleZoom#');
+                    handleSize = (isNaN(parseFloat('#handleSize#'))) ? handleSize : (parseFloat('#handleSize#')/100);
+                    addPlus = (isNaN(parseFloat('#addPlus#'))) ? '' : ((parseFloat('#addPlus#') == 1) ? '+' : '');
+                    minRange = (isNaN(parseFloat('#minRange#'))) ? min : parseFloat('#minRange#');
+                    maxRange = (isNaN(parseFloat('#maxRange#'))) ? max : parseFloat('#maxRange#');
+                    displayedValues = ('#displayedValues#' != '#' + 'displayedValues#') ? ("#displayedValues#".split(",")) : displayedValues;
+                    cursorColor = ('#cursorColor#' != '#' + 'cursorColor#') ? "#cursorColor#" : cursorColor;
+                    cursorLeftPos = (isNaN(parseFloat('#cursorLeftPos#'))) ? cursorLeftPos : (parseFloat('#cursorLeftPos#') + '%');
+                    cursorTopPos = (isNaN(parseFloat('#cursorTopPos#'))) ? cursorTopPos : (parseFloat('#cursorTopPos#') + '%');
 
-                    centerValue = (displayedValues == '')
-                        ? null
-                        : ((isNaN(parseFloat('#centerValue#')))
-                            ? null
-                            : (parseFloat('#centerValue#')));
-                    leftColor = (centerValue == null)
-                        ? ''
-                        : (('#leftColor#' != '#' + 'leftColor#')
-                            ? "#leftColor#"
-                            : leftColor);
-                    rightColor = (centerValue == null)
-                        ? ''
-                        : (('#rightColor#' != '#' + 'rightColor#')
-                            ? "#rightColor#"
-                            : rightColor);
-                    addPlus = (isNaN(parseFloat('#addPlus#')))
-                        ? ''
-                        : ((parseFloat('#addPlus#') == 1)
-                            ? '+'
-                            : '');
-                    immediateChange = (isNaN(parseFloat('#immediateChange#')))
-                        ? false
-                        : (parseFloat('#immediateChange#') == 1);
-                    images = ('#images#' != '#' + 'images#')
-                        ? "#images#"
-                        : images;
-                    imageWidth = (isNaN(parseFloat('#imageWidth#')))
-                        ? imageWidth
-                        : parseFloat('#imageWidth#');
-                    imageHeight = (isNaN(parseFloat('#imageHeight#')))
-                        ? imageHeight
-                        : parseFloat('#imageHeight#');
-                    flipped = (isNaN(parseFloat('#flipped#')))
-                        ? false
-                        : (parseFloat('#flipped#') == 1);
-                    animationDelay = (isNaN(parseFloat('#animationDelay#')))
-                        ? animationDelay
-                        : parseFloat('#animationDelay#');
+                    centerValue = (displayedValues == '') ? null : ((isNaN(parseFloat('#centerValue#'))) ? null : (parseFloat('#centerValue#')));
+                    leftColor = (centerValue == null) ? '' : (('#leftColor#' != '#' + 'leftColor#') ? "#leftColor#" : leftColor);
+                    rightColor = (centerValue == null) ? '' : (('#rightColor#' != '#' + 'rightColor#') ? "#rightColor#" : rightColor);
+                    addPlus = (isNaN(parseFloat('#addPlus#'))) ? '' : ((parseFloat('#addPlus#') == 1) ? '+' : '');
+                    immediateChange = (isNaN(parseFloat('#immediateChange#'))) ? false : (parseFloat('#immediateChange#') == 1);
+                    images = ('#images#' != '#' + 'images#') ? "#images#" : images;
+                    imageWidth = (isNaN(parseFloat('#imageWidth#'))) ? imageWidth : parseFloat('#imageWidth#');
+                    imageHeight = (isNaN(parseFloat('#imageHeight#'))) ? imageHeight : parseFloat('#imageHeight#');
+                    flipped = (isNaN(parseFloat('#flipped#'))) ? false : (parseFloat('#flipped#') == 1);
+                    animationDelay = (isNaN(parseFloat('#animationDelay#'))) ? animationDelay : parseFloat('#animationDelay#');
 
                     switch (type) {
                         case 'image':
                         case 'images':
                             // images
                             $("#nooSlider#id#").remove();
-                            $cmd
-                            #id
-                        #
-                            = $("#nooSpan#id#");
+                            $cmd#id# = $("#nooSpan#id#");
                             let imagesList = images.split(',');
                             let imagesLenth = imagesList.length;
                             let imgContent = "";
@@ -258,96 +175,75 @@
                             max = imagesLenth - 1;
                             step = 1;
                             visibleRuler = false;
-                            $cmd
-                            #id
-                        #.
-                            html(imgContent);
+                            $cmd#id#.html(imgContent);
                             break;
                         default:
                             // button
                             $("#nooSpan#id#").remove();
-                            $cmd
-                            #id
-                        #
-                            = $("#nooSlider#id#");
+                            $cmd#id# = $("#nooSlider#id#");
                             document.documentElement.style.setProperty('--color-cursor#id#', cursorColor);
                             document.documentElement.style.setProperty('--left-pos-cursor#id#', cursorLeftPos);
                             document.documentElement.style.setProperty('--top-pos-cursor#id#', cursorTopPos);
                     }
 
-                    $cmd
-                    #id
-                #.
-                    rsSliderLens({
-                        orientation : orientation,
-                        width       : width,
-                        height      : height,
-                        min         : min,
-                        max         : max,
-                        step        : step,
-                        flipped     : flipped,
+                    $cmd#id#.rsSliderLens({
+                        orientation: orientation,
+                        width: width,
+                        height: height,
+                        min: min,
+                        max: max,
+                        step: step,
+                        flipped: flipped,
                         paddingStart: paddingStart,
-                        paddingEnd  : paddingEnd,
-                        fixedHandle : fixedHandle,
-                        handle      : {
-                            size     : handleSize,
-                            zoom     : handleZoom,
-                            pos      : 0.5,
+                        paddingEnd: paddingEnd,
+                        fixedHandle: fixedHandle,
+                        handle: {
+                            size: handleSize,
+                            zoom: handleZoom,
+                            pos: 0.5,
                             animation: animationDelay
                         },
-                        range       : {
-                            type     : [minRange, maxRange],
+                        range: {
+                            type: [minRange, maxRange],
                             draggable: true
                         },
-                        ruler       : {
+                        ruler: {
                             visible: visibleRuler,
-                            labels : {
-                                values       : displayedValues,
+                            labels: {
+                                values: displayedValues,
                                 onCustomLabel: function (event, value) {
-                                    return (value > 0)
-                                        ? addPlus + value
-                                        : value;
+                                    return (value > 0) ? addPlus + value : value;
                                 },
                                 onCustomAttrs: function (event, value) {
-                                    if (leftColor != '' && value < centerValue) return {style: 'fill:' + leftColor};
-                                    if (rightColor != '' && value > centerValue) return {style: 'fill:' + rightColor};
+                                    if (leftColor !='' && value < centerValue) return { style: 'fill:' + leftColor };
+                                    if (rightColor !='' && value > centerValue) return { style: 'fill:' + rightColor };
                                 }
                             }
                         },
 
-                        onCreate     : function (event) {
+                        onCreate: function (event) {
                             if (type == 'button') {
                                 // ajout du libellé pour affichage de la valeur courante
                                 $(event.currentTarget).nextAll(".handle").append("<label>");
                             }
                         },
-                        onChange     : function (event, value) {
+                        onChange: function (event, value) {
                             if (type == 'button') {
                                 // mise à jour du libellé
                                 var $labelElement = $(event.currentTarget).nextAll(".handle").children("label");
                                 $labelElement.addClass("libelle#id#");
-                                $labelElement.text(value < 0
-                                    ? value
-                                    : ((value > 0
-                                        ? addPlus
-                                        : '') + value));
+                                $labelElement.text(value < 0 ? value : ((value > 0 ? addPlus : '') + value));
                             }
 
                             if (immediateChange) {
                                 // mise à jour Jeedom
-                                jeedom.cmd.execute({
-                                    id: '#id#',
-                                    value: {slider: value}
-                                });
+                                jeedom.cmd.execute({ id: '#id#', value: { slider: value } });
                             }
                         },
                         onFinalChange: function (event, value) {
                             if (!immediateChange) {
                                 // mise à jour Jeedom
-                                jeedom.cmd.execute({
-                                    id: '#id#',
-                                    value: {slider: value}
-                                });
+                                jeedom.cmd.execute({ id: '#id#', value: { slider: value } });
                             }
                         }
                     });
@@ -355,13 +251,8 @@
                 });
 
             jeedom.cmd.update['#id#'] = function (_options) {
-                let valeur = is_numeric(_options.display_value)
-                    ? parseFloat(_options.display_value)
-                    : parseFloat(_options.display_value);
-                $cmd
-                #id
-            #.
-                rsSliderLens('option', 'value', valeur);
+                let valeur = is_numeric(_options.display_value) ? parseFloat(_options.display_value) : parseFloat(_options.display_value);
+                $cmd#id#.rsSliderLens('option', 'value', valeur);
             }
             //jeedom.cmd.update['#id#']({ display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#' });
 
@@ -369,31 +260,29 @@
 
         <style>
             :root {
-                --color-cursor #id #: white;
-                --left-pos-cursor #id #: 40%;
-                --top-pos-cursor #id #: 40%;
+                --color-cursor#id#: white;
+              	--left-pos-cursor#id#: 40%;
+              	--top-pos-cursor#id#: 40%;
             }
 
             label.libelle#id# {
-                color: var(--color-cursor #id #);
+                color: var(--color-cursor#id#);
                 display: inline-block;
                 position: absolute;
                 overflow: hidden;
-                left: var(--left-pos-cursor #id #);
+                left: var(--left-pos-cursor#id#);
                 width: 100%;
                 transform: translate(-50%, -25%);
                 height: 100%;
-                top: var(--top-pos-cursor #id #);
-                z-index: 1;
+                top: var(--top-pos-cursor#id#);
+                z-index:1;
             }
 
-            #custom + .range,
-
-            /
-            /
-            range outside the handle
-            #custom ~ .handle .range {
-            / / range inside the handle background: -moz-linear-gradient(left, red 0 %, green 100 %) !important;
+            #custom+.range,
+            // range outside the handle
+            #custom~.handle .range {
+                // range inside the handle
+                background: -moz-linear-gradient(left, red 0%, green 100%) !important;
                 background: -webkit-linear-gradient(left, red 0%, green 100%) !important;
                 background: linear-gradient(to right, red 0%, green 100%) !important;
             }
@@ -419,21 +308,21 @@
                 border-image: linear-gradient(to bottom, #121212, #787878) 1;
             }
 
-            .sliderlens .range > div {
+            .sliderlens .range>div {
                 background-color: #313131;
             }
 
-            .sliderlens .range.drag > div {
+            .sliderlens .range.drag>div {
                 cursor: ew-resize;
             }
 
-            .sliderlens .range.drag.dragging > div {
+            .sliderlens .range.drag.dragging>div {
                 cursor: none;
             }
 
-            .sliderlens > .handle,
-            .sliderlens > .handle1,
-            .sliderlens > .handle2 {
+            .sliderlens>.handle,
+            .sliderlens>.handle1,
+            .sliderlens>.handle2 {
                 border-radius: 3em/.75em;
                 cursor: ew-resize;
                 background-color: #454545;
@@ -443,12 +332,12 @@
                 border-width: 0.0625em 0;
             }
 
-            .sliderlens > .handle:before,
-            .sliderlens > .handle:after,
-            .sliderlens > .handle1:before,
-            .sliderlens > .handle1:after,
-            .sliderlens > .handle2:before,
-            .sliderlens > .handle2:after {
+            .sliderlens>.handle:before,
+            .sliderlens>.handle:after,
+            .sliderlens>.handle1:before,
+            .sliderlens>.handle1:after,
+            .sliderlens>.handle2:before,
+            .sliderlens>.handle2:after {
                 content: '';
                 position: absolute;
                 top: 0;
@@ -457,15 +346,15 @@
                 left: 0;
             }
 
-            .sliderlens > .handle.dragging,
-            .sliderlens > .handle1.dragging,
-            .sliderlens > .handle2.dragging {
+            .sliderlens>.handle.dragging,
+            .sliderlens>.handle1.dragging,
+            .sliderlens>.handle2.dragging {
                 box-shadow: 0 0 0.3125em -0.0625em #000000;
             }
 
-            .sliderlens > .handle .range,
-            .sliderlens > .handle1 .range,
-            .sliderlens > .handle2 .range {
+            .sliderlens>.handle .range,
+            .sliderlens>.handle1 .range,
+            .sliderlens>.handle2 .range {
                 -webkit-border-image: -webkit-linear-gradient(top, #121212, #d1d1d1) 1;
                 -moz-border-image: -moz-linear-gradient(top, #121212, #d1d1d1) 1;
                 -o-border-image: -o-linear-gradient(top, #121212, #d1d1d1) 1;
@@ -473,14 +362,14 @@
                 border-image: linear-gradient(to bottom, #121212, #d1d1d1) 1;
             }
 
-            .sliderlens > .handle:before {
+            .sliderlens>.handle:before {
                 right: 50%;
                 bottom: 55%;
                 border-right: 0.0625em solid rgba(186, 186, 186, 0.6);
                 z-index: 1;
             }
 
-            .sliderlens > .handle:after {
+            .sliderlens>.handle:after {
                 background: -webkit-linear-gradient(left, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 50%, rgba(56, 56, 56, 0.25) 50%, rgba(56, 56, 56, 0.95) 100%);
                 background: -moz-linear-gradient(left, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 50%, rgba(56, 56, 56, 0.25) 50%, rgba(56, 56, 56, 0.95) 100%);
                 background: -o-linear-gradient(left, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 50%, rgba(56, 56, 56, 0.25) 50%, rgba(56, 56, 56, 0.95) 100%);
@@ -488,12 +377,12 @@
                 background: linear-gradient(to right, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 50%, rgba(56, 56, 56, 0.25) 50%, rgba(56, 56, 56, 0.95) 100%);
             }
 
-            .sliderlens > .handle1 {
+            .sliderlens>.handle1 {
                 border-top-right-radius: 0;
                 border-bottom-right-radius: 0;
             }
 
-            .sliderlens > .handle1:after {
+            .sliderlens>.handle1:after {
                 background: -webkit-linear-gradient(left, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 100%);
                 background: -moz-linear-gradient(left, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 100%);
                 background: -o-linear-gradient(left, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 100%);
@@ -501,12 +390,12 @@
                 background: linear-gradient(to right, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 100%);
             }
 
-            .sliderlens > .handle2 {
+            .sliderlens>.handle2 {
                 border-top-left-radius: 0;
                 border-bottom-left-radius: 0;
             }
 
-            .sliderlens > .handle2:after {
+            .sliderlens>.handle2:after {
                 background: -webkit-linear-gradient(left, rgba(56, 56, 56, 0.25) 0%, rgba(56, 56, 56, 0.95) 100%);
                 background: -moz-linear-gradient(left, rgba(56, 56, 56, 0.25) 0%, rgba(56, 56, 56, 0.95) 100%);
                 background: -o-linear-gradient(left, rgba(56, 56, 56, 0.25) 0%, rgba(56, 56, 56, 0.95) 100%);
@@ -514,25 +403,25 @@
                 background: linear-gradient(to right, rgba(56, 56, 56, 0.25) 0%, rgba(56, 56, 56, 0.95) 100%);
             }
 
-            .sliderlens svg > path {
+            .sliderlens svg>path {
                 stroke: rgba(186, 186, 186, 0.6);
             }
 
-            .sliderlens svg > g > text {
+            .sliderlens svg>g>text {
                 fill: rgba(186, 186, 186, 0.6);
                 font-size: 1em;
             }
 
-            .sliderlens.vert > .handle,
-            .sliderlens.vert > .handle1,
-            .sliderlens.vert > .handle2 {
+            .sliderlens.vert>.handle,
+            .sliderlens.vert>.handle1,
+            .sliderlens.vert>.handle2 {
                 cursor: ns-resize;
                 border-radius: 3em/.75em;
             }
 
-            .sliderlens.vert > .handle .range,
-            .sliderlens.vert > .handle1 .range,
-            .sliderlens.vert > .handle2 .range {
+            .sliderlens.vert>.handle .range,
+            .sliderlens.vert>.handle1 .range,
+            .sliderlens.vert>.handle2 .range {
                 -webkit-border-image: -webkit-linear-gradient(top, #121212, #787878) 1;
                 -moz-border-image: -moz-linear-gradient(top, #121212, #787878) 1;
                 -o-border-image: -o-linear-gradient(top, #121212, #787878) 1;
@@ -540,14 +429,14 @@
                 border-image: linear-gradient(to bottom, #121212, #787878) 1;
             }
 
-            .sliderlens.vert > .handle:before {
+            .sliderlens.vert>.handle:before {
                 right: 55%;
                 bottom: 50%;
                 border-right: none;
                 border-bottom: 0.0625em solid rgba(186, 186, 186, 0.6);
             }
 
-            .sliderlens.vert > .handle:after {
+            .sliderlens.vert>.handle:after {
                 background: -webkit-linear-gradient(top, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 50%, rgba(56, 56, 56, 0.25) 50%, rgba(56, 56, 56, 0.95) 100%);
                 background: -moz-linear-gradient(top, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 50%, rgba(56, 56, 56, 0.25) 50%, rgba(56, 56, 56, 0.95) 100%);
                 background: -o-linear-gradient(top, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 50%, rgba(56, 56, 56, 0.25) 50%, rgba(56, 56, 56, 0.95) 100%);
@@ -555,13 +444,13 @@
                 background: linear-gradient(to bottom, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 50%, rgba(56, 56, 56, 0.25) 50%, rgba(56, 56, 56, 0.95) 100%);
             }
 
-            .sliderlens.vert > .handle1 {
+            .sliderlens.vert>.handle1 {
                 border-bottom: none;
                 border-bottom-left-radius: 0;
                 border-bottom-right-radius: 0;
             }
 
-            .sliderlens.vert > .handle1:after {
+            .sliderlens.vert>.handle1:after {
                 background: -webkit-linear-gradient(top, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 100%);
                 background: -moz-linear-gradient(top, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 100%);
                 background: -o-linear-gradient(top, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 100%);
@@ -569,13 +458,13 @@
                 background: linear-gradient(to bottom, rgba(69, 69, 69, 0.95) 0%, rgba(120, 120, 120, 0.25) 100%);
             }
 
-            .sliderlens.vert > .handle2 {
+            .sliderlens.vert>.handle2 {
                 border-top: none;
                 border-top-left-radius: 0;
                 border-top-right-radius: 0;
             }
 
-            .sliderlens.vert > .handle2:after {
+            .sliderlens.vert>.handle2:after {
                 background: -webkit-linear-gradient(top, rgba(56, 56, 56, 0.25) 0%, rgba(56, 56, 56, 0.95) 100%);
                 background: -moz-linear-gradient(top, rgba(56, 56, 56, 0.25) 0%, rgba(56, 56, 56, 0.95) 100%);
                 background: -o-linear-gradient(top, rgba(56, 56, 56, 0.25) 0%, rgba(56, 56, 56, 0.95) 100%);
@@ -631,12 +520,12 @@
                 box-shadow: inset 0 1em 1.25em -0.5em #000000, inset 0 -1em 1.25em -0.5em #000000;
             }
 
-            .sliderlens.fixed > .handle {
+            .sliderlens.fixed>.handle {
                 border-radius: 0;
                 border: none;
             }
 
-            .sliderlens.vert .range.drag > div {
+            .sliderlens.vert .range.drag>div {
                 cursor: ns-resize;
             }
 
@@ -644,11 +533,11 @@
                 cursor: none;
             }
 
-            .sliderlens.dragging > .handle,
-            .sliderlens.dragging > .handle1,
-            .sliderlens.dragging > .handle2 {
+            .sliderlens.dragging>.handle,
+            .sliderlens.dragging>.handle1,
+            .sliderlens.dragging>.handle2 {
                 cursor: none;
             }
         </style>
     </div>
-</div>
+    </div>
