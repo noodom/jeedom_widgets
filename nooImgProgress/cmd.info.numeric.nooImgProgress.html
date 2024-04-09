@@ -1,270 +1,195 @@
-<link rel="stylesheet" href="data/customTemplates/dashboard/cmd.info.numeric.nooImgProgress/loading-bar.min.css"
-<div
-        style="margin:5px 2px 5px 2px;" class="cmd cmd-widget tooltips #history#" data-type="info"
-        data-subtype="numeric"
-        data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
-    <!-- ################ nooImgProgress ################
-           ********** Paramètres Optionnels ***************
+<link rel="stylesheet" href="data/customTemplates/dashboard/cmd.info.numeric.nooImgProgress/loading-bar.min.css" <div
+    style="margin:5px 2px 5px 2px;" class="cmd cmd-widget tooltips #history#" data-type="info" data-subtype="numeric"
+    data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+<!-- ################ nooImgProgress ################
+       ********** Paramètres Optionnels ***************
 
-           animation (inactif) : affichage progressif sur changement de valeur (par défaut 1)
-           type : type d'affichage ('fill' : affichage par défaut, autre affichage possible, bulles :  'bubble')
-           image : url de l'image à afficher au format png (par défaut 'data/customTemplates/dashboard/cmd.info.numeric.nooImgProgress/test.png')
-           size : taille de l'image au format 'largeur,hauteur', ex : '200,100' (par défaut, taille de l'image avec la valeur '')
-           direction : direction de remplissage de l'image ('btt' : bas vers haut, ''ttb' : haut vers bas, 'ltr' : gauche vers droite, 'rtl' : droite vers gauche), par défaut 'btt'
-           precision : chiffres après la virgule : 0, 0.1, 0.01, ... (par défaut 0),
-           backgroundColor : couleur de fond de l'image (par défaut '#ddd')
-           backgroundExtrude : largeur de dépassement du fond autour de l'image (par défaut 3)
-           unit : unité à ajouter à la valeur affichée, ex : '%' (par défaut '')
-           min : valeur minimum autorisée (0 par défaut)
-           max : valeur maximum autorisée (100 par défaut)
-           duration : durée de l'animation sur changement de valeur en secondes (par défaut  1 / 0 : pas d'animation)
-           labelTop : positionnement vertical du libellé de la valeur, ex : '-20px', '120%' (par défaut '50%')
-           labelLeft : positionnement horizontal du libellé de la valeur, ex : '-20px', '120%' (par défaut '50%')
-           labelColor : couleur du libellé de la valeur (par défaut '#fff')
-           labelFontsize : taille du libellé de la valeur (par défaut '14px')
+       animation (inactif) : affichage progressif sur changement de valeur (par défaut 1)
+       type : type d'affichage ('fill' : affichage par défaut, autre affichage possible, bulles :  'bubble')
+       image : url de l'image à afficher au format png (par défaut 'data/customTemplates/dashboard/cmd.info.numeric.nooImgProgress/test.png')
+       size : taille de l'image au format 'largeur,hauteur', ex : '200,100' (par défaut, taille de l'image avec la valeur '')
+       direction : direction de remplissage de l'image ('btt' : bas vers haut, ''ttb' : haut vers bas, 'ltr' : gauche vers droite, 'rtl' : droite vers gauche), par défaut 'btt'
+       precision : chiffres après la virgule : 0, 0.1, 0.01, ... (par défaut 0),
+       backgroundColor : couleur de fond de l'image (par défaut '#ddd')
+       backgroundExtrude : largeur de dépassement du fond autour de l'image (par défaut 3)
+       unit : unité à ajouter à la valeur affichée, ex : '%' (par défaut '')
+       min : valeur minimum autorisée (0 par défaut)
+       max : valeur maximum autorisée (100 par défaut)
+       duration : durée de l'animation sur changement de valeur en secondes (par défaut  1 / 0 : pas d'animation)
+       labelTop : positionnement vertical du libellé de la valeur, ex : '-20px', '120%' (par défaut '50%')
+       labelLeft : positionnement horizontal du libellé de la valeur, ex : '-20px', '120%' (par défaut '50%')
+       labelColor : couleur du libellé de la valeur (par défaut '#fff')
+       labelFontsize : taille du libellé de la valeur (par défaut '14px')
 
-           bubbleBackGroundColor : couleur de fond des bulles (par défaut '#248')
-           bubbleColor : couleur des bulles (par défaut '#fff')
-           bubbleCount : nombre de bulles affichées sur la durée bubbleDuration (par défaut 50)
-           bubbleDuration : durée d'affichage des bulles (par défaut 0 : pas de bulles)
-           bubblePath : Format du conteneur des bulles (valeurs possibles : square : carré sans bordure, squareBorder : carré avec bordure, round/roundBorder : rond avec une bordure, par défaut : rond avec bordure)
+       bubbleBackGroundColor : couleur de fond des bulles (par défaut '#248')
+       bubbleColor : couleur des bulles (par défaut '#fff')
+       bubbleCount : nombre de bulles affichées sur la durée bubbleDuration (par défaut 50)
+       bubbleDuration : durée d'affichage des bulles (par défaut 0 : pas de bulles)
+       bubblePath : Format du conteneur des bulles (valeurs possibles : square : carré sans bordure, squareBorder : carré avec bordure, round/roundBorder : rond avec une bordure, par défaut : rond avec bordure)
 
-           ########### by @noodom ;) inspiré par https://github.com/loadingio/loading-bar ############# -->
+       ########### by @noodom ;) inspiré par https://github.com/loadingio/loading-bar ############# -->
 
-    <!--
-    nooImgProgress : widget for Jeedom
-    Copyright (C) 2023  @noodom
+<!--
+nooImgProgress : widget for Jeedom
+Copyright (C) 2023  @noodom
 
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program; see the file COPYING. If not, write to the
-    Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-    -->
+You should have received a copy of the GNU General Public License
+along with this program; see the file COPYING. If not, write to the
+Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+-->
 
-    <style>
-        #progress#id# .ldBar-label {
-            top: var(--label-top #id #);
-            left: var(--label-left #id #);
-            -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-            color: var(--label-color #id #);
-            font-size: var(--label-fontsize #id #);
-            text-shadow: none;
-        }
+<style>
+    #progress#id# .ldBar-label {
+        top: var(--label-top#id#);
+        left: var(--label-left#id#);
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        color: var(--label-color#id#);
+        font-size: var(--label-fontsize#id#);
+        text-shadow: none;
+    }
 
-        #progress#id# .ldBar-label:after {
-            content: var(--unit-value #id #);
-        }
-    </style>
+    #progress#id# .ldBar-label:after {
+        content: var(--unit-value#id#);
+    }
+</style>
 
-    <div class="title #hide_name#">
-        <div class="cmdName">#name_display#</div>
-    </div>
-    <div id="progress#id#">
-        <div data-value="20" class="ldBar label-center"></div>
-    </div>
+<div class="title #hide_name#">
+    <div class="cmdName">#name_display#</div>
+</div>
+<div id="progress#id#">
+    <div data-value="20" class="ldBar label-center"></div>
+</div>
 
-    <script>
+<script>
 
-        var ldBar
-        #id
-        #
-        = null;
-        $.include(['data/customTemplates/dashboard/cmd.info.numeric.nooImgProgress/loading-bar.min.js'],
-            function () {
-                // Récupération des paramètres
-                let animation = true,
-                    type = 'fill',
-                    preset = '',
-                    bubbleBackGroundColor = '#248',
-                    bubbleColor = '#fff',
-                    bubbleCount = 50,
-                    bubbleDuration = 0, // 0 : stop
-                    bubbleParams = '',
-                    bubblePath = '',
-                    bubbleWidth = '100px',
-                    bubbleHeight = '100px',
-                    fill = '',
-                    image = 'default.png',
-                    size = '',
-                    direction = 'btt',
-                    precision = 0,
-                    backgroundColor = '#ddd', backgroundExtrude = 3,
-                    unit = '',
-                    min = 0, max = 100,
-                    duration = 1,
-                    labelTop = '50%', labelLeft = '50%', labelColor = '#fff', labelFontsize = '14px';
+    var ldBar#id# = null;
+    $.include(['data/customTemplates/dashboard/cmd.info.numeric.nooImgProgress/loading-bar.min.js'],
+        function () {
+            // Récupération des paramètres
+            let animation = true,
+                type = 'fill',
+                preset = '',
+                bubbleBackGroundColor = '#248',
+                bubbleColor = '#fff',
+                bubbleCount = 50,
+                bubbleDuration = 0, // 0 : stop
+                bubbleParams = '',
+                bubblePath = '',
+                bubbleWidth = '100px',
+                bubbleHeight = '100px',
+                fill = '',
+                image = 'default.png',
+                size = '',
+                direction = 'btt',
+                precision = 0,
+                backgroundColor = '#ddd', backgroundExtrude = 3,
+                unit = '',
+                min = 0, max = 100,
+                duration = 1,
+                labelTop = '50%', labelLeft = '50%', labelColor = '#fff', labelFontsize = '14px';
 
-                animation = (isNaN(parseFloat('#animation#')))
-                    ? animation
-                    : (parseFloat('#animation#') == 0)
-                        ? false
-                        : true;
-                type = ('#type#' != '#' + 'type#')
-                    ? "#type#"
-                    : type;
-                size = ('#size#' != '#' + 'size#')
-                    ? "#size#"
-                    : size;
-                bubbleBackGroundColor = ('#bubbleBackGroundColor#' != '#' + 'bubbleBackGroundColor#')
-                    ? "#bubbleBackGroundColor#"
-                    : bubbleBackGroundColor;
-                bubbleColor = ('#bubbleColor#' != '#' + 'bubbleColor#')
-                    ? "#bubbleColor#"
-                    : bubbleColor;
-                bubbleCount = (isNaN(parseFloat('#bubbleCount#')))
-                    ? bubbleCount
-                    : parseFloat('#bubbleCount#');
-                bubbleDuration = (isNaN(parseFloat('#bubbleDuration#')))
-                    ? bubbleDuration
-                    : parseFloat('#bubbleDuration#');
-                bubbleParams = bubbleBackGroundColor + ',' + bubbleColor + ',' + bubbleCount + ',' + bubbleDuration,
-                    bubblePath = ('#bubblePath#' != '#' + 'bubblePath#')
-                        ? "#bubblePath#"
-                        : bubblePath;
-                switch (bubblePath) {
-                    case 'square':
-                        bubblePath = 'M0 0L100 0L1000 100L0 100Z';
-                        break;
-                    case 'squareBorder':
-                        bubblePath = 'M10 10L90 10L90 90L10 90Z';
-                        break;
-                    case 'round':
-                        bubblePath = 'M50 10A40 40 0 0 1 50 90A40 40 0 0 1 50 10';
-                        break;
-                    case 'roundBorder':
-                        bubblePath = 'M50 10A40 40 0 0 1 50 90A40 40 0 0 1 50 10';
-                        break;
-                    /*default:
-                        bubblePath = '';*/
-                }
-                switch (type) {
-                    case 'bubble':
-                        type = 'fill';
-                        preset = 'bubble';
-                        fill = 'data:ldbar/res,bubble(' + bubbleParams + ')';
-                        image = '';
-                        bubbleWidth = (isNaN(size.split(',')[0]))
-                            ? bubbleWidth
-                            : size.split(',')[0] + 'px';
-                        bubbleHeight = (isNaN(size.split(',')[1]))
-                            ? bubbleHeight
-                            : size.split(',')[1] + 'px';
-                        $('#progress#id# .ldBar').css({
-                            'width': bubbleWidth,
-                            'height': bubbleHeight
-                        })
-                        break;
-                    default:
-                        type = 'fill';
-                }
-                image = ('#image#' != '#' + 'image#')
-                    ? "#image#"
-                    : image;
-                if (image.indexOf('/') == -1 && image != '') {
-                    image = 'data/customTemplates/dashboard/cmd.info.numeric.nooImgProgress/' + image;
-                }
-                direction = ('#direction#' == 'btt' || '#direction#' == 'ttb' || '#direction#' == 'ltr' || '#direction#' == 'rtl')
-                    ? '#direction#'
-                    : direction;
-                precision = ('#precision#' != '#' + 'precision#')
-                    ? "#precision#"
-                    : precision;
-                backgroundColor = ('#backgroundColor#' != '#' + 'backgroundColor#')
-                    ? "#backgroundColor#"
-                    : backgroundColor;
-                backgroundExtrude = (isNaN(parseFloat('#backgroundExtrude#')))
-                    ? backgroundExtrude
-                    : parseFloat('#backgroundExtrude#');
-                unit = ('#unit#' != '#' + 'unit#')
-                    ? "#unit#"
-                    : unit;
-                min = (isNaN(parseFloat('#min#')))
-                    ? min
-                    : parseFloat('#min#');
-                max = (isNaN(parseFloat('#max#')))
-                    ? max
-                    : parseFloat('#max#');
-                duration = (isNaN(parseFloat('#duration#')))
-                    ? duration
-                    : parseFloat('#duration#');
-                labelTop = ('#labelTop#' != '#' + 'labelTop#')
-                    ? "#labelTop#"
-                    : labelTop;
-                labelLeft = ('#labelLeft#' != '#' + 'labelLeft#')
-                    ? "#labelLeft#"
-                    : labelLeft;
-                labelColor = ('#labelColor#' != '#' + 'labelColor#')
-                    ? "#labelColor#"
-                    : labelColor;
-                labelFontsize = ('#labelFontsize#' != '#' + 'labelFontsize#')
-                    ? "#labelFontsize#"
-                    : labelFontsize;
+            animation = (isNaN(parseFloat('#animation#'))) ? animation : (parseFloat('#animation#') == 0) ? false : true;
+            type = ('#type#' != '#' + 'type#') ? "#type#" : type;
+            size = ('#size#' != '#' + 'size#') ? "#size#" : size;
+            bubbleBackGroundColor = ('#bubbleBackGroundColor#' != '#' + 'bubbleBackGroundColor#') ? "#bubbleBackGroundColor#" : bubbleBackGroundColor;
+            bubbleColor = ('#bubbleColor#' != '#' + 'bubbleColor#') ? "#bubbleColor#" : bubbleColor;
+            bubbleCount = (isNaN(parseFloat('#bubbleCount#'))) ? bubbleCount : parseFloat('#bubbleCount#');
+            bubbleDuration = (isNaN(parseFloat('#bubbleDuration#'))) ? bubbleDuration : parseFloat('#bubbleDuration#');
+            bubbleParams = bubbleBackGroundColor + ',' + bubbleColor + ',' + bubbleCount + ',' + bubbleDuration,
+                bubblePath = ('#bubblePath#' != '#' + 'bubblePath#') ? "#bubblePath#" : bubblePath;
+            switch (bubblePath) {
+                case 'square':
+                    bubblePath = 'M0 0L100 0L1000 100L0 100Z';
+                    break;
+                case 'squareBorder':
+                    bubblePath = 'M10 10L90 10L90 90L10 90Z';
+                    break;
+                case 'round':
+                    bubblePath = 'M50 10A40 40 0 0 1 50 90A40 40 0 0 1 50 10';
+                    break;
+                case 'roundBorder':
+                    bubblePath = 'M50 10A40 40 0 0 1 50 90A40 40 0 0 1 50 10';
+                    break;
+                /*default:
+                    bubblePath = '';*/
+            }
+            switch (type) {
+                case 'bubble':
+                    type = 'fill';
+                    preset = 'bubble';
+                    fill = 'data:ldbar/res,bubble(' + bubbleParams + ')';
+                    image = '';
+                    bubbleWidth = (isNaN(size.split(',')[0])) ? bubbleWidth : size.split(',')[0] + 'px';
+                    bubbleHeight = (isNaN(size.split(',')[1])) ? bubbleHeight : size.split(',')[1] + 'px';
+                    $('#progress#id# .ldBar').css({ 'width': bubbleWidth, 'height': bubbleHeight })
+                    break;
+                default:
+                    type = 'fill';
+            }
+            image = ('#image#' != '#' + 'image#') ? "#image#" : image;
+            if (image.indexOf('/') == -1 && image != '') {
+                image = 'data/customTemplates/dashboard/cmd.info.numeric.nooImgProgress/' + image;
+            }
+            direction = ('#direction#' == 'btt' || '#direction#' == 'ttb' || '#direction#' == 'ltr' || '#direction#' == 'rtl') ? '#direction#' : direction;
+            precision = ('#precision#' != '#' + 'precision#') ? "#precision#" : precision;
+            backgroundColor = ('#backgroundColor#' != '#' + 'backgroundColor#') ? "#backgroundColor#" : backgroundColor;
+            backgroundExtrude = (isNaN(parseFloat('#backgroundExtrude#'))) ? backgroundExtrude : parseFloat('#backgroundExtrude#');
+            unit = ('#unit#' != '#' + 'unit#') ? "#unit#" : unit;
+            min = (isNaN(parseFloat('#min#'))) ? min : parseFloat('#min#');
+            max = (isNaN(parseFloat('#max#'))) ? max : parseFloat('#max#');
+            duration = (isNaN(parseFloat('#duration#'))) ? duration : parseFloat('#duration#');
+            labelTop = ('#labelTop#' != '#' + 'labelTop#') ? "#labelTop#" : labelTop;
+            labelLeft = ('#labelLeft#' != '#' + 'labelLeft#') ? "#labelLeft#" : labelLeft;
+            labelColor = ('#labelColor#' != '#' + 'labelColor#') ? "#labelColor#" : labelColor;
+            labelFontsize = ('#labelFontsize#' != '#' + 'labelFontsize#') ? "#labelFontsize#" : labelFontsize;
 
 
-                // Création du widget
-                let params = '{';
-                params += '"type": "' + type + '",';
-                params += '"fill": "' + fill + '",';
-                params += (image != '')
-                    ? '"img": "' + image + '",'
-                    : '';
-                params += (preset != '')
-                    ? '"preset": "' + preset + '",'
-                    : '';
-                params += (bubblePath != '')
-                    ? '"path": "' + bubblePath + '",'
-                    : '';
-                params += (size != '')
-                    ? '"img-size": "' + size + '",'
-                    : '';
-                params += '"fill-dir": "' + direction + '",';
-                params += '"data-precision": "' + precision + '",';
-                params += '"fill-background": "' + backgroundColor + '",';
-                params += '"fill-background-extrude": ' + backgroundExtrude + ',';
-                params += '"min": ' + min + ',';
-                params += '"max": ' + max + ',';
-                params += '"duration": ' + duration;
-                params += '}';
-                let jsonParams = JSON.parse(params);
+            // Création du widget
+            let params = '{';
+            params += '"type": "' + type + '",';
+            params += '"fill": "' + fill + '",';
+            params += (image != '') ? '"img": "' + image + '",' : '';
+            params += (preset != '') ? '"preset": "' + preset + '",' : '';
+            params += (bubblePath != '') ? '"path": "' + bubblePath + '",' : '';
+            params += (size != '') ? '"img-size": "' + size + '",' : '';
+            params += '"fill-dir": "' + direction + '",';
+            params += '"data-precision": "' + precision + '",';
+            params += '"fill-background": "' + backgroundColor + '",';
+            params += '"fill-background-extrude": ' + backgroundExtrude + ',';
+            params += '"min": ' + min + ',';
+            params += '"max": ' + max + ',';
+            params += '"duration": ' + duration;
+            params += '}';
+            let jsonParams = JSON.parse(params);
 
-                document.documentElement.style.setProperty('--unit-value#id#', "'" + unit + "'");
-                document.documentElement.style.setProperty('--label-top#id#', labelTop);
-                document.documentElement.style.setProperty('--label-left#id#', labelLeft);
-                document.documentElement.style.setProperty('--label-color#id#', labelColor);
-                document.documentElement.style.setProperty('--label-fontsize#id#', labelFontsize);
+            document.documentElement.style.setProperty('--unit-value#id#', "'" + unit + "'");
+            document.documentElement.style.setProperty('--label-top#id#', labelTop);
+            document.documentElement.style.setProperty('--label-left#id#', labelLeft);
+            document.documentElement.style.setProperty('--label-color#id#', labelColor);
+            document.documentElement.style.setProperty('--label-fontsize#id#', labelFontsize);
 
-                ldBar
-                #id
-            #
-                = new ldBar("#progress#id# .ldBar", jsonParams);
+            ldBar#id# = new ldBar("#progress#id# .ldBar", jsonParams);
 
-                jeedom.cmd.update['#id#'] = function (_options) {
-                    let valeur = is_numeric(_options.display_value)
-                        ? parseFloat(_options.display_value)
-                        : parseFloat(_options.display_value);
-                    ldBar
-                    #id
-                #.
-                    set(valeur, animation);
-                }
-                jeedom.cmd.update['#id#']({
-                    display_value: '#state#',
-                    valueDate: '#valueDate#',
-                    collectDate: '#collectDate#',
-                    alertLevel: '#alertLevel#'
-                });
+            jeedom.cmd.update['#id#'] = function (_options) {
+                let valeur = is_numeric(_options.display_value) ? parseFloat(_options.display_value) : parseFloat(_options.display_value);
+                ldBar#id#.set(valeur, animation);
+            }
+            jeedom.cmd.update['#id#']({
+                display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'
             });
+        });
 
         //# sourceURL=nooImgProgress.js
-    </script>
+</script>
 </div>
