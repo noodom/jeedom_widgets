@@ -97,7 +97,8 @@
     <div id="nooSliderContainer#id#">
         <span id="nooSpan#id#" tabIndex="0" value="#state#"> </span>
         <input id="nooSlider#id#" type="range" value="#state#">
-        <script>
+    </div>
+    <script>
 
             $.include(['data/customTemplates/dashboard/cmd.action.slider.nooSlider/rsSliderLens.js'],
                 function () {
@@ -256,9 +257,9 @@
             }
             //jeedom.cmd.update['#id#']({ display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#' });
 
-        </script>
+    </script>
 
-        <style>
+    <style>
             :root {
                 --color-cursor#id#: white;
               	--left-pos-cursor#id#: 40%;
@@ -538,5 +539,5 @@
             .sliderlens.dragging>.handle2 {
                 cursor: none;
             }
-        </style>
-    </div>
+    </style>
+</div>
