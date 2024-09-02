@@ -61,7 +61,7 @@
 </div>
 
 <script type="text/javascript">
-  var cmd = $('.glowingLabel#id#');
+  var cmd#id# = $('.glowingLabel#id#');
   
   // Chargement des paramètres optionnels
   // choix du logo et du bouton (font-awesome)
@@ -83,10 +83,10 @@
   document.documentElement.style.setProperty('--color-logo-on#id#', colorLogoOn#id#);
   document.documentElement.style.setProperty('--color-logo-off#id#', colorLogoOff#id#);
   if (colorTime#id# != '') {
-    cmd.find('.timeCmd').css('color', colorTime#id#);
+    cmd#id#.find('.timeCmd').css('color', colorTime#id#);
   }
   if (colorBackgroundTime#id# != '') {
-    cmd.find('.timeCmd').css('background-color', colorBackgroundTime#id#);
+    cmd#id#.find('.timeCmd').css('background-color', colorBackgroundTime#id#);
   }
 
   jeedom.cmd.update['#id#'] = function(_options){   
@@ -113,7 +113,7 @@
     }
     
     if ('#time#' == 'duree') {  
-        jeedom.cmd.displayDuration(_options.valueDate,cmd.find('.timeCmd'));
+        jeedom.cmd.displayDuration(_options.valueDate,cmd#id#.find('.timeCmd'));
     }
     else if ('#time#' == 'date') {
         var week = ['dim.', 'lun.', 'mar.', 'mer.', 'jeu.', 'ven.', 'sam.'];
@@ -121,13 +121,13 @@
         var t = _options.valueDate.split(/[- :]/);
 		var format = week[date.getDay()]+" "+t[2]+"/"+t[1];
         var time = "à "+t[3]+":"+t[4];
-        cmd.find('.timeCmd').html(format+'<br>'+time);
+        cmd#id#.find('.timeCmd').html(format+'<br>'+time);
     }
     else if ('#time#' == 'heure') {
         var date = new Date(_options.valueDate.replace(' ', 'T'));
         var t = _options.valueDate.split(/[- :]/);
         var time = "à "+t[3]+":"+t[4]+":"+t[5];  
-        cmd.find('.timeCmd').html(time);
+        cmd#id#.find('.timeCmd').html(time);
     }
   }
 
