@@ -8,6 +8,13 @@ Cette installation permet de créer les différents widgets ci-dessous automatiq
 
 ## Liste des widgets
 
+### :boom: Widget [nooTileGrid](./nooTileGrid) :
+- à récupérer sous [./nooTileGrid/cmd.info.string.nooTileGrid.html](./nooTileGrid/cmd.info.string.nooTileGrid.html)
+
+- voir l'installation dans [README.md](./nooTileGrid/README.md)
+
+![](nooTileGrid/doc/images/nooTileGrid.png) 
+
 ### :boom: Widget [nooInfoGradientSlider](./nooInfoGradientSlider) :
 - à récupérer sous [./nooInfoGradientSlider/cmd.info.numeric.nooInfoGradientSlider.html](./nooInfoGradientSlider/cmd.info.numeric.nooInfoGradientSlider.html)
 
