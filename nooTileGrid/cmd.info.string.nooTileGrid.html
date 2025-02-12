@@ -1,6 +1,31 @@
 <div class="cmd cmd-widget" data-type="info" data-subtype="string" data-cmd_id="#id#" data-cmd_uid="#uid#"
     data-version="#version#" data-eqLogic_id="#eqLogic_id#">
 
+    <!-- ################ nooTileGrid ################ 
+       ########### By @noodom ;) 
+       ########### Pensez au café pour les nuits blanches de codage ;) https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=noodom.fr%40gmail.com&currency_code=EUR&source=url
+       ########### Code disponible ici : https://github.com/noodom/jeedom_widgets/tree/master/nooTileGrid
+    -->
+
+    <!--
+    nooTileGrid : widget for Jeedom
+    Copyright (C) 2025  @noodom
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; see the file COPYING. If not, write to the
+    Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+    -->
+
     <div id="grid-container#id#"> </div>
 
     <template>
@@ -77,7 +102,7 @@
             }
 
             console.log(`%c nooTileGrid #id# : ${text}${fileLine}`, `color: ${textColor#id#}; background: ${bgColor#id# }; padding: 4px; border - radius: 5px; font - weight: bold; `);
-		}
+      	}
       
       	function sendJeedomCommand#id#(cmdId) {
             jeedom.cmd.execute({id: cmdId});
@@ -92,7 +117,7 @@
                         noCache: true,
                         error: function (error) {
                             log#id#(`❌ Erreur jeedom.cmd.byId(${ iconId })!`);
-                          	resolve({ closedClasses: iconClosedClasses, openClasses: iconOpenClasses, closedColor: iconClosedColor, openColor: iconOpenColor });
+                            resolve({ closedClasses: iconClosedClasses, openClasses: iconOpenClasses, closedColor: iconClosedColor, openColor: iconOpenColor });
                         },
                         success: function (infoCmdData) {
                           	//log#id#(`type ${infoCmdData.name} : ${ infoCmdData.generic_type } `);
@@ -105,32 +130,32 @@
                                 case "LOCK_ETAT_DOOR": // Etat porte valeur (JeeMate)
                                 case "ENERGY_STATE": // Prise Etat
                                 case "ENERGY_INUSE": // Prise en utilisation (Homebridge)
-                                	if (iconClosedClasses == null) {
+                                    if (iconClosedClasses == null) {
                                     	iconClosedClasses = openingOffIcon#id#;
                                     }
-                                	if (iconOpenClasses == null) {
+                                    if (iconOpenClasses == null) {
                                     	iconOpenClasses = openingOnIcon#id#;
                                     }
-                                	if (iconClosedColor == null) {
+                                    if (iconClosedColor == null) {
                                     	iconClosedColor = openingOffColor#id#;
                                     }
-                                	if (iconOpenColor == null) {
+                                    if (iconOpenColor == null) {
                                     	iconOpenColor = openingOnColor#id#;
                                     }
                                     break;
                                 case "LIGHT_STATE": // Lumière Etat
                                 case "LIGHT_STATE_BOOL": // Lumière Etat (Binaire) (Homebridge)
                                 case "SWITCH_STATE": // Switch State (Homebridge)
-                                	if (iconClosedClasses == null) {
+                                    if (iconClosedClasses == null) {
                                     	iconClosedClasses = lightOffIcon#id#;
                                     }                                      
-                                	if (iconOpenClasses == null) {
+                                    if (iconOpenClasses == null) {
                                     	iconOpenClasses = lightOnIcon#id#;
                                     }                                      
-                                	if (iconClosedColor == null) {
+                                    if (iconClosedColor == null) {
                                     	iconClosedColor = lightOffColor#id#;
                                     }
-                                	if (iconOpenColor == null) {
+                                    if (iconOpenColor == null) {
                                     	iconOpenColor = lightOnColor#id#;
                                     }
                                     break;
@@ -151,14 +176,15 @@
                                 default:
                                     log#id#(`⚠️ Aucun traitement spécifique pour generic_type: ${ infoCmdData.generic_type } `);
                             }
-                          
-							//log#id#(`${ infoCmdData.generic_type } : ${ iconClosedClasses } / ${iconOpenClasses} / ${ iconClosedColor } / ${iconOpenColor}`);
-        resolve({ closedClasses: iconClosedClasses, openClasses: iconOpenClasses, closedColor: iconClosedColor, openColor: iconOpenColor });
+
+                            //log#id#(`${ infoCmdData.generic_type } : ${ iconClosedClasses } / ${iconOpenClasses} / ${ iconClosedColor } / ${iconOpenColor}`);
+                            resolve({ closedClasses: iconClosedClasses, openClasses: iconOpenClasses, closedColor: iconClosedColor, openColor: iconOpenColor });
                         }
                     });
-                } else {
-            resolve({ closedClasses: iconClosedClasses, openClasses: iconOpenClasses, closedColor: iconClosedColor, openColor: iconOpenColor });
-        }
+                } 
+		else {
+            		resolve({ closedClasses: iconClosedClasses, openClasses: iconOpenClasses, closedColor: iconClosedColor, openColor: iconOpenColor });
+        	}
             });
         }
 
@@ -217,7 +243,7 @@
                 }
             });
           	
-          	adjustHeight#id#();
+            adjustHeight#id#();
         }
 
         function createGap#id#() {
@@ -253,7 +279,6 @@
             item.commands.forEach((cmd) => {
                 const icon = document.createElement("i");
                 icon.classList.add(...cmd.iconClasses.split(" "));
-                //icon.id = `icon${cmd.cmdId}_#id#`;
                 icon.id = `icon${cmd.cmdId}`;
                 icon.setAttribute("onclick", `sendJeedomCommand#id#(${cmd.cmdId})`);
                 iconContainer.appendChild(icon);
@@ -286,7 +311,6 @@
             tile.appendChild(iconCmd);
 
             const icon = tile.querySelector(".iconCmd");
-            //icon.id = `icon${item.cmdId}_#id#`;
             icon.id = `icon${item.cmdId}`;
 
             container.appendChild(tile);
@@ -363,24 +387,24 @@
                     success: function (actionCmdData) {
                         //log#id#(`Mise à jour de ${cmd.cmdId} avec valeur info: ${infoValue} (generic type: ${actionCmdData.generic_type})`);
                         switch (actionCmdData.generic_type) {
-                            case "LIGHT_ON":
+                          case "LIGHT_ON":
                                 const isLightOn = [1, true].includes(infoValue) || (typeof infoValue === "string" && ["1", "on"].includes(infoValue.toLowerCase()));
                                 iconElement.style.setProperty("color", isLightOn ? `${lightOnColor#id#}` : `${lightOffColor#id# } `, "important");
-                              break;
+                              	break;
                           case "LIGHT_OFF":
-            				  const isLightOff = [0, false].includes(infoValue) || (typeof infoValue === "string" && ["0", "off"].includes(infoValue.toLowerCase()));
-                          	  iconElement.style.setProperty("color", isLightOff ? `${lightOnColor#id# } ` : `${lightOffColor#id# } `, "important");
-                              break;
+                                const isLightOff = [0, false].includes(infoValue) || (typeof infoValue === "string" && ["0", "off"].includes(infoValue.toLowerCase()));
+                                iconElement.style.setProperty("color", isLightOff ? `${lightOnColor#id# } ` : `${lightOffColor#id# } `, "important");
+                              	break;
                           case "FLAP_UP":
-                              const flapUpColor = infoValue <= actionItem.limit ? flapOffColor#id# : flapOnColor#id#;
-                          	  iconElement.style.setProperty("color", `${ flapUpColor } `, "important");
-                              break;
+                                const flapUpColor = infoValue <= actionItem.limit ? flapOffColor#id# : flapOnColor#id#;
+                          	iconElement.style.setProperty("color", `${ flapUpColor } `, "important");
+                              	break;
                           case "FLAP_DOWN":
-                              const flapDownColor = infoValue > actionItem.limit ? flapOffColor#id# : flapOnColor#id#;
-                          	  iconElement.style.setProperty("color", `${ flapDownColor } `, "important");
-                              break;
+                                const flapDownColor = infoValue > actionItem.limit ? flapOffColor#id# : flapOnColor#id#;
+                                iconElement.style.setProperty("color", `${ flapDownColor } `, "important");
+                              	break;
                           default:
-                          	  log#id#(`⚠️ Aucun traitement spécifique pour generic_type: ${ actionCmdData.generic_type } `);
+                                log#id#(`⚠️ Aucun traitement spécifique pour generic_type: ${ actionCmdData.generic_type } `);
                       }
                     }
                 });
@@ -402,6 +426,26 @@
             return Math.ceil(items / columns);
         }
 
+        function getJsonFilePath(fileName) {
+            const basePath = "data/nooTileGrid/";
+
+            if (!fileName.includes(".")) {
+                fileName += ".json";
+            }
+
+            const ext = fileName.split('.').pop().toLowerCase();
+
+            if (ext !== "json") {
+                throw new Error("Seuls les fichiers JSON sont acceptés.");
+            }
+
+            if (!fileName.includes("/")) {
+                fileName = basePath + fileName;
+            }
+
+            return fileName;
+        }
+
       	jeedom.cmd.addUpdateFunction('#id#', function(_options) {
         })
       
@@ -411,76 +455,97 @@
       	if (domUtils.issetWidgetOptParam(`#openingOffIcon#`, "openingOffIcon")) {
           	openingOffIcon#id# = '#openingOffIcon#';
     	}
-		if (domUtils.issetWidgetOptParam(`#openingOnIcon#`, "openingOnIcon")) {
+      	if (domUtils.issetWidgetOptParam(`#openingOnIcon#`, "openingOnIcon")) {
             openingOnIcon#id# = '#openingOnIcon#';
     	}
-		if (domUtils.issetWidgetOptParam(`#openingOffColor#`, "openingOffColor")) {
+      	if (domUtils.issetWidgetOptParam(`#openingOffColor#`, "openingOffColor")) {
             openingOffColor#id# = '#openingOffIcon#';
     	}
-		if (domUtils.issetWidgetOptParam(`#openingOnColor#`, "openingOnColor")) {
+      	if (domUtils.issetWidgetOptParam(`#openingOnColor#`, "openingOnColor")) {
             openingOnColor#id# = '#openingOnColor#';
-   		}
+      	}
       	if (domUtils.issetWidgetOptParam(`#lightOffIcon#`, "lightOffIcon")) {
             lightOffIcon#id# = '#lightOffIcon#';
     	}
-		if (domUtils.issetWidgetOptParam(`#lightOnIcon#`, "lightOnIcon")) {
+    	if (domUtils.issetWidgetOptParam(`#lightOnIcon#`, "lightOnIcon")) {
             lightOnIcon#id# = '#lightOnIcon#';
     	}
-		if (domUtils.issetWidgetOptParam(`#lightOffColor#`, "lightOffColor")) {
+    	if (domUtils.issetWidgetOptParam(`#lightOffColor#`, "lightOffColor")) {
             lightOffColor#id# = '#lightOffColor#';
     	}
-		if (domUtils.issetWidgetOptParam(`#lightOnColor#`, "lightOnColor")) {
+    	if (domUtils.issetWidgetOptParam(`#lightOnColor#`, "lightOnColor")) {
             lightOnColor#id# = '#lightOnColor#';
     	}
       	if (domUtils.issetWidgetOptParam(`#flapOffIcon#`, "flapOffIcon")) {
             flapOffIcon#id# = '#flapOffIcon#';
-   		}
-		if (domUtils.issetWidgetOptParam(`#flapOnIcon#`, "flapOnIcon")) {
+    	}
+    	if (domUtils.issetWidgetOptParam(`#flapOnIcon#`, "flapOnIcon")) {
             flapOnIcon#id# = '#flapOnIcon#';
     	}
-		if (domUtils.issetWidgetOptParam(`#flapOffColor#`, "flapOffColor")) {
+    	if (domUtils.issetWidgetOptParam(`#flapOffColor#`, "flapOffColor")) {
             flapOffColor#id# = '#flapOffColor#';
     	}
-		if (domUtils.issetWidgetOptParam(`#flapOnColor#`, "flapOnColor")) {
+    	if (domUtils.issetWidgetOptParam(`#flapOnColor#`, "flapOnColor")) {
             flapOnColor#id# = '#flapOnColor#';
     	}
       
       	// Paramétrage : Liste des tuiles
       	if (domUtils.issetWidgetOptParam(`#tilesList#`, "tilesList")) {
-      		// récupération des tuiles du widget par variable
-          	const data = JSON.parse(`#tilesList#`);
-          	createIcons#id#(data);
+            // récupération des tuiles du widget par variable
+            const data = JSON.parse(`#tilesList#`);
+            createIcons#id#(data);
     	}
       	else if (domUtils.issetWidgetOptParam(`#tilesListFile#`, "tilesListFile")) {
-      		// todo : récupération des tuiles du widget par fichier tilesListFile
+            // récupération des tuiles du widget par fichier tilesListFile
+            try {
+                let fileName = `#tilesListFile#`;
+                let filePath = getJsonFilePath(fileName);
+
+                fetch(filePath)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Erreur lors du chargement du fichier JSON.");
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        createIcons#id#(data);
+                    })
+                    .catch(error => {
+                        log#id#('⚠️ Erreur : ' + error);
+                    });
+
+            } catch (error) {
+                log#id#('⚠️ ' + error.message);
+            }
         }
       	else {
           log#id# ('⚠️ Attention, aucune tuile paramétrée !');
         }
       
       	// Paramétrage : Grille
-		if (domUtils.issetWidgetOptParam(`#gridWidth#`, "gridWidth")) {
+    	if (domUtils.issetWidgetOptParam(`#gridWidth#`, "gridWidth")) {
           	document.querySelector('.cmd[data-cmd_uid="#uid#"]').style.width = '#gridWidth#'
     	}
       	if (domUtils.issetWidgetOptParam(`#gridBackgroundColor#`, "gridBackgroundColor")) {
       		document.querySelector('.cmd[data-cmd_uid="#uid#"]').style.backgroundColor = '#gridBackgroundColor#'
-    	}        
-		if (domUtils.issetWidgetOptParam(`#gridHorizontalSpace#`, "gridHorizontalSpace")) {
-			document.documentElement.style.setProperty("--grid-horizontal-space#id#", '#gridHorizontalSpace#');
     	}
-		if (domUtils.issetWidgetOptParam(`#gridVerticalSpace#`, "gridVerticalSpace")) {
-			document.documentElement.style.setProperty("--grid-vertical-space#id#", '#gridVerticalSpace#');
+    	if (domUtils.issetWidgetOptParam(`#gridHorizontalSpace#`, "gridHorizontalSpace")) {
+      		document.documentElement.style.setProperty("--grid-horizontal-space#id#", '#gridHorizontalSpace#');
+    	}
+    	if (domUtils.issetWidgetOptParam(`#gridVerticalSpace#`, "gridVerticalSpace")) {
+      		document.documentElement.style.setProperty("--grid-vertical-space#id#", '#gridVerticalSpace#');
     	}
         
-		// Paramétrage : Tuile
+    	// Paramétrage : Tuile
       	if (domUtils.issetWidgetOptParam(`#tileBackgroundColor#`, "tileBackgroundColor")) {
-            document.documentElement.style.setProperty("--tile-bg#id#", '#tileBackgroundColor#');
+      		document.documentElement.style.setProperty("--tile-bg#id#", '#tileBackgroundColor#');
     	}
-		if (domUtils.issetWidgetOptParam(`#tileLabelColor#`, "tileLabelColor")) {
-			document.documentElement.style.setProperty("--tile-label-color#id#", '#tileLabelColor#');
+    	if (domUtils.issetWidgetOptParam(`#tileLabelColor#`, "tileLabelColor")) {
+      		document.documentElement.style.setProperty("--tile-label-color#id#", '#tileLabelColor#');
     	}
-		if (domUtils.issetWidgetOptParam(`#tileWidth#`, "tileWidth")) {
-			document.documentElement.style.setProperty("--tile-width#id#", '#tileWidth#');
+    	if (domUtils.issetWidgetOptParam(`#tileWidth#`, "tileWidth")) {
+      		document.documentElement.style.setProperty("--tile-width#id#", '#tileWidth#');
     	}
         
         //# sourceURL=nooTileGrid#id#.js
