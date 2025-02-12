@@ -63,7 +63,6 @@ De nombreux paramètres sont possibles pour personnaliser les virtuels et obteni
     flapOnIcon : `icone on` pour les types génériques volets
     flapOffColor : `icone off` pour les types génériques volets
     flapOnColor : `icone on` pour les types génériques volets
-	contrainteMinMax : force la valeur entre (min, max), 0: pas de contrainte sur valeur, 1: contrainte sur valeur (1 par défaut)
 
 ## Ajout dans un Design
 
