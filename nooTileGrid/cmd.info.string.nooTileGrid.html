@@ -1,10 +1,9 @@
-<div class="cmd cmd-widget" data-type="info" data-subtype="string" data-cmd_id="#id#" data-cmd_uid="#uid#"
-    data-version="#version#" data-eqLogic_id="#eqLogic_id#">
-
+<div class="cmd cmd-widget" data-type="info" data-subtype="string" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
     <!-- ################ nooTileGrid ################ 
        ########### By @noodom ;) 
        ########### Pensez au café pour les nuits blanches de codage ;) https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=noodom.fr%40gmail.com&currency_code=EUR&source=url
        ########### Code disponible ici : https://github.com/noodom/jeedom_widgets/tree/master/nooTileGrid
+       ########### Discussons sur community ici : https://community.jeedom.com/t/tuto-noodom-widget-nootilegrid/137877
     -->
 
     <!--
@@ -29,77 +28,128 @@
     <div id="grid-container#id#"> </div>
 
     <template>
-        <div>tilesList : liste des tuiles à afficher (au format json)</div>
-        <div>tilesListFile : fichier json de la liste des tuiles à afficher (au format json)</div>
-	<div>gridWidth : largeur de la grille (ex: `650px`)</div>
-        <div>gridHeight : hauteur de la grille (facultatif : calcul automatique)</div>
-        <div>gridHorizontalSpace : espace entre les lignes de la grille (`10px`)</div>
-        <div>gridVerticalSpace : espace entre les colonnes de la grille (`10px`)</div>
-        <div>gridBackgroundColor : couleur de fond de la grille</div>
-        <div>tileBackgroundColor : couleur de fond d'une tuile (`black`)</div>
-        <div>tileLabelColor : couleur du libellé d'une tuile (`white`)</div>
-        <div>tileWidth : largeur d'une tuile (`150px`)</div>
-        <div>openingOffIcon : `icone off` pour les types génériques ouvertures</div>
-        <div>openingOnIcon : `icone on` pour les types génériques ouvertures</div>
-        <div>openingOffColor : `icone off` pour les types génériques ouvertures</div>
-        <div>openingOnColor : `icone on` pour les types génériques ouvertures</div>
-        <div>lightOffIcon : `icone off` pour les types génériques lumières</div>
-        <div>lightOnIcon : `icone on` pour les types génériques lumières</div>
-        <div>lightOffColor : `icone off` pour les types génériques lumières</div>
-        <div>lightOnColor : `icone on` pour les types génériques lumières</div>
-        <div>flapOffIcon : `icone off` pour les types génériques volets</div>
-        <div>flapOnIcon : `icone on` pour les types génériques volets</div>
-        <div>flapOffColor : `icone off` pour les types génériques volets</div>
-        <div>flapOnColor : `icone on` pour les types génériques volets</div>
-    </template>
+      <div>tilesList : liste des tuiles à afficher (au format json)</div>
+      <div>tilesListFile : fichier json de la liste des tuiles à afficher (au format json)</div>
+      <div>gridWidth : largeur de la grille (ex: `650px`)</div>
+      <div>gridHeight : hauteur de la grille (facultatif : calcul automatique)</div>
+      <div>gridHorizontalSpace : espace entre les lignes de la grille (`10px`)</div>
+      <div>gridVerticalSpace : espace entre les colonnes de la grille (`10px`)</div>
+      <div>gridBackgroundColor : couleur de fond de la grille</div>
+      <div>tileBackgroundColor : couleur de fond d'une tuile (`black`)</div>
+      <div>tileLabelColor : couleur du libellé d'une tuile (`white`)</div>
+      <div>tileWidth : largeur d'une tuile (`150px`)</div>
+      <div>openingOffIcon : `icone off` pour les types génériques ouvertures</div>
+      <div>openingOnIcon : `icone on` pour les types génériques ouvertures</div>
+      <div>openingOffColor : `icone off` pour les types génériques ouvertures</div>
+      <div>openingOnColor : `icone on` pour les types génériques ouvertures</div>
+      <div>lightOffIcon : `icone off` pour les types génériques lumières</div>
+      <div>lightOnIcon : `icone on` pour les types génériques lumières</div>
+      <div>lightOffColor : `icone off` pour les types génériques lumières</div>
+      <div>lightOnColor : `icone on` pour les types génériques lumières</div>
+      <div>flapOffIcon : `icone off` pour les types génériques volets</div>
+      <div>flapOnIcon : `icone on` pour les types génériques volets</div>
+      <div>flapOffColor : `icone off` pour les types génériques volets</div>
+      <div>flapOnColor : `icone on` pour les types génériques volets</div>
 
+      <div>doorOffIcon, garageOffIcon, barrierOffIcon, lockOffIcon, energyOffIcon : `icone off` pour les types génériques porte, garage, portail, serrure, prise</div>
+      <div>openingOnIcon, garageOnIcon, barrierOnIcon, lockOnIcon, energyOnIcon : `icone on` pour les types génériques porte, garage, portail, serrure, prise</div>
+      <div>openingOffColor, garageOffColor, barrierOffColor, lockOffColor, energyOffColor : `icone off` pour les types génériques porte, garage, portail, serrure, prise</div>
+      <div>openingOnColor, garageOnColor, barrierOnColor, lockOnColor, energyOnColor : `icone on` pour les types génériques porte, garage, portail, serrure, prise</div>
+    </template>
+  
     <script>
 
-        // Paramètres par défaut
-        var openingOffIcon#id# = 'jeedom-fenetre-ferme';
-        var openingOnIcon#id# = 'jeedom-fenetre-ouverte';
-        var openingOffColor#id# = 'white';
-        var openingOnColor#id# = 'red';
-        var lightOffIcon#id# = 'icon kiko-light-turn-off';
-        var lightOnIcon#id# = 'icon kiko-light-turn-on';
-        var lightOffColor#id# = 'white';
-        var lightOnColor#id# = 'yellow';
-        var flapOffIcon#id# = 'fas fa-arrow-up';
-        var flapOnIcon#id# = 'fas fa-arrow-up';
-        var flapOffColor#id# = 'white';
-        var flapOnColor#id# = 'blue';
+      // Types de génériques gérés
+      const iconMapping#id# = {
+        "OPENING": "door",
+        "OPENING_WINDOW": "opening",
+        "GARAGE_STATE": "garage",
+        "BARRIER_STATE": "barrier",
+        "LOCK_STATE": "lock",
+        "JEEMATE_FLAP_LOCK_STATE": "lock",
+        "LOCK_ETAT_DOOR": "door",
+        "ENERGY_STATE": "energy",
+        "ENERGY_INUSE": "energy",
+        "LIGHT_STATE": "light",
+        "LIGHT_STATE_BOOL": "light",
+        "SWITCH_STATE": "light",
+        "FLAP_STATE": "flap"
+      };
+      
+      // Paramètres par défaut
+      const widgetDefaults#id# = {
+          doorOffIcon: 'jeedom-porte-ferme',
+          doorOnIcon: 'jeedom-porte-ouverte',
+          doorOffColor: 'white',
+          doorOnColor: 'red',
 
-        function getRandomColor#id#() {
-            return `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0')}`;
-        }
+          garageOffIcon: 'mdi-garage-variant',
+          garageOnIcon: 'mdi-garage-open-variant',
+          garageOffColor: 'white',
+          garageOnColor: 'red',
 
-        function getContrastingTextColor#id#(bgColor) {
-            // Convertit la couleur hex en RGB
-            const r = parseInt(bgColor.substring(1, 3), 16);
-            const g = parseInt(bgColor.substring(3, 5), 16);
-            const b = parseInt(bgColor.substring(5, 7), 16);
-            const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+          barrierOffIcon: 'jeedomapp-portail-ferme',
+          barrierOnIcon: 'jeedomapp-portail-ouvert',
+          barrierOffColor: 'white',
+          barrierOnColor: 'red',
 
-            return brightness > 128 ? "black" : "white";
-        }
+          lockOffIcon: 'kiko-unlock',
+          lockOnIcon: 'kiko-lock',
+          lockOffColor: 'white',
+          lockOnColor: 'red',
 
-        var bgColor#id# = getRandomColor#id#();
-        var textColor#id# = getContrastingTextColor#id#(bgColor#id#);
+          energyOffIcon: 'jeedomapp-prise-off',
+          energyOnIcon: 'jeedomapp-prise',
+          energyOffColor: 'white',
+          energyOnColor: 'red',
+
+          openingOffIcon: 'jeedom-fenetre-ferme',
+          openingOnIcon: 'jeedom-fenetre-ouverte',
+          openingOffColor: 'white',
+          openingOnColor: 'red',
+
+          lightOffIcon: 'icon kiko-light-turn-off',
+          lightOnIcon: 'icon kiko-light-turn-on',
+          lightOffColor: 'white',
+          lightOnColor: 'yellow',
+
+          flapOffIcon: 'fas fa-arrow-up',
+          flapOnIcon: 'fas fa-arrow-up',
+          flapOffColor: 'white',
+          flapOnColor: 'blue'
+      };
+
+      function getRandomColor#id#() {
+        return `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0')}`;
+      }
+
+      function getContrastingTextColor#id#(bgColor) {
+        // Convertit la couleur hex en RGB
+        const r = parseInt(bgColor.substring(1, 3), 16);
+        const g = parseInt(bgColor.substring(3, 5), 16);
+        const b = parseInt(bgColor.substring(5, 7), 16);
+        const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+
+        return brightness > 128 ? "black" : "white";
+      }
+
+      var bgColor#id# = getRandomColor#id#();
+      var textColor#id# = getContrastingTextColor#id#(bgColor#id#);
 
 
-        function log#id#(text) {
+      function log#id#(text) {
             const stack = new Error().stack.split("\n");
             const callerInfo = stack[2].match(/\((.*):(\d+):(\d+)\)$/);
             let fileLine = '';
-
+        	
             if (callerInfo) {
                 const file = 'nooTileGrid#id#.js';
                 const line = callerInfo[2];
                 const column = callerInfo[3];
-                fileLine = ` [${file}:${line}:${column}]`;
+              	fileLine = ` [${file}:${line}:${column}]`;
             }
 
-            console.log(`%c nooTileGrid #id# : ${text}${fileLine}`, `color: ${textColor#id#}; background: ${bgColor#id# }; padding: 4px; border - radius: 5px; font - weight: bold; `);
+            console.log(`%c nooTileGrid #id# : ${text}${fileLine}`, `color: ${textColor#id#}; background: ${bgColor#id#}; padding: 4px; border-radius: 5px; font-weight: bold;`);
       	}
       
       	function sendJeedomCommand#id#(cmdId) {
@@ -114,101 +164,57 @@
                         async: false,
                         noCache: true,
                         error: function (error) {
-                            log#id#(`❌ Erreur jeedom.cmd.byId(${ iconId })!`);
+                            log#id#(`❌ Erreur jeedom.cmd.byId(${iconId}) !`);
                             resolve({ closedClasses: iconClosedClasses, openClasses: iconOpenClasses, closedColor: iconClosedColor, openColor: iconOpenColor });
                         },
                         success: function (infoCmdData) {
-                          	//log#id#(`type ${infoCmdData.name} : ${ infoCmdData.generic_type } `);
-                            switch (infoCmdData.generic_type) {
-                                case "OPENING": // Porte
-                                case "OPENING_WINDOW": // Fenêtre
-                                case "GARAGE_STATE": // Garage (ouvrant) Etat
-                                case "BARRIER_STATE": // Portail (ouvrant) Etat
-                                case "LOCK_STATE": // Serrure Etat
-                                case "LOCK_ETAT_DOOR": // Etat porte valeur (JeeMate)
-                                case "ENERGY_STATE": // Prise Etat
-                                case "ENERGY_INUSE": // Prise en utilisation (Homebridge)
-                                    if (iconClosedClasses == null) {
-                                    	iconClosedClasses = openingOffIcon#id#;
-                                    }
-                                    if (iconOpenClasses == null) {
-                                    	iconOpenClasses = openingOnIcon#id#;
-                                    }
-                                    if (iconClosedColor == null) {
-                                    	iconClosedColor = openingOffColor#id#;
-                                    }
-                                    if (iconOpenColor == null) {
-                                    	iconOpenColor = openingOnColor#id#;
-                                    }
-                                    break;
-                                case "LIGHT_STATE": // Lumière Etat
-                                case "LIGHT_STATE_BOOL": // Lumière Etat (Binaire) (Homebridge)
-                                case "SWITCH_STATE": // Switch State (Homebridge)
-                                    if (iconClosedClasses == null) {
-                                    	iconClosedClasses = lightOffIcon#id#;
-                                    }                                      
-                                    if (iconOpenClasses == null) {
-                                    	iconOpenClasses = lightOnIcon#id#;
-                                    }                                      
-                                    if (iconClosedColor == null) {
-                                    	iconClosedColor = lightOffColor#id#;
-                                    }
-                                    if (iconOpenColor == null) {
-                                    	iconOpenColor = lightOnColor#id#;
-                                    }
-                                    break;
-                                case "FLAP_STATE":
-                                	if (iconClosedClasses == null) {
-                                    	iconClosedClasses = flapOffIcon#id#;
-                                    }                                      
-                                	if (iconOpenClasses == null) {
-                                    	iconOpenClasses = flapOnIcon#id#;
-                                    }                                      
-                                	if (iconClosedColor == null) {
-                                    	iconClosedColor = flapOffColor#id#;
-                                    }
-                                	if (iconOpenColor == null) {
-                                    	iconOpenColor = flapOnColor#id#;
-                                    }
-                                    break;
-                                default:
-                                    log#id#(`⚠️ Aucun traitement spécifique pour generic_type: ${ infoCmdData.generic_type } `);
-                            }
+			    //log#id#(`type ${infoCmdData.name} : ${infoCmdData.generic_type}`);
 
-                            //log#id#(`${ infoCmdData.generic_type } : ${ iconClosedClasses } / ${iconOpenClasses} / ${ iconClosedColor } / ${iconOpenColor}`);
-                            resolve({ closedClasses: iconClosedClasses, openClasses: iconOpenClasses, closedColor: iconClosedColor, openColor: iconOpenColor });
+			    // Vérification si le generic_type existe dans le mapping
+			    const typeKey = iconMapping#id#[infoCmdData.generic_type];
+
+			    if (typeKey) {
+				iconClosedClasses = iconClosedClasses ?? widgetDefaults#id#[`${typeKey}OffIcon`];
+				iconOpenClasses = iconOpenClasses ?? widgetDefaults#id#[`${typeKey}OnIcon`];
+				iconClosedColor = iconClosedColor ?? widgetDefaults#id#[`${typeKey}OffColor`];
+				iconOpenColor = iconOpenColor ?? widgetDefaults#id#[`${typeKey}OnColor`];
+			    } else {
+				log#id#(`⚠️ Aucun traitement spécifique pour generic_type : ${infoCmdData.generic_type}`);
+			    }
+			  
+			    //log#id#(`${infoCmdData.generic_type} : ${iconClosedClasses} / ${iconOpenClasses} / ${iconClosedColor} / ${iconOpenColor}`);
+			    resolve({ closedClasses: iconClosedClasses, openClasses: iconOpenClasses, closedColor: iconClosedColor, openColor: iconOpenColor });
                         }
                     });
-                } 
-		else {
-            		resolve({ closedClasses: iconClosedClasses, openClasses: iconOpenClasses, closedColor: iconClosedColor, openColor: iconOpenColor });
-        	}
+                } else {
+                  	resolve({ closedClasses: iconClosedClasses, openClasses: iconOpenClasses, closedColor: iconClosedColor, openColor: iconOpenColor });
+                }
             });
         }
 
-
-        function updateElement#id#(iconId, iconClosedClasses, iconOpenClasses, iconClosedColor, iconOpenColor, val) {
+      	
+      	function updateElement#id#(iconId, iconClosedClasses, iconOpenClasses, iconClosedColor, iconOpenColor, val) {
           	getIconsWithGenericType#id#(iconId, iconClosedClasses, iconOpenClasses, iconClosedColor, iconOpenColor)
-                .then(({ closedClasses, openClasses, closedColor, openColor }) => {
-                    //log#id#(`getIconsWithGenericType : ${closedClasses} :: ${openClasses} :: ${closedColor} :: ${openColor}`);
-                    const iconElement = document.getElementById(iconId);
-                    //todo : revoir pourquoi tester les cas null (et si ajouter color)
-                    if (!iconElement || closedClasses == null || openClasses == null) return;
-
-                    closedClasses = closedClasses.split(' ');
-                    openClasses = openClasses.split(' ');
-
-                    iconElement.classList.remove(...iconElement.classList);
-                    // iconCmd encore utile ?
-                    iconElement.classList.add('iconCmd');
-                    if (val === 1 || val === 'on') {
-                        openClasses.forEach(cls => iconElement.classList.add(cls));
-                        iconElement.style.setProperty("color", `${openColor}`, "important");
-                    } else {
-                        closedClasses.forEach(cls => iconElement.classList.add(cls));
-                        iconElement.style.setProperty("color", `${closedColor}`, "important");
-                    }
-                });
+          	.then(({ closedClasses, openClasses, closedColor, openColor }) => {
+	              //log#id#(`getIconsWithGenericType : ${closedClasses} :: ${openClasses} :: ${closedColor} :: ${openColor}`);
+	              const iconElement = document.getElementById(iconId);
+	              //todo : revoir pourquoi tester les cas null (et si ajouter color)
+	              if (!iconElement || closedClasses == null || openClasses == null) return;
+	
+	              closedClasses = closedClasses.split(' ');
+	              openClasses = openClasses.split(' ');
+	
+	              iconElement.classList.remove(...iconElement.classList);
+	              // iconCmd encore utile ?
+	              iconElement.classList.add('iconCmd');
+	              if (val === 1 || val ==='on') {
+	                openClasses.forEach(cls => iconElement.classList.add(cls));
+	                iconElement.style.setProperty("color", `${openColor}`, "important");
+	              } else {
+	                closedClasses.forEach(cls => iconElement.classList.add(cls));
+			iconElement.style.setProperty("color", `${closedColor}`, "important");
+	              }
+          	});              
         }
 
         function adjustHeight#id#() {
@@ -218,28 +224,28 @@
                 document.querySelector('.cmd[data-cmd_uid="#uid#"]').style.height = '#gridHeight#'
             }
             else {
-                const grid = document.getElementById("grid-container#id#");
-                const gridHeight = grid.clientHeight;
-                document.querySelector('.cmd[data-cmd_uid="#uid#"]').style.width = `${gridHeight}px`;
+              const grid = document.getElementById("grid-container#id#");
+              const gridHeight = grid.clientHeight;
+              document.querySelector('.cmd[data-cmd_uid="#uid#"]').style.width = `${gridHeight}px`;
             }
         }
 
         function createIcons#id#(data) {
-            data.forEach((item) => {
-                switch (item.type) {
-                    case 'action':
-                        createActionIcon#id#(item);
-                        break;
-                    case 'info':
-                        createInfoIcon#id#(item);
-                        break;
-                    case 'gap':
-                        createGap#id#();
-                        break;
-                    default:
-                        log#id#(`⚠️ ${item.type} : Type de commande non pris en charge`);
-                }
-            });
+		data.forEach((item) => {
+		switch (item.type) {
+		    case 'action':
+			createActionIcon#id#(item);
+			break;
+		    case 'info':
+			createInfoIcon#id#(item);
+			break;
+		    case 'gap':
+			createGap#id#();
+			break;
+		    default:
+			log#id#(`⚠️ ${item.type} : Type de commande non pris en charge`);
+		}
+	});
           	
             adjustHeight#id#();
         }
@@ -255,10 +261,10 @@
             const container = document.getElementById("grid-container#id#");
 
             const tile = document.createElement("div");
-            tile.classList.add("tile#id#");
+          	tile.classList.add("tile#id#");
             const iconCount = item.commands.length;
-            if (iconCount > 2) {
-                tile.classList.add("cols2");
+            if (iconCount >2) {
+          	tile.classList.add("cols2");
             }
 
             const texte = document.createElement("p");
@@ -277,12 +283,13 @@
             item.commands.forEach((cmd) => {
                 const icon = document.createElement("i");
                 icon.classList.add(...cmd.iconClasses.split(" "));
-                icon.id = `icon${cmd.cmdId}`;
+              	//icon.id = `icon${cmd.cmdId}_#id#`;
+              	icon.id = `icon${cmd.cmdId}`;
                 icon.setAttribute("onclick", `sendJeedomCommand#id#(${cmd.cmdId})`);
                 iconContainer.appendChild(icon);
             });
 
-            if (iconCount > 2) {
+            if (iconCount >2) {
                 tile.classList.add("cols2");
             }
 
@@ -309,7 +316,8 @@
             tile.appendChild(iconCmd);
 
             const icon = tile.querySelector(".iconCmd");
-            icon.id = `icon${item.cmdId}`;
+          	//icon.id = `icon${item.cmdId}_#id#`;
+          	icon.id = `icon${item.cmdId}`;
 
             container.appendChild(tile);
   
@@ -317,7 +325,7 @@
         }
 
         function updateInfoIcon#id#(cmdId, iconId, iconClosedClasses, iconOpenClasses, iconClosedColor, iconOpenColor) {
-            jeedom.cmd.addUpdateFunction(cmdId, function (_options) {
+          	jeedom.cmd.addUpdateFunction(cmdId, function (_options) {
                 updateElement#id#(iconId, iconClosedClasses, iconOpenClasses, iconClosedColor, iconOpenColor, _options.display_value);
             });
 
@@ -336,7 +344,7 @@
 
         function updateActionIcon#id#(actionItem) {
             if (actionItem.commands.length === 0) return;
-
+          
             const firstActionCmdId = actionItem.commands[0].cmdId;
             jeedom.cmd.byId({
                 id: firstActionCmdId,
@@ -351,8 +359,8 @@
                         log#id#("⚠️ Aucune commande info associée trouvée.");
                         return;
                     }
-
-                    //log#id#(`Commande info associée : ${infoCmdId}`);
+                  
+                  	//log#id#(`Commande info associée : ${infoCmdId}`);
 
                     jeedom.cmd.addUpdateFunction(infoCmdId, function (_options) {
                         updateActionIcons#id#(actionItem, _options.display_value);
@@ -370,10 +378,10 @@
 
         function updateActionIcons#id#(actionItem, infoValue) {
             actionItem.commands.forEach((cmd) => {
-                const iconElement = document.getElementById(`icon${cmd.cmdId}`);
-                if (!iconElement) return;
-
-                //log#id#(`Mise à jour de ${cmd.cmdId} avec valeur info: ${infoValue}`);
+              	const iconElement = document.getElementById(`icon${cmd.cmdId}`);
+        		if (!iconElement) return;
+        		
+              	//log#id#(`Mise à jour de ${cmd.cmdId} avec valeur info: ${infoValue}`);
 
                 jeedom.cmd.byId({
                     id: cmd.cmdId,
@@ -383,26 +391,26 @@
                         log#id#(`❌ Erreur jeedom.cmd.byId(${cmd.cmdId}) !`);
                     },
                     success: function (actionCmdData) {
-                        //log#id#(`Mise à jour de ${cmd.cmdId} avec valeur info: ${infoValue} (generic type: ${actionCmdData.generic_type})`);
-                        switch (actionCmdData.generic_type) {
+                      //log#id#(`Mise à jour de ${cmd.cmdId} avec valeur info: ${infoValue} (generic type: ${actionCmdData.generic_type})`);
+                      switch (actionCmdData.generic_type) {
                           case "LIGHT_ON":
-                                const isLightOn = [1, true].includes(infoValue) || (typeof infoValue === "string" && ["1", "on"].includes(infoValue.toLowerCase()));
-                                iconElement.style.setProperty("color", isLightOn ? `${lightOnColor#id#}` : `${lightOffColor#id# } `, "important");
-                              	break;
+                          	  const isLightOn = [1, true].includes(infoValue) || (typeof infoValue === "string" && ["1", "on"].includes(infoValue.toLowerCase()));
+                          	  iconElement.style.setProperty("color", isLightOn ? `${widgetDefaults#id#.lightOnColor}` : `${widgetDefaults#id#.lightOffColor}`, "important");
+                              break;
                           case "LIGHT_OFF":
-                                const isLightOff = [0, false].includes(infoValue) || (typeof infoValue === "string" && ["0", "off"].includes(infoValue.toLowerCase()));
-                                iconElement.style.setProperty("color", isLightOff ? `${lightOnColor#id# } ` : `${lightOffColor#id# } `, "important");
-                              	break;
+            				  const isLightOff = [0, false].includes(infoValue) || (typeof infoValue === "string" && ["0", "off"].includes(infoValue.toLowerCase()));
+                          	  iconElement.style.setProperty("color", isLightOff ? `${widgetDefaults#id#.lightOnColor}` : `${widgetDefaults#id#.lightOffColor}`, "important");
+                              break;
                           case "FLAP_UP":
-                                const flapUpColor = infoValue <= actionItem.limit ? flapOffColor#id# : flapOnColor#id#;
-                          	iconElement.style.setProperty("color", `${ flapUpColor } `, "important");
-                              	break;
+                              const flapUpColor = infoValue <= actionItem.limit ? widgetDefaults#id#.flapOffColor : widgetDefaults#id#.flapOnColor;
+                          	  iconElement.style.setProperty("color", `${flapUpColor}`, "important");
+                              break;
                           case "FLAP_DOWN":
-                                const flapDownColor = infoValue > actionItem.limit ? flapOffColor#id# : flapOnColor#id#;
-                                iconElement.style.setProperty("color", `${ flapDownColor } `, "important");
-                              	break;
+                              const flapDownColor = infoValue > actionItem.limit ? widgetDefaults#id#.flapOffColor : widgetDefaults#id#.flapOnColor;
+                          	  iconElement.style.setProperty("color", `${flapDownColor}`, "important");
+                              break;
                           default:
-                                log#id#(`⚠️ Aucun traitement spécifique pour generic_type: ${ actionCmdData.generic_type } `);
+                          	  log#id#(`⚠️ Aucun traitement spécifique pour generic_type : ${actionCmdData.generic_type}`);
                       }
                     }
                 });
@@ -451,50 +459,111 @@
       
       	// Paramétrage : Icones et couleurs des types génériques
       	if (domUtils.issetWidgetOptParam(`#openingOffIcon#`, "openingOffIcon")) {
-          	openingOffIcon#id# = '#openingOffIcon#';
+          	widgetDefaults#id#.openingOffIcon = '#openingOffIcon#';
     	}
-      	if (domUtils.issetWidgetOptParam(`#openingOnIcon#`, "openingOnIcon")) {
-            openingOnIcon#id# = '#openingOnIcon#';
+	if (domUtils.issetWidgetOptParam(`#openingOnIcon#`, "openingOnIcon")) {
+            widgetDefaults#id#.openingOnIcon = '#openingOnIcon#';
     	}
-      	if (domUtils.issetWidgetOptParam(`#openingOffColor#`, "openingOffColor")) {
-            openingOffColor#id# = '#openingOffIcon#';
+	if (domUtils.issetWidgetOptParam(`#openingOffColor#`, "openingOffColor")) {
+            widgetDefaults#id#.openingOffColor = '#openingOffIcon#';
     	}
-      	if (domUtils.issetWidgetOptParam(`#openingOnColor#`, "openingOnColor")) {
-            openingOnColor#id# = '#openingOnColor#';
-      	}
+	if (domUtils.issetWidgetOptParam(`#openingOnColor#`, "openingOnColor")) {
+            widgetDefaults#id#.openingOnColor = '#openingOnColor#';
+	}
       	if (domUtils.issetWidgetOptParam(`#lightOffIcon#`, "lightOffIcon")) {
-            lightOffIcon#id# = '#lightOffIcon#';
+            widgetDefaults#id#.lightOffIcon = '#lightOffIcon#';
     	}
-    	if (domUtils.issetWidgetOptParam(`#lightOnIcon#`, "lightOnIcon")) {
-            lightOnIcon#id# = '#lightOnIcon#';
+	if (domUtils.issetWidgetOptParam(`#lightOnIcon#`, "lightOnIcon")) {
+            widgetDefaults#id#.lightOnIcon = '#lightOnIcon#';
     	}
-    	if (domUtils.issetWidgetOptParam(`#lightOffColor#`, "lightOffColor")) {
-            lightOffColor#id# = '#lightOffColor#';
+	if (domUtils.issetWidgetOptParam(`#lightOffColor#`, "lightOffColor")) {
+            widgetDefaults#id#.lightOffColor = '#lightOffColor#';
     	}
-    	if (domUtils.issetWidgetOptParam(`#lightOnColor#`, "lightOnColor")) {
-            lightOnColor#id# = '#lightOnColor#';
+	if (domUtils.issetWidgetOptParam(`#lightOnColor#`, "lightOnColor")) {
+            widgetDefaults#id#.lightOnColor = '#lightOnColor#';
     	}
       	if (domUtils.issetWidgetOptParam(`#flapOffIcon#`, "flapOffIcon")) {
-            flapOffIcon#id# = '#flapOffIcon#';
+            widgetDefaults#id#.flapOffIcon = '#flapOffIcon#';
+	}
+	if (domUtils.issetWidgetOptParam(`#flapOnIcon#`, "flapOnIcon")) {
+            widgetDefaults#id#.flapOnIcon = '#flapOnIcon#';
     	}
-    	if (domUtils.issetWidgetOptParam(`#flapOnIcon#`, "flapOnIcon")) {
-            flapOnIcon#id# = '#flapOnIcon#';
+	if (domUtils.issetWidgetOptParam(`#flapOffColor#`, "flapOffColor")) {
+            widgetDefaults#id#.flapOffColor = '#flapOffColor#';
     	}
-    	if (domUtils.issetWidgetOptParam(`#flapOffColor#`, "flapOffColor")) {
-            flapOffColor#id# = '#flapOffColor#';
+	if (domUtils.issetWidgetOptParam(`#flapOnColor#`, "flapOnColor")) {
+            widgetDefaults#id#.flapOnColor = '#flapOnColor#';
     	}
-    	if (domUtils.issetWidgetOptParam(`#flapOnColor#`, "flapOnColor")) {
-            flapOnColor#id# = '#flapOnColor#';
+
+      	if (domUtils.issetWidgetOptParam(`#doorOffIcon#`, "doorOffIcon")) {
+            widgetDefaults#id#.doorOffIcon = '#doorOffIcon#';
+	}
+	if (domUtils.issetWidgetOptParam(`#doorOnIcon#`, "doorOnIcon")) {
+            widgetDefaults#id#.doorOnIcon = '#flapOnIcon#';
+    	}
+	if (domUtils.issetWidgetOptParam(`#doorOffColor#`, "doorOffColor")) {
+            widgetDefaults#id#.doorOffColor = '#flapOffColor#';
+    	}
+	if (domUtils.issetWidgetOptParam(`#doorOnColor#`, "doorOnColor")) {
+            widgetDefaults#id#.doorOnColor = '#doorOnColor#';
+    	}
+      	if (domUtils.issetWidgetOptParam(`#garageOffIcon#`, "garageOffIcon")) {
+            widgetDefaults#id#.garageOffIcon = '#garageOffIcon#';
+	}
+	if (domUtils.issetWidgetOptParam(`#garageOnIcon#`, "garageOnIcon")) {
+            widgetDefaults#id#.garageOnIcon = '#garageOnIcon#';
+    	}
+	if (domUtils.issetWidgetOptParam(`#garageOffColor#`, "garageOffColor")) {
+            widgetDefaults#id#.garageOffColor = '#garageOffColor#';
+    	}
+	if (domUtils.issetWidgetOptParam(`#garageOnColor#`, "garageOnColor")) {
+            widgetDefaults#id#.garageOnColor = '#garageOnColor#';
+    	}
+      	if (domUtils.issetWidgetOptParam(`#barrierOffIcon#`, "barrierOffIcon")) {
+            widgetDefaults#id#.barrierOffIcon = '#barrierOffIcon#';
+	}
+	if (domUtils.issetWidgetOptParam(`#barrierOnIcon#`, "barrierOnIcon")) {
+            widgetDefaults#id#.barrierOnIcon = '#barrierOnIcon#';
+    	}
+	if (domUtils.issetWidgetOptParam(`#barrierOffColor#`, "barrierOffColor")) {
+            widgetDefaults#id#.barrierOffColor = '#barrierOffColor#';
+    	}
+	if (domUtils.issetWidgetOptParam(`#barrierOnColor#`, "barrierOnColor")) {
+            widgetDefaults#id#.barrierOnColor = '#barrierOnColor#';
+    	}
+      	if (domUtils.issetWidgetOptParam(`#lockOffIcon#`, "lockOffIcon")) {
+            widgetDefaults#id#.lockOffIcon = '#lockOffIcon#';
+	}
+	if (domUtils.issetWidgetOptParam(`#lockOnIcon#`, "lockOnIcon")) {
+            widgetDefaults#id#.lockOnIcon = '#lockOnIcon#';
+    	}
+	if (domUtils.issetWidgetOptParam(`#lockOffColor#`, "lockOffColor")) {
+            widgetDefaults#id#.lockOffColor = '#lockOffColor#';
+    	}
+	if (domUtils.issetWidgetOptParam(`#lockOnColor#`, "lockOnColor")) {
+            widgetDefaults#id#.lockOnColor = '#lockOnColor#';
+    	}
+      	if (domUtils.issetWidgetOptParam(`#energyOffIcon#`, "energyOffIcon")) {
+            widgetDefaults#id#.energyOffIcon = '#energyOffIcon#';
+	}
+	if (domUtils.issetWidgetOptParam(`#energyOnIcon#`, "energyOnIcon")) {
+            widgetDefaults#id#.energyOnIcon = '#energyOnIcon#';
+    	}
+	if (domUtils.issetWidgetOptParam(`#energyOffColor#`, "energyOffColor")) {
+            widgetDefaults#id#.energyOffColor = '#energyOffColor#';
+    	}
+	if (domUtils.issetWidgetOptParam(`#energyOnColor#`, "energyOnColor")) {
+            widgetDefaults#id#.energyOnColor = '#energyOnColor#';
     	}
       
       	// Paramétrage : Liste des tuiles
       	if (domUtils.issetWidgetOptParam(`#tilesList#`, "tilesList")) {
-            // récupération des tuiles du widget par variable
-            const data = JSON.parse(`#tilesList#`);
-            createIcons#id#(data);
+      		// récupération des tuiles du widget par variable
+          	const data = JSON.parse(`#tilesList#`);
+          	createIcons#id#(data);
     	}
       	else if (domUtils.issetWidgetOptParam(`#tilesListFile#`, "tilesListFile")) {
-            // récupération des tuiles du widget par fichier tilesListFile
+      		// récupération des tuiles du widget par fichier tilesListFile
             try {
                 let fileName = `#tilesListFile#`;
                 let filePath = getJsonFilePath(fileName);
@@ -522,28 +591,28 @@
         }
       
       	// Paramétrage : Grille
-    	if (domUtils.issetWidgetOptParam(`#gridWidth#`, "gridWidth")) {
+		if (domUtils.issetWidgetOptParam(`#gridWidth#`, "gridWidth")) {
           	document.querySelector('.cmd[data-cmd_uid="#uid#"]').style.width = '#gridWidth#'
     	}
       	if (domUtils.issetWidgetOptParam(`#gridBackgroundColor#`, "gridBackgroundColor")) {
       		document.querySelector('.cmd[data-cmd_uid="#uid#"]').style.backgroundColor = '#gridBackgroundColor#'
+    	}        
+		if (domUtils.issetWidgetOptParam(`#gridHorizontalSpace#`, "gridHorizontalSpace")) {
+			document.documentElement.style.setProperty("--grid-horizontal-space#id#", '#gridHorizontalSpace#');
     	}
-    	if (domUtils.issetWidgetOptParam(`#gridHorizontalSpace#`, "gridHorizontalSpace")) {
-      		document.documentElement.style.setProperty("--grid-horizontal-space#id#", '#gridHorizontalSpace#');
-    	}
-    	if (domUtils.issetWidgetOptParam(`#gridVerticalSpace#`, "gridVerticalSpace")) {
-      		document.documentElement.style.setProperty("--grid-vertical-space#id#", '#gridVerticalSpace#');
+		if (domUtils.issetWidgetOptParam(`#gridVerticalSpace#`, "gridVerticalSpace")) {
+			document.documentElement.style.setProperty("--grid-vertical-space#id#", '#gridVerticalSpace#');
     	}
         
-    	// Paramétrage : Tuile
+		// Paramétrage : Tuile
       	if (domUtils.issetWidgetOptParam(`#tileBackgroundColor#`, "tileBackgroundColor")) {
-      		document.documentElement.style.setProperty("--tile-bg#id#", '#tileBackgroundColor#');
+            document.documentElement.style.setProperty("--tile-bg#id#", '#tileBackgroundColor#');
     	}
-    	if (domUtils.issetWidgetOptParam(`#tileLabelColor#`, "tileLabelColor")) {
-      		document.documentElement.style.setProperty("--tile-label-color#id#", '#tileLabelColor#');
+		if (domUtils.issetWidgetOptParam(`#tileLabelColor#`, "tileLabelColor")) {
+			document.documentElement.style.setProperty("--tile-label-color#id#", '#tileLabelColor#');
     	}
-    	if (domUtils.issetWidgetOptParam(`#tileWidth#`, "tileWidth")) {
-      		document.documentElement.style.setProperty("--tile-width#id#", '#tileWidth#');
+		if (domUtils.issetWidgetOptParam(`#tileWidth#`, "tileWidth")) {
+			document.documentElement.style.setProperty("--tile-width#id#", '#tileWidth#');
     	}
         
         //# sourceURL=nooTileGrid#id#.js
@@ -552,19 +621,19 @@
         :root {
             --grid-horizontal-space#id#: 10px;
             --grid-vertical-space#id#: 10px;
-            --tile-bg#id#: black;
-            --tile-label-color#id#: white;
+   			--tile-bg#id#: black;
+   			--tile-label-color#id#: white;
             --tile-width#id#: 150px;
-        }
-
+      	}
+ 
         #grid-container#id# {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(var(--tile-width#id#), 1fr));
             gap: var(--grid-horizontal-space#id#) var(--grid-vertical-space#id#);
             padding: 10px;
             width: 100%;
-            align-items: start;
-        }
+			align-items: start;
+      	}
 
         .tile#id# {
             height: 150px;
@@ -575,12 +644,12 @@
             justify-content: flex-start;
             align-items: center;
             padding-top: 10px;
-            align-self: start;
+          	align-self: start;
         }
-
-        .cols2 {
-            grid-column: span 2 !important;
-        }
+      
+      	.cols2 {
+    		grid-column: span 2 !important;
+		}
 
         .texte#id# {
             font-size: 17px;
@@ -598,7 +667,7 @@
             grid-column: span 1;
             height: 20px;
         }
-
+      
         .icon-container {
             display: flex;
             gap: 10px;
