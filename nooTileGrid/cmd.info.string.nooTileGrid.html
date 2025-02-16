@@ -124,7 +124,8 @@
           flapOffIcon: 'fas fa-arrow-up',
           flapOnIcon: 'fas fa-arrow-up',
           flapOffColor: 'white',
-          flapOnColor: 'blue'
+          flapOnColor: 'blue',
+          flapLimit: '5'      
       };
 
       function getRandomColor#id#() {
@@ -287,11 +288,13 @@
 	                    iconElement.style.setProperty("color", isLightOff ? color : `${widgetDefaults#id#.lightOffColor}`, "important");
 	                    break;
 	                case "FLAP_UP":
-	                    const flapUpColor = val <= limit ? widgetDefaults#id#.flapOffColor : widgetDefaults#id#.flapOnColor;
+	                    const flapUpLimit = limit ?? widgetDefaults#id#.flapLimit;
+	                    const flapUpColor = val <= flapUpLimit ? widgetDefaults#id#.flapOffColor : widgetDefaults#id#.flapOnColor;
 	                    iconElement.style.setProperty("color", `${flapUpColor}`, "important");
 	                    break;
 	                case "FLAP_DOWN":
-	                    const flapDownColor = val > limit ? widgetDefaults#id#.flapOffColor : widgetDefaults#id#.flapOnColor;
+	                    const flapDownLimit = limit ?? widgetDefaults#id#.flapLimit;
+	                    const flapDownColor = val > flapDownLimit ? widgetDefaults#id#.flapOffColor : widgetDefaults#id#.flapOnColor;
 	                    iconElement.style.setProperty("color", `${flapDownColor}`, "important");
 	                    break;
 	                default:
