@@ -317,6 +317,27 @@
             }
         }
 
+	function createIconsWithFile#id#(fileName) {
+            try {
+              const filePath = getJsonFilePath(fileName);
+              fetch(filePath)
+                .then(response => {
+                  if (!response.ok) {
+                      throw new Error("Erreur lors du chargement du fichier JSON.");
+                  }
+                  return response.json();
+                })
+                .then(data => {
+                  createIcons#id#(data);
+                })
+                .catch(error => {
+                  log#id#('⚠️ Erreur : ' + error.stack.replace('\n', ' '));
+                });
+            } catch (error) {
+                log#id#('⚠️ Erreur : ' + error.stack.replace('\n', ' '));
+            }            
+        }
+	    
         function createIcons#id#(data) {
           	data.forEach((item) => {
           		switch (item.type) {
@@ -618,36 +639,17 @@
       
       	// Paramétrage : Liste des tuiles
       	if (domUtils.issetWidgetOptParam(`#tilesList#`, "tilesList")) {
-      		// récupération des tuiles du widget par variable
-          	const data = JSON.parse(`#tilesList#`);
-          	createIcons#id#(data);
+            // récupération des tuiles du widget par variable
+            const data = JSON.parse(`#tilesList#`);
+            createIcons#id#(data);
     	}
       	else if (domUtils.issetWidgetOptParam(`#tilesListFile#`, "tilesListFile")) {
-      		// récupération des tuiles du widget par fichier tilesListFile
-            try {
-                let fileName = `#tilesListFile#`;
-                let filePath = getJsonFilePath(fileName);
-
-                fetch(filePath)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error("Erreur lors du chargement du fichier JSON.");
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        createIcons#id#(data);
-                    })
-                    .catch(error => {
-                        log#id#('⚠️ Erreur : ' + error);
-                    });
-
-            } catch (error) {
-                log#id#('⚠️ ' + error.message);
-            }
+            // récupération des tuiles du widget par fichier tilesListFile
+            const fileName = `#tilesListFile#`;
+            createIconsWithFile#id#(fileName);
         }
       	else {
-          log#id# ('⚠️ Attention, aucune tuile paramétrée !');
+            log#id# ('⚠️ Attention, aucune tuile paramétrée !');
         }
       
       	// Paramétrage : Grille
