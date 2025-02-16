@@ -50,6 +50,7 @@
       <div>flapOnIcon : `icone on` pour les types génériques volets</div>
       <div>flapOffColor : `icone off` pour les types génériques volets</div>
       <div>flapOnColor : `icone on` pour les types génériques volets</div>
+      <div>flapLimit : limite pour considérer les volets en état on ou off (`5`)</div>
 
       <div>doorOffIcon, garageOffIcon, barrierOffIcon, lockOffIcon, energyOffIcon : `icone off` pour les types génériques porte, garage, portail, serrure, prise</div>
       <div>openingOnIcon, garageOnIcon, barrierOnIcon, lockOnIcon, energyOnIcon : `icone on` pour les types génériques porte, garage, portail, serrure, prise</div>
@@ -549,6 +550,9 @@
     	}
 	if (domUtils.issetWidgetOptParam(`#flapOnColor#`, "flapOnColor")) {
             widgetDefaults#id#.flapOnColor = '#flapOnColor#';
+    	}
+    	if (domUtils.issetWidgetOptParam(`#flapLimit#`, "flapLimit")) {
+            widgetDefaults#id#.flapLimit = '#flapLimit#';
     	}
 
       	if (domUtils.issetWidgetOptParam(`#doorOffIcon#`, "doorOffIcon")) {
