@@ -1,4 +1,4 @@
-# Widget nooTileGrid
+# Widget nooTileGrid (Jeedom community : https://community.jeedom.com/t/tuto-noodom-widget-nootilegrid/137877)
 
 ![](doc/images/nooTileGrid.png)
 
@@ -63,6 +63,7 @@ De nombreux paramètres sont possibles pour personnaliser les virtuels et obteni
     flapOnIcon : `icone on` pour les types génériques volets
     flapOffColor : `icone off` pour les types génériques volets
     flapOnColor : `icone on` pour les types génériques volets
+    flapLimit : limite pour considérer les volets en état on ou off (`5`)
 
 ## Ajout dans un Design
 
