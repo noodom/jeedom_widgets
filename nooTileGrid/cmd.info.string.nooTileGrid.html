@@ -38,6 +38,7 @@
       <div>tileBackgroundColor : couleur de fond d'une tuile (`black`)</div>
       <div>tileLabelColor : couleur du libellé d'une tuile (`white`)</div>
       <div>tileWidth : largeur d'une tuile (`150px`)</div>
+      <div>tileBorderRadius : arrondi des angles de tuiles (`15px`)</div>
       <div>openingOffIcon : `icone off` pour les types génériques ouvertures</div>
       <div>openingOnIcon : `icone on` pour les types génériques ouvertures</div>
       <div>openingOffColor : `icone off` pour les types génériques ouvertures</div>
@@ -676,7 +677,10 @@
 	if (domUtils.issetWidgetOptParam(`#tileWidth#`, "tileWidth")) {
             document.documentElement.style.setProperty("--tile-width#id#", '#tileWidth#');
     	}
-        
+      	if (domUtils.issetWidgetOptParam(`#tileBorderRadius#`, "tileBorderRadius")) {
+            document.documentElement.style.setProperty("--tile-border-radius#id#", '#tileBorderRadius#');
+    	} 
+
         //# sourceURL=nooTileGrid#id#.js
     </script>
     <style>
@@ -686,7 +690,8 @@
             --tile-bg#id#: black;
             --tile-label-color#id#: white;
             --tile-width#id#: 150px;
-      	}
+            --tile-border-radius#id#
+        }
  
         #grid-container#id# {
             display: grid;
@@ -700,7 +705,7 @@
         .tile#id# {
             height: 150px;
             background-color: var(--tile-bg#id#);
-            border-radius: 15px;
+            border-radius: var(--tile-border-radius#id#);
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
