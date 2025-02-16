@@ -1,4 +1,5 @@
-# Widget nooTileGrid (Jeedom community : https://community.jeedom.com/t/tuto-noodom-widget-nootilegrid/137877)
+# Widget nooTileGrid 
+Jeedom Community : https://community.jeedom.com/t/tuto-noodom-widget-nootilegrid/137877
 
 ![](doc/images/nooTileGrid.png)
 
