@@ -37,7 +37,9 @@
       <div>gridBackgroundColor : couleur de fond de la grille</div>
       <div>tileBackgroundColor : couleur de fond d'une tuile (`black`)</div>
       <div>tileLabelColor : couleur du libellé d'une tuile (`white`)</div>
+      <div>tileFontSize : taille du libellé d'une tuile (`15px`)</div>
       <div>tileWidth : largeur d'une tuile (`150px`)</div>
+      <div>tileHeight : hauteur d'une tuile (`150px`)</div>
       <div>tileBorderRadius : arrondi des angles de tuiles (`15px`)</div>
       <div>openingOffIcon : `icone off` pour les types génériques ouvertures</div>
       <div>openingOnIcon : `icone on` pour les types génériques ouvertures</div>
@@ -674,8 +676,14 @@
 	if (domUtils.issetWidgetOptParam(`#tileLabelColor#`, "tileLabelColor")) {
             document.documentElement.style.setProperty("--tile-label-color#id#", '#tileLabelColor#');
     	}
+	if (domUtils.issetWidgetOptParam(`#tileFontSize#`, "tileFontSize")) {
+            document.documentElement.style.setProperty("--tile-font-size#id#", '#tileFontSize#');
+    	}
 	if (domUtils.issetWidgetOptParam(`#tileWidth#`, "tileWidth")) {
             document.documentElement.style.setProperty("--tile-width#id#", '#tileWidth#');
+    	}
+	if (domUtils.issetWidgetOptParam(`#tileHeight#`, "tileHeight")) {
+            document.documentElement.style.setProperty("--tile-height#id#", '#tileHeight#');
     	}
       	if (domUtils.issetWidgetOptParam(`#tileBorderRadius#`, "tileBorderRadius")) {
             document.documentElement.style.setProperty("--tile-border-radius#id#", '#tileBorderRadius#');
@@ -689,7 +697,9 @@
             --grid-vertical-space#id#: 10px;
             --tile-bg#id#: black;
             --tile-label-color#id#: white;
+            --tile-font-size#id#: 15px;
             --tile-width#id#: 150px;
+            --tile-height#id#: 150px;
             --tile-border-radius#id#
         }
  
@@ -703,7 +713,7 @@
       	}
 
         .tile#id# {
-            height: 150px;
+            height: var(--tile-height#id#);
             background-color: var(--tile-bg#id#);
             border-radius: var(--tile-border-radius#id#);
             display: flex;
@@ -719,7 +729,7 @@
 	}
 
         .texte#id# {
-            font-size: 17px;
+            font-size: var(--tile-font-size#id#);
             color: var(--tile-label-color#id#);
             font-family: Arial, sans - serif;
             margin-bottom: 10px;
