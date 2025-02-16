@@ -25,7 +25,7 @@
     Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
     -->
 
-  	<div id="grid-container#id#"> </div>
+    <div id="grid-container#id#"> </div>
 
     <template>
       <div>tilesList : liste des tuiles à afficher (au format json)</div>
@@ -364,8 +364,9 @@
 
             item.commands.forEach((cmd) => {
                 const icon = document.createElement("i");
-                icon.classList.add(...cmd.iconClasses.split(" "));
-              	//icon.id = `icon${cmd.cmdId}_#id#`;
+                if (cmd.iconClasses) {
+			icon.classList.add(...cmd.iconClasses.split(" "));
+		}
               	icon.id = `icon${cmd.cmdId}`;
                 icon.setAttribute("onclick", `sendJeedomCommand#id#(${cmd.cmdId})`);
                 iconContainer.appendChild(icon);
