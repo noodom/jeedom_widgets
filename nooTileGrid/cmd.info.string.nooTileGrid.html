@@ -513,16 +513,16 @@
             return Math.ceil(items / columns);
         }
 
-        function getJsonFilePath(fileName) {
+        function getJsonFilePath(fileName, extension) {
             const basePath = "data/nooTileGrid/";
 
             if (!fileName.includes(".")) {
-                fileName += ".json";
+                fileName += `.${extension}`;
             }
 
             const ext = fileName.split('.').pop().toLowerCase();
 
-            if (ext !== "json") {
+            if (ext !== `${extension}`) {
                 throw new Error("Seuls les fichiers JSON sont acceptés.");
             }
 
@@ -531,6 +531,24 @@
             }
 
             return fileName;
+        }
+
+        function loadCustomFont(fontPath) {
+            const filePath = getJsonFilePath(fontPath, 'ttf');
+            let fontName = filePath.split(/[/\\]/).pop();
+            fontName = fontName.split('.').slice(0, -1).join('.');
+
+            let styleTag = document.getElementById("style#id#");
+            styleTag.innerHTML += `
+                @font-face {
+                    font-family: '${fontName}';
+                    src: url('${filePath}') format('truetype');
+                    font-weight: normal;
+                    font-style: normal;
+                }
+            `;
+            
+            document.documentElement.style.setProperty("--tile-label-font-family#id#", `'${fontName}'`);
         }
 
       	jeedom.cmd.addUpdateFunction('#id#', function(_options) {
@@ -679,6 +697,9 @@
 	if (domUtils.issetWidgetOptParam(`#tileFontSize#`, "tileFontSize")) {
             document.documentElement.style.setProperty("--tile-font-size#id#", '#tileFontSize#');
     	}
+    	if (domUtils.issetWidgetOptParam(`#tileFont#`, "tileFont")) {
+            loadCustomFont('#tileFont#');
+    	}
 	if (domUtils.issetWidgetOptParam(`#tileWidth#`, "tileWidth")) {
             document.documentElement.style.setProperty("--tile-width#id#", '#tileWidth#');
     	}
@@ -691,12 +712,13 @@
 
         //# sourceURL=nooTileGrid#id#.js
     </script>
-    <style>
+    <style id="style#id#">
         :root {
             --grid-horizontal-space#id#: 10px;
             --grid-vertical-space#id#: 10px;
             --tile-bg#id#: black;
             --tile-label-color#id#: white;
+            --tile-label-font-family#id#: "Arial, sans-serif";
             --tile-font-size#id#: 15px;
             --tile-width#id#: 150px;
             --tile-height#id#: 150px;
@@ -731,7 +753,7 @@
         .texte#id# {
             font-size: var(--tile-font-size#id#);
             color: var(--tile-label-color#id#);
-            font-family: Arial, sans-serif;
+            font-family: var(--tile-label-font-family#id#);
             margin-bottom: 10px;
         }
 
