@@ -91,7 +91,10 @@
       
       // Paramètres par défaut
       var widgetDefaults#id# = {
-          doorOffIcon: 'jeedom-porte-ferme',
+          designIcon: 'fas fa-paint-brush',
+          designColor: 'grey',
+
+	  doorOffIcon: 'jeedom-porte-ferme',
           doorOnIcon: 'jeedom-porte-ouverte',
           doorOffColor: 'white',
           doorOnColor: 'red',
@@ -170,7 +173,17 @@
             jeedom.cmd.execute({id: cmdId});
         }
 
-        function getIconsWithGenericType#id#(iconId, name, iconClosedClasses, iconOpenClasses, iconClosedColor, iconOpenColor) {
+      	function gotoDesign#id#(designId) {
+			if (jeephp2js.planHeader_id) { // design
+            	jeephp2js.planHeader_id = designId;
+      			jeeFrontEnd.plan.displayPlan();
+            }
+            else {
+            	window.location.href = `index.php?v=d&p=plan&plan_id=${designId}`;
+            }
+        }
+
+	function getIconsWithGenericType#id#(iconId, name, iconClosedClasses, iconOpenClasses, iconClosedColor, iconOpenColor) {
             return new Promise((resolve) => {
                 if (iconClosedClasses == null || iconOpenClasses == null || iconClosedColor == null || iconOpenColor == null) {
                     jeedom.cmd.byId({
@@ -348,6 +361,9 @@
 	                    case 'action':
 	                        createActionIcon#id#(item);
 	                        break;
+	                    case 'design':
+	                        createDesign#id#(item);
+	                    	break;
 	                    case 'gap':
 	                        createGap#id#();
 	                        break;
@@ -360,6 +376,52 @@
           	adjustHeight#id#();
         }
 
+        function createDesign#id#(item) {
+            const container = document.getElementById("grid-container#id#");
+
+            const tile = document.createElement("div");
+            tile.classList.add("tile#id#");
+
+            const texte = document.createElement("p");
+            texte.id = `name${item.designId}`;;
+            texte.classList.add("texte#id#");
+            texte.textContent = item.name;
+
+            const iconCmd = document.createElement("i");
+            iconCmd.classList.add("iconCmd");
+
+            tile.appendChild(texte);
+            tile.appendChild(iconCmd);
+
+            const icon = tile.querySelector(".iconCmd");
+          	icon.id = `iconDesign${item.designId}`;
+            icon.setAttribute("onclick", `gotoDesign#id#(${item.designId})`);
+
+            container.appendChild(tile);
+  
+            updateDesignIcon#id#(item.designId, item.name, item.iconClasses, item.iconColor);
+        }
+
+        function updateDesignIcon#id#(designId, name, iconClasses, iconColor) {
+              //log#id#(`updateDesignIcon : ${designId} :: ${name} :: ${iconClasses}`);
+              const iconName = document.getElementById(`name${designId}`);
+              iconName.innerHTML = name;
+              const iconElement = document.getElementById(`iconDesign${designId}`);
+              iconClasses = iconClasses ?? widgetDefaults#id#.designIcon;
+              iconColor = iconColor ?? widgetDefaults#id#.designColor;
+              //todo : revoir pourquoi tester les cas null
+              if (!iconElement || iconClasses == null) return;
+
+              iconClasses = iconClasses.split(' ');
+
+              iconElement.classList.remove(...iconElement.classList);
+              // iconCmd encore utile ?
+              iconElement.classList.add('iconCmd');
+              iconClasses.forEach(cls => iconElement.classList.add(cls));
+              iconElement.style.setProperty("color", `${iconColor}`, "important");
+
+        }
+	    
         function createGap#id#() {
             const container = document.getElementById("grid-container#id#");
             const gapElement = document.createElement("div");
